@@ -12,10 +12,31 @@ export default function ConceptSummaryScreen() {
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
-
-      <Text style={styles.text}>📘 개념요약 페이지입니다.</Text>
+  
+      <Text style={styles.text}>
+        📘 학습목표 : 물리 변화와 화학 변화의 차이를 설명할 수 있다.
+      </Text>
+  
+      {/* 들여쓰기 섹션 시작 */}
+      <View style={styles.conceptSection}>
+        <Text style={styles.conceptTitle}>🔷 물리변화</Text>
+        <Text style={styles.description}>
+          물질의 <Text style={styles.bold}>성질은 변하지 않으면서</Text> 모양이나 상태가 변하는 물질의 변화입니다.{" "}
+          
+        </Text>
+  
+        <Text style={styles.conceptTitle}>🔶 화학변화</Text>
+        <Text style={styles.description}>
+          처음 물질과는 <Text style={styles.bold}>성질이 전혀 다른 새로운 물질</Text>로 변하는 변화입니다.{" "}
+          
+        </Text>
+      </View>
     </View>
   );
+  
+  
+  
+  
 }
 
 const styles = StyleSheet.create({
