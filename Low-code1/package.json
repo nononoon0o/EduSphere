@@ -26,6 +26,7 @@
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
+    "axios": "^1.8.4",
     "dotenv": "^16.4.7",
     "expo": "~52.0.40",
     "expo-asset": "~11.0.5",

@@ -1,148 +1,134 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-  View,
   Text,
-  StyleSheet,
+  View,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
-  ImageBackground,
-} from 'react-native';
-import { useRouter } from 'expo-router';
+  Alert,
+} from "react-native";
+import { useRouter } from "expo-router";
+import Icon from "react-native-vector-icons/FontAwesome";
+import axios from "axios";
+import styles from "../../style/LoginScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage"; // JWT 저장용
 
-export default function ProfileScreen() {
-  const [email, setEmail] = useState('');
-  const [passcode, setPasscode] = useState('');
+const LoginScreen = () => {
   const router = useRouter();
+  const [userID, setUserID] = useState(""); // 아이디 상태
+  const [password, setPassword] = useState(""); // 비밀번호 상태
+  const [passwordVisible, setPasswordVisible] = useState(false); // 비밀번호 가시성 상태
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // 로그인 요청 처리 함수
+  const handleLogin = async () => {
+    try {
+      const loginData = {
+        userID: userID.trim(),
+        password: password.trim(),
+      };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        loginData
+      );
+
+      if (response.data.success) {
+        // JWT 토큰 저장
+        const token = response.data.token;
+        await AsyncStorage.setItem("token", token); // AsyncStorage에 저장
+        setErrorMessage("");
+        Alert.alert("로그인 성공", "홈 화면으로 이동합니다.");
+        router.push("MenuScreen"); // 홈 화면으로 이동
+      } else {
+        // 서버에서 오는 메시지에 따라 에러 메시지 설정
+        if (response.data.message === "비밀번호가 일치하지 않습니다.") {
+          setErrorMessage("비밀번호가 일치하지 않습니다.");
+        } else if (response.data.message === "존재하지 않는 사용자입니다.") {
+          setErrorMessage("존재하지 않는 사용자입니다.");
+        } else {
+          setErrorMessage(response.data.message || "로그인에 실패했습니다.");
+        }
+      }
+    } catch (error) {
+      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
+      console.error(error);
+    }
+  };
+
+  // 회원가입 화면으로 이동하는 함수
+  const handleAccount = () => {
+    router.push("/signup/signmail"); // 테스트용 경로
+  };
+
+  const handleIdfind = () => {
+    router.push("/find/findmain");
+  };
 
   return (
-    <ImageBackground
-      source={require('../../assets/images/review.jpeg')}
-      resizeMode="cover"
-      style={styles.background}
-    >
-      <SafeAreaView style={styles.overlay}>
-        <View style={styles.card}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Login to continue</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Profile</Text>
+    
+      {/* 에러 메시지 표시 */}
+      {errorMessage !== "" && (
+        <Text style={{ color: "red", marginBottom: 10, fontWeight: "bold" }}>
+          {errorMessage}
+        </Text>
+      )}
 
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#bbb"
-            value={email}
-            onChangeText={setEmail}
+      {/* ID 입력 필드 */}
+      <View style={styles.inputContainer}>
+        <Icon name="user" size={20} color="#aaa" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="아이디"
+          placeholderTextColor="#aaa"
+          value={userID}
+          onChangeText={setUserID}
+        />
+      </View>
+
+      {/* 비밀번호 입력 필드 */}
+      <View style={styles.inputContainer}>
+        <Icon name="lock" size={20} color="#aaa" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="비밀번호"
+          secureTextEntry={!passwordVisible}
+          placeholderTextColor="#aaa"
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
+          <Icon
+            name={passwordVisible ? "eye" : "eye-slash"}
+            size={20}
+            color="#aaa"
+            style={styles.eyeIcon}
           />
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="#bbb"
-            secureTextEntry
-            value={passcode}
-            onChangeText={setPasscode}
-          />
+        </TouchableOpacity>
+      </View>
 
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Login</Text>
-          </TouchableOpacity>
+      {/* 로그인 버튼 */}
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>로그인</Text>
+      </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => router.push('/auth/ForgotPasswordScreen')}>
-            <Text style={styles.forgotText}>Forgot password?</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.bottomText}>
-            Don’t have an account?{' '}
-            <Text
-              style={styles.registerLink}
-              onPress={() => router.push('/auth/RegisterScreen')}
-            >
-              Register
-            </Text>
-          </Text>
-        </View>
-      </SafeAreaView>
-    </ImageBackground>
+      {/* 옵션들 */}
+      <View style={styles.options}>
+        <TouchableOpacity onPress={handleIdfind}>
+          <Text style={styles.optionText}>아이디찾기</Text>
+        </TouchableOpacity>
+        <Text style={styles.separator}> | </Text>
+        <TouchableOpacity onPress={handleIdfind}>
+          <Text style={styles.optionText}>비밀번호찾기</Text>
+        </TouchableOpacity>
+        <Text style={styles.separator}> | </Text>
+        <TouchableOpacity onPress={handleAccount}>
+          <Text style={styles.optionText}>회원가입</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-}
+};
 
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  overlay: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0,0,0,0.65)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-  },
-  card: {
-    backgroundColor: '#ffffff10',
-    width: '100%',
-    maxWidth: 360,
-    padding: 30,
-    borderRadius: 20,
-    borderColor: '#fff2',
-    borderWidth: 1,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#ccc',
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  input: {
-    height: 48,
-    backgroundColor: '#ffffff20',
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    marginBottom: 16,
-    color: '#fff',
-    borderColor: '#fff4',
-    borderWidth: 1,
-  },
-  loginButton: {
-    backgroundColor: '#f98d45',
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginBottom: 16,
-    shadowColor: '#f98d45',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 6,
-  },
-  loginButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  forgotText: {
-    color: '#ddd',
-    textAlign: 'center',
-    marginTop: 6,
-    fontSize: 13,
-  },
-  bottomText: {
-    marginTop: 30,
-    textAlign: 'center',
-    color: '#ccc',
-  },
-  registerLink: {
-    color: '#fbd44c',
-    fontWeight: 'bold',
-  },
-});
+export default LoginScreen;
