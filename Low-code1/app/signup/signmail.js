@@ -40,7 +40,7 @@ const SignupEmail = () => {
 
   const confirmBack = () => {
     setIsBackModalVisible(false); // 뒤로가기 모달 닫기
-    router.push("/login");
+    router.push("/signin/loginScreen");
   };
 
   const handleNext = async () => {

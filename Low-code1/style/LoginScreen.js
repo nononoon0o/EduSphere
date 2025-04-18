@@ -57,38 +57,11 @@ const styles = StyleSheet.create({
       color: '#aaa',
       fontSize: 14,
     },
-    socialButtonGoogle: {
-      width: '80%',
-      height: 50,
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: 10,
-      borderWidth: 1,
-      borderColor: '#333',
-    },
-    socialButtonNaver: {
-      width: '80%',
-      height: 50,
-      backgroundColor: '#03C75A',
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: 10,
-    },
-    socialButtonKakao: {
-      width: '80%',
-      height: 50,
-      backgroundColor: '#FEE500',
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: 10,
-    },
-    socialButtonText: {
-      color: '#000',
-      fontSize: 16,
+    backIcon: {
+      position: 'absolute',
+      top: '3%',
+      left: '3%',
+      zIndex: 1,
     },
   });
   
