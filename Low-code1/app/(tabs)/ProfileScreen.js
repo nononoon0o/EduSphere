@@ -1,23 +1,86 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
+import { useRouter } from "expo-router";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 import styles from '../../style/LoginScreen';
 
-export default function ProfileScreen() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const userName = "홍길동";
+export default function ProfileScreen({ navigation }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [userName, setUserName] = useState(null);
+  const router = useRouter();
+
+  // 유저 정보 불러오기
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      setIsLoading(true);
+      try {
+        const token = await AsyncStorage.getItem('token');
+        if (!token) {
+          setUserName(null);
+        } else {
+          // 서버에서 유저 이름 불러오기
+          const response = await axios.get('http://localhost:5000/user/name', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            withCredentials: true,
+          });
+          console.log("서버 응답 데이터:", response.data); // 응답 데이터 확인
+          if (response.data && response.data.nickname) {
+            setUserName(response.data.nickname);
+          } else {
+            setUserName(null);
+          }
+        }
+      } catch (error) {
+        setUserName(null);
+        // 에러 처리 (예: 토큰 만료 등)
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchUserInfo();
+  }, []);
+
+  // 로그아웃
+  const handleLogout = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        await axios.post(
+          'http://localhost:5000/api/auth/logout',
+          {},
+          { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
+        );
+        await AsyncStorage.removeItem('token');
+      }
+    } catch (e) {}
+    setUserName(null);
+  };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#0097FB" />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* 상단 프로필/로그인 영역 */}
-      <View style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 40,
-        width: '80%',
-        justifyContent: 'center',
-      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom: 40,
+          width: '80%',
+          justifyContent: 'center',
+        }}
+      >
         <Text style={styles.loginButtonText}>
-          {isLoggedIn ? `${userName}님` : '로그인 해주세요'}
+          {userName ? `${userName}님 어서오세요` : '로그인 해주세요'}
         </Text>
         <TouchableOpacity
           style={{
@@ -30,15 +93,15 @@ export default function ProfileScreen() {
             justifyContent: 'center',
           }}
           onPress={() => {
-            if (isLoggedIn) {
-              setIsLoggedIn(false);
+            if (userName) {
+              handleLogout();
             } else {
-              navigation.navigate('../signin/loginScreen');
+              router.push('../signin/loginScreen');
             }
           }}
         >
           <Text style={styles.loginButtonText}>
-            {isLoggedIn ? '로그아웃' : '로그인'}
+            {userName ? '로그아웃' : '로그인'}
           </Text>
         </TouchableOpacity>
       </View>

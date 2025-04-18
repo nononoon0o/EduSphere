@@ -40,9 +40,10 @@ const LoginScreen = () => {
         // JWT 토큰 저장
         const token = response.data.token;
         await AsyncStorage.setItem("token", token); // AsyncStorage에 저장
+        await AsyncStorage.setItem('userData', JSON.stringify(response.data.user));
         setErrorMessage("");
         Alert.alert("로그인 성공", "홈 화면으로 이동합니다.");
-        router.push("MenuScreen"); // 홈 화면으로 이동
+        router.push("/ProfileScreen"); // 홈 화면으로 이동
       } else {
         // 서버에서 오는 메시지에 따라 에러 메시지 설정
         if (response.data.message === "비밀번호가 일치하지 않습니다.") {
