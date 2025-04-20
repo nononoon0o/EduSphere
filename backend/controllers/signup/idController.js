@@ -1,4 +1,4 @@
-const User = require("../../models/User"); // 기존 유저 모델 (회원 정보 저장용)
+const { User } = require("../../models/user"); // 기존 유저 모델 (회원 정보 저장용)
 
 // 아이디 중복 확인 함수
 const checkUserID = async (req, res) => {
