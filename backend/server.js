@@ -15,12 +15,13 @@ const emailRoutes = require("./routes/signup/emailRoutes");
 const codeRoutes = require("./routes/signup/codeRoutes");
 const idRoutes = require("./routes/signup/idRoutes");
 const pwRoutes = require("./routes/signup/pwRoutes");
+const detailRoutes = require("./routes/signup/detailRoutes");
+
 const userRoutes = require("./routes/profile/userRoutes");
 
 // Express 애플리케이션 생성
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 
 app.use(
     cors({
@@ -56,6 +57,7 @@ app.use("/api/signup", emailRoutes);
 app.use("/api/signup", codeRoutes);
 app.use("/api/signup", idRoutes);
 app.use("/api/signup", pwRoutes);
+app.use("/api/signup", detailRoutes);
 
 // 유저 정보 가져오기
 app.use("/user", userRoutes);
