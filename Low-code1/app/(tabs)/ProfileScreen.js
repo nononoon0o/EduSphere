@@ -8,39 +8,63 @@ import styles from '../../style/LoginScreen';
 export default function ProfileScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const [userName, setUserName] = useState(null);
+  const [role, setRole] = useState(null);
   const router = useRouter();
+
+  const getRoleName = (role) => {
+    switch (role) {
+      case "student":
+        return "학생";
+      case "teacher":
+        return "교사";
+    }
+  };
+
+  const fetchUserInfo = async () => {
+    setIsLoading(true);
+    try {
+      const token = await AsyncStorage.getItem('token');
+      if (!token) {
+        setUserName(null);
+        setRole(null);
+      } else {
+        // 1. 닉네임 가져오기
+        const nameRes = await axios.get('http://localhost:5000/user/name', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true,
+        });
+  
+        if (nameRes.data?.nickname) {
+          setUserName(nameRes.data.nickname);
+        }
+  
+        // 2. 역할 가져오기
+        const roleRes = await axios.get('http://localhost:5000/user/role', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true,
+        });
+  
+        if (roleRes.data?.role) {
+          setRole(roleRes.data.role);
+        }
+      }
+    } catch (error) {
+      setUserName(null);
+      setRole(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
 
   // 유저 정보 불러오기
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      setIsLoading(true);
-      try {
-        const token = await AsyncStorage.getItem('token');
-        if (!token) {
-          setUserName(null);
-        } else {
-          // 서버에서 유저 이름 불러오기
-          const response = await axios.get('http://localhost:5000/user/name', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true,
-          });
-          console.log("서버 응답 데이터:", response.data); // 응답 데이터 확인
-          if (response.data && response.data.nickname) {
-            setUserName(response.data.nickname);
-          } else {
-            setUserName(null);
-          }
-        }
-      } catch (error) {
-        setUserName(null);
-        // 에러 처리 (예: 토큰 만료 등)
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchUserInfo();
   }, []);
 
@@ -58,6 +82,7 @@ export default function ProfileScreen({ navigation }) {
       }
     } catch (e) {}
     setUserName(null);
+    setRole(null);
   };
 
   if (isLoading) {
@@ -80,7 +105,7 @@ export default function ProfileScreen({ navigation }) {
         }}
       >
         <Text style={styles.loginButtonText}>
-          {userName ? `${userName}님 어서오세요` : '로그인 해주세요'}
+          {userName ? `${getRoleName(role)} ${userName}님 어서오세요` : '로그인 해주세요'}
         </Text>
         <TouchableOpacity
           style={{
@@ -109,7 +134,7 @@ export default function ProfileScreen({ navigation }) {
       {/* 설정 버튼 영역 */}
       <View style={{ width: '80%', alignItems: 'center' }}>
         <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>계정 설정</Text>
+          <Text style={styles.loginButtonText}>계정 정보 설정</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginButton}>
           <Text style={styles.loginButtonText}>알림 설정</Text>
