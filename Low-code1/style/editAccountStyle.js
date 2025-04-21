@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  backIcon: {
+    position: 'absolute',
+    top: '3%',
+    left: '3%',
+    zIndex: 1,
+  },
 });
 
 export default styles;
