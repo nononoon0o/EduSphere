@@ -133,7 +133,16 @@ export default function ProfileScreen({ navigation }) {
 
       {/* 설정 버튼 영역 */}
       <View style={{ width: '80%', alignItems: 'center' }}>
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => {
+            if(!userName) {
+              console.log("오류")
+            } else {
+              router.push('../signin/editAccountScreen');
+            }
+          }}
+        >
           <Text style={styles.loginButtonText}>계정 정보 설정</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginButton}>

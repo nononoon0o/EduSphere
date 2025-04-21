@@ -67,8 +67,8 @@ const styleid = StyleSheet.create({
   },
   backIcon: {
     position: 'absolute',
-    top: '5%',
-    left: '5%',
+    top: '3%',
+    left: '3%',
     zIndex: 1,
   },
 });
