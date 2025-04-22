@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'r
 import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import styles from '../../style/LoginScreen';
+import styles from '../../style/signinStyle/LoginScreen';
 
 export default function ProfileScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -139,11 +139,11 @@ export default function ProfileScreen({ navigation }) {
             if(!userName) {
               console.log("오류")
             } else {
-              router.push('../signin/editAccountScreen');
+              router.push('../signin/verifyPasswordScreen');
             }
           }}
         >
-          <Text style={styles.loginButtonText}>계정 정보 설정</Text>
+          <Text style={styles.loginButtonText}>계정 정보 수정</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginButton}>
           <Text style={styles.loginButtonText}>알림 설정</Text>

@@ -11,7 +11,7 @@ import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import Passwordmodal from "./PasswordModal";
-import styles from "../../style/PasswordStyle";
+import styles from "../../style/signupStyle/PasswordStyle";
 
 const SignupPassword = () => {
   const [password, setPassword] = useState("");

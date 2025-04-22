@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import { Text, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import { useRouter } from "expo-router";
 import EditAccountModal from './editAccountModal';
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import styles from '../../style/editAccountStyle'; // 스타일은 따로 관리하면 좋아
+import styles from '../../style/signinStyle/editAccountStyle'; // 스타일은 따로 관리하면 좋아
 
 export default function EditAccountScreen() {
   const [modalVisible, setModalVisible] = useState(false); // 모달 상태

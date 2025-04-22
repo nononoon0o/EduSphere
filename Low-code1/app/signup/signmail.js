@@ -11,7 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
-import stylemail from "../../style/EmailStyle";
+import stylemail from "../../style/signupStyle/EmailStyle";
 import BackPressModal from "../find/BackPressModal";
 import CodeModal from "./codemodal";
 
