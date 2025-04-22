@@ -18,6 +18,7 @@ const pwRoutes = require("./routes/signup/pwRoutes");
 const detailRoutes = require("./routes/signup/detailRoutes");
 
 const userRoutes = require("./routes/user/userRoutes");
+const verifyPWRoutes = require("./routes/user/verifyPWRoutes")
 const editAccountRoutes = require("./routes/user/editAccountRoutes");
 
 // Express 애플리케이션 생성
@@ -62,6 +63,7 @@ app.use("/api/signup", detailRoutes);
 
 // 유저 정보 가져오기
 app.use("/user", userRoutes);
+app.use("/user", verifyPWRoutes);
 app.use("/user", editAccountRoutes);
 
 // 서버 실행
