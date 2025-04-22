@@ -21,7 +21,7 @@ export default function Chapter1_01() {
       {/* (개념요약) Section */}
       <View style={styles.section}>
         <TouchableOpacity onPress={() => router.push('/learnPages/ConceptSummaryScreen')}>
-          <Text style={styles.sectionTitle}>📘 (개념요약)</Text>
+          <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
         </TouchableOpacity>
       </View>
 
@@ -37,10 +37,6 @@ export default function Chapter1_01() {
         <TouchableOpacity onPress={() => router.push('/learnPages/VideoLearningScreen')}>
           <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
         </TouchableOpacity>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 16 }}>
-          
-        </View>
       </View>
     </ScrollView>
   );
