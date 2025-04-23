@@ -158,8 +158,35 @@ export default function DragDropChemistry() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <ScrollView>
-              <Text style={styles.explanationTitle}>🧪 물리 변화 풀이 예시</Text>
-              {/* 여기에 상세 설명 추가 */}
+            <Text style={styles.explanationTitle}>🧪 설탕을 물에 녹인다 : </Text>
+          <Text>1. 물질의 성질이 변하지 않아요!</Text>
+          <Text>설탕을 물에 넣으면 설탕이 물속에 골고루 퍼질 뿐, 설탕 자체가 다른 물질로 바뀌는 건 아니에요. → 화학 반응이 일어나지 않고, 설탕은 여전히 설탕이에요!</Text>
+          <Text>2. 되돌릴 수 있어요!</Text>
+          <Text>물을 증발시키면 다시 설탕 결정이 생겨요. → 즉, 설탕을 다시 원래 상태로 되돌릴 수 있기 때문에, 이건 물리 변화입니다.</Text>
+          <Text>3. 입자 구조가 그대로예요!</Text>
+          <Text>물에 녹은 설탕은 입자 단위로 나뉘어 퍼지지만, 그 입자 자체의 구조는 변하지 않아요. → 원자나 분자의 배열이 바뀌는 화학 반응이 일어나지 않기 때문이에요.</Text>
+          <Text style={styles.explanationTitle}>🧪 설탕을 물에 녹인다 : </Text>
+          <Text>1. 물 자체는 변하지 않아요!</Text>
+          <Text>물을 끓이면 **액체 상태의 물이 기체(수증기)**로 변하지만, 그 본질은 여전히 **물(H₂O)**이에요. → 물이 다른 물질로 바뀌지 않기 때문에 화학 변화가 아니라 물리 변화예요.</Text>
+          <Text>2. 되돌릴 수 있어요!</Text>
+          <Text>수증기를 식히면 다시 물로 만들 수 있어요. → 되돌릴 수 있는 변화는 물리 변화의 대표적인 특징이죠!</Text>
+          <Text>3. 입자 구조가 변하지 않아요!</Text>
+          <Text>끓는 동안 물 입자들이 더 빠르게 움직일 뿐, 그 입자(분자) 자체가 바뀌거나 새로운 물질이 생기지는 않아요.</Text>
+          <Text style={styles.explanationTitle}>🧪 채소를 썬다 : </Text>
+          <Text>1. 물질의 성질이 그대로예요!</Text>
+          <Text>채소를 아무리 잘게 썰어도, 그것은 여전히 채소예요. → 색깔, 맛, 냄새, 성분 모두 변하지 않기 때문에 화학 반응이 일어난 게 아니에요.</Text>
+          <Text>2. 단지 모양만 바뀌어요</Text>
+          <Text>채소를 써는 것은 단순히 형태나 크기만 달라지는 거예요. → 이런 변화를 물리 변화라고 해요.</Text>
+          <Text>3. 되돌릴 수는 없지만, 새로운 물질은 안 생겨요</Text>
+          <Text>되돌리기 어렵긴 하지만, 중요한 건 새로운 물질이 생기지 않았다는 것!</Text>
+          <Text style={styles.explanationTitle}>🧪 채소를 썬다 : </Text>
+          <Text>1. 물의 성분이 변하지 않아요!</Text>
+          <Text>어항의 물이 줄어드는 이유는 물이 **기체(수증기)**로 증발하기 때문이에요. → 이때 물(H₂O)은 그대로 물입니다.</Text>
+          <Text>2. 되돌릴 수 있어요!</Text>
+          <Text>공기 중으로 증발한 물은 다시 응결하면 물방울이 되어 돌아올 수 있어요. → 되돌릴 수 있는 변화는 물리 변화의 특징입니다.</Text>
+          <Text>3. 입자 구조가 바뀌지 않아요!</Text>
+          <Text>물은 단지 **상태(액체 → 기체)**만 바뀌었을 뿐, 입자 구조는 그대로입니다. → 화학 반응처럼 새로운 물질이 생성되지는 않아요.</Text>
+          <Text>                                                           </Text>
               <Button title="닫기" onPress={() => setShowPhysicalExplanation(false)} />
             </ScrollView>
           </View>
@@ -170,8 +197,36 @@ export default function DragDropChemistry() {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <ScrollView>
-              <Text style={styles.explanationTitle}>🔥 화학 변화 풀이 예시</Text>
-              {/* 여기에 상세 설명 추가 */}
+            <Text style={styles.explanationTitle}>🔥 향초를 피운다 : </Text>
+          <Text>1. 새로운 물질이 생겨요!  </Text>
+          <Text>향초가 타면 원래 있던 파라핀(초의 주성분)이 공기 중의 산소와 반응해 **이산화탄소(CO₂)**와 **물(H₂O)**이라는 전혀 다른 물질로 바뀌어요. 이처럼 원래 있던 물질이 다른 물질로 바뀌는 것이 바로 화학 변화입니다.</Text>
+          <Text>2. 연소(탈 때)는 화학 반응이에요!</Text>
+          <Text>향초가 타는 건 "연소"라는 과정인데, 이건 물질이 산소와 빠르게 반응하면서 열과 빛을 내는 화학 반응이에요. → 단순히 모양이 바뀌는 물리 변화와는 달라요.</Text>
+          <Text>3. 되돌릴 수 없어요</Text>
+          <Text>향초가 다 타버리고 나면, 다시 원래의 향초로 되돌릴 수 없어요. 이처럼 되돌릴 수 없는 변화도 화학 변화의 특징이에요.</Text>
+          <Text style={styles.explanationTitle}>🔥 고기가 익는다 : </Text>
+          <Text>1. 단백질이 구조를 바꿔요!</Text>
+          <Text>고기를 가열하면 단백질이 열에 의해 변성돼요. → 단백질 분자가 원래의 구조를 잃고 새로운 구조로 바뀌며, 고기의 색과 질감, 맛도 달라져요. 이는 단순히 모양이 변하는 게 아니라 분자의 구조 자체가 바뀌는 화학 반응이에요.</Text>
+          <Text>2. 새로운 물질이 생겨요!</Text>
+          <Text>열을 가할 때 고기 속의 아미노산과 당이 반응해서 갈색 물질이 생기고, 맛있는 향기와 맛도 함께 만들어져요. → 이 반응을 **마이야르 반응(Maillard Reaction)**이라고 해요.</Text>
+          <Text>3. 되돌릴 수 없어요!</Text>
+          <Text>익은 고기를 다시 생고기로 되돌릴 수 없죠? → 이처럼 되돌릴 수 없는 변화는 화학 반응의 대표적 특징이에요.</Text>
+          <Text style={styles.explanationTitle}>🔥 불꽃놀이 : </Text>
+          <Text>1. 새로운 물질이 생겨요!</Text>
+          <Text>불꽃놀이 속에는 다양한 **화학 물질(금속 화합물)**이 들어 있어요. 이 물질들이 산소와 반응하면 폭발하면서 새로운 기체, 연기, 빛 등을 만들어냅니다. → 이 과정에서 원래의 물질이 완전히 다른 물질로 변하기 때문에 화학 변화입니다.</Text>
+          <Text>2. 불꽃 색깔도 화학 반응 덕분이에요!</Text>
+          <Text>스트론튬 → 빨간 불꽃    구리 → 파란 불꽃    나트륨 → 노란 불꽃</Text>
+          <Text>이처럼 각 원소가 타면서 특정한 색의 불꽃을 내는 것도 화학 반응의 결과예요. → 빛의 색이 다르게 나오는 건, 원소의 전자가 열에너지로 들떴다가 다시 돌아오면서 생기는 에너지 변화 때문이에요.</Text>
+          <Text>3. 되돌릴 수 없어요!</Text>
+          <Text>한 번 터진 폭죽은 다시 원래의 상태로 되돌릴 수 없죠. → 되돌릴 수 없는 변화 = 화학 변화의 특징이에요.</Text>
+          <Text style={styles.explanationTitle}>🔥 계란을 삶는다 : </Text>
+          <Text>1. 단백질이 구조를 바꿔요 (변성 반응)</Text>
+          <Text>달걀 흰자와 노른자에는 단백질이 많이 들어 있어요. → 이 단백질은 열을 받으면 원래의 복잡한 구조가 풀리고, 다시 엉켜서 새로운 구조로 바뀌어요.</Text>
+          <Text>→ 이 과정이 바로 단백질 변성이라는 화학 반응입니다.</Text>
+          <Text>예시: 익기 전엔 투명한 흰자가, 익으면 하얗고 단단하게 변하죠? → 이것이 단백질 구조가 바뀐 증거예요!</Text>
+          <Text>2. 되돌릴 수 없어요!</Text>
+          <Text>한 번 삶은 달걀은 다시 생달걀로 되돌릴 수 없죠? → 되돌릴 수 없는 변화는 물리 변화가 아닌 화학 변화의 중요한 특징이에요.</Text>
+          <Text>                                                           </Text>
               <Button title="닫기" onPress={() => setShowChemicalExplanation(false)} />
             </ScrollView>
           </View>
@@ -309,5 +364,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
   },
-  
 });
