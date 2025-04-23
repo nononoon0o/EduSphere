@@ -9,7 +9,7 @@ import {
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
-import styles from "../../style/signinStyle/LoginScreen";
+import styles from "../../style/signinStyle/loginStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // JWT 저장용
 
 const LoginScreen = () => {

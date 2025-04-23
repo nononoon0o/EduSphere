@@ -1,4 +1,5 @@
 const User = require("../../models/user");
+const bcrypt = require("bcrypt");
 
 require("dotenv").config();
 
@@ -40,7 +41,7 @@ const loadName = async (req, res) => {
 const loadRole = async (req, res) => {
   try {
     const userId = req.user.id;
-    const baseUser = await User.User.findById(userId); // User.User 구조라면
+    const baseUser = await User.User.findById(userId);
     if (!baseUser) {
       return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
     }
@@ -52,4 +53,28 @@ const loadRole = async (req, res) => {
   }
 };
 
-module.exports = { loadName, loadRole };
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { password } = req.body;
+    console.log(userId)
+    console.log(password)
+    const user = await User.User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "사용자를 찾을 수 없습니다." });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "비밀번호 불일치" });
+    }
+    // 여기서 실제 삭제
+    await User.User.findByIdAndDelete(userId);
+    console.log("회원 탈퇴 완료")
+    return res.status(200).json({ success: true, message: "회원 탈퇴가 완료되었습니다." });
+  } catch (err) {
+    console.error("회원 탈퇴 중 오류:", err);
+    return res.status(500).json({ success: false, message: "서버 오류" });
+  }
+};
+
+module.exports = { loadName, loadRole, deleteUser };

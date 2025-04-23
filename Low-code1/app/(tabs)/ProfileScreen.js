@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'r
 import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import styles from '../../style/signinStyle/LoginScreen';
+import styles from '../../style/signinStyle/loginStyle';
 
 export default function ProfileScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -145,12 +145,63 @@ export default function ProfileScreen({ navigation }) {
         >
           <Text style={styles.loginButtonText}>계정 정보 수정</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>알림 설정</Text>
+
+        {/* 교사 전용 버튼 */}
+        {role === "teacher" && (
+          <>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => {router.push('')}}
+            >
+              <Text style={styles.loginButtonText}>진도 설정</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => {router.push('')}}
+            >
+              <Text style={styles.loginButtonText}>학생 관리</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => {router.push('')}}
+            >
+              <Text style={styles.loginButtonText}>학습 결과 확인</Text>
+            </TouchableOpacity>
+          </>
+        )}
+
+        {/* 학생 전용 버튼 */}
+        {role === "student" && (
+          <>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => {router.push('')}}
+            >
+              <Text style={styles.loginButtonText}>학습 결과 확인</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => {router.push('')}}
+            >
+              <Text style={styles.loginButtonText}>쪽지 보내기</Text>
+            </TouchableOpacity>
+          </>
+        )}
+
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => {
+            if(!userName) {
+              console.log("오류")
+            } else {
+              router.push('../signin/withdrawalScreen');
+            }
+          }}
+        >
+          <Text style={styles.loginButtonText}>회원 탈퇴</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>다크 모드</Text>
-        </TouchableOpacity>
+
+        
       </View>
     </SafeAreaView>
   );

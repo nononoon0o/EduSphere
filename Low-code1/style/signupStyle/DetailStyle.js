@@ -3,17 +3,18 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: "10%",
+    padding: "5%",
     backgroundColor: "#000",
     justifyContent: "flex-start",
   },
   titleContainer: {
     width: "100%",
-    marginBottom: "1%",
+    marginBottom: "3%",
+    alignItems: "center",
   },
   title: {
     fontSize: 25,
-    padding: "5%",
+    marginTop: "3%",
     color: "#fff",
     fontWeight: "bold",
     textAlign: "center",
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
   roleContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: "5%",
     gap: 40,
   },
   roleButton: {
@@ -43,17 +43,17 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingVertical: "4%",
+    paddingVertical: "1%",
     fontSize: 15,
     color: "#fff",
   },
   button: {
     backgroundColor: "#007AFF",
-    padding: "4%",
+    paddingVertical: 15, 
     borderRadius: 5,
     alignItems: "center",
     width: "100%",
-    marginTop: "10%",
+    marginTop: "3%",
   },
   buttonText: {
     color: "#fff",

@@ -3,18 +3,17 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: "10%",
+    padding: "5%",
     backgroundColor: "#000",
     justifyContent: "flex-start",
   },
   titleContainer: {
     width: "100%",
-    marginBottom: "25%",
+    marginBottom: "3%",
     alignItems: "center",
   },
   title: {
     fontSize: 25,
-    padding: "7%",
     color: "#fff",
     fontWeight: "bold",
     textAlign: "center",
@@ -36,12 +35,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingVertical: "4%",
+    paddingVertical: "1%",
     fontSize: 15,
     color: "#fff",
   },
   eyeIcon: {
-    padding: "3%",
+    padding: "1%",
   },
   progressBarContainer: {
     flexDirection: "row",
@@ -51,17 +50,18 @@ const styles = StyleSheet.create({
   progressBarSegment: {
     flex: 1,
     height: 8, // 고정 높이
-    marginHorizontal: 2, // 간격 추가
+    marginHorizontal: 1, // 간격 추가
     borderRadius: 4, // 둥근 모서리
     backgroundColor: "#ccc", // 기본 색상
   },
   button: {
     backgroundColor: "#007AFF",
-    padding: "4%",
+    paddingVertical: 15, 
     borderRadius: 5,
+    justifyContent: 'center',
     alignItems: "center",
     width: "100%",
-    marginTop: "5%", // 버튼과 다른 요소 간격 추가
+    marginTop: "3%", // 버튼과 다른 요소 간격 추가
   },
   buttonText: {
     color: "#fff",

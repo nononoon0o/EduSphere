@@ -246,7 +246,7 @@ const calculatePasswordStrength = (password) => {
         onPress={handlePasswordAttempt}
         disabled={!isPasswordsMatching}
       >
-        <Text style={styles.buttonText}>회원가입 완료하기</Text>
+        <Text style={styles.buttonText}>계속하기</Text>
       </TouchableOpacity>
 
       {/* Password Modal */}

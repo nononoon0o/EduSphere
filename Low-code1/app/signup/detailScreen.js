@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from 'axios';
@@ -63,7 +63,7 @@ const DetailForm = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* 뒤로가기 버튼 */}
       <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
         <Icon name="arrow-left" size={20} color="#fff" />
@@ -97,15 +97,15 @@ const DetailForm = () => {
       </View>
 
     {/* 이름(닉네임) 입력 */}
-    <View style={styles.inputContainer}>
-    <TextInput
-        style={styles.input}
-        placeholder="이름(닉네임)"
-        placeholderTextColor="#bbb"
-        value={nickname}
-        onChangeText={(text) => setNickname(text)}
-    />
-    </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+            style={styles.input}
+            placeholder="이름(닉네임)"
+            placeholderTextColor="#bbb"
+            value={nickname}
+            onChangeText={(text) => setNickname(text)}
+        />
+      </View>
 
       {/* 학교명 입력 */}
       <View style={styles.inputContainer}>
@@ -152,7 +152,7 @@ const DetailForm = () => {
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>다음 단계로</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
