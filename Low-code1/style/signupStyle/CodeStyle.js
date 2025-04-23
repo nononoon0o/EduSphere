@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    padding: "10%",
+    padding: "5%",
     backgroundColor: "#000",
   },
   titleContainer: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
-    marginTop: "15%",
+    marginTop: "5%",
   },
   continueButtonText: {
     color: "#ffffff",
