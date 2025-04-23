@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-nat
 import { useRouter } from 'expo-router';
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from 'axios';
-import styles from '../../style/signupStyle/detailStyle';
+import styles from '../../style/signupStyle/DetailStyle';
 
 const DetailForm = () => {
   const router = useRouter();
