@@ -16,10 +16,10 @@ export default function Chapter1Index() {
   const router = useRouter();
 
   const subtitles = [
-    { id: '01', text: '물질 변화와 화학 반응식', route: '/chapters/Chapter1/Chapter1_01' },
-    { id: '02', text: '질량 보존 법칙, 일정 성분비 법칙', route: '/chapters/Chapter1/Chapter1_02' },
-    { id: '03', text: '기체 반응 법칙, 화학 반응에서의 에너지 출입', route: '/chapters/Chapter1/Chapter1_03' },
-    { id: '04', text: '(제목을 여기에 추가하세요)', route: '/chapters/Chapter1/Chapter1_04' },
+    { id: '01', text: '물질 변화와 화학 변화', route: '/chapters/Chapter1/Chapter1_01' },
+    { id: '02', text: '화학 변화', route: '/chapters/Chapter1/Chapter1_02' },
+    { id: '03', text: '화학 반응식', route: '/chapters/Chapter1/Chapter1_03' },
+    
   ];
 
   return (

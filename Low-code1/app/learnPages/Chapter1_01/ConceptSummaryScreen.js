@@ -8,47 +8,43 @@ export default function ConceptSummaryScreen() {
 
   return (
     <View style={styles.container}>
+      {/* 뒤로가기 버튼 */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
-  
+
+      {/* 학습목표 */}
       <Text style={styles.text}>
         📘 학습목표 : 물리 변화와 화학 변화의 차이를 설명할 수 있다.
       </Text>
-  
-      {/* 들여쓰기 섹션 시작 */}
+
+      {/* 주요개념 섹션 */}
       <View style={styles.conceptSection}>
+        {/* 물리변화 */}
         <Text style={styles.conceptTitle}>🔷 물리변화</Text>
-        <Text style={styles.description}>
-         <Text>특징 : <Text>
-         </Text> 새로운 물질이 만들어지지 않습니다.<Text>
-          </Text>변화는 보통 되돌릴 수 있습니다</Text>
-          <Text></Text>
-          <Text>예시 : <Text>
-         </Text> 종이를 자르는 것<Text>
-          </Text>얼음이 녹아 물이 되는 것</Text>
-          
-        </Text>
-  
+
+        <Text style={styles.itemTitle}>특징 :</Text>
+        <Text style={styles.description}>- 새로운 물질이 만들어지지 않습니다.</Text>
+        <Text style={styles.description}>- 변화는 보통 되돌릴 수 있습니다.</Text>
+
+        <Text style={styles.itemTitle}>예시 :</Text>
+        <Text style={styles.description}>- 종이를 자르는 것</Text>
+        <Text style={styles.description}>- 얼음이 녹아 물이 되는 것</Text>
+
+        {/* 화학변화 */}
         <Text style={styles.conceptTitle}>🔶 화학변화</Text>
-        <Text style={styles.description}>
-        <Text>특징 : <Text>
-         </Text> 원래의 물질이 사라지고 새로운 물질이 생성됩니다.<Text>
-          </Text>변화는 보통 되돌리기 어렵습니다</Text>
-          <Text></Text>
-          <Text>예시 : <Text>
-         </Text> 나무가 타서 재가 되는 것<Text>
-          </Text>철이 녹슬어 산화철이 되는 것</Text>
-          
-        </Text>
+
+        <Text style={styles.itemTitle}>특징 :</Text>
+        <Text style={styles.description}>- 원래의 물질이 사라지고 새로운 물질이 생성됩니다.</Text>
+        <Text style={styles.description}>- 변화는 보통 되돌리기 어렵습니다.</Text>
+
+        <Text style={styles.itemTitle}>예시 :</Text>
+        <Text style={styles.description}>- 나무가 타서 재가 되는 것</Text>
+        <Text style={styles.description}>- 철이 녹슬어 산화철이 되는 것</Text>
       </View>
     </View>
   );
-  
-  
-  
-  
 }
 
 const styles = StyleSheet.create({
@@ -73,5 +69,28 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#2c3e50',
     fontWeight: '600',
+    marginBottom: 20,
+  },
+  conceptSection: {
+    marginTop: 20,
+  },
+  conceptTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#2980b9',
+    marginBottom: 10,
+    marginTop: 20,
+  },
+  itemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 10,
+    color: '#34495e',
+  },
+  description: {
+    fontSize: 15,
+    color: '#555',
+    marginLeft: 10,
+    marginTop: 5,
   },
 });

@@ -12,16 +12,17 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 const EXAMPLES = [
-  { id: 'p1', type: 'physical', src: require('../../../assets/images/fish.jpg') },
-  { id: 'p2', type: 'physical', src: require('../../../assets/images/water.jpg') },
-  { id: 'p3', type: 'physical', src: require('../../../assets/images/sugar.jpg') },
-  { id: 'p4', type: 'physical', src: require('../../../assets/images/vat.jpg') },
+  { id: 'p1', type: 'physical', src: require('../../../assets/images/fish.jpg'), label: '어항의 물이 준다' },
+  { id: 'p2', type: 'physical', src: require('../../../assets/images/water.jpg'), label: '물 끓이기' },
+  { id: 'p3', type: 'physical', src: require('../../../assets/images/sugar.jpg'), label: '설탕을 물에 녹이기' },
+  { id: 'p4', type: 'physical', src: require('../../../assets/images/vat.jpg'), label: '채소 썰기' },
 
-  { id: 'c1', type: 'chemical', src: require('../../../assets/images/egg.jpg') },
-  { id: 'c2', type: 'chemical', src: require('../../../assets/images/candle.jpg') },
-  { id: 'c3', type: 'chemical', src: require('../../../assets/images/fire.jpg') },
-  { id: 'c4', type: 'chemical', src: require('../../../assets/images/meet.jpg') },
+  { id: 'c1', type: 'chemical', src: require('../../../assets/images/egg.jpg'), label: '계란 삶기기' },
+  { id: 'c2', type: 'chemical', src: require('../../../assets/images/candle.jpg'), label: '향초가 탄다다' },
+  { id: 'c3', type: 'chemical', src: require('../../../assets/images/fire.jpg'), label: '불꽃놀이' },
+  { id: 'c4', type: 'chemical', src: require('../../../assets/images/meet.jpg'), label: '고기 익히기' },
 ];
+
 
 
 const DraggableImage = ({ image, dropZones, droppedImages, onDrop, resetTrigger }) => {
@@ -70,6 +71,7 @@ const DraggableImage = ({ image, dropZones, droppedImages, onDrop, resetTrigger 
     <GestureDetector gesture={panGesture}>
       <Animated.View style={[styles.imageWrapper, animatedStyle]}>
         <Image source={image.src} style={styles.image} resizeMode="contain" />
+        <Text style={styles.imageLabel}>{image.label}</Text> {/* 여기 추가! */}
       </Animated.View>
     </GestureDetector>
   );
@@ -365,6 +367,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
+  },
+  imageLabel: {
+    fontSize: 12,
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 4,
   },
 });
 
