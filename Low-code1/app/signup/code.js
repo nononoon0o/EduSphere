@@ -10,7 +10,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import axios from "axios";
 import CodeModal from "./codemodal";
 import CountdownTimer from "../find/CountdownTimer";
-import styles from "../../style/CodeStyle";
+import styles from "../../style/signupStyle/CodeStyle";
 
 const VerificationScreen = () => {
   const params = useLocalSearchParams();

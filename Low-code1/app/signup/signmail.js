@@ -11,7 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
-import stylemail from "../../style/EmailStyle";
+import stylemail from "../../style/signupStyle/EmailStyle";
 import BackPressModal from "../find/BackPressModal";
 import CodeModal from "./codemodal";
 
@@ -40,7 +40,7 @@ const SignupEmail = () => {
 
   const confirmBack = () => {
     setIsBackModalVisible(false); // 뒤로가기 모달 닫기
-    router.push("/login");
+    router.push("/signin/loginScreen");
   };
 
   const handleNext = async () => {

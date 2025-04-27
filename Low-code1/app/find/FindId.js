@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import CustomModal from "./CustomModal";
 import CountdownTimer from "../find/CountdownTimer";
-import styles from "../../style/FindStyle";
+import styles from "../../style/findStyle/FindStyle";
 
 function FindId() {
   const router = useRouter();

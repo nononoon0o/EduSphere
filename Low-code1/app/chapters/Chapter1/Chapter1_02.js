@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -8,33 +14,35 @@ export default function Chapter1_01() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={20} color="#2c3e50" />
-        <Text style={styles.backText}>뒤로가기</Text>
+      {/* Back Navigation */}
+      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter1')}>
+        <Ionicons name="chevron-back" size={22} color="#1e3a8a" />
+        <Text style={styles.backText}>돌아가기</Text>
       </TouchableOpacity>
 
+      {/* Chapter Header */}
       <View style={styles.header}>
         <FontAwesome5 name="flask" size={22} color="#2980b9" style={{ marginRight: 10 }} />
-        <Text style={styles.subtitle}>Chapter 1</Text>
+        <Text style={styles.subtitle}>02. 화학 반응</Text>
       </View>
 
       {/* (개념요약) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/ConceptSummaryScreen')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_02/ConceptSummaryScreen')}>
           <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (학습하기) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/glb-viewer')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_02/LearnScreen')}>
           <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (영상 학습) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/VideoLearningScreen')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_02/VideoLearningScreen')}>
           <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
         </TouchableOpacity>
       </View>
@@ -44,60 +52,53 @@ export default function Chapter1_01() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 24,
     backgroundColor: '#f9fcff',
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
   backText: {
     fontSize: 16,
     marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
+    color: '#1e3a8a',
+    fontWeight: '600',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 24,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '700',
     color: '#2c3e50',
   },
-  section: {
-    marginBottom: 20,
-    padding: 10,
-    backgroundColor: '#eaf2ff',
-    borderRadius: 8,
+  sectionsWrapper: {
+    gap: 16,
+  },
+  sectionCard: {
+    backgroundColor: '#e3f2fd',
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  sectionEmoji: {
+    fontSize: 22,
+    marginRight: 12,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#2e86de',
-    marginBottom: 8,
-  },
-  buttonBlue: {
-    flex: 1,
-    backgroundColor: '#3498db',
-    padding: 12,
-    borderRadius: 6,
-    marginRight: 8,
-  },
-  buttonOrange: {
-    flex: 1,
-    backgroundColor: '#e67e22',
-    padding: 12,
-    borderRadius: 6,
-    marginLeft: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: '600',
-    textAlign: 'center',
+    color: '#1e3a8a',
   },
 });

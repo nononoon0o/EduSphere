@@ -1,14 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { GLView } from 'expo-gl';
 import { Renderer } from 'expo-three';
 import * as THREE from 'three';
 import { Asset } from 'expo-asset';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { useRouter } from 'expo-router'; // 추가
+import { Ionicons } from '@expo/vector-icons'; // 아이콘 추가
 
 const GLBViewer = () => {
+  const router = useRouter(); // router 사용
+
   return (
     <View style={{ flex: 1 }}>
+      {/* 🔙 뒤로가기 버튼 */}
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={20} color="#2c3e50" />
+        <Text style={styles.backText}>뒤로가기</Text>
+      </TouchableOpacity>
+
       <GLView
         style={{ flex: 1, backgroundColor: '#ffffff' }}
         onContextCreate={async (gl) => {
@@ -35,7 +45,7 @@ const GLBViewer = () => {
           scene.add(dirLight);
 
           const modelAsset = Asset.fromModule(
-            require('../../assets/beaker/graduated-beaker.glb')
+            require('../../../assets/beaker/graduated-beaker.glb')
           );
           await modelAsset.downloadAsync();
 
@@ -99,5 +109,31 @@ const GLBViewer = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  backButton: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    zIndex: 10,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+  backText: {
+    fontSize: 16,
+    marginLeft: 6,
+    color: '#2c3e50',
+    fontWeight: '500',
+  },
+});
 
 export default GLBViewer;

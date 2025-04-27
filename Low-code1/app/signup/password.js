@@ -11,7 +11,7 @@ import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import Passwordmodal from "./PasswordModal";
-import styles from "../../style/PasswordStyle";
+import styles from "../../style/signupStyle/PasswordStyle";
 
 const SignupPassword = () => {
   const [password, setPassword] = useState("");
@@ -111,28 +111,28 @@ const calculatePasswordStrength = (password) => {
 
 
 
-  const handleSignupAttempt = () => {
+  const handlePasswordAttempt = () => {
     if (passwordStrength <= 1) {
       setPasswordModalVisible(true); // Show the modal if password strength is weak
     } else if (passwordStrength >= 3 && password === confirmPassword) {
       setConfirmationModalVisible(true); // If password is strong, proceed directly
-      handleSignup();  // Proceed with signup if the password is strong
+      handlePassword();
     } else if (password !== confirmPassword) {
       setConfirmValidationMessage("> 비밀번호가 일치하지 않습니다.");
       setConfirmValidationColor("red");
     }
   };
 
-  const handleSignup = async () => {
+  const handlePassword = async () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/signup/pw",
-        { password },  // Ensure you're sending the password
+        { password },
         { withCredentials: true }
       );
   
       if (response.data.success) {
-        router.push("/signup/nextscreen");  // Navigate to next screen on success
+        router.push("/signup/detailScreen");  // Navigate to next screen on success
       } else {
         setValidationMessage(response.data.message || "> 서버 오류 발생.");
         setValidationColor("red");
@@ -243,10 +243,10 @@ const calculatePasswordStrength = (password) => {
       {/* 완료 버튼 */}
       <TouchableOpacity
         style={[styles.button, { backgroundColor: isPasswordsMatching ? "#094771" : "#ccc" }]}
-        onPress={handleSignupAttempt}
+        onPress={handlePasswordAttempt}
         disabled={!isPasswordsMatching}
       >
-        <Text style={styles.buttonText}>회원가입 완료하기</Text>
+        <Text style={styles.buttonText}>계속하기</Text>
       </TouchableOpacity>
 
       {/* Password Modal */}
@@ -254,7 +254,7 @@ const calculatePasswordStrength = (password) => {
         <Passwordmodal
           visible={passwordModalVisible}
           onConfirm={() => {
-            handleSignup();
+            handlePassword();
             setPasswordModalVisible(false);
           }}
           onCancel={() => setPasswordModalVisible(false)}
