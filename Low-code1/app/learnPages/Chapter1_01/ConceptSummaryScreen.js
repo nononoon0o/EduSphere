@@ -21,13 +21,25 @@ export default function ConceptSummaryScreen() {
       <View style={styles.conceptSection}>
         <Text style={styles.conceptTitle}>🔷 물리변화</Text>
         <Text style={styles.description}>
-          물질의 <Text style={styles.bold}>성질은 변하지 않으면서</Text> 모양이나 상태가 변하는 물질의 변화입니다.{" "}
+         <Text>특징 : <Text>
+         </Text> 새로운 물질이 만들어지지 않습니다.<Text>
+          </Text>변화는 보통 되돌릴 수 있습니다</Text>
+          <Text></Text>
+          <Text>예시 : <Text>
+         </Text> 종이를 자르는 것<Text>
+          </Text>얼음이 녹아 물이 되는 것</Text>
           
         </Text>
   
         <Text style={styles.conceptTitle}>🔶 화학변화</Text>
         <Text style={styles.description}>
-          처음 물질과는 <Text style={styles.bold}>성질이 전혀 다른 새로운 물질</Text>로 변하는 변화입니다.{" "}
+        <Text>특징 : <Text>
+         </Text> 원래의 물질이 사라지고 새로운 물질이 생성됩니다.<Text>
+          </Text>변화는 보통 되돌리기 어렵습니다</Text>
+          <Text></Text>
+          <Text>예시 : <Text>
+         </Text> 나무가 타서 재가 되는 것<Text>
+          </Text>철이 녹슬어 산화철이 되는 것</Text>
           
         </Text>
       </View>

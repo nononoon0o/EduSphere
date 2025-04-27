@@ -12,15 +12,17 @@ import { Ionicons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 const EXAMPLES = [
-  { id: 'p1', type: 'physical', src: require('../../../Low-code1/assets/images/fish.jpg') },
-  { id: 'p2', type: 'physical', src: require('../../../Low-code1/assets/images/water.jpg') },
-  { id: 'p3', type: 'physical', src: require('../../../Low-code1/assets/images/sugar.jpg') },
-  { id: 'p4', type: 'physical', src: require('../../../Low-code1/assets/images/vat.jpg') },
-  { id: 'c1', type: 'chemical', src: require('../../../Low-code1/assets/images/egg.jpg') },
-  { id: 'c2', type: 'chemical', src: require('../../../Low-code1/assets/images/candle.jpg') },
-  { id: 'c3', type: 'chemical', src: require('../../../Low-code1/assets/images/fire.jpg') },
-  { id: 'c4', type: 'chemical', src: require('../../../Low-code1/assets/images/meet.jpg') },
+  { id: 'p1', type: 'physical', src: require('../../../assets/images/fish.jpg') },
+  { id: 'p2', type: 'physical', src: require('../../../assets/images/water.jpg') },
+  { id: 'p3', type: 'physical', src: require('../../../assets/images/sugar.jpg') },
+  { id: 'p4', type: 'physical', src: require('../../../assets/images/vat.jpg') },
+
+  { id: 'c1', type: 'chemical', src: require('../../../assets/images/egg.jpg') },
+  { id: 'c2', type: 'chemical', src: require('../../../assets/images/candle.jpg') },
+  { id: 'c3', type: 'chemical', src: require('../../../assets/images/fire.jpg') },
+  { id: 'c4', type: 'chemical', src: require('../../../assets/images/meet.jpg') },
 ];
+
 
 const DraggableImage = ({ image, dropZones, droppedImages, onDrop, resetTrigger }) => {
   const offsetX = useSharedValue(0);

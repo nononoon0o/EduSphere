@@ -23,26 +23,26 @@ export default function Chapter1_01() {
       {/* Chapter Header */}
       <View style={styles.header}>
         <FontAwesome5 name="flask" size={22} color="#2980b9" style={{ marginRight: 10 }} />
-        <Text style={styles.subtitle}>01. 물질 변화와 화학 반응식</Text>
+        <Text style={styles.subtitle}>01. 물리 변화와 화학 변화</Text>
       </View>
 
       {/* (개념요약) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/ConceptSummaryScreen')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/ConceptSummaryScreen')}>
           <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (학습하기) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/LearnScreen')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/LearnScreen')}>
           <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (영상 학습) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/VideoLearningScreen')}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/VideoLearningScreen')}>
           <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
         </TouchableOpacity>
       </View>
