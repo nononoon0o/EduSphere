@@ -26,30 +26,24 @@ export default function Chapter1_01() {
         <Text style={styles.subtitle}>01. 물질 변화와 화학 반응식</Text>
       </View>
 
-      {/* Sections */}
-      <View style={styles.sectionsWrapper}>
-        <TouchableOpacity
-          style={styles.sectionCard}
-          onPress={() => router.push('/learnPages/ConceptSummaryScreen')}
-        >
-          <Text style={styles.sectionEmoji}>📘</Text>
-          <Text style={styles.sectionTitle}>개념 요약</Text>
+      {/* (개념요약) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/ConceptSummaryScreen')}>
+          <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
         </TouchableOpacity>
+      </View>
 
-        <TouchableOpacity
-          style={styles.sectionCard}
-          onPress={() => router.push('/learnPages/LearnScreen')}
-        >
-          <Text style={styles.sectionEmoji}>📦</Text>
-          <Text style={styles.sectionTitle}>학습하기</Text>
+      {/* (학습하기) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/LearnScreen')}>
+          <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
         </TouchableOpacity>
+      </View>
 
-        <TouchableOpacity
-          style={styles.sectionCard}
-          onPress={() => router.push('/learnPages/VideoLearningScreen')}
-        >
-          <Text style={styles.sectionEmoji}>🎬</Text>
-          <Text style={styles.sectionTitle}>영상 학습</Text>
+      {/* (영상 학습) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/VideoLearningScreen')}>
+          <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
