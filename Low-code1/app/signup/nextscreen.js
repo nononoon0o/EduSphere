@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router"; // Navigation
-import nextstyle from "../../style/NumberScreen"; // 스타일 파일 임포트
+import nextstyle from "../../style/signupStyle/NumberScreen"; // 스타일 파일 임포트
 
 const NextScreen = () => {
   const router = useRouter(); // useRouter 사용하여 네비게이션 구현

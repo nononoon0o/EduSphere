@@ -1,4 +1,3 @@
-//const User = require("../../models/User"); // 기존 유저 모델 (회원 정보 저장용)
 const VerificationCode = require("../../models/VerificationCode"); // 인증코드 저장을 위한 모델
 require("dotenv").config(); // .env 파일에서 환경 변수 로드
 

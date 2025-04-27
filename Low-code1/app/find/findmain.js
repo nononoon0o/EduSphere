@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import FindId from "./FindId";
 import FindPassword from "./FindPassword";
-import styles from "../../style/FindStyle";
+import styles from "../../style/findStyle/FindStyle";
 
 const findmain = () => {
   const [selectedTab, setSelectedTab] = useState("ID");

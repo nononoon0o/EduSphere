@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome"; // Importing FontAwesome icon
 import axios from "axios"; 
-import styleid from "../../style/IdScreenStyle";
+import styleid from "../../style/signupStyle/IdScreenStyle";
 
 const existingIDs = ['testUser', 'sampleID'];
 
