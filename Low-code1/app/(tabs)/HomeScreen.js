@@ -39,7 +39,7 @@ export default function HomeScreen() {
   };
 
   const chapters = [
-    { id: 'Chapter1', title: 'Ⅰ. CHAPTER I', icon: 'flask', bgColor: '#8e44ad' },
+    { id: 'Chapter1/Chapter1_main', title: 'Ⅰ. CHAPTER I', icon: 'flask', bgColor: '#8e44ad' },
     { id: 'Chapter2', title: 'Ⅱ. CHAPTER II', icon: 'cloud-sun', bgColor: '#3498db' },
     { id: 'Chapter3', title: 'Ⅲ. CHAPTER III', icon: 'bolt', bgColor: '#e67e22' },
     { id: 'Chapter4', title: 'Ⅳ. CHAPTER IV', icon: 'brain', bgColor: '#2ecc71' },

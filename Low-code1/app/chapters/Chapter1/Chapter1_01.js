@@ -6,44 +6,62 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 export default function Chapter1_01() {
   const router = useRouter();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Back Navigation */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter1')}>
-        <Ionicons name="chevron-back" size={22} color="#1e3a8a" />
-        <Text style={styles.backText}>돌아가기</Text>
-      </TouchableOpacity>
-
-      {/* Chapter Header */}
-      <View style={styles.header}>
-        <FontAwesome5 name="flask" size={22} color="#2980b9" style={{ marginRight: 10 }} />
-        <Text style={styles.subtitle}>01. 물리 변화와 화학 변화</Text>
-      </View>
-
-      {/* (개념요약) Section */}
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/ConceptSummaryScreen')}>
-          <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={styles.container}>
+        {/* Back Navigation */}
+        <TouchableOpacity
+          onPress={() => router.replace('/chapters/Chapter1/Chapter1_main')}
+          style={styles.backButton}
+        >
+          <Ionicons name="chevron-back" size={22} color="#fff" />
+          <Text style={styles.backText}>돌아가기</Text>
         </TouchableOpacity>
-      </View>
 
-      {/* (학습하기) Section */}
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/LearnScreen')}>
-          <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
+        {/* Chapter Header */}
+        <View style={styles.headerRow}>
+          <Text style={styles.chapterTitle}>01. 물리 변화와 화학 변화</Text>
+        </View>
+
+        <View style={styles.divider} />
+
+        {/* (개념요약) Section */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push('/learnPages/Chapter1_01/ConceptSummaryScreen')}
+        >
+          <View style={styles.bullet}>
+            <Text style={styles.bulletText}>📘</Text>
+          </View>
+          <Text style={styles.cardText}>(학습목표 & 개념요약)</Text>
         </TouchableOpacity>
-      </View>
 
-      {/* (영상 학습) Section */}
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_01/VideoLearningScreen')}>
-          <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
+        {/* (학습하기) Section */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push('/learnPages/Chapter1_01/LearnScreen')}
+        >
+          <View style={styles.bullet}>
+            <Text style={styles.bulletText}>📦</Text>
+          </View>
+          <Text style={styles.cardText}>(학습하기)</Text>
+        </TouchableOpacity>
+
+        {/* (영상 학습) Section */}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push('/learnPages/Chapter1_01/VideoLearningScreen')}
+        >
+          <View style={styles.bullet}>
+            <Text style={styles.bulletText}>🎬</Text>
+          </View>
+          <Text style={styles.cardText}>(영상 학습)</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -53,52 +71,81 @@ export default function Chapter1_01() {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
-    backgroundColor: '#f9fcff',
+    flexGrow: 1,
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    borderRadius: 12,
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+    padding: 10,
+    backgroundColor: 'rgba(30,58,138,0.85)',
+    borderRadius: 30,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 16,
   },
   backText: {
     fontSize: 16,
-    marginLeft: 6,
-    color: '#1e3a8a',
+    color: '#ffffff',
     fontWeight: '600',
+    marginLeft: 8,
   },
-  header: {
+  headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
+    justifyContent: 'center',
+    marginBottom: 18,
   },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: '700',
+  chapterTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#2c3e50',
+    textAlign: 'center',
+    marginLeft: 12,
+    flex: 1,
+    flexWrap: 'wrap',
   },
-  sectionsWrapper: {
-    gap: 16,
+  divider: {
+    height: 3,
+    backgroundColor: '#aed6f1',
+    marginVertical: 20,
+    marginHorizontal: 50,
+    borderRadius: 25,
   },
-  sectionCard: {
-    backgroundColor: '#e3f2fd',
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+  card: {
     flexDirection: 'row',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: 'rgba(255,255,255,0.85)',
+    padding: 20,
+    borderRadius: 18,
+    marginBottom: 18,
+    borderColor: '#d0eafc',
+    borderWidth: 1,
+    shadowColor: '#2980b9',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    elevation: 8,
   },
-  sectionEmoji: {
-    fontSize: 22,
-    marginRight: 12,
+  bullet: {
+    width: 45,
+    height: 45,
+    backgroundColor: '#2980b9',
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 24,
   },
-  sectionTitle: {
-    fontSize: 17,
+  bulletText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  cardText: {
+    fontSize: 20,
+    color: '#2c3e50',
     fontWeight: '600',
-    color: '#1e3a8a',
+    flexShrink: 1,
   },
 });

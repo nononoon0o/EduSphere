@@ -11,7 +11,7 @@ export default function VideoLearningScreen() {
     <View style={styles.container}>
       
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('chapters/Chapter1/Chapter1_01')}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
