@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BackButton from '../../../../../components/BackButton'; // Import the BackButton component
+import styles from '../../../../../style/ChapterStyle/Chapter2/ch2Styles/AtmosphereCompositionStyles'; // Adjust the path as necessary
 
 const AtmosphereCompositionScreen = () => {
   return (
@@ -21,11 +22,5 @@ const AtmosphereCompositionScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 20 },
-  title: { fontWeight: 'bold', fontSize: 18, marginBottom: 15 },
-  text: { fontSize: 16 }
-});
 
 export default AtmosphereCompositionScreen;

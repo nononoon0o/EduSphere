@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BackButton from '../../../../../components/BackButton'; // Adjust the path if needed
+import styles from '../../../../../style/ChapterStyle/Chapter2/ch2Styles/WindDetailStyles'; // Adjust the path as necessary
 
 const WindDetailScreen = () => {
   return (
@@ -17,11 +18,5 @@ const WindDetailScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 20 },
-  title: { fontWeight: 'bold', fontSize: 18, marginBottom: 15 },
-  text: { fontSize: 16 },
-});
 
 export default WindDetailScreen;

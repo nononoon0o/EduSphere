@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EnergyTransferRoleScreenStyles';
 
 const EnergyTransferRoleScreen = () => {
   return (
@@ -14,11 +15,5 @@ const EnergyTransferRoleScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { padding: 20 },
-  title: { fontWeight: 'bold', fontSize: 18, marginBottom: 10 },
-  text: { fontSize: 16 }
-});
 
 export default EnergyTransferRoleScreen;
