@@ -20,7 +20,7 @@ const LoginScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleBack = () => {
-    router.push("/ProfileScreen");
+    router.push("/HomeScreen");
   };
 
   // 로그인 요청 처리 함수
@@ -68,6 +68,10 @@ const LoginScreen = () => {
   const handleIdfind = () => {
     router.push("/find/findmain");
   };
+
+  const testHome = () => {
+    router.push("/HomeScreen")
+  }
 
   return (
     <View style={styles.container}>
@@ -131,6 +135,10 @@ const LoginScreen = () => {
         <Text style={styles.separator}> | </Text>
         <TouchableOpacity onPress={handleAccount}>
           <Text style={styles.optionText}>회원가입</Text>
+        </TouchableOpacity>
+        <Text style={styles.separator}> | </Text>
+        <TouchableOpacity onPress={testHome}>
+          <Text style={styles.optionText}>테스트용</Text>
         </TouchableOpacity>
       </View>
     </View>
