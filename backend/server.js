@@ -21,6 +21,10 @@ const userRoutes = require("./routes/user/userRoutes");
 const verifyPWRoutes = require("./routes/user/verifyPWRoutes")
 const editAccountRoutes = require("./routes/user/editAccountRoutes");
 
+const attendanceRoutes = require("./routes/participation/attendanceRoutes");
+const assignmentRoutes = require("./routes/participation/assignmentRoutes");
+const studentRoutes = require('./routes/participation/studentRoutes');
+
 // Express 애플리케이션 생성
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -65,6 +69,11 @@ app.use("/api/signup", detailRoutes);
 app.use("/user", userRoutes);
 app.use("/user", verifyPWRoutes);
 app.use("/user", editAccountRoutes);
+
+// 학생 관리 시스템
+app.use('/api/attendance', attendanceRoutes);
+app.use('/api/assignments', assignmentRoutes);
+app.use('/api/students', studentRoutes);
 
 // 서버 실행
 app.listen(PORT, () => {

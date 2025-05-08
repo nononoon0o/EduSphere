@@ -31,7 +31,7 @@ const login = async (req, res) => {
 
     // JWT 토큰 생성
     const token = jwt.sign(
-      { id: user._id, userID: user.userID }, // payload
+      { id: user._id, userID: user.userID, role: user.role }, // payload
       process.env.JWT_SECRET, // 비밀키
       { expiresIn: "1h" } // 만료 시간
     );
