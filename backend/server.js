@@ -31,7 +31,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
     cors({
-      origin: "http://localhost:8081", // 클라이언트의 주소 (예: React 앱이 실행 중인 주소)
+      origin: [// 클라이언트의 주소 (예: React 앱이 실행 중인 주소)
+        "http://localhost:8081",
+        "http://localhost:8082",
+        "http://localhost:8083",
+        "http://localhost:8084",
+        "http://localhost:8085",
+      ],
       credentials: true, // 세션 쿠키를 허용
     })
   );
