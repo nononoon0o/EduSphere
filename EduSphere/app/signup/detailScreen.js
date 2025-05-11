@@ -11,6 +11,8 @@ const DetailForm = () => {
   const [school, setSchool] = useState("");
   const [classId, setClassId] = useState("");
   const [role, setRole] = useState("student");
+  const [studentNumber, setStudentNumber] = useState(''); // 학번 추가
+  const [subjects, setSubjects] = useState(''); // 과목 콤마 구분 문자열
   const [error, setError] = useState('');
   const handleSubmit = async () => {
     setError('');
@@ -27,7 +29,19 @@ const DetailForm = () => {
       setError('담당 반을 입력해주세요');
       return;
     }
-    console.log(nickname, school, classId, role)
+    if (role === 'student') {
+      if (!studentNumber) {
+        setError('학번을 입력해주세요');
+        return;
+      }
+      if (!subjects) {
+        setError('수강 과목을 입력해주세요');
+        return;
+      }
+    }
+    console.log(nickname, school, classId, role, studentNumber, subjects)
+
+    const subjectsArray = subjects.split(',').map(s => s.trim()).filter(s => s.length > 0);
 
     try {
       const response = await axios.post('http://localhost:5000/api/signup/details', {
@@ -35,6 +49,8 @@ const DetailForm = () => {
         school,
         classId,
         role,
+        studentNumber,
+        subjects: subjectsArray,
       }, { withCredentials: true,           
            headers: {
             'Content-Type': 'application/json'
@@ -120,29 +136,61 @@ const DetailForm = () => {
 
       {/* 반 입력 (학생 전용) */}
       {role === 'student' && (
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="반 입력"
-            placeholderTextColor="#bbb"
-            keyboardType="numeric"
-            value={classId}
-            onChangeText={(text) => setClassId(text)}
-          />
-        </View>
+        <>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="반 입력"
+              placeholderTextColor="#bbb"
+              keyboardType="numeric"
+              value={classId}
+              onChangeText={(text) => setClassId(text)}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="학번"
+              placeholderTextColor="#bbb"
+              keyboardType="numeric"
+              value={studentNumber}
+              onChangeText={setStudentNumber}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="수강 과목 (콤마로 구분)"
+              placeholderTextColor="#bbb"
+              value={subjects}
+              onChangeText={setSubjects}
+            />
+          </View>
+        </>
       )}
 
       {/* 담당 반 입력 (교사 전용) */}
       {role === 'teacher' && (
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="담당 반 (예: 2025-111)"
-            placeholderTextColor="#bbb"
-            value={classId}
-            onChangeText={(text) => setClassId(text)}
-          />
-        </View>
+        <>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="담당 반 (예: 2025-111)"
+              placeholderTextColor="#bbb"
+              value={classId}
+              onChangeText={(text) => setClassId(text)}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="담당 과목 (예: 수학)"
+              placeholderTextColor="#bbb"
+              value={subjects}
+              onChangeText={setSubjects}
+            />
+          </View>
+        </>
       )}
 
       {/* 에러 메시지 */}

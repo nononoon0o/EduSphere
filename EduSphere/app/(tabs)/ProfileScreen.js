@@ -206,7 +206,7 @@ export default function ProfileScreen({ navigation }) {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => {router.push('')}}
+              onPress={() => {router.push('../stuManage/stuManageScreen')}}
             >
               <Text style={styles.loginButtonText}>학생 관리</Text>
             </TouchableOpacity>
