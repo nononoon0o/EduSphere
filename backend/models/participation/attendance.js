@@ -7,4 +7,6 @@ const attendanceSchema = new mongoose.Schema({
   status: { type: String, enum: ['출석', '결석', '지각'], required: true }
 });
 
-module.exports = mongoose.model('Attendance', attendanceSchema);
+const Attendance = mongoose.model('Attendance', attendanceSchema);
+
+module.exports = { Attendance };

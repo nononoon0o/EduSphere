@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Attendance = require('../../models/participation/attendance');
+const { Attendance } = require('../../models/participation/attendance');
 const { authenticateToken } = require("../../middlewares/authenticate");
 
 // 출결 기록 생성 (교사용)

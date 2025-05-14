@@ -46,9 +46,26 @@ const loadRole = async (req, res) => {
       return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
     }
 
+    console.log("조회된 역할:", baseUser.role)
     return res.status(200).json({ role: baseUser.role });
   } catch (error) {
     console.error("역할 로드 중 오류:", error.stack);
+    return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+  }
+};
+
+const loadMongoDBID = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const baseUser = await User.User.findById(userId);
+    if (!baseUser) {
+      return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+    }
+
+    console.log("조회된 몽고DB ID:", baseUser._id.toString())
+    return res.status(200).json({ _id: baseUser._id.toString() });
+  } catch (error) {
+    console.error("몽고DB ID 로드 중 오류:", error.stack);
     return res.status(500).json({ message: "서버 오류가 발생했습니다." });
   }
 };
@@ -77,4 +94,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { loadName, loadRole, deleteUser };
+module.exports = { loadName, loadRole, loadMongoDBID, deleteUser };
