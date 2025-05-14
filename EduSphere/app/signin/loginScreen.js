@@ -31,10 +31,15 @@ const LoginScreen = () => {
         password: password.trim(),
       };
 
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        loginData
-      );
+      const response =
+        await axios.post('http://localhost:5000/api/auth/login', {
+            userID, password
+          }, {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
 
       if (response.data.success) {
         // JWT 토큰 저장

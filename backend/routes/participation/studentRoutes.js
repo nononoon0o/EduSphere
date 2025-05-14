@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { Student } = require('../../models/user'); // Student 모델 임포트
+const { Attendance } = require('../../models/participation/attendance');
+const { Assignment } = require('../../models/participation/assignment');
 const { authenticateToken, teacherOnly } = require('../../middlewares/authenticate'); // JWT 인증 미들웨어
 
 // 학생 전체 조회 (교사만)
@@ -97,5 +99,47 @@ router.delete('/:id', authenticateToken, teacherOnly, async (req, res) => {
     res.status(500).json({ message: '서버 오류', error: error.message });
   }
 });
+
+router.get('/:id/results', authenticateToken, async (req, res) => {
+  try {
+    // 1. 학생 기본 정보 및 subjects
+    const student = await Student.findById(req.params.id).select('subjects');
+    if (!student) {
+      return res.status(404).json({ message: '학생을 찾을 수 없습니다.' });
+    }
+
+    // 2. 출결 정보 (attendance 컬렉션에서 조회)
+    const attendanceRecords = await Attendance.find({ studentId: req.params.id });
+    // 출석/지각/결석 통계 집계
+    const attendanceStats = { present: 0, late: 0, absent: 0 };
+    attendanceRecords.forEach(rec => {
+      if (rec.status === '출석') attendanceStats.present++;
+      else if (rec.status === '지각') attendanceStats.late++;
+      else if (rec.status === '결석') attendanceStats.absent++;
+    });
+
+    // 3. 과제 정보 (assignment 컬렉션에서 해당 학생의 제출 내역만 추출)
+    const assignments = await Assignment.find({ 'submissions.studentId': req.params.id });
+    const assignmentResults = assignments.map(ass => {
+      const submission = ass.submissions.find(sub => sub.studentId.toString() === req.params.id);
+      return {
+        title: ass.title,
+        status: submission ? '제출' : '미제출',
+        score: submission ? submission.score : null
+      };
+    });
+
+    // 4. 결과 합치기
+    res.json({
+      subjects: student.subjects || [],
+      attendance: attendanceStats,
+      assignments: assignmentResults
+    });
+  } catch (error) {
+    console.error("학습 결과 조회 오류:", error);
+    res.status(500).json({ message: '서버 내부 오류' });
+  }
+});
+
 
 module.exports = router;

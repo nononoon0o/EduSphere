@@ -10,50 +10,12 @@ export default function ProfileScreen({ navigation }) {
   const [userName, setUserName] = useState(null);
   const [role, setRole] = useState(null);
   const router = useRouter();
-  const [userID, setUserID] = useState(""); // 아이디 상태
-  const [password, setPassword] = useState(""); // 비밀번호 상태
-  const [passwordVisible, setPasswordVisible] = useState(false); // 비밀번호 가시성 상태
+  const [mongoID, setMongoID] = useState("")
   const [errorMessage, setErrorMessage] = useState("");
-
-  // 로그인 요청 처리 함수
-  const handleLogin = async () => {
-    try {
-      const loginData = {
-        userID: userID.trim(),
-        password: password.trim(),
-      };
-
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        loginData
-      );
-
-      if (response.data.success) {
-        // JWT 토큰 저장
-        const token = response.data.token;
-        await AsyncStorage.setItem("token", token); // AsyncStorage에 저장
-        setErrorMessage("");
-        Alert.alert("로그인 성공", "홈 화면으로 이동합니다.");
-        router.push("MenuScreen"); // 홈 화면으로 이동
-      } else {
-        // 서버에서 오는 메시지에 따라 에러 메시지 설정
-        if (response.data.message === "비밀번호가 일치하지 않습니다.") {
-          setErrorMessage("비밀번호가 일치하지 않습니다.");
-        } else if (response.data.message === "존재하지 않는 사용자입니다.") {
-          setErrorMessage("존재하지 않는 사용자입니다.");
-        } else {
-          setErrorMessage(response.data.message || "로그인에 실패했습니다.");
-        }
-      }
-    } catch (error) {
-      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
-      console.error(error);
-    }
-  };
 
   // 회원가입 화면으로 이동하는 함수
   const handleAccount = () => {
-    router.push("/signup/signmail"); // 테스트용 경로
+    router.push("/signup/signmail");
   };
 
   const handleIdfind = () => {
@@ -76,6 +38,7 @@ export default function ProfileScreen({ navigation }) {
       if (!token) {
         setUserName(null);
         setRole(null);
+        setMongoID(null);
       } else {
         // 1. 닉네임 가져오기
         const nameRes = await axios.get('http://localhost:5000/user/name', {
@@ -102,16 +65,29 @@ export default function ProfileScreen({ navigation }) {
         if (roleRes.data?.role) {
           setRole(roleRes.data.role);
         }
+
+        // 3. MongoDB ID 가져오기
+        const mongoDBIDRes = await axios.get('http://localhost:5000/user/mongodbid', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true,
+        });
+  
+        if (mongoDBIDRes.data?._id) {
+          setMongoID(mongoDBIDRes.data._id);
+        }
       }
     } catch (error) {
       setUserName(null);
       setRole(null);
+      setMongoID(null);
     } finally {
       setIsLoading(false);
     }
   };
   
-
   // 유저 정보 불러오기
   useEffect(() => {
     fetchUserInfo();
@@ -132,6 +108,7 @@ export default function ProfileScreen({ navigation }) {
     } catch (e) {}
     setUserName(null);
     setRole(null);
+    setMongoID(null);
   };
 
   if (isLoading) {
@@ -224,7 +201,10 @@ export default function ProfileScreen({ navigation }) {
           <>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => {router.push('')}}
+              onPress={() => {router.push({
+                pathname: '/stuManage/stuResult/stuResultScreen',
+                params: { studentId: mongoID } // 사용자 ID 전달
+              })}}
             >
               <Text style={styles.loginButtonText}>학습 결과 확인</Text>
             </TouchableOpacity>

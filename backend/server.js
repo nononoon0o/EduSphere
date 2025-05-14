@@ -38,6 +38,8 @@ app.use(
         "http://localhost:8084",
         "http://localhost:8085",
       ],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true, // 세션 쿠키를 허용
     })
   );
@@ -51,17 +53,19 @@ app.use(express.json()); // JSON 요청 본문 파싱
 
 // 세션 설정 (MongoDB 세션 스토어 사용)
 app.use(
-    session({
-      secret: process.env.SESSION_SECRET || "yourSecretKey", // 환경 변수로 secret 관리
-      resave: false,
-      saveUninitialized: false, // 초기화된 세션만 저장
-      cookie: { maxAge: 30 * 60 * 1000 }, // 30분 동안 세션 유지
-      store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI, // MongoDB URL
-        collectionName: "sessions", // 세션 저장 컬렉션 이름
-      }),
-    })
-  );
+  session({
+    secret: process.env.SESSION_SECRET || "yourSecretKey", // 환경 변수로 secret 관리
+    resave: false,
+    saveUninitialized: false, // 초기화된 세션만 저장
+    cookie: { maxAge: 30 * 60 * 1000 }, // 30분 동안 세션 유지
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI, // MongoDB URL
+      collectionName: "sessions", // 세션 저장 컬렉션 이름
+    }),
+  })
+);
+
+app.options('*', cors());
 
 // 로그인 페이지
 app.use("/api/auth", loginRoutes);
