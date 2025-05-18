@@ -13,22 +13,29 @@ const userSchema = new mongoose.Schema(
     userID: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     school: { type: String },
-    nickname: { type: String, default: "익명" },
+    nickname: { type: String, default:"익명" },
     token: { type: String, default: "" },
+    role: { type: String, enum: ['student', 'teacher'] }
   },
   options
 );
 
 // Student 스키마 (User 확장)
 const studentSchema = new mongoose.Schema({
-  assignedClasses: [{ 
-    classId: String
+  classId: { type: String, required: true },
+  studentNumber: { type: Number, required: true },
+  subjects: [{ 
+    name: String, 
+    score: { type: Number, default: 0 }
   }]
 });
 
 // Teacher 스키마 (User 확장)
 const teacherSchema = new mongoose.Schema({
-  classId: { type: String, required: true }
+  managedClasses: [{
+    classId: String,
+    subject: String
+  }]
 });
 
 // 기본 모델 생성

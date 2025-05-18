@@ -38,4 +38,15 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = { authenticateToken };
+const teacherOnly = (req, res, next) => {
+  console.log(req.user)
+  if (!req.user) {
+    return res.status(401).json({ success: false, message: "인증이 필요합니다." });
+  }
+  if (req.user.role !== "teacher") {
+    return res.status(403).json({ success: false, message: "교사 권한이 필요합니다." });
+  }
+  next();
+};
+
+module.exports = { authenticateToken, teacherOnly };

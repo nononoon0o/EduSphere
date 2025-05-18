@@ -31,7 +31,7 @@ const login = async (req, res) => {
 
     // JWT 토큰 생성
     const token = jwt.sign(
-      { id: user._id, userID: user.userID }, // payload
+      { id: user._id, userID: user.userID, role: user.role }, // payload
       process.env.JWT_SECRET, // 비밀키
       { expiresIn: "1h" } // 만료 시간
     );
@@ -46,7 +46,12 @@ const login = async (req, res) => {
       success: true,
       message: "로그인 성공",
       token, // 프론트엔드에 전달
-      user: { userID: user.userID, email: user.email, nickname: user.nickname },
+      user: { 
+        _id: user._id,
+        userID: user.userID,
+        email: user.email,
+        nickname: user.nickname 
+      },
     });
   } catch (error) {
     console.error(error);
