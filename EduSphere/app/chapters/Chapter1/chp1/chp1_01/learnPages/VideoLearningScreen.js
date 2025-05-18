@@ -24,7 +24,6 @@ export default function VideoLearningScreen() {
         deadline,
         token
       });
-      console.log(result);
 
       if (result.success) {
         Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);

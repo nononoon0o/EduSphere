@@ -25,6 +25,8 @@ const attendanceRoutes = require("./routes/participation/attendanceRoutes");
 const assignmentRoutes = require("./routes/participation/assignmentRoutes");
 const studentRoutes = require('./routes/participation/studentRoutes');
 
+const deadlineRoutes = require('./routes/deadlineRoutes');
+
 // Express 애플리케이션 생성
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -84,6 +86,7 @@ app.use("/user", editAccountRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/students', studentRoutes);
+app.use('/api/deadlines', deadlineRoutes);
 
 // 서버 실행
 app.listen(PORT, () => {
