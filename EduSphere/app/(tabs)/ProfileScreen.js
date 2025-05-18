@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useRouter } from "expo-router";
+import { fetchUserInfoAll } from '../service/userService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/signinStyle/loginStyle';
@@ -13,15 +14,6 @@ export default function ProfileScreen({ navigation }) {
   const [mongoID, setMongoID] = useState("")
   const [errorMessage, setErrorMessage] = useState("");
 
-  // 회원가입 화면으로 이동하는 함수
-  const handleAccount = () => {
-    router.push("/signup/signmail");
-  };
-
-  const handleIdfind = () => {
-    router.push("/find/findmain");
-  };
-
   const getRoleName = (role) => {
     switch (role) {
       case "student":
@@ -32,61 +24,20 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const fetchUserInfo = async () => {
-    setIsLoading(true);
-    try {
-      const token = await AsyncStorage.getItem('token');
-      if (!token) {
-        setUserName(null);
-        setRole(null);
-        setMongoID(null);
-      } else {
-        // 1. 닉네임 가져오기
-        const nameRes = await axios.get('http://localhost:5000/user/name', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          withCredentials: true,
-        });
-  
-        if (nameRes.data?.nickname) {
-          setUserName(nameRes.data.nickname);
-        }
-  
-        // 2. 역할 가져오기
-        const roleRes = await axios.get('http://localhost:5000/user/role', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          withCredentials: true,
-        });
-  
-        if (roleRes.data?.role) {
-          setRole(roleRes.data.role);
-        }
-
-        // 3. MongoDB ID 가져오기
-        const mongoDBIDRes = await axios.get('http://localhost:5000/user/mongodbid', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          withCredentials: true,
-        });
-  
-        if (mongoDBIDRes.data?._id) {
-          setMongoID(mongoDBIDRes.data._id);
-        }
-      }
-    } catch (error) {
-      setUserName(null);
-      setRole(null);
-      setMongoID(null);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  setIsLoading(true);
+  try {
+    const { nickname, role, mongoId } = await fetchUserInfoAll();
+    setUserName(nickname);
+    setRole(role);
+    setMongoID(mongoId);
+  } catch (error) {
+    setUserName(null);
+    setRole(null);
+    setMongoID(null);
+  } finally {
+    setIsLoading(false);
+  }
+};
   
   // 유저 정보 불러오기
   useEffect(() => {

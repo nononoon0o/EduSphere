@@ -46,7 +46,12 @@ const login = async (req, res) => {
       success: true,
       message: "로그인 성공",
       token, // 프론트엔드에 전달
-      user: { userID: user.userID, email: user.email, nickname: user.nickname },
+      user: { 
+        _id: user._id,
+        userID: user.userID,
+        email: user.email,
+        nickname: user.nickname 
+      },
     });
   } catch (error) {
     console.error(error);

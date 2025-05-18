@@ -44,8 +44,14 @@ const LoginScreen = () => {
       if (response.data.success) {
         // JWT 토큰 저장
         const token = response.data.token;
+        const user = response.data.user;
         await AsyncStorage.setItem("token", token); // AsyncStorage에 저장
         await AsyncStorage.setItem('userData', JSON.stringify(response.data.user));
+        console.log(response.data.user)
+        if (user && user._id) {
+          await AsyncStorage.setItem("mongoId", user._id.toString());
+        }
+        console.log(user._id)
         setErrorMessage("");
         Alert.alert("로그인 성공", "홈 화면으로 이동합니다.");
         router.push("/HomeScreen"); // 홈 화면으로 이동

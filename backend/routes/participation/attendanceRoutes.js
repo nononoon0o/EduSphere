@@ -6,8 +6,8 @@ const { authenticateToken } = require("../../middlewares/authenticate");
 // 출결 기록 생성 (교사용)
 router.post('/', authenticateToken, async (req, res) => {
   try {
-    const { studentId, subject, date, status } = req.body;
-    const attendance = new Attendance({ studentId, subject, date, status });
+    const { studentId, chapter, date, status } = req.body;
+    const attendance = new Attendance({ studentId, chapter, date, status });
     await attendance.save();
     res.status(201).json({ success: true, attendance });
   } catch (err) {
