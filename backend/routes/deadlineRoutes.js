@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const deadlineController = require('../controllers/deadlineContoller');
+const deadlineController = require('../controllers/deadlineController');
 
 // 데드라인 생성 또는 수정
 router.post('/', deadlineController.setDeadline);
