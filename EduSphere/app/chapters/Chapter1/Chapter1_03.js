@@ -22,21 +22,6 @@ export default function Chapter1_01() {
       </TouchableOpacity>
 
       <View style={styles.header}>
-<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
-        <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
-        <Text style={styles.subtitle}>{t('chapter1_01.subtitle')}</Text>
-      </View>
-
-      <Text style={styles.sectionHeader}>{t('chapter1_01.title')}</Text>
-
-      <View style={styles.sectionsContainer}>
-        <TouchableOpacity
-          style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/ConceptSummaryScreen')}
-        >
-          <Text style={styles.sectionEmoji}>📘</Text>
-          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
-========
         <FontAwesome5 name="flask" size={22} color="#2980b9" style={{ marginRight: 10 }} />
         <Text style={styles.subtitle}>03. 화학 반응식</Text>
       </View>
@@ -45,39 +30,20 @@ export default function Chapter1_01() {
       <View style={styles.section}>
         <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/ConceptSummaryScreen')}>
           <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
->>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
         </TouchableOpacity>
       </View>
 
-<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
-        <TouchableOpacity
-          style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/LearnScreen')}
-        >
-          <Text style={styles.sectionEmoji}>📦</Text>
-          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
-========
       {/* (학습하기) Section */}
       <View style={styles.section}>
         <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/LearnScreen')}>
           <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
->>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
         </TouchableOpacity>
       </View>
 
-<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
-        <TouchableOpacity
-          style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/VideoLearningScreen')}
-        >
-          <Text style={styles.sectionEmoji}>🎬</Text>
-          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>
-========
       {/* (영상 학습) Section */}
       <View style={styles.section}>
         <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/VideoLearningScreen')}>
           <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
->>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
         </TouchableOpacity>
       </View>
     </ScrollView>
