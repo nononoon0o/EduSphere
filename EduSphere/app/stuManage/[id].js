@@ -7,17 +7,40 @@ import axios from 'axios';
 export default function StudentDetail() {
   const { id } = useLocalSearchParams();
   const [student, setStudent] = useState(null);
+  const [attendance, setAttendance] = useState([]);
+  const [assignments, setAssignments] = useState([]);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchStudent = async () => {
-      const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/students/${id}`, {
+  const fetchStudent = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const res = await axios.get(`http://localhost:5000/api/students/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    setStudent(res.data);
+  };
+
+  const fetchAttendance = async (studentId) => {
+    const token = await AsyncStorage.getItem('token');
+    const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setStudent(res.data);
-    };
+      console.log(res.data)
+      console.log(res.data.attendance)
+      setAttendance(res.data.attendance);
+  };
+
+  const fetchAssignments = async (studentId) => {
+    const token = await AsyncStorage.getItem('token');
+    const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setAssignments(res.data.assignments);
+  };
+
+  useEffect(() => {
     fetchStudent();
+    fetchAttendance(id);
+    fetchAssignments(id);
   }, [id]);
 
   if (!student) return <Text>로딩 중...</Text>;
@@ -37,22 +60,20 @@ export default function StudentDetail() {
         <Text>수강 과목 정보 없음</Text>
       )}
 
-      {/* 출결, 과제, 피드백 등은 아래처럼 확장 */}
       <Text style={{ marginTop: 16, fontWeight: 'bold' }}>출결 현황</Text>
-      {/*
-        출결 정보 백엔드 구조
-        POST / → 출결 기록 생성 (교사용)
-        GET /student/:studentId → 학생별 출결 조회
-      */}
-      <Text>출석/지각/결석 정보 (추후 연동)</Text>
+      {attendance && Object.entries(attendance).map(([status, count]) => (
+        <Text key={status}>
+          {status === 'present' ? '출석' : status === 'late' ? '지각' : '결석'}: {count}회
+        </Text>
+      ))}
       <Text style={{ marginTop: 16, fontWeight: 'bold' }}>과제 제출 현황</Text>
-      {/* 
-        과제 정보 백엔드 구조
-        POST / → 과제 생성 (교사용)
-        POST /:id/submit → 과제 제출 (학생용)
-        GET /:id → 특정 과제 조회
-      */}
-      <Text>과제 정보 (추후 연동)</Text>
+      {Array.isArray(assignments) && assignments.length > 0 ? (
+        assignments.map((item, idx) => (
+          <Text key={idx}>{item.title}: {item.submitted ? '제출' : '미제출'} {item.score && `(${item.score}점)`}</Text>
+        ))
+      ) : (
+        <Text>과제 정보 없음</Text>
+      )}
       <Text style={{ marginTop: 16, fontWeight: 'bold' }}>피드백</Text>
       <Text>교사 코멘트 (추후 연동)</Text>
     </ScrollView>
