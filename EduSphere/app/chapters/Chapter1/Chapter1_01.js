@@ -31,7 +31,7 @@ export default function Chapter1_01() {
       <View style={styles.sectionsContainer}>
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/ConceptSummaryScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
         >
           <Text style={styles.sectionEmoji}>📘</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
@@ -39,7 +39,7 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/LearnScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
         >
           <Text style={styles.sectionEmoji}>📦</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
@@ -47,7 +47,7 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/VideoLearningScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
         >
           <Text style={styles.sectionEmoji}>🎬</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>

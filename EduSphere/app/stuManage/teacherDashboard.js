@@ -1,24 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet, ScrollView, TouchableOpacity, Platform, Alert } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
+import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-let WebDatePicker = null;
-if (Platform.OS === 'web') {
-  WebDatePicker = require('react-datepicker').default;
-  require('react-datepicker/dist/react-datepicker.css');
-}
-
-const rawChapters = [
-  { chapter: 'Chapter1_01', title: '1과 영상' },
-  { chapter: 'Chapter1_02', title: '1과 퀴즈' },
-];
-
-const chapterList = rawChapters.map(c => ({
-  label: c.title,
-  value: c.chapter
-}));
 
 const TeacherDashboard = ({ navigation }) => {
   const [assignments, setAssignments] = useState([]);
@@ -28,8 +11,6 @@ const TeacherDashboard = ({ navigation }) => {
     description: '',
     dueDate: ''
   });
-  const [selectedChapter, setSelectedChapter] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -67,26 +48,10 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
-  const fetchDeadline = async () => {
-     try {
-        const res = await axios.get('http://localhost:5000/api/deadlines');
-        const deadlineObj = {};
-        res.data.deadlines.forEach(d => {
-          deadlineObj[d.chapter] = d.deadline;
-        });
-        setDeadlines(deadlineObj);
-      } catch (e) {
-        
-      }
-  }
-
   useEffect(() => {
-    console.log("Dropdown data:", chapterList);
-    console.log("Dropdown value:", selectedChapter);
     const fetchData = async () => {
       await fetchAssignments();
       await fetchAttendance();
-      await fetchDeadline();
     };
     fetchData();
   }, []);
@@ -140,32 +105,6 @@ const TeacherDashboard = ({ navigation }) => {
       fetchAttendance();
     } catch (err) {
       setError('출결 기록 저장 실패');
-    }
-  };
-
-  const handleSaveDeadline = async () => {
-    if (!selectedChapter || !selectedDate) {
-      Alert.alert('오류', '챕터와 데드라인을 모두 선택하세요.');
-      return;
-    }
-    try {
-      setLoading(true);
-      const token = await AsyncStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/deadlines',
-        {
-          chapter: selectedChapter,
-          deadline: dayjs(selectedDate).toISOString()
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
-      Alert.alert('성공', '데드라인이 저장되었습니다.');
-    } catch (e) {
-      Alert.alert('오류', '데드라인 저장에 실패했습니다.');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -249,40 +188,6 @@ const TeacherDashboard = ({ navigation }) => {
             </View>
           )}
         />
-      </View>
-
-      {/* 챕터별 데드라인 설정 */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>챕터별 데드라인 설정</Text>
-        {chapterList.length > 0 && (
-          <Dropdown
-            style={styles.dropdown}
-            data={chapterList}
-            labelField="label"
-            valueField="value"
-            placeholder="챕터를 선택하세요"
-            value={selectedChapter}
-            onChange={item => setSelectedChapter(item.value)}
-          />
-        )}
-        <WebDatePicker
-          selected={selectedDate}
-          onChange={date => setSelectedDate(date)}
-          showTimeSelect
-          timeIntervals={10}
-          timeFormat="HH:mm" 
-          dateFormat="yyyy-MM-dd HH:mm"
-          placeholderText="날짜를 선택하세요"
-          popperPlacement="bottom-start"
-          className="react-datepicker__input"
-          style={{ width: '100%', height: 40, fontSize: 16 }}
-        />
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={handleSaveDeadline}
-        >
-          <Text style={{ fontWeight: 'bold' }}>데드라인 저장</Text>
-        </TouchableOpacity>
       </View>
 
       {error ? <Text style={styles.error}>{error}</Text> : null}

@@ -1,106 +1,148 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-export default function Chapter1_03() {
+export default function Chapter1_01() {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const paths = [
-    { key: 'item1', path: '/chapters/Chapter1/chp1/chp1_03/GasReactionRatioScreen' },
-    { key: 'item2', path: '/chapters/Chapter1/chp1/chp1_03/EnergyReleaseScreen' },
-    { key: 'item3', path: '/chapters/Chapter1/chp1/chp1_03/ActivationEnergyScreen' },
-    { key: 'item4', path: '/chapters/Chapter1/chp1/chp1_03/IdealVsRealGasScreen' },
-    { key: 'item5', path: '/chapters/Chapter1/chp1/chp1_03/EnergyTransferRoleScreen' },
-    { key: 'item6', path: '/chapters/Chapter1/chp1/chp1_03/CatalystScreen' },
-    { key: 'item7', path: '/chapters/Chapter1/chp1/chp1_03/PracticalApplicationScreen' },
-  ];
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Back button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-        <Ionicons name="chevron-back" size={22} color="#fff" />
+      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter1')}>
+        <Ionicons name="chevron-back" size={24} color="#1e3a8a" />
         <Text style={styles.backText}>Home</Text>
       </TouchableOpacity>
 
-      {/* Header box */}
-      <View style={styles.headerBox}>
-        <Text style={styles.headerTitle}>{t('chapter1_03.title')}</Text>
-        <Text style={styles.headerDescription}>{t('chapter1_03.description')}</Text>
+      <View style={styles.header}>
+<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
+        <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
+        <Text style={styles.subtitle}>{t('chapter1_01.subtitle')}</Text>
       </View>
 
-      {/* Navigation Cards */}
-      {paths.map((item, index) => (
+      <Text style={styles.sectionHeader}>{t('chapter1_01.title')}</Text>
+
+      <View style={styles.sectionsContainer}>
         <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => router.push(item.path)}
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/ConceptSummaryScreen')}
         >
-          <Text style={styles.cardText}>{t(`chapter1_03.cards.${item.key}`)}</Text>
+          <Text style={styles.sectionEmoji}>📘</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
+========
+        <FontAwesome5 name="flask" size={22} color="#2980b9" style={{ marginRight: 10 }} />
+        <Text style={styles.subtitle}>03. 화학 반응식</Text>
+      </View>
+
+      {/* (개념요약) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/ConceptSummaryScreen')}>
+          <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
+>>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
         </TouchableOpacity>
-      ))}
+      </View>
+
+<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
+        <TouchableOpacity
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/LearnScreen')}
+        >
+          <Text style={styles.sectionEmoji}>📦</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
+========
+      {/* (학습하기) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/LearnScreen')}>
+          <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
+>>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
+        </TouchableOpacity>
+      </View>
+
+<<<<<<<< HEAD:EduSphere/app/chapters/Chapter1/Chapter1_01.js
+        <TouchableOpacity
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/learnPages/VideoLearningScreen')}
+        >
+          <Text style={styles.sectionEmoji}>🎬</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>
+========
+      {/* (영상 학습) Section */}
+      <View style={styles.section}>
+        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/VideoLearningScreen')}>
+          <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
+>>>>>>>> feature/frontend-3D:EduSphere/app/chapters/Chapter1/Chapter1_03.js
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     padding: 20,
-    paddingBottom: 40,
-    minHeight: '100%',
+    backgroundColor: '#f9fcff',
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1e3a8a',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 30,
-    alignSelf: 'flex-start',
-    marginBottom: 20,
+    marginBottom: 24,
   },
   backText: {
     fontSize: 16,
-    marginLeft: 6,
-    color: '#fff',
+    marginLeft: 8,
+    color: '#1e3a8a',
     fontWeight: '600',
   },
-  headerBox: {
-    backgroundColor: '#f0f5e1',
-    padding: 16,
-    borderRadius: 10,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
   },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2e2e2e',
-    marginBottom: 6,
+  icon: {
+    marginRight: 12,
   },
-  headerDescription: {
-    fontSize: 14,
-    color: '#333',
-    lineHeight: 20,
+  subtitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#2c3e50',
   },
-  card: {
-    backgroundColor: '#d9e6c3',
-    borderRadius: 10,
-    paddingVertical: 18,
-    paddingHorizontal: 14,
-    marginBottom: 12,
+  sectionHeader: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#34495e',
+    marginBottom: 24,
+  },
+  sectionsContainer: {
+    marginBottom: 30,
+  },
+  sectionButton: {
+    backgroundColor: '#e3f2fd',
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+    elevation: 4,
   },
-  cardText: {
-    fontSize: 15,
-    color: '#1f1f1f',
-    fontWeight: '500',
+  sectionEmoji: {
+    fontSize: 22,
+    marginRight: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1e3a8a',
   },
 });

@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Platform, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons'; // 아이콘 사용
-import { router } from 'expo-router'; // 뒤로가기 기능 사용
+import { router } from 'expo-router'; // 뒤로가기 기능
 
 export default function VideoLearningScreen() {
-  const videoId = 'mUapW54ODMc'; // 원하는 유튜브 영상 ID
+  const videoId = 'W82aT47cnwM'; // 원하는 유튜브 영상 ID
 
   return (
     <View style={styles.container}>

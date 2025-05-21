@@ -1,98 +1,121 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-export default function Chapter1_02() {
+export default function Chapter1_01() {
   const router = useRouter();
   const { t } = useTranslation();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Back button */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter1')}>
-        <Ionicons name="chevron-back" size={22} color="#fff" />
+        <Ionicons name="chevron-back" size={24} color="#1e3a8a" />
         <Text style={styles.backText}>Home</Text>
       </TouchableOpacity>
 
-      {/* Subtitle */}
-      <Text style={styles.subtitle}>{t('chapter1_02.subtitle')}</Text>
-      <Text style={styles.description}>{t('chapter1_02.description')}</Text>
+      <View style={styles.header}>
+        <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
+        <Text style={styles.subtitle}>{t('chapter1_01.subtitle')}</Text>
+      </View>
 
-      {/* Navigation Buttons */}
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}
-      >
-        <Text style={styles.cardText}>{t('chapter1_02.cards.law1')}</Text>
-      </TouchableOpacity>
+      <Text style={styles.sectionHeader}>{t('chapter1_01.title')}</Text>
 
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/GLBViewer')}
-      >
-        <Text style={styles.cardText}>{t('chapter1_02.cards.law2')}</Text>
-      </TouchableOpacity>
+      <View style={styles.sectionsContainer}>
+        <TouchableOpacity
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}
+        >
+          <Text style={styles.sectionEmoji}>📘</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.card}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}
-      >
-        <Text style={styles.cardText}>{t('chapter1_02.cards.law3')}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
+        >
+          <Text style={styles.sectionEmoji}>📦</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.sectionButton}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}
+        >
+          <Text style={styles.sectionEmoji}>🎬</Text>
+          <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     padding: 20,
-    minHeight: '100%',
+    backgroundColor: '#f9fcff',
   },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1e3a8a',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 30,
-    alignSelf: 'flex-start',
-    marginBottom: 20,
+    marginBottom: 24,
   },
   backText: {
     fontSize: 16,
-    marginLeft: 6,
-    color: '#fff',
+    marginLeft: 8,
+    color: '#1e3a8a',
     fontWeight: '600',
   },
-  subtitle: {
-    fontSize: 16,
-    color: '#157347',
-    fontWeight: '700',
-    marginBottom: 8,
-  },
-  description: {
-    fontSize: 14,
-    color: '#1e1e1e',
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
   },
-  card: {
-    backgroundColor: '#d9e6c3',
-    borderRadius: 10,
-    paddingVertical: 18,
-    paddingHorizontal: 14,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+  icon: {
+    marginRight: 12,
   },
-  cardText: {
-    fontSize: 16,
-    color: '#1f1f1f',
-    fontWeight: '500',
+  subtitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#2c3e50',
+  },
+  sectionHeader: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#34495e',
+    marginBottom: 24,
+  },
+  sectionsContainer: {
+    marginBottom: 30,
+  },
+  sectionButton: {
+    backgroundColor: '#e3f2fd',
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  sectionEmoji: {
+    fontSize: 22,
+    marginRight: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1e3a8a',
   },
 });
