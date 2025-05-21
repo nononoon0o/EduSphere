@@ -1,0 +1,88 @@
+import { StyleSheet, Platform } from 'react-native';
+
+const stylemail = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    paddingHorizontal: '10%',
+    paddingTop: Platform.OS === 'ios' ? 60 : 40,
+    backgroundColor: '#000000',
+    justifyContent: 'flex-start',
+  },
+  title: {
+    fontSize: 42,
+    fontWeight: '800',
+    color: '#0097FB',
+    textAlign: 'center',
+    marginBottom: '20%',
+    letterSpacing: 0.5,
+  },
+  whitetitle: {
+    fontSize: 42,
+    fontWeight: '700',
+    color: '#ffffff',
+    textAlign: 'center',
+  },
+  inputContainer: {
+    position: 'relative',
+    width: '100%',
+    marginTop: 40,
+    marginBottom: 24,
+  },
+  inputWithIcon: {
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    paddingHorizontal: 12,
+    paddingVertical: 14,
+    borderRadius: 6,
+    paddingRight: 44,
+    borderBottomWidth: 2,
+    borderBottomColor: '#0057FF',
+    fontSize: 16,
+    width: '100%',
+  },
+  clearIcon: {
+    position: 'absolute',
+    right: '4%',
+    top: '50%',
+    transform: [{ translateY: -12 }],
+    zIndex: 5,
+  },
+  validationText: {
+    fontSize: 14,
+    color: '#ffffff',
+    textAlign: 'left',
+    marginTop: 4,
+    marginBottom: 8,
+    paddingLeft: 2,
+  },
+  button: {
+    backgroundColor: '#094771',
+    paddingVertical: 16,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 50,
+    shadowColor: '#094771',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: Platform.OS === 'android' ? 4 : 0,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  backIcon: {
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 40 : 24,
+    left: 20,
+    padding: 10,
+    zIndex: 10,
+  },
+});
+
+export default stylemail;
