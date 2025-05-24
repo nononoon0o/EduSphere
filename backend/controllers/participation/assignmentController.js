@@ -93,7 +93,7 @@ const deleteAssignment = async(req, res) => {
 const downloadFile = async (req, res) => {
   try {
     const fileId = new mongoose.Types.ObjectId(req.params.fileId);
-    const downloadStream = getFile(fileId);
+    const downloadStream = getFileFromGridFS(fileId);
     
     res.set('Content-Type', 'application/octet-stream');
     downloadStream.pipe(res);
