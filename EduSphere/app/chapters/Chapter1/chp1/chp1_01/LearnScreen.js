@@ -121,7 +121,7 @@ function learnScreen() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -242,6 +242,7 @@ function learnScreen() {
           <Button title="다시 풀기" onPress={handleReset} color="#cc0000" />
         </View>
       )}
+      
       <View style={styles.examplesContainer}>
         {EXAMPLES.map(example => (
           <DraggableImage
@@ -254,7 +255,32 @@ function learnScreen() {
           />
         ))}
       </View>
+      
+      <View style={styles.navigation}>
+      {/* 이전 버튼 */}
+      <TouchableOpacity
+        style={styles.prevButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
+      >
+        <View style={styles.prevButtonCircle}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.prevButtonText}>이전</Text>
+      </TouchableOpacity>
+
+      {/* 다음 버튼 */}
+      <TouchableOpacity
+        style={styles.nextButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
+      >
+        <Ionicons name="arrow-forward" size={24} color="#fff" />
+        <View style={styles.nextButtonCircle}>
+          <Text style={styles.nextButtonText}>다음</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
     </GestureHandlerRootView>
+    
   );
 };
 
@@ -373,6 +399,59 @@ const styles = StyleSheet.create({
     color: '#555',
     textAlign: 'center',
     marginTop: 4,
+  },
+  navigation: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingHorizontal: 20,
+  marginTop: 30,
+  },
+  prevButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+  },
+  prevButtonCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#3498db',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  prevButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#3498db',
+  },
+  nextButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#3498db',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 30,
+  },
+  nextButtonCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nextButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#3498db',
   },
 });
 

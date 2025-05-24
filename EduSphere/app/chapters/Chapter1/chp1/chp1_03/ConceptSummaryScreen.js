@@ -9,7 +9,7 @@ export default function ConceptSummaryScreen() {
   return (
     <View style={styles.container}>
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_03')}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -60,6 +60,16 @@ export default function ConceptSummaryScreen() {
         <Text style={styles.description}>- 산소 분자(O₂)는 1개가 반응해서</Text>
         <Text style={styles.description}>- 물 분자(H₂O) 2개가 생성됨</Text>
       </View>
+      {/* 다음 페이지 버튼 */}
+      <TouchableOpacity
+        style={styles.nextButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/LearnScreen')}
+      >
+        <Ionicons name="arrow-forward" size={24} color="#fff" />
+        <View style={styles.nextButtonCircle}>
+          <Text style={styles.nextButtonText}>다음</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -109,5 +119,29 @@ const styles = StyleSheet.create({
     color: '#555',
     marginLeft: 10,
     marginTop: 5,
+  },
+  nextButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#3498db',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 30,
+  },
+  nextButtonCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nextButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#3498db',
   },
 });

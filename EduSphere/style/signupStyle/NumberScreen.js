@@ -1,36 +1,48 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const nextstyle = StyleSheet.create({
   container: {
     flex: 1,
-    padding:'5%',
-    backgroundColor: '#000',
+    padding: '6%',
+    backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   title: {
-    fontSize: 80,
-    color: '#fff',
-    marginTop:'20%',
-    marginBottom: '30%',  // 환영합니다 밑에 약간의 여백 추가
+    fontSize: 72,
+    color: '#ffffff',
+    fontWeight: 'bold',
+    marginTop: '10%',
+    marginBottom: '10%',
+    textAlign: 'center',
+    letterSpacing: 1,
   },
   text: {
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 20,
-    marginBottom: '10%',  
+    textAlign: 'center',
+    marginBottom: '5%',
+    lineHeight: 28,
   },
   HomeButton: {
-    width: '40%',
-    height: 50,
+    width: '60%',
+    height: 52,
     backgroundColor: '#0053a6',
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: '10%',
+    shadowColor: '#0053a6',
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 8,
+    elevation: Platform.OS === 'android' ? 4 : 0,
   },
   HomeButtonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 18,
+    fontWeight: '600',
+    letterSpacing: 0.5,
   },
 });
 

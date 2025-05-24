@@ -1,25 +1,27 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#000000',
     padding: 24,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 24,
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#ffffff',
+    marginBottom: 20,
     textAlign: 'center',
+    letterSpacing: 0.5,
   },
   infoText: {
     fontSize: 15,
-    color: '#bbb',
+    color: '#bbbbbb',
     marginBottom: 24,
     textAlign: 'center',
+    lineHeight: 22,
   },
   inputContainer: {
     width: '100%',
@@ -27,29 +29,43 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    height: 48,
-    backgroundColor: '#222',
-    borderRadius: 8,
+    height: 50,
+    backgroundColor: '#1a1a1a',
+    borderRadius: 10,
     paddingHorizontal: 16,
-    color: '#fff',
+    color: '#ffffff',
     fontSize: 16,
     marginBottom: 8,
     borderWidth: 1,
     borderColor: '#444',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: Platform.OS === 'android' ? 2 : 0,
   },
   button: {
     width: '100%',
-    height: 48,
-    backgroundColor: '#e74c3c', // 탈퇴는 빨간색 계열 추천
-    borderRadius: 8,
+    height: 50,
+    backgroundColor: '#e74c3c',
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 12,
+    shadowColor: '#e74c3c',
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    elevation: Platform.OS === 'android' ? 4 : 0,
   },
   buttonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 16,
+    letterSpacing: 0.5,
+  },
+  disabledButton: {
+    backgroundColor: '#555',
   },
   errorText: {
     color: '#ff7675',
@@ -59,10 +75,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   backIcon: {
-    position: "absolute",
-    top: "3%",
-    left: "3%",
-    zIndex: 1,
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 50 : 30,
+    left: 20,
+    padding: 10,
+    zIndex: 10,
   },
 });
 

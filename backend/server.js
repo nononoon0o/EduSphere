@@ -46,8 +46,6 @@ app.use(
     })
   );
   
-//app.options('*', cors());
-
 // MongoDB 연결
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB 연결...'))

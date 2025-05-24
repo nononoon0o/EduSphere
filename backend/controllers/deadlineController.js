@@ -8,13 +8,14 @@ const setDeadline = async (req, res) => {
       return res.status(400).json({ success: false, message: 'chapter와 deadline이 필요합니다.' });
     }
 
-    const updated = await Chapter.findByIdAndUpdate(
+    const updated = await Deadline.findOneAndUpdate(
       { chapter },
-      { deadline: new Date(deadline) },
+      { chapter, deadline: new Date(deadline) },
       { new: true, upsert: true }
     );
 
     res.json({ success: true, deadline: updated });
+    console.log("데드라인 저장 완료")
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

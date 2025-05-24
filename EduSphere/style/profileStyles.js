@@ -1,95 +1,85 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const profileStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f9ff', // Softer light background
+    backgroundColor: '#eef3f7',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: Platform.OS === 'ios' ? 60 : 40,
+    justifyContent: 'center',
+    padding: 16,
   },
 
-  greetingContainer: {
-    flexDirection: 'row',
+  profileCard: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 24,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    paddingVertical: 18,
-    paddingHorizontal: 22,
-    marginBottom: 24,
-    borderRadius: 14,
-    width: '90%',
     shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
     shadowRadius: 8,
-    elevation: 4,
+    elevation: 6,
   },
 
   greetingText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1a1a1a',
-    flexShrink: 1,
+    color: '#1e272e',
+    marginBottom: 16,
+    textAlign: 'center',
   },
 
-  loginLogoutButton: {
-    backgroundColor: '#0053a6',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginLeft: 12,
-    shadowColor: '#0053a6',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 6,
-    elevation: 3,
-  },
-
-  loginLogoutButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-
-  sectionContainer: {
-    width: '90%',
-    gap: 10,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-
-  sectionTitle: {
-    alignSelf: 'flex-start',
-    marginBottom: 6,
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#3a4a5c',
-  },
-
-  actionButton: {
-    backgroundColor: '#ffffff',
-    borderRadius: 14,
-    paddingVertical: 16,
-    paddingHorizontal: 25,
-    marginVertical: 6,
+  authButton: {
     width: '100%',
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginBottom: 20,
     alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-    borderWidth: 1,
-    borderColor: '#e0e6ed',
   },
 
-  actionButtonText: {
-    color: '#0053a6',
+  loginButton: {
+    backgroundColor: '#007bff',
+  },
+
+  logoutButton: {
+    backgroundColor: '#34495e',
+  },
+
+  authButtonText: {
+    color: '#ffffff',
     fontSize: 16,
     fontWeight: '600',
   },
+
+  actionsContainer: {
+    width: '100%',
+    marginTop: 10,
+  },
+
+  actionButton: {
+    backgroundColor: '#1abc9c',
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginBottom: 12,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 3,
+    elevation: 2,
+  },
+
+  actionButtonText: {
+    color: '#ffffff',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+
+  dangerButton: {
+    backgroundColor: '#e74c3c',
+  },
 });
 
-export default profileStyles;
+export default styles;

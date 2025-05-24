@@ -41,4 +41,30 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#2c3e50',
   },
+  prevNavButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 200,
+  height: 50,
+  backgroundColor: '#fff',
+  borderRadius: 25,
+  paddingHorizontal: 16,
+  marginTop: 30,
+  alignSelf: 'center', // 가운데 정렬
+},
+prevNavCircle: {
+  width: 42,
+  height: 42,
+  borderRadius: 21,
+  backgroundColor: '#3498db',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+prevNavText: {
+  fontSize: 14,
+  fontWeight: '600',
+  color: '#3498db',
+},
+
 });

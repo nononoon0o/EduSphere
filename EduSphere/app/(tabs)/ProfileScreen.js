@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { fetchUserInfoAll } from '../service/userService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import styles from '../../style/signinStyle/loginStyle';
+import styles from '../../style/profileStyles';
 
 export default function ProfileScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,20 +24,20 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const fetchUserInfo = async () => {
-  setIsLoading(true);
-  try {
-    const { nickname, role, mongoId } = await fetchUserInfoAll();
-    setUserName(nickname);
-    setRole(role);
-    setMongoID(mongoId);
-  } catch (error) {
-    setUserName(null);
-    setRole(null);
-    setMongoID(null);
-  } finally {
-    setIsLoading(false);
-  }
-};
+    setIsLoading(true);
+    try {
+      const { nickname, role, mongoId } = await fetchUserInfoAll();
+      setUserName(nickname);
+      setRole(role);
+      setMongoID(mongoId);
+    } catch (error) {
+      setUserName(null);
+      setRole(null);
+      setMongoID(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   // 유저 정보 불러오기
   useEffect(() => {
@@ -72,28 +72,12 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginBottom: 40,
-          width: '80%',
-          justifyContent: 'center',
-        }}
-      >
-        <Text style={styles.loginButtonText}>
+      <View style={styles.profileCard}>
+        <Text style={styles.greetingText}>
           {userName ? `${getRoleName(role)} ${userName}님 어서오세요` : '로그인 해주세요'}
         </Text>
         <TouchableOpacity
-          style={{
-            marginLeft: 16,
-            height: 40,
-            paddingHorizontal: 18,
-            backgroundColor: '#0053a6',
-            borderRadius: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={[styles.authButton, userName ? styles.logoutButton : styles.loginButton]}
           onPress={() => {
             if (userName) {
               handleLogout();
@@ -102,16 +86,15 @@ export default function ProfileScreen({ navigation }) {
             }
           }}
         >
-          <Text style={styles.loginButtonText}>
+          <Text style={styles.authButtonText}>
             {userName ? '로그아웃' : '로그인'}
           </Text>
         </TouchableOpacity>
-      </View>
 
       {/* 설정 버튼 영역 */}
-      <View style={{ width: '80%', alignItems: 'center' }}>
+      <View style={styles.actionsContainer}>
         <TouchableOpacity
-          style={styles.loginButton}
+          style={styles.actionButton}
           onPress={() => {
             if(!userName) {
               console.log("오류")
@@ -120,29 +103,29 @@ export default function ProfileScreen({ navigation }) {
             }
           }}
         >
-          <Text style={styles.loginButtonText}>계정 정보 수정</Text>
+          <Text style={styles.actionButtonText}>계정 정보 수정</Text>
         </TouchableOpacity>
 
         {/* 교사 전용 버튼 */}
         {role === "teacher" && (
           <>
             <TouchableOpacity
-              style={styles.loginButton}
+              style={styles.actionButton}
               onPress={() => {router.push('')}}
             >
-              <Text style={styles.loginButtonText}>진도 설정</Text>
+              <Text style={styles.actionButtonText}>진도 설정</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.loginButton}
+              style={styles.actionButton}
               onPress={() => {router.push('../stuManage/stuManageScreen')}}
             >
-              <Text style={styles.loginButtonText}>학생 관리</Text>
+              <Text style={styles.actionButtonText}>학생 관리</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.loginButton}
+              style={styles.actionButton}
               onPress={() => {router.push('')}}
             >
-              <Text style={styles.loginButtonText}>학습 결과 확인</Text>
+              <Text style={styles.actionButtonText}>학습 결과 확인</Text>
             </TouchableOpacity>
           </>
         )}
@@ -151,25 +134,27 @@ export default function ProfileScreen({ navigation }) {
         {role === "student" && (
           <>
             <TouchableOpacity
-              style={styles.loginButton}
+              style={styles.actionButton}
               onPress={() => {router.push({
                 pathname: '/stuManage/stuResult/stuResultScreen',
-                params: { studentId: mongoID } // 사용자 ID 전달
+                params: { studentId: mongoID }
               })}}
             >
-              <Text style={styles.loginButtonText}>학습 결과 확인</Text>
+              <Text style={styles.actionButtonText}>학습 결과 확인</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.loginButton}
-              onPress={() => {router.push('')}}
+              style={styles.actionButton}
+              onPress={() => {
+                router.push('/assignments/submitAssignmentScreen');
+              }}
             >
-              <Text style={styles.loginButtonText}>쪽지 보내기</Text>
+              <Text style={styles.actionButtonText}>과제 제출</Text>
             </TouchableOpacity>
           </>
         )}
 
         <TouchableOpacity
-          style={styles.loginButton}
+          style={styles.actionButton}
           onPress={() => {
             if(!userName) {
               console.log("오류")
@@ -178,10 +163,9 @@ export default function ProfileScreen({ navigation }) {
             }
           }}
         >
-          <Text style={styles.loginButtonText}>회원 탈퇴</Text>
+          <Text style={styles.actionButtonText}>회원 탈퇴</Text>
         </TouchableOpacity>
-
-        
+      </View>
       </View>
     </SafeAreaView>
   );
