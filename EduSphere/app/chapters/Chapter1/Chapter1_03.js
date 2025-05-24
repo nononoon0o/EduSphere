@@ -28,21 +28,21 @@ export default function Chapter1_01() {
 
       {/* (개념요약) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/ConceptSummaryScreen')}>
+        <TouchableOpacity onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/ConceptSummaryScreen')}>
           <Text style={styles.sectionTitle}>📘 (학습목표 & 개념요약)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (학습하기) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/LearnScreen')}>
+        <TouchableOpacity onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/LearnScreen')}>
           <Text style={styles.sectionTitle}>📦 (학습하기)</Text>
         </TouchableOpacity>
       </View>
 
       {/* (영상 학습) Section */}
       <View style={styles.section}>
-        <TouchableOpacity onPress={() => router.push('/learnPages/Chapter1_03/VideoLearningScreen')}>
+        <TouchableOpacity onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen')}>
           <Text style={styles.sectionTitle}>🎬 (영상 학습)</Text>
         </TouchableOpacity>
       </View>

@@ -51,7 +51,7 @@ export default function VideoLearningScreen() {
     <View style={styles.container}>
       
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -90,6 +90,15 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
+      <TouchableOpacity
+     style={styles.prevNavButton}
+     onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+   >
+     <View style={styles.prevNavCircle}>
+       <Ionicons name="arrow-back" size={24} color="#fff" />
+     </View>
+     <Text style={styles.prevNavText}>이전으로</Text>
+   </TouchableOpacity>
     </View>
   );
 }

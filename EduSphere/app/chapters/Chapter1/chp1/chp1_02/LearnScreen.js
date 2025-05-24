@@ -147,7 +147,7 @@ export default function GLBViewer() {
 
   return (
     <View style={{ flex: 1 }} {...panResponder.panHandlers}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_02')}>
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -201,6 +201,29 @@ export default function GLBViewer() {
           <View style={styles.molecule}><Text style={styles.chemText}>{REAGENTS.find(r => r.id === id).label}</Text></View>
         </Draggable>
       ))}
+       <View style={[styles.navigation, {  bottom: 100 }]}>
+    {/* 이전 버튼 */}
+    <TouchableOpacity
+      style={styles.prevButton}
+      onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}
+    >
+      <View style={styles.prevButtonCircle}>
+        <Ionicons name="arrow-back" size={24} color="#fff" />
+      </View>
+      <Text style={styles.prevButtonText}>이전으로</Text>
+    </TouchableOpacity>
+
+    {/* 다음 버튼 */}
+    <TouchableOpacity
+      style={styles.nextButton}
+      onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}
+    >
+      <Text style={styles.nextButtonText}>다음으로</Text>
+      <View style={styles.nextButtonCircle}>
+        <Ionicons name="arrow-forward" size={24} color="#3498db" />
+      </View>
+    </TouchableOpacity>
+  </View>
     </View>
   );
 }
@@ -215,5 +238,58 @@ const styles = StyleSheet.create({
   resetButton: { position: 'absolute', backgroundColor: '#ecf0f1', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10, elevation: 2, zIndex: 10, },
   explainButton: { position: 'absolute', backgroundColor: '#ecf0f1', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10, elevation: 2, zIndex: 10, },
   explanationBox: { position: 'absolute', backgroundColor: '#fff', borderRadius: 10, padding: 10, elevation: 3, zIndex: 10 },
-  explanationText: { fontSize: 14, color: '#2c3e50', lineHeight: 20 }
+  explanationText: { fontSize: 14, color: '#2c3e50', lineHeight: 20 },
+  navigation: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingHorizontal: 20,
+  marginTop: 30,
+},
+prevButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 200,
+  height: 50,
+  backgroundColor: '#fff',
+  borderRadius: 25,
+  paddingHorizontal: 16,
+},
+prevButtonCircle: {
+  width: 42,
+  height: 42,
+  borderRadius: 21,
+  backgroundColor: '#3498db',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+prevButtonText: {
+  fontSize: 14,
+  fontWeight: '600',
+  color: '#3498db',
+},
+nextButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 200,
+  height: 50,
+  backgroundColor: '#3498db',
+  borderRadius: 25,
+  paddingHorizontal: 16,
+},
+nextButtonCircle: {
+  width: 42,
+  height: 42,
+  borderRadius: 21,
+  backgroundColor: '#fff',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+nextButtonText: {
+  fontSize: 14,
+  fontWeight: '600',
+  color: '#fff',
+},
+
 });
