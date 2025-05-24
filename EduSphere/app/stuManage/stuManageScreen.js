@@ -9,34 +9,34 @@ export default function StudentManagementScreen() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  const fetchData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      
+      // 1. 교사 정보 조회
+      const teacherRes = await axios.get('http://localhost:5000/user/role', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      console.log("교사 정보:", teacherRes.data);
+
+      // 2. 학생 목록 조회
+      const studentsRes = await axios.get('http://localhost:5000/api/students', {
+        params: {
+          classId: teacherRes.data.classId,
+          subjects: teacherRes.data.subjects
+        },
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      setStudents(studentsRes.data);
+    } catch (error) {
+      console.error("데이터 불러오기 실패:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = await AsyncStorage.getItem('token');
-        
-        // 1. 교사 정보 조회
-        const teacherRes = await axios.get('http://localhost:5000/user/role', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        console.log("교사 정보:", teacherRes.data);
-
-        // 2. 학생 목록 조회
-        const studentsRes = await axios.get('http://localhost:5000/api/students', {
-          params: {
-            classId: teacherRes.data.classId,
-            subjects: teacherRes.data.subjects
-          },
-          headers: { Authorization: `Bearer ${token}` }
-        });
-
-        setStudents(studentsRes.data);
-      } catch (error) {
-        console.error("데이터 불러오기 실패:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 

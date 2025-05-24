@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet, ScrollView, TouchableOpacity, Platform, Alert } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPathWithConventionsCollapsed } from 'expo-router/build/fork/getPathFromState-forks';
 
 let WebDatePicker = null;
 if (Platform.OS === 'web') {
@@ -24,19 +25,32 @@ const chapterList = rawChapters.map(c => ({
   value: c.chapter
 }));
 
+const fileInputRef = useRef(null);
+
 const TeacherDashboard = ({ navigation }) => {
-  const [assignments, setAssignments] = useState([]);
   const [attendance, setAttendance] = useState([]);
+
+  const [assignments, setAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
     title: '',
     description: '',
-    dueDate: ''
+    dueDate: '',
+    teafileUrl: '',
   });
   const [newAssignmentDate, setNewAssignmentDate] = useState(null);
+  const [assignmentFile, setAssignmentFile] = useState(null);
+
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ko-KR');
+  };
 
   // 과제 목록 불러오기
   const fetchAssignments = async () => {
@@ -49,12 +63,6 @@ const TeacherDashboard = ({ navigation }) => {
     } catch (err) {
       setError('과제를 불러올 수 없습니다.');
     }
-  };
-
-  const formatDate = (dateStr) => {
-    if (!dateStr) return '';
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('ko-KR');
   };
 
   // 출결 기록 불러오기
@@ -81,7 +89,7 @@ const TeacherDashboard = ({ navigation }) => {
         });
         setDeadlines(deadlineObj);
       } catch (e) {
-        
+        console.log(e);
       }
   }
 
@@ -94,24 +102,45 @@ const TeacherDashboard = ({ navigation }) => {
     fetchData();
   }, []);
 
+  // 파일 선택 핸들러
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && (file.name.endsWith('.docx') || file.name.endsWith('.hwp'))) {
+      setAssignmentFile(file);
+    } else {
+      Alert.alert('docx 또는 hwp 파일만 업로드할 수 있습니다.');
+      e.target.value = '';
+      setAssignmentFile(null);
+    }
+  };
+
   // 새 과제 생성
   const handleCreateAssignment = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const payload = {
-        ...newAssignment,
-        dueDate: new Date(newAssignment.dueDate).toISOString()
-      };
-      const res = await axios.post('http://localhost:5000/api/assignments', payload, {
+      const formData = new FormData();
+      formData.append('title', newAssignment.title);
+      formData.append('description', newAssignment.description);
+      formData.append('dueDate', new Date(newAssignment.dueDate).toISOString());
+      if (assignmentFile) {
+        formData.append('teafileUrl', assignmentFile);
+      }
+
+      const res = await axios.post('http://localhost:5000/api/assignments', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
         }
       });
       setAssignments([...assignments, res.data.assignment]);
       setNewAssignment({ title: '', description: '', dueDate: '' });
+      setNewAssignmentDate(null);
+      setAssignmentFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
       setError('');
     } catch (err) {
+      console.log(err);
       setError('과제 생성 실패');
     }
   };
@@ -130,7 +159,7 @@ const TeacherDashboard = ({ navigation }) => {
   };
 
   // 출결 기록 저장
-  const saveAttendance = async (studentId, status) => {
+  const handleSaveAttendance = async (studentId, status) => {
     try {
       const token = await AsyncStorage.getItem('token');
       await axios.post('http://localhost:5000/api/attendance', {
@@ -196,7 +225,7 @@ const TeacherDashboard = ({ navigation }) => {
           selected={newAssignmentDate}
           onChange={date => {
             setNewAssignmentDate(date);
-            setNewAssignment({ ...newAssignment, dueDate: date }); // Date 객체 저장
+            setNewAssignment({ ...newAssignment, dueDate: date });
           }}
           showTimeSelect
           timeIntervals={10}
@@ -208,6 +237,14 @@ const TeacherDashboard = ({ navigation }) => {
           portalId="root-portal"
           style={{ width: '100%', height: 40, fontSize: 16 }}
         />
+        <input
+          type="file"
+          ref={fileInputRef}
+          accept=".docx,.hwp"
+          onChange={handleFileChange}
+          style={{ marginVertical: 10 }}
+        />
+        {assignmentFile && <Text>선택된 파일: {assignmentFile.name}</Text>}
         <TouchableOpacity style={styles.appButtonContainer} onPress={handleCreateAssignment}>
           <Text style={styles.appButtonText}>과제 생성</Text>
         </TouchableOpacity>
@@ -249,13 +286,13 @@ const TeacherDashboard = ({ navigation }) => {
               <View style={styles.attendanceButtons}>
                 <TouchableOpacity
                   style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'green' }]}
-                  onPress={() => saveAttendance(item.studentId, 'present')}
+                  onPress={() => handleSaveAttendance(item.studentId, 'present')}
                 >
                   <Text style={styles.appButtonText}>출석</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'red' }]}
-                  onPress={() => saveAttendance(item.studentId, 'absent')}
+                  onPress={() => handleSaveAttendance(item.studentId, 'absent')}
                 >
                   <Text style={styles.appButtonText}>결석</Text>
                 </TouchableOpacity>
