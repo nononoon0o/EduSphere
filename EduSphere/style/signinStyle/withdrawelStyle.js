@@ -1,70 +1,83 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from '../../style/signinStyle/withdrawelStyle';
+import { StyleSheet, Platform } from 'react-native';
 
-export default function WithdrawalScreen() {
-  const [password, setPassword] = useState('');
-  const router = useRouter();
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F3F4F6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
 
-  const handleWithdrawal = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
+  backIcon: {
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 50 : 30,
+    left: 20,
+    backgroundColor: '#4B5563',
+    padding: 10,
+    borderRadius: 30,
+    zIndex: 10,
+  },
 
-      const response = await axios.delete('http://localhost:5000/user/delete', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        data: { password },
-        withCredentials: true,
-      });
+  card: {
+    width: '100%',
+    maxWidth: 400,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 24,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 6,
+  },
 
-      if (response.status === 200) {
-        await AsyncStorage.removeItem('token');
-        router.replace('../signin/loginScreen');
-      }
-    } catch (error) {
-      Alert.alert('오류', error.response?.data?.message || '탈퇴 처리 중 오류 발생');
-    }
-  };
+  title: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#1F2937',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
 
-  const handleBack = () => {
-    router.push('/ProfileScreen');
-  };
+  infoText: {
+    fontSize: 16,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
 
-  return (
-    <View style={styles.container}>
-      {/* Back Icon */}
-      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#fff" />
-      </TouchableOpacity>
+  inputContainer: {
+    marginBottom: 16,
+  },
 
-      {/* Center Card */}
-      <View style={styles.card}>
-        <Text style={styles.title}>회원 탈퇴</Text>
-        <Text style={styles.infoText}>
-          정말 탈퇴하시겠습니까?{'\n'}비밀번호를 입력해 주세요.
-        </Text>
+  input: {
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    backgroundColor: '#F9FAFB',
+    color: '#111827',
+  },
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="비밀번호"
-            placeholderTextColor="#888"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
+  button: {
+    backgroundColor: '#EF4444',
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
 
-        <TouchableOpacity style={styles.button} onPress={handleWithdrawal}>
-          <Text style={styles.buttonText}>탈퇴하기</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});
