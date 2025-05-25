@@ -1,78 +1,79 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  SafeAreaView,
-  Alert,
-  View,
-  Platform,
-} from 'react-native';
-import { useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
-import styles from '../../style/signinStyle/verifyPasswordStyle';
+import { StyleSheet, Platform } from 'react-native';
 
-export default function VerifyPasswordScreen() {
-  const [password, setPassword] = useState('');
-  const router = useRouter();
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F3F4F6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
 
-  const handleVerify = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const response = await axios.post(
-        'http://localhost:5000/user/verifyPW',
-        { password },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        }
-      );
+  backIcon: {
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 50 : 30,
+    left: 20,
+    backgroundColor: '#1F2937',
+    padding: 12,
+    borderRadius: 32,
+    zIndex: 10,
+  },
 
-      if (response.data.success) {
-        router.push('/signin/editAccountScreen');
-      } else {
-        Alert.alert('실패', '비밀번호가 일치하지 않습니다.');
-      }
-    } catch (err) {
-      console.error(err);
-      Alert.alert('오류', '서버 오류가 발생했습니다.');
-    }
-  };
+  card: {
+    width: '100%',
+    maxWidth: 480,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 32,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 24,
+    elevation: 10,
+  },
 
-  const handleBack = () => {
-    router.push('/ProfileScreen');
-  };
+  title: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#111827',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
 
-  return (
-    <SafeAreaView style={styles.container}>
-      {/* Back Button */}
-      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={24} color="#fff" />
-      </TouchableOpacity>
+  subtitle: {
+    fontSize: 18,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 32,
+  },
 
-      {/* Large Center Card */}
-      <View style={styles.card}>
-        <Text style={styles.title}>비밀번호 확인</Text>
-        <Text style={styles.subtitle}>계정 수정을 위해 비밀번호를 입력해주세요.</Text>
+  input: {
+    height: 56,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 12,
+    paddingHorizontal: 20,
+    fontSize: 18,
+    backgroundColor: '#F9FAFB',
+    color: '#111827',
+    marginBottom: 28,
+  },
 
-        <TextInput
-          style={styles.input}
-          placeholder="비밀번호 입력"
-          placeholderTextColor="#9CA3AF"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+  button: {
+    backgroundColor: '#2563EB',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 3,
+  },
 
-        <TouchableOpacity style={styles.button} onPress={handleVerify}>
-          <Text style={styles.buttonText}>확인</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-}
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+});
