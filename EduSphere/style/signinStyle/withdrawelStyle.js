@@ -1,86 +1,70 @@
-import { StyleSheet, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../../style/signinStyle/withdrawelStyle';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    padding: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: '#ffffff',
-    marginBottom: 20,
-    textAlign: 'center',
-    letterSpacing: 0.5,
-  },
-  infoText: {
-    fontSize: 15,
-    color: '#bbbbbb',
-    marginBottom: 24,
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-  inputContainer: {
-    width: '100%',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#1a1a1a',
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    color: '#ffffff',
-    fontSize: 16,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: '#444',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: Platform.OS === 'android' ? 2 : 0,
-  },
-  button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#e74c3c',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 12,
-    shadowColor: '#e74c3c',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    elevation: Platform.OS === 'android' ? 4 : 0,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontWeight: 'bold',
-    fontSize: 16,
-    letterSpacing: 0.5,
-  },
-  disabledButton: {
-    backgroundColor: '#555',
-  },
-  errorText: {
-    color: '#ff7675',
-    marginTop: 8,
-    marginBottom: 8,
-    textAlign: 'center',
-    fontSize: 14,
-  },
-  backIcon: {
-    position: 'absolute',
-    top: Platform.OS === 'ios' ? 50 : 30,
-    left: 20,
-    padding: 10,
-    zIndex: 10,
-  },
-});
+export default function WithdrawalScreen() {
+  const [password, setPassword] = useState('');
+  const router = useRouter();
 
-export default styles;
+  const handleWithdrawal = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+
+      const response = await axios.delete('http://localhost:5000/user/delete', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        data: { password },
+        withCredentials: true,
+      });
+
+      if (response.status === 200) {
+        await AsyncStorage.removeItem('token');
+        router.replace('../signin/loginScreen');
+      }
+    } catch (error) {
+      Alert.alert('오류', error.response?.data?.message || '탈퇴 처리 중 오류 발생');
+    }
+  };
+
+  const handleBack = () => {
+    router.push('/ProfileScreen');
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Back Icon */}
+      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
+        <Icon name="arrow-left" size={20} color="#fff" />
+      </TouchableOpacity>
+
+      {/* Center Card */}
+      <View style={styles.card}>
+        <Text style={styles.title}>회원 탈퇴</Text>
+        <Text style={styles.infoText}>
+          정말 탈퇴하시겠습니까?{'\n'}비밀번호를 입력해 주세요.
+        </Text>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="비밀번호"
+            placeholderTextColor="#888"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handleWithdrawal}>
+          <Text style={styles.buttonText}>탈퇴하기</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
