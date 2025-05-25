@@ -20,10 +20,9 @@ export default function VideoLearningScreen() {
     }
   };
 
-  //학습 완료 DB 저장 함수
+  // 학습 완료 DB 저장 함수
   const handleCompleteLearning = async () => {
     try {
-      // 필요한 정보 준비
       const token = await AsyncStorage.getItem('token');
       const studentId = await AsyncStorage.getItem('mongoId');
       const chapter = 'Chapter1_01';
@@ -51,24 +50,50 @@ export default function VideoLearningScreen() {
     <View style={styles.container}>
       
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}
+      >
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
 
       <Text style={styles.text}>🎬 영상 학습 페이지입니다.</Text>
 
+      {/* 학습 완료 버튼 */}
       <TouchableOpacity
         style={{
           backgroundColor: '#4caf50',
           padding: 16,
-          margin: 16,
+          marginHorizontal: 16,
+          marginTop: 16,
           borderRadius: 8,
           alignItems: 'center'
         }}
         onPress={handleCompleteLearning}
       >
-        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>학습 완료</Text>
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+          학습 완료
+        </Text>
+      </TouchableOpacity>
+
+      {/* 평가하기 버튼 */}
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#ffa000',
+          padding: 16,
+          marginHorizontal: 16,
+          marginTop: 12,
+          borderRadius: 8,
+          alignItems: 'center'
+        }}
+        onPress={() =>
+          router.push('/chapters/Chapter1/chp1/chp1_01/EvaluationScreen')
+        }
+      >
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+          평가하기
+        </Text>
       </TouchableOpacity>
 
       {Platform.OS === 'web' ? (
@@ -90,15 +115,17 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
+
+      {/* 이전으로 버튼 */}
       <TouchableOpacity
-     style={styles.prevNavButton}
-     onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
-   >
-     <View style={styles.prevNavCircle}>
-       <Ionicons name="arrow-back" size={24} color="#fff" />
-     </View>
-     <Text style={styles.prevNavText}>이전으로</Text>
-   </TouchableOpacity>
+        style={styles.prevNavButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+      >
+        <View style={styles.prevNavCircle}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.prevNavText}>이전으로</Text>
+      </TouchableOpacity>
     </View>
   );
 }
