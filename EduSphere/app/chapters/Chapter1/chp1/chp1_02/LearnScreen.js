@@ -8,6 +8,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Draggable from 'react-draggable';
+import styles from '../../../../../style/ChapterStyle/Chapter1/ch2Style/GLBViewerStyle';
+
 
 // 시약 목록과 앙금 매핑
 const REAGENTS = [
@@ -227,69 +229,3 @@ export default function GLBViewer() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  backButton: { position: 'absolute', top: 40, left: 20, zIndex: 10, flexDirection: 'row', backgroundColor: '#fff', borderRadius: 20, paddingHorizontal: 10, paddingVertical: 5, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 2, elevation: 3, },
-  backText: { fontSize: 16, marginLeft: 6, color: '#2c3e50', fontWeight: '500' },
-  buttonRow: { position: 'absolute', bottom: 30, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-evenly', paddingHorizontal: 20, },
-  chemButton: { backgroundColor: '#ecf0f1', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 12, elevation: 2, },
-  chemText: { fontSize: 16, color: '#2c3e50', fontWeight: '600' },
-  molecule: { position: 'absolute', backgroundColor: '#fff', padding: 10, borderRadius: 8, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 3, zIndex: 10, },
-  resetButton: { position: 'absolute', backgroundColor: '#ecf0f1', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10, elevation: 2, zIndex: 10, },
-  explainButton: { position: 'absolute', backgroundColor: '#ecf0f1', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10, elevation: 2, zIndex: 10, },
-  explanationBox: { position: 'absolute', backgroundColor: '#fff', borderRadius: 10, padding: 10, elevation: 3, zIndex: 10 },
-  explanationText: { fontSize: 14, color: '#2c3e50', lineHeight: 20 },
-  navigation: {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  paddingHorizontal: 20,
-  marginTop: 30,
-},
-prevButton: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: 200,
-  height: 50,
-  backgroundColor: '#fff',
-  borderRadius: 25,
-  paddingHorizontal: 16,
-},
-prevButtonCircle: {
-  width: 42,
-  height: 42,
-  borderRadius: 21,
-  backgroundColor: '#3498db',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-prevButtonText: {
-  fontSize: 14,
-  fontWeight: '600',
-  color: '#3498db',
-},
-nextButton: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: 200,
-  height: 50,
-  backgroundColor: '#3498db',
-  borderRadius: 25,
-  paddingHorizontal: 16,
-},
-nextButtonCircle: {
-  width: 42,
-  height: 42,
-  borderRadius: 21,
-  backgroundColor: '#fff',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-nextButtonText: {
-  fontSize: 14,
-  fontWeight: '600',
-  color: '#fff',
-},
-
-});
