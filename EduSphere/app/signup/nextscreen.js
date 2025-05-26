@@ -1,25 +1,34 @@
-/* 회원가입 완료창 */
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router"; // Navigation
-import nextstyle from "../../style/signupStyle/NumberScreen"; // 스타일 파일 임포트
+import React, { useEffect } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from '../../style/signupStyle/NumberScreen';
 
 const NextScreen = () => {
-  const router = useRouter(); // useRouter 사용하여 네비게이션 구현
+  const router = useRouter();
 
-  const handleScreen = () => {
-    router.push("/ProfileScreen"); // 로그인 화면으로 이동
+  // Redirect automatically after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/signin/loginScreen');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleNavigate = () => {
+    router.push('/signin/loginScreen');
   };
 
   return (
-    <View style={nextstyle.container}>
-      <Text style={nextstyle.title}>환영합니다!</Text>
-      {/* "회원가입이 완료되었습니다" 문구가 타이틀 밑에 위치 */}
-      <Text style={nextstyle.text}>회원가입이 완료되었습니다.</Text>
-
-      <TouchableOpacity style={nextstyle.HomeButton} onPress={handleScreen}>
-        <Text style={nextstyle.HomeButtonText}>로그인 화면으로 이동</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <Icon name="check-circle" size={64} color="#10B981" style={styles.icon} />
+        <Text style={styles.title}>환영합니다!</Text>
+        <Text style={styles.subtitle}>회원가입이 완료되었습니다.</Text>
+        <TouchableOpacity style={styles.button} onPress={handleNavigate}>
+          <Text style={styles.buttonText}>로그인 화면으로 이동</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
