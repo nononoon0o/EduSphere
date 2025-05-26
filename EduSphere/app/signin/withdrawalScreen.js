@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/signinStyle/withdrawelStyle';
@@ -13,14 +13,14 @@ export default function WithdrawalScreen() {
   const handleWithdrawal = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      
+
       const response = await axios.delete('http://localhost:5000/user/delete', {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        data: { password }, // DELETE 요청에서 body 사용 시 data 필드 사용
-        withCredentials: true
+        data: { password },
+        withCredentials: true,
       });
 
       if (response.status === 200) {
@@ -38,24 +38,33 @@ export default function WithdrawalScreen() {
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-            <Icon name="arrow-left" size={20} color="#fff" />
-        </TouchableOpacity>
+      {/* Back Icon */}
+      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
+        <Icon name="arrow-left" size={20} color="#fff" />
+      </TouchableOpacity>
+
+      {/* Center Card */}
+      <View style={styles.card}>
         <Text style={styles.title}>회원 탈퇴</Text>
-        <Text style={styles.infoText}>정말 탈퇴하시겠습니까? 비밀번호를 입력해 주세요.</Text>
+        <Text style={styles.infoText}>
+          정말 탈퇴하시겠습니까?{'\n'}비밀번호를 입력해 주세요.
+        </Text>
+
         <View style={styles.inputContainer}>
-            <TextInput
+          <TextInput
             style={styles.input}
             placeholder="비밀번호"
             placeholderTextColor="#888"
             secureTextEntry
             value={password}
             onChangeText={setPassword}
-            />
+          />
         </View>
+
         <TouchableOpacity style={styles.button} onPress={handleWithdrawal}>
-            <Text style={styles.buttonText}>탈퇴하기</Text>
+          <Text style={styles.buttonText}>탈퇴하기</Text>
         </TouchableOpacity>
+      </View>
     </View>
   );
 }
