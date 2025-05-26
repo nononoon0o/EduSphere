@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
 
 export default function ConceptSummaryScreen() {
   const router = useRouter();
@@ -57,75 +58,3 @@ export default function ConceptSummaryScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 60,
-    paddingHorizontal: 20,
-    backgroundColor: '#f9fcff',
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  backText: {
-    fontSize: 16,
-    marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
-  },
-  text: {
-    fontSize: 20,
-    color: '#2c3e50',
-    fontWeight: '600',
-    marginBottom: 20,
-  },
-  conceptSection: {
-    marginTop: 20,
-  },
-  conceptTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#2980b9',
-    marginBottom: 10,
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 10,
-    color: '#34495e',
-  },
-  description: {
-    fontSize: 15,
-    color: '#555',
-    marginLeft: 10,
-    marginTop: 5,
-  },
-  nextButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 200,
-    height: 50,
-    backgroundColor: '#3498db',
-    borderRadius: 25,
-    paddingHorizontal: 16,
-    marginTop: 30,
-  },
-  nextButtonCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nextButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#3498db',
-  },
-  
-});
