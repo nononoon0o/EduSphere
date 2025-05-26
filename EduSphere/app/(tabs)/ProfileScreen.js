@@ -6,13 +6,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/profileStyles';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [userName, setUserName] = useState(null);
   const [role, setRole] = useState(null);
   const router = useRouter();
-  const [mongoID, setMongoID] = useState("")
-  const [errorMessage, setErrorMessage] = useState("");
+  const [mongoID, setMongoID] = useState("");
 
   const getRoleName = (role) => {
     switch (role) {
@@ -20,6 +19,8 @@ export default function ProfileScreen({ navigation }) {
         return "학생";
       case "teacher":
         return "교사";
+      default:
+        return "";
     }
   };
 
@@ -38,13 +39,11 @@ export default function ProfileScreen({ navigation }) {
       setIsLoading(false);
     }
   };
-  
-  // 유저 정보 불러오기
+
   useEffect(() => {
     fetchUserInfo();
   }, []);
 
-  // 로그아웃
   const handleLogout = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -82,7 +81,7 @@ export default function ProfileScreen({ navigation }) {
             if (userName) {
               handleLogout();
             } else {
-              router.push('../signin/loginScreen');
+              router.push('/signin/loginScreen');
             }
           }}
         >
@@ -91,81 +90,76 @@ export default function ProfileScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
 
-      {/* 설정 버튼 영역 */}
-      <View style={styles.actionsContainer}>
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => {
-            if(!userName) {
-              console.log("오류")
-            } else {
-              router.push('../signin/verifyPasswordScreen');
-            }
-          }}
-        >
-          <Text style={styles.actionButtonText}>계정 정보 수정</Text>
-        </TouchableOpacity>
+        <View style={styles.actionsContainer}>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => {
+              if (userName) {
+                router.push('/signin/verifyPasswordScreen');
+              }
+            }}
+          >
+            <Text style={styles.actionButtonText}>계정 정보 수정</Text>
+          </TouchableOpacity>
 
-        {/* 교사 전용 버튼 */}
-        {role === "teacher" && (
-          <>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={() => {router.push('')}}
-            >
-              <Text style={styles.actionButtonText}>진도 설정</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={() => {router.push('../stuManage/stuManageScreen')}}
-            >
-              <Text style={styles.actionButtonText}>학생 관리</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={() => {router.push('')}}
-            >
-              <Text style={styles.actionButtonText}>학습 결과 확인</Text>
-            </TouchableOpacity>
-          </>
-        )}
+          {role === "teacher" && (
+            <>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => {}}
+              >
+                <Text style={styles.actionButtonText}>진도 설정</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => { router.push('/stuManage/stuManageScreen'); }}
+              >
+                <Text style={styles.actionButtonText}>학생 관리</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => {}}
+              >
+                <Text style={styles.actionButtonText}>학습 결과 확인</Text>
+              </TouchableOpacity>
+            </>
+          )}
 
-        {/* 학생 전용 버튼 */}
-        {role === "student" && (
-          <>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={() => {router.push({
-                pathname: '/stuManage/stuResult/stuResultScreen',
-                params: { studentId: mongoID }
-              })}}
-            >
-              <Text style={styles.actionButtonText}>학습 결과 확인</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={() => {
-                router.push('/assignments/submitAssignmentScreen');
-              }}
-            >
-              <Text style={styles.actionButtonText}>과제 제출</Text>
-            </TouchableOpacity>
-          </>
-        )}
+          {role === "student" && (
+            <>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => {
+                  router.push({
+                    pathname: '/stuManage/stuResult/stuResultScreen',
+                    params: { studentId: mongoID }
+                  });
+                }}
+              >
+                <Text style={styles.actionButtonText}>학습 결과 확인</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => {
+                  router.push('/assignments/submitAssignmentScreen');
+                }}
+              >
+                <Text style={styles.actionButtonText}>과제 제출</Text>
+              </TouchableOpacity>
+            </>
+          )}
 
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => {
-            if(!userName) {
-              console.log("오류")
-            } else {
-              router.push('../signin/withdrawalScreen');
-            }
-          }}
-        >
-          <Text style={styles.actionButtonText}>회원 탈퇴</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => {
+              if (userName) {
+                router.push('/signin/withdrawalScreen');
+              }
+            }}
+          >
+            <Text style={styles.actionButtonText}>회원 탈퇴</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
