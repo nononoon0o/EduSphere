@@ -1,9 +1,16 @@
-// app/profile/verifyPasswordScreen.js
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+  Alert,
+  View,
+  Platform,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import styles from '../../style/signinStyle/verifyPasswordStyle';
 
@@ -27,7 +34,7 @@ export default function VerifyPasswordScreen() {
       );
 
       if (response.data.success) {
-        router.push('/signin/editAccountScreen'); // ✅ 성공 시 이동
+        router.push('/signin/editAccountScreen');
       } else {
         Alert.alert('실패', '비밀번호가 일치하지 않습니다.');
       }
@@ -43,24 +50,29 @@ export default function VerifyPasswordScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Back Button */}
       <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#fff" />
+        <Icon name="arrow-left" size={24} color="#fff" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>비밀번호 확인</Text>
+      {/* Large Center Card */}
+      <View style={styles.card}>
+        <Text style={styles.title}>비밀번호 확인</Text>
+        <Text style={styles.subtitle}>계정 수정을 위해 비밀번호를 입력해주세요.</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="비밀번호 입력"
-        placeholderTextColor="#888"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="비밀번호 입력"
+          placeholderTextColor="#9CA3AF"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
 
-      <TouchableOpacity onPress={handleVerify} style={styles.button}>
-        <Text style={styles.buttonText}>확인</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleVerify}>
+          <Text style={styles.buttonText}>확인</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
