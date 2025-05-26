@@ -9,6 +9,7 @@ import {
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import styles from '../../../style/ChapterStyle/Chapter1/commonChapterStyles';
 
 export default function Chapter1_01() {
   const router = useRouter();
@@ -23,10 +24,10 @@ export default function Chapter1_01() {
 
       <View style={styles.header}>
         <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
-        <Text style={styles.subtitle}>{t('chapter1_01.subtitle')}</Text>
+        <Text style={styles.subtitle}>{t('chapter1_02.subtitle')}</Text>
       </View>
 
-      <Text style={styles.sectionHeader}>{t('chapter1_01.title')}</Text>
+      <Text style={styles.sectionHeader}>{t('chapter1_02.title')}</Text>
 
       <View style={styles.sectionsContainer}>
         <TouchableOpacity
@@ -56,66 +57,3 @@ export default function Chapter1_01() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#f9fcff',
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  backText: {
-    fontSize: 16,
-    marginLeft: 8,
-    color: '#1e3a8a',
-    fontWeight: '600',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  icon: {
-    marginRight: 12,
-  },
-  subtitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#2c3e50',
-  },
-  sectionHeader: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#34495e',
-    marginBottom: 24,
-  },
-  sectionsContainer: {
-    marginBottom: 30,
-  },
-  sectionButton: {
-    backgroundColor: '#e3f2fd',
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 6,
-    elevation: 4,
-  },
-  sectionEmoji: {
-    fontSize: 22,
-    marginRight: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1e3a8a',
-  },
-});
