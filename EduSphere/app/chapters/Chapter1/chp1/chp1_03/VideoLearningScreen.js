@@ -1,17 +1,27 @@
+// app/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen.js
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Platform, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Platform,
+  TouchableOpacity
+} from 'react-native';
 import { WebView } from 'react-native-webview';
-import { Ionicons } from '@expo/vector-icons'; // 아이콘 불러오기
-import { router } from 'expo-router'; // router.back()을 위해 필요
+import { Ionicons } from '@expo/vector-icons'; 
+import { router } from 'expo-router';
 
 export default function VideoLearningScreen() {
-  const videoId = 'V7Z9e0DXamI'; // 원하는 유튜브 영상 ID
+  const videoId = 'V7Z9e0DXamI';
 
   return (
     <View style={styles.container}>
-      
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_03')}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => router.push('/chapters/Chapter1/Chapter1_03')}
+      >
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -37,6 +47,18 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
+
+      {/* 평가하기 버튼 */}
+      <TouchableOpacity
+        style={styles.evalButton}
+        onPress={() =>
+          router.push('/chapters/Chapter1/chp1/chp1_03/EvaluationScreen')
+        }
+      >
+        <Text style={styles.evalButtonText}>평가하기</Text>
+      </TouchableOpacity>
+
+      {/* 이전으로 버튼 */}
       <TouchableOpacity
         style={styles.prevNavButton}
         onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/LearnScreen')}
@@ -46,7 +68,7 @@ export default function VideoLearningScreen() {
         </View>
         <Text style={styles.prevNavText}>이전으로</Text>
       </TouchableOpacity>
-</View>
+    </View>
   );
 }
 
@@ -90,17 +112,31 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#2c3e50',
   },
+  // ─── 평가하기 버튼 스타일 ─────────────────────────────
+  evalButton: {
+    backgroundColor: '#ffa000',
+    padding: 16,
+    width: '90%',
+    alignItems: 'center',
+    borderRadius: 8,
+    marginTop: 16,
+  },
+  evalButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
   prevNavButton: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: 200,
-  height: 50,
-  backgroundColor: '#fff',
-  borderRadius: 25,
-  paddingHorizontal: 16,
-  marginTop: 30,
-  alignSelf: 'center', // 가운데 정렬
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 30,
+    alignSelf: 'center',
   },
   prevNavCircle: {
     width: 42,

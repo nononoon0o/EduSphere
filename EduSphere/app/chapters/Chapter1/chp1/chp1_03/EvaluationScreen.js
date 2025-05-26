@@ -1,11 +1,12 @@
-// app/chapters/Chapter1/chp1/chp1_01/EvaluationScreen.js
+// app/chapters/Chapter1/chp1/chp1_03/EvaluationScreen.js
 import React, { useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 import { router } from 'expo-router';
 
@@ -14,76 +15,73 @@ export default function EvaluationScreen() {
     {
       id: 'q1',
       text:
-        '1. 다음 중 물리 변화에 해당하는 현상을 모두 고르시오.\n\n' +
-        '가. 나무가 타서 숯이 되었다.\n' +
-        '나. 물이 증발하여 수증기가 되었다.\n' +
-        '다. 철 못이 시간이 지나 녹슬었다.\n' +
-        '라. 유리컵이 바닥에 떨어져 깨졌다.\n' +
-        '마. 설탕이 물에 녹아 설탕물이 되었다.',
-      choices: ['가', '나', '다', '라', '마'],
-      correct: ['나', '라', '마'],
+        '1. 화학 반응식을 사용하여 화학 반응을 나타낼 때, 반응물을 쓰는 위치는 어디입니까?\n\n' +
+        '(1) 화살표의 오른쪽\n' +
+        '(2) 화살표의 위쪽\n' +
+        '(3) 화살표의 아래쪽\n' +
+        '(4) 화살표의 왼쪽\n' +
+        '(5) 화살표의 양쪽',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(4)'],
       explanation:
-        '나) 물 분자 자체는 그대로 → 상태 변화만 (물리)\n' +
-        '라) 형태만 부서짐 → 성질 변화 없음 (물리)\n' +
-        '마) 분자 확산만 → 원래 설탕 성질 유지 (물리)'
+        '화학 반응식에서 반응하기 전의 물질인 반응물은 화살표 (→)의 왼쪽에 위치합니다.'
     },
     {
       id: 'q2',
       text:
-        '2. 다음 현상을 물리 변화와 화학 변화로 바르게 짝지은 것은 무엇입니까?\n\n' +
-        'A. 종이를 찢었다.\n' +
-        'B. 우유가 상해서 신맛이 난다.\n' +
-        'C. 드라이아이스가 승화했다.\n' +
-        'D. 달걀을 삶았다.',
-      choices: ['A', 'B', 'C', 'D'],
-      correct: ['A', 'B', 'C', 'D'],
+        '2. 화학 반응식에서 물질의 화학식 앞에 쓰이는 숫자를 무엇이라고 합니까?\n\n' +
+        '(1) 원자 번호\n' +
+        '(2) 질량수\n' +
+        '(3) 산화수\n' +
+        '(4) 계수\n' +
+        '(5) 화학량론',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(4)'],
       explanation:
-        'A) 물리 변화\n' +
-        'B) 화학 변화 (젖산 생성)\n' +
-        'C) 물리 변화 (상태 변화)\n' +
-        'D) 화학 변화 (단백질 변성)'
+        '화학 반응식에서 물질의 화학식 앞에 쓰이는 숫자는 계수이며, 반응하거나 생성되는 입자의 수를 나타냅니다.'
     },
     {
       id: 'q3',
       text:
-        '3. 다음 중 화학 변화의 특징이 아닌 것은 무엇입니까?\n\n' +
-        '(1) 새로운 물질이 생성된다.\n' +
-        '(2) 물질의 고유한 성질이 변하지 않는다.\n' +
-        '(3) 변화 과정에서 열이나 빛이 발생할 수 있다.\n' +
-        '(4) 원래의 상태로 되돌리기가 어렵다.\n' +
-        '(5) 원자의 배열 방식이 변한다.',
-      choices: ['1', '2', '3', '4', '5'],
-      correct: ['2'],
+        '3. 화학 반응식의 계수의 역할로 가장 적절한 것은 무엇입니까?\n\n' +
+        '(1) 반응물의 종류를 나타낸다.\n' +
+        '(2) 생성물의 종류를 나타낸다.\n' +
+        '(3) 반응 속도를 조절한다.\n' +
+        '(4) 반응 전후의 원자 수를 같게 맞춰준다.\n' +
+        '(5) 반응에 필요한 에너지의 양을 나타낸다.',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(4)'],
       explanation:
-        '화학 변화는 고유 성질이 변하며(답 2번은 틀린 설명) → 새로운 물질 생성'
+        '계수는 반응 전과 후의 각 원자의 수를 동일하게 맞춰 질량 보존의 법칙을 만족시키는 역할을 합니다.'
     },
     {
       id: 'q4',
       text:
-        '4. 다음 중 화학 변화에 해당하는 현상은 무엇입니까?\n\n' +
-        '(가) 촛불이 타는 현상\n' +
-        '(나) 옷에 묻은 잉크가 물에 번지는 현상\n' +
-        '(다) 사과를 깎아 놓으니 갈색으로 변하는 현상\n' +
-        '(라) 쇠젓가락이 구부러지는 현상',
-      choices: ['가', '나', '다', '라'],
-      correct: ['가', '다'],
+        '4. 다음 화학 반응식에서 수소 분자(H₂)의 계수는 얼마입니까?\n\n' +
+        '? H₂ + O₂ → 2 H₂O\n\n' +
+        '(1) 1\n' +
+        '(2) 2\n' +
+        '(3) 3\n' +
+        '(4) 4\n' +
+        '(5) 5',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(2)'],
       explanation:
-        '가) 연소 반응 → CO₂·H₂O 생성\n' +
-        '다) 산화 반응 → 갈색 물질 생성'
+        '물(H₂O) 2개에 수소 원자 4개가 들어 있으므로, 반응 전에도 수소 원자 4개가 필요하여 H₂ 앞에 2가 와야 합니다.'
     },
     {
       id: 'q5',
       text:
-        '5. 다음 중 물리 변화와 화학 변화를 가장 잘 구분하는 기준은 무엇입니까?\n\n' +
-        '(1) 물질의 색깔 변화 여부\n' +
-        '(2) 물질의 상태 변화 여부\n' +
-        '(3) 새로운 물질 생성 여부\n' +
-        '(4) 변화의 속도 차이\n' +
-        '(5) 에너지 흡수 또는 방출 여부',
-      choices: ['1', '2', '3', '4', '5'],
-      correct: ['3'],
+        '5. 다음 중 화학 반응식을 올바르게 나타낸 것은 무엇입니까? (단, 계수는 생략하지 않았습니다.)\n\n' +
+        '(1) H + O → H₂O\n' +
+        '(2) H₂ + O → H₂O\n' +
+        '(3) 2H + O₂ → H₂O\n' +
+        '(4) 2H₂ + O₂ → 2H₂O\n' +
+        '(5) H₂ + 2O₂ → 2H₂O',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(4)'],
       explanation:
-        '새로운 물질 생성 여부 → 화학 변화의 핵심 기준'
+        '2H₂ + O₂ → 2H₂O 는 반응물과 생성물의 원자 수가 같아 질량 보존 법칙을 만족합니다.'
     }
   ];
 
@@ -93,38 +91,32 @@ export default function EvaluationScreen() {
 
   const toggleChoice = (qId, choice) => {
     if (showResult) return;
-    setSelected(prev => {
-      const arr = prev[qId] || [];
-      const next = arr.includes(choice)
-        ? arr.filter(c => c !== choice)
-        : [...arr, choice];
-      return { ...prev, [qId]: next };
-    });
+    setSelected(prev => ({ ...prev, [qId]: [choice] }));
   };
 
   const grade = () => setShowResult(true);
-  const retry = () => {
+  const reset = () => {
     setSelected({});
     setShowResult(false);
     setShowExp({});
   };
-  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen');
+  const exit = () =>
+    router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen');
 
   const correctCount = questions.reduce((sum, q) => {
-    const a = (selected[q.id] || []).sort().join();
-    const b = q.correct.sort().join();
-    return sum + (a === b ? 1 : 0);
+    const sel = (selected[q.id] || []).join();
+    return sum + (sel === q.correct.join() ? 1 : 0);
   }, 0);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {questions.map(q => {
         const isCorrect =
-          showResult &&
-          (selected[q.id] || []).sort().join() === q.correct.sort().join();
+          showResult && (selected[q.id] || []).join() === q.correct.join();
         return (
           <View key={q.id} style={styles.questionBox}>
             <Text style={styles.questionText}>{q.text}</Text>
+
             {q.choices.map(choice => {
               const checked = (selected[q.id] || []).includes(choice);
               return (
@@ -136,8 +128,6 @@ export default function EvaluationScreen() {
                     showResult &&
                       (checked
                         ? styles.correct
-                        : q.correct.includes(choice)
-                        ? {}
                         : styles.wrong)
                   ]}
                   onPress={() => toggleChoice(q.id, choice)}
@@ -148,6 +138,7 @@ export default function EvaluationScreen() {
                 </TouchableOpacity>
               );
             })}
+
             {showResult && (
               <View style={styles.resultRow}>
                 <Text style={styles.resultText}>
@@ -164,6 +155,7 @@ export default function EvaluationScreen() {
                 </TouchableOpacity>
               </View>
             )}
+
             {showResult && showExp[q.id] && (
               <View style={styles.explanationBox}>
                 <Text style={styles.explanationText}>{q.explanation}</Text>
@@ -172,6 +164,7 @@ export default function EvaluationScreen() {
           </View>
         );
       })}
+
       {!showResult ? (
         <TouchableOpacity style={styles.submitButton} onPress={grade}>
           <Text style={styles.submitButtonText}>체점하기</Text>
@@ -181,7 +174,7 @@ export default function EvaluationScreen() {
           <Text style={styles.finalText}>
             총 {questions.length}문제 중 {correctCount}문제 정답
           </Text>
-          <TouchableOpacity style={styles.resetButton} onPress={retry}>
+          <TouchableOpacity style={styles.resetButton} onPress={reset}>
             <Text style={styles.resetButtonText}>다시 풀기</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.exitButton} onPress={exit}>

@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Platform, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { Ionicons } from '@expo/vector-icons'; // 아이콘 사용
-import { router } from 'expo-router'; // 뒤로가기 기능 사용
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 export default function VideoLearningScreen() {
-  const videoId = 'mUapW54ODMc'; // 원하는 유튜브 영상 ID
+  const videoId = 'mUapW54ODMc';
 
   return (
     <View style={styles.container}>
-      
+
       {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_02')}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => router.push('/chapters/Chapter1/Chapter1_02')}
+      >
         <Ionicons name="arrow-back" size={20} color="#2c3e50" />
         <Text style={styles.backText}>뒤로가기</Text>
       </TouchableOpacity>
@@ -37,17 +40,26 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
+
+      {/* 평가하기 버튼 */}
       <TouchableOpacity
-           style={styles.prevNavButton}
-           onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
-         >
-           <View style={styles.prevNavCircle}>
-             <Ionicons name="arrow-back" size={24} color="#fff" />
-           </View>
-           <Text style={styles.prevNavText}>이전으로</Text>
-         </TouchableOpacity>
+        style={styles.evalButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/EvaluationScreen')}
+      >
+        <Text style={styles.evalButtonText}>평가하기</Text>
+      </TouchableOpacity>
+
+      {/* 이전으로 버튼 */}
+      <TouchableOpacity
+        style={styles.prevNavButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
+      >
+        <View style={styles.prevNavCircle}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.prevNavText}>이전으로</Text>
+      </TouchableOpacity>
     </View>
-    
   );
 }
 
@@ -92,16 +104,16 @@ const styles = StyleSheet.create({
     color: '#2c3e50',
   },
   prevNavButton: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: 200,
-  height: 50,
-  backgroundColor: '#fff',
-  borderRadius: 25,
-  paddingHorizontal: 16,
-  marginTop: 30,
-  alignSelf: 'center', // 가운데 정렬
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 30,
+    alignSelf: 'center',
   },
   prevNavCircle: {
     width: 42,
@@ -116,6 +128,18 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#3498db',
   },
-
-  
+  // ─── 평가하기 버튼 스타일 ─────────────────────────────
+  evalButton: {
+    backgroundColor: '#ffa000',
+    padding: 12,
+    width: '90%',
+    alignItems: 'center',
+    borderRadius: 8,
+    marginTop: 16,
+  },
+  evalButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
 });

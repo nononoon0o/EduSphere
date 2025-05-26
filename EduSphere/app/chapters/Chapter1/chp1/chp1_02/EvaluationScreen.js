@@ -1,11 +1,12 @@
-// app/chapters/Chapter1/chp1/chp1_01/EvaluationScreen.js
+// app/chapters/Chapter1/chp1/chp1_02/EvaluationScreen.js
 import React, { useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 import { router } from 'expo-router';
 
@@ -14,76 +15,77 @@ export default function EvaluationScreen() {
     {
       id: 'q1',
       text:
-        '1. 다음 중 물리 변화에 해당하는 현상을 모두 고르시오.\n\n' +
-        '가. 나무가 타서 숯이 되었다.\n' +
-        '나. 물이 증발하여 수증기가 되었다.\n' +
-        '다. 철 못이 시간이 지나 녹슬었다.\n' +
-        '라. 유리컵이 바닥에 떨어져 깨졌다.\n' +
-        '마. 설탕이 물에 녹아 설탕물이 되었다.',
-      choices: ['가', '나', '다', '라', '마'],
-      correct: ['나', '라', '마'],
+        '1. 다음 중 화학 반응에 해당하지 않는 것은 무엇입니까?\n\n' +
+        '(1) 천연가스가 연소하여 이산화탄소와 물이 생성된다.\n' +
+        '(2) 물이 끓어 수증기로 변한다.\n' +
+        '(3) 달걀을 가열하니 흰자가 하얗게 굳어진다.\n' +
+        '(4) 김치가 발효되어 신맛이 난다.\n' +
+        '(5) 은반지가 공기 중에서 검게 변색된다.',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(2)'],
       explanation:
-        '나) 물 분자 자체는 그대로 → 상태 변화만 (물리)\n' +
-        '라) 형태만 부서짐 → 성질 변화 없음 (물리)\n' +
-        '마) 분자 확산만 → 원래 설탕 성질 유지 (물리)'
+        '(2)는 물의 상태 변화만을 나타내는 물리 변화입니다.\n' +
+        '(1), (3), (4), (5)는 모두 새로운 물질이 생성되거나 성질이 변화하는 화학 반응입니다.'
     },
     {
       id: 'q2',
       text:
-        '2. 다음 현상을 물리 변화와 화학 변화로 바르게 짝지은 것은 무엇입니까?\n\n' +
-        'A. 종이를 찢었다.\n' +
-        'B. 우유가 상해서 신맛이 난다.\n' +
-        'C. 드라이아이스가 승화했다.\n' +
-        'D. 달걀을 삶았다.',
-      choices: ['A', 'B', 'C', 'D'],
-      correct: ['A', 'B', 'C', 'D'],
+        '2. 다음 현상 중 화학 반응의 증거로 볼 수 없는 것은 무엇입니까?\n\n' +
+        '(1) 반응 용기 주변이 뜨거워졌다.\n' +
+        '(2) 용액에 다른 용액을 넣으니 뿌옇게 흐려졌다.\n' +
+        '(3) 물질의 덩어리가 잘게 부서졌다.\n' +
+        '(4) 두 물질을 섞으니 기포가 발생했다.\n' +
+        '(5) 시간이 지나면서 물질의 색깔이 변했다.',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(3)'],
       explanation:
-        'A) 물리 변화\n' +
-        'B) 화학 변화 (젖산 생성)\n' +
-        'C) 물리 변화 (상태 변화)\n' +
-        'D) 화학 변화 (단백질 변성)'
+        '(3)은 물질의 형태만 변하는 물리 변화입니다.\n' +
+        '(1) 열 발생, (2) 침전 생성, (4) 기체 발생, (5) 색 변화는 모두 화학 반응의 증거가 될 수 있습니다.'
     },
     {
       id: 'q3',
       text:
-        '3. 다음 중 화학 변화의 특징이 아닌 것은 무엇입니까?\n\n' +
-        '(1) 새로운 물질이 생성된다.\n' +
-        '(2) 물질의 고유한 성질이 변하지 않는다.\n' +
-        '(3) 변화 과정에서 열이나 빛이 발생할 수 있다.\n' +
-        '(4) 원래의 상태로 되돌리기가 어렵다.\n' +
-        '(5) 원자의 배열 방식이 변한다.',
-      choices: ['1', '2', '3', '4', '5'],
-      correct: ['2'],
+        '3. 다음 화학 반응의 예시와 그 특징을 연결한 것으로 가장 적절하지 않은 것은 무엇입니까?\n\n' +
+        '(1) 철이 녹슬어 갈색으로 변함 - 색깔 변화\n' +
+        '(2) 식초와 베이킹소다를 섞으니 거품이 일어남 - 기체 발생\n' +
+        '(3) 얼음이 녹아 물이 됨 - 상태 변화\n' +
+        '(4) 폭죽이 터지면서 밝은 빛이 남 - 빛 발생\n' +
+        '(5) 석회수에 이산화탄소를 불어넣으니 흰색 앙금이 생김 - 고체 생성',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(3)'],
       explanation:
-        '화학 변화는 고유 성질이 변하며(답 2번은 틀린 설명) → 새로운 물질 생성'
+        '(3)은 물리 변화(상태 변화) 예시입니다.\n' +
+        '(1), (2), (4), (5)는 모두 화학 반응의 특징과 올바르게 연결된 예시입니다.'
     },
     {
       id: 'q4',
       text:
-        '4. 다음 중 화학 변화에 해당하는 현상은 무엇입니까?\n\n' +
-        '(가) 촛불이 타는 현상\n' +
-        '(나) 옷에 묻은 잉크가 물에 번지는 현상\n' +
-        '(다) 사과를 깎아 놓으니 갈색으로 변하는 현상\n' +
-        '(라) 쇠젓가락이 구부러지는 현상',
-      choices: ['가', '나', '다', '라'],
-      correct: ['가', '다'],
+        '4. 화학 반응이 일어날 때, 반응 전과 후에 변하지 않는 것은 무엇입니까?\n\n' +
+        '(1) 물질의 성질\n' +
+        '(2) 물질의 색깔\n' +
+        '(3) 물질의 냄새\n' +
+        '(4) 원자의 종류와 수\n' +
+        '(5) 입자 배열',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(4)'],
       explanation:
-        '가) 연소 반응 → CO₂·H₂O 생성\n' +
-        '다) 산화 반응 → 갈색 물질 생성'
+        '질량 보존 법칙에 의해 반응 전후의 원자 종류와 총 수는 변하지 않습니다.\n' +
+        '(1),(2),(3),(5)는 화학 반응 중에 변할 수 있습니다.'
     },
     {
       id: 'q5',
       text:
-        '5. 다음 중 물리 변화와 화학 변화를 가장 잘 구분하는 기준은 무엇입니까?\n\n' +
-        '(1) 물질의 색깔 변화 여부\n' +
-        '(2) 물질의 상태 변화 여부\n' +
-        '(3) 새로운 물질 생성 여부\n' +
-        '(4) 변화의 속도 차이\n' +
-        '(5) 에너지 흡수 또는 방출 여부',
-      choices: ['1', '2', '3', '4', '5'],
-      correct: ['3'],
+        '5. 다음 중 화학 반응으로 인해 새로운 냄새가 발생하는 예로 가장 적절한 것은 무엇입니까?\n\n' +
+        '(1) 향수를 뿌렸을 때 주변에 꽃 향기가 퍼진다.\n' +
+        '(2) 냉장고에 있던 우유가 상해서 시큼한 냄새가 난다.\n' +
+        '(3) 더운 여름날 땀을 흘린 후 불쾌한 냄새가 난다.\n' +
+        '(4) 페인트를 칠한 방에서 독한 냄새가 난다.\n' +
+        '(5) 숯불에 고기를 구울 때 맛있는 냄새가 난다.',
+      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+      correct: ['(2)'],
       explanation:
-        '새로운 물질 생성 여부 → 화학 변화의 핵심 기준'
+        '(2)는 우유가 부패하면서 새로운 물질이 생성되어 냄새가 나는 화학 반응 예시입니다.\n' +
+        '나머지는 물리적 확산이나 휘발에 의한 냄새 변화입니다.'
     }
   ];
 
@@ -103,12 +105,12 @@ export default function EvaluationScreen() {
   };
 
   const grade = () => setShowResult(true);
-  const retry = () => {
+  const reset = () => {
     setSelected({});
     setShowResult(false);
     setShowExp({});
   };
-  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen');
+  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen');
 
   const correctCount = questions.reduce((sum, q) => {
     const a = (selected[q.id] || []).sort().join();
@@ -136,8 +138,6 @@ export default function EvaluationScreen() {
                     showResult &&
                       (checked
                         ? styles.correct
-                        : q.correct.includes(choice)
-                        ? {}
                         : styles.wrong)
                   ]}
                   onPress={() => toggleChoice(q.id, choice)}
@@ -181,7 +181,7 @@ export default function EvaluationScreen() {
           <Text style={styles.finalText}>
             총 {questions.length}문제 중 {correctCount}문제 정답
           </Text>
-          <TouchableOpacity style={styles.resetButton} onPress={retry}>
+          <TouchableOpacity style={styles.resetButton} onPress={reset}>
             <Text style={styles.resetButtonText}>다시 풀기</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.exitButton} onPress={exit}>
