@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: "5%",
-    backgroundColor: "#000000",
+    backgroundColor: "#ffffff",
     justifyContent: "flex-start",
   },
   titleContainer: {
@@ -15,36 +15,40 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: "800",
-    color: "#ffffff",
+    color: "#1e3a8a", // dark indigo
     textAlign: "center",
     letterSpacing: 0.5,
   },
   whitetitle: {
-    color: "#ffffff",
+    color: "#1e3a8a",
   },
   validationText: {
     fontSize: 13,
-    color: "#cccccc",
     marginBottom: "2.5%",
     paddingLeft: 2,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#888888",
+    backgroundColor: "#f1f5f9",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: Platform.OS === "ios" ? 14 : 10,
     marginBottom: "4%",
-    width: "100%",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 2,
   },
   input: {
     flex: 1,
-    paddingVertical: Platform.OS === "ios" ? 12 : 8,
     fontSize: 16,
-    color: "#ffffff",
+    color: "#1f2937", // dark gray
   },
   eyeIcon: {
     padding: 8,
-    color: "#cccccc",
+    color: "#6b7280", // gray
   },
   progressBarContainer: {
     flexDirection: "row",
@@ -57,23 +61,23 @@ const styles = StyleSheet.create({
     height: 8,
     marginHorizontal: 2,
     borderRadius: 4,
-    backgroundColor: "#555555", // default inactive
+    backgroundColor: "#e5e7eb", // light gray as inactive
   },
   progressBarSegmentActive: {
     backgroundColor: "#007AFF", // active segment
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#1e3a8a",
     paddingVertical: 16,
-    borderRadius: 8,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
     marginTop: "4%",
-    shadowColor: "#007AFF",
-    shadowOffset: { width: 0, height: 5 },
+    shadowColor: "#1e3a8a",
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowRadius: 6,
     elevation: Platform.OS === "android" ? 4 : 0,
   },
   buttonText: {
