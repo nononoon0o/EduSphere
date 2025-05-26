@@ -25,7 +25,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="SearchScreen"
         options={{
-          headerShown: false, // pas de header
+          headerShown: true, // pas de header
+          header: () => <CustomHeader />,
           tabBarStyle: { display: 'none' }, // cache aussi la tab bar
         }}
       />
