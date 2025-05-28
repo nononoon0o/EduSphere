@@ -1,59 +1,79 @@
 import { StyleSheet, Platform } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
-    paddingHorizontal: '8%',
+    backgroundColor: '#F3F4F6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
   },
+
   backIcon: {
     position: 'absolute',
     top: Platform.OS === 'ios' ? 50 : 30,
     left: 20,
-    padding: 10,
+    backgroundColor: '#1F2937',
+    padding: 12,
+    borderRadius: 32,
     zIndex: 10,
   },
-  content: {
-    marginTop: 80,
-    alignItems: 'center',
+
+  card: {
+    width: '100%',
+    maxWidth: 480,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 32,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.1,
+    shadowRadius: 24,
+    elevation: 10,
   },
+
   title: {
-    fontSize: 26,
-    fontWeight: '700',
-    color: '#0097FB',
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#111827',
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 12,
   },
-  input: {
-    width: '100%',
-    backgroundColor: '#111',
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    fontSize: 16,
-    color: '#fff',
-    borderWidth: 1.5,
-    borderColor: '#007AFF',
-    marginBottom: 24,
-  },
-  button: {
-    width: '100%',
-    backgroundColor: '#007AFF',
-    paddingVertical: 16,
-    borderRadius: 10,
-    alignItems: 'center',
-    shadowColor: '#007AFF',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: Platform.OS === 'android' ? 6 : 0,
-  },
-  buttonText: {
-    color: '#fff',
+
+  subtitle: {
     fontSize: 18,
-    fontWeight: '600',
-    letterSpacing: 0.5,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginBottom: 32,
+  },
+
+  input: {
+    height: 56,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 12,
+    paddingHorizontal: 20,
+    fontSize: 18,
+    backgroundColor: '#F9FAFB',
+    color: '#111827',
+    marginBottom: 28,
+  },
+
+  button: {
+    backgroundColor: '#2563EB',
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '700',
   },
 });
-
-export default styles;

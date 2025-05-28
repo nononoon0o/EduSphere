@@ -146,22 +146,6 @@ export default function SearchScreen() {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          {/* Header */}
-          <View style={styles.customHeader}>
-            <Text style={styles.customHeaderText}>EDUSPHERE</Text>
-            <View style={styles.iconGroup}>
-              <TouchableOpacity onPress={() => router.push("/HomeScreen")}>
-                <Ionicons name="home" size={24} color="#0a3d62" style={styles.iconSpacing} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => inputRef.current?.focus()}>
-                <Ionicons name="search" size={24} color="#0a3d62" style={styles.iconSpacing} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => router.push("/ProfileScreen")}>
-                <Ionicons name="person-circle-outline" size={26} color="#0a3d62" />
-              </TouchableOpacity>
-            </View>
-          </View>
-
           {/* Main Layout */}
           <View style={[styles.mainWrapper, { flexDirection: isMobile ? "column" : "row" }]}>
             {/* Sidebar */}

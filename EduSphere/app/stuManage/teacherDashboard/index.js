@@ -4,6 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getPathWithConventionsCollapsed } from 'expo-router/build/fork/getPathFromState-forks';
+import styles from '../../../style/stuManageStyle/teacherDashboardStyle';
 
 let WebDatePicker = null;
 if (Platform.OS === 'web') {
@@ -341,105 +342,4 @@ const TeacherDashboard = ({ navigation }) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  section: {
-    marginBottom: 30,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
-    elevation: 3,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    color: '#333',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 5,
-  },
-  assignmentRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: '#00A8FF',
-    paddingHorizontal: 10,
-    height: 50,
-    justifyContent: 'space-between',
-  },
-  assignmentInfo: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  deleteButtonWrapper: {
-    marginLeft: 10,
-    backgroundColor: '#00A8FF',
-    borderRadius: 5,
-    height: 35,
-    minWidth: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-  },
-  deleteButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  appButtonContainer: {
-    backgroundColor: '#00A8FF',
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  appButtonText: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  attendanceItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  attendanceButtons: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  attendanceBtn: {
-    marginHorizontal: 3,
-    paddingVertical: 7,
-    paddingHorizontal: 12,
-    minWidth: 60,
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-});
-
 export default TeacherDashboard;

@@ -11,6 +11,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import styles from '../../../style/sharedIndexStyles';
 
 export default function Chapter1Index() {
   const router = useRouter();
@@ -60,96 +61,3 @@ export default function Chapter1Index() {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  container: {
-    padding: 24,
-    flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    borderRadius: 12,
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    padding: 10,
-    backgroundColor: 'rgba(30,58,138,0.85)',
-    borderRadius: 30,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 16,
-  },
-  backText: {
-    fontSize: 16,
-    color: '#ffffff',
-    fontWeight: '600',
-    marginLeft: 8,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 18,
-  },
-  chapterTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2980b9',
-    textAlign: 'center',
-    marginLeft: 12,
-    flex: 1,
-    flexWrap: 'wrap',
-  },
-  icon: {
-    marginRight: 12,
-  },
-  divider: {
-    height: 3,
-    backgroundColor: '#aed6f1',
-    marginVertical: 20,
-    marginHorizontal: 50,
-    borderRadius: 25,
-  },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    padding: 20,
-    borderRadius: 18,
-    marginBottom: 18,
-    borderColor: '#d0eafc',
-    borderWidth: 1,
-    shadowColor: '#2980b9',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.18,
-    shadowRadius: 12,
-    elevation: 8,
-  },
-  cardPressed: {
-    backgroundColor: '#eaf2f8',
-  },
-  bullet: {
-    width: 45,
-    height: 45,
-    backgroundColor: '#2980b9',
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 24,
-  },
-  bulletText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  cardText: {
-    fontSize: 20,
-    color: '#2c3e50',
-    fontWeight: '600',
-    flexShrink: 1,
-  },
-});

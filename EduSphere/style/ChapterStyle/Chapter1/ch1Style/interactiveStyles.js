@@ -1,36 +1,128 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
-    paddingTop: 40,
+    backgroundColor: '#F4F6F8',
+    paddingTop: 60,
+    paddingHorizontal: 20,
   },
+
   backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 10,
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
+    backgroundColor: '#E5E7EB',
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+    marginBottom: 20,
   },
   backText: {
     fontSize: 16,
-    marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
+    marginLeft: 8,
+    fontWeight: '600',
+    color: '#1F2937',
   },
+
+  text: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 24,
+  },
+
+  conceptSection: {
+    marginTop: 10,
+  },
+  conceptTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#2563EB',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+  itemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#374151',
+    marginTop: 10,
+  },
+  description: {
+    fontSize: 15,
+    color: '#4B5563',
+    marginLeft: 10,
+    marginTop: 5,
+  },
+
+  nextButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 200,
+    height: 50,
+    backgroundColor: '#2563EB',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 40,
+    alignSelf: 'center',
+  },
+  nextButtonCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nextButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#2563EB',
+  },
+
+  prevNavButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    marginTop: 20,
+  },
+  prevNavCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#6B7280',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  prevNavText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6B7280',
+    marginLeft: 10,
+  },
+
+  // Video styles
+  videoContainer: {
+    height: width * 0.5625,
+    width: '100%',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginVertical: 20,
+  },
+  video: {
+    flex: 1,
+    borderRadius: 12,
+  },
+  iframe: {
+    border: 'none',
+    borderRadius: 12,
+    marginTop: 16,
+  },
+
+  // New styles for LearnScreen interactive drag & drop
   header: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -99,12 +191,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 5,
   },
-  imageLabel: {
-    fontSize: 12,
-    color: '#555',
-    textAlign: 'center',
-    marginTop: 4,
-  },
   modalOverlay: {
     flex: 1,
     justifyContent: 'center',
@@ -117,6 +203,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
+  },
+  imageLabel: {
+    fontSize: 12,
+    color: '#555',
+    textAlign: 'center',
+    marginTop: 4,
   },
   navigation: {
     flexDirection: 'row',
@@ -147,30 +239,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#3498db',
   },
-  nextButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 200,
-    height: 50,
-    backgroundColor: '#3498db',
-    borderRadius: 25,
-    paddingHorizontal: 16,
-    marginTop: 30,
-  },
-  nextButtonCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nextButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#3498db',
-  },
 });
-
-export default styles;

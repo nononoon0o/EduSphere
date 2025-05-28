@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -17,29 +18,28 @@ import CodeModal from "./codemodal";
 
 const SignupEmail = () => {
   const [email, setEmail] = useState("");
-  const [validationMessage, setValidationMessage] = useState(""); // 입력란 위에 표시될 메시지
+  const [validationMessage, setValidationMessage] = useState("");
   const [validationColor, setValidationColor] = useState("#888");
-  const [isProcessing, setIsProcessing] = useState(false); // 이메일 처리 중 로딩 상태
-  const [isBackModalVisible, setIsBackModalVisible] = useState(false); // 뒤로가기 모달 상태
-  const [isCodeModalVisible, setIsCodeModalVisible] = useState(false); // 확인 모달 상태
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
+  const [isCodeModalVisible, setIsCodeModalVisible] = useState(false);
   const router = useRouter();
 
   const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 간단한 이메일 정규식
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const handleBack = () => {
-    setIsBackModalVisible(true); // 뒤로가기 모달 표시
-
+    setIsBackModalVisible(true);
   };
 
   const closeBackModal = () => {
-    setIsBackModalVisible(false); // 뒤로가기 모달 닫기
+    setIsBackModalVisible(false);
   };
 
   const confirmBack = () => {
-    setIsBackModalVisible(false); // 뒤로가기 모달 닫기
+    setIsBackModalVisible(false);
     router.push("/signin/loginScreen");
   };
 
@@ -58,7 +58,7 @@ const SignupEmail = () => {
       return;
     }
 
-    setIsProcessing(true); // 로딩 시작
+    setIsProcessing(true);
     setValidationMessage("> 이메일 확인중...");
     setValidationColor("#888");
 
@@ -71,7 +71,7 @@ const SignupEmail = () => {
       if (response.data.success) {
         setValidationMessage("사용 가능한 이메일입니다.");
         setValidationColor("green");
-        setIsCodeModalVisible(true); // 이메일 확인 모달 표시
+        setIsCodeModalVisible(true);
       } else {
         setValidationMessage(`> ${response.data.message}`);
         setValidationColor("red");
@@ -80,19 +80,19 @@ const SignupEmail = () => {
       setValidationMessage("> 서버 오류가 발생했습니다.");
       setValidationColor("red");
     } finally {
-      setIsProcessing(false); // 로딩 종료
+      setIsProcessing(false);
     }
   };
 
   const closeCodeModal = () => {
-    setIsCodeModalVisible(false); // 확인 모달 닫기
+    setIsCodeModalVisible(false);
   };
 
   const confirmCodeModal = () => {
-    setIsCodeModalVisible(false); // 확인 모달 닫기
+    setIsCodeModalVisible(false);
     router.push({
       pathname: "/signup/code",
-      params: { email: email.trim() }, // 다음 화면으로 이메일 전달
+      params: { email: email.trim() },
     });
   };
 
@@ -104,8 +104,11 @@ const SignupEmail = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={stylemail.container}>
-        <TouchableOpacity onPress={handleBack} style={stylemail.backIcon}>
-          <Icon name="arrow-left" size={20} color="#fff" />
+
+        {/* 🔙 Back Button with Text */}
+        <TouchableOpacity onPress={handleBack} style={stylemail.backButton}>
+          <Icon name="arrow-left" size={20} color="#111827" style={{ marginRight: 6 }} />
+          <Text style={stylemail.backButtonText}>뒤로가기</Text>
         </TouchableOpacity>
 
         <View style={stylemail.titleContainer}>
@@ -142,7 +145,7 @@ const SignupEmail = () => {
         <TouchableOpacity
           style={[
             stylemail.button,
-            { backgroundColor: isProcessing ? "#A9A9A9" : "#094771" },
+            { backgroundColor: isProcessing ? "#A9A9A9" : "#3B82F6" },
           ]}
           onPress={handleNext}
           disabled={isProcessing}
@@ -175,4 +178,3 @@ const SignupEmail = () => {
 };
 
 export default SignupEmail;
-

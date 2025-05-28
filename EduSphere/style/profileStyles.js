@@ -1,85 +1,91 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eef3f7',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
+    backgroundColor: '#f4f6f8',
   },
 
+  // ⬆️ Shared Header
+  customHeader: {
+    backgroundColor: '#d0efff',
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+  },
+  customHeaderText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#0a3d62',
+  },
+  iconGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconSpacing: {
+    marginHorizontal: 8,
+  },
+
+  // Profile card
   profileCard: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
+    marginTop: 80,
+    alignSelf: 'center',
+    backgroundColor: '#fff',
     padding: 24,
-    alignItems: 'center',
+    borderRadius: 16,
+    width: '90%',
+    maxWidth: 400,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4,
   },
-
   greetingText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1e272e',
-    marginBottom: 16,
+    color: '#2c3e50',
     textAlign: 'center',
-  },
-
-  authButton: {
-    width: '100%',
-    paddingVertical: 12,
-    borderRadius: 8,
     marginBottom: 20,
-    alignItems: 'center',
   },
 
+  // 로그인/로그아웃 버튼
+  authButton: {
+    paddingVertical: 12,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
   loginButton: {
     backgroundColor: '#007bff',
   },
-
   logoutButton: {
-    backgroundColor: '#34495e',
-  },
-
-  authButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-
-  actionsContainer: {
-    width: '100%',
-    marginTop: 10,
-  },
-
-  actionButton: {
-    backgroundColor: '#1abc9c',
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 12,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    elevation: 2,
-  },
-
-  actionButtonText: {
-    color: '#ffffff',
-    fontSize: 15,
-    fontWeight: '600',
-  },
-
-  dangerButton: {
     backgroundColor: '#e74c3c',
   },
-});
+  authButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+  },
 
-export default styles;
+  // 메뉴 액션 영역
+  actionsContainer: {
+    marginTop: 10,
+  },
+  actionButton: {
+    backgroundColor: '#1abc9c',
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 6,
+  },
+  actionButtonText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+});

@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
+import {
+  Text, TextInput, TouchableOpacity, SafeAreaView, Alert, View
+} from 'react-native';
 import { useRouter } from "expo-router";
 import EditAccountModal from './editAccountModal';
 import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import styles from '../../style/signinStyle/editAccountStyle'; // 스타일은 따로 관리하면 좋아
+import styles from '../../style/signinStyle/editAccountStyle';
 
 export default function EditAccountScreen() {
-  const [modalVisible, setModalVisible] = useState(false); // 모달 상태
+  const [modalVisible, setModalVisible] = useState(false);
   const [nickname, setNickname] = useState('');
   const [school, setSchool] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
+  const isValidNickname = nickname.length >= 2;
+  const isValidSchool = school.length >= 2;
+  const isValidPassword = password.length >= 6;
+
   const handleSave = async () => {
+    if (!isValidNickname || !isValidSchool || !isValidPassword) {
+      Alert.alert("입력 오류", "모든 필드를 올바르게 입력해주세요.");
+      return;
+    }
+
     try {
       const token = await AsyncStorage.getItem('token');
-
       const response = await axios.post(
         'http://localhost:5000/user/account/edit',
         { nickname, school, password },
@@ -29,7 +39,7 @@ export default function EditAccountScreen() {
           withCredentials: true
         }
       );
-      
+
       if (response.data.success) {
         setModalVisible(true);
       } else {
@@ -41,55 +51,92 @@ export default function EditAccountScreen() {
     }
   };
 
-  const handleBack = () => {
-    router.push('/ProfileScreen')
-  };
-
-  // 모달 확인 버튼 처리
+  const handleBack = () => router.push('/ProfileScreen');
   const handleModalConfirm = () => {
-    setModalVisible(false); // 모달 닫기
-    router.push("/ProfileScreen"); // 다음 화면으로 이동
+    setModalVisible(false);
+    router.push("/ProfileScreen");
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* 뒤로가기 버튼 */}
       <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#fff" />
+        <Icon name="arrow-left" size={20} color="#111827" />
       </TouchableOpacity>
 
       <Text style={styles.title}>계정 정보 수정</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="닉네임"
-        value={nickname}
-        onChangeText={setNickname}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="학교명"
-        value={school}
-        onChangeText={setSchool}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="새 비밀번호"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+      <View style={styles.card}>
+        {/* 닉네임 */}
+        <View style={styles.inputWrapper}>
+          <Icon name="user" size={18} color="#9CA3AF" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="닉네임"
+            placeholderTextColor="#9CA3AF"
+            value={nickname}
+            onChangeText={setNickname}
+          />
+          {nickname.length > 0 && (
+            <Icon
+              name={isValidNickname ? "check-circle" : "times-circle"}
+              size={18}
+              color={isValidNickname ? "#10B981" : "#EF4444"}
+              style={styles.validationIcon}
+            />
+          )}
+        </View>
+
+        {/* 학교명 */}
+        <View style={styles.inputWrapper}>
+          <Icon name="building" size={18} color="#9CA3AF" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="학교명"
+            placeholderTextColor="#9CA3AF"
+            value={school}
+            onChangeText={setSchool}
+          />
+          {school.length > 0 && (
+            <Icon
+              name={isValidSchool ? "check-circle" : "times-circle"}
+              size={18}
+              color={isValidSchool ? "#10B981" : "#EF4444"}
+              style={styles.validationIcon}
+            />
+          )}
+        </View>
+
+        {/* 비밀번호 */}
+        <View style={styles.inputWrapper}>
+          <Icon name="lock" size={18} color="#9CA3AF" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="새 비밀번호"
+            placeholderTextColor="#9CA3AF"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
+          {password.length > 0 && (
+            <Icon
+              name={isValidPassword ? "check-circle" : "times-circle"}
+              size={18}
+              color={isValidPassword ? "#10B981" : "#EF4444"}
+              style={styles.validationIcon}
+            />
+          )}
+        </View>
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSave}>
         <Text style={styles.buttonText}>저장</Text>
       </TouchableOpacity>
 
-      {/* EditAccountModal 추가 */}
       <EditAccountModal
         visible={modalVisible}
-        onClose={() => setModalVisible(false)} // 모달 닫기
-        onConfirm={handleModalConfirm} // 확인 버튼 처리
-        onText="수정 완료" // 모달 메시지
+        onClose={() => setModalVisible(false)}
+        onConfirm={handleModalConfirm}
+        onText="수정 완료"
       />
     </SafeAreaView>
   );

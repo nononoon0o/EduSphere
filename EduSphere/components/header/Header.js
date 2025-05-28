@@ -19,6 +19,12 @@ export default function CustomHeader() {
       {/* Buttons on the right */}
       <View style={styles.iconGroup}>
         <TouchableOpacity 
+          onPress={() => router.push('/HomeScreen')} 
+          style={styles.iconButton}
+        >
+          <Feather name="home" size={24} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity 
           onPress={() => router.push('/SearchScreen')} 
           style={styles.iconButton}
         >

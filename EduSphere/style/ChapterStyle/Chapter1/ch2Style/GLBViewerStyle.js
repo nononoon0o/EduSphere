@@ -1,13 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f4f4f4',
-    paddingTop: 40,
-  },
   backButton: {
     position: 'absolute',
     top: 40,
@@ -31,92 +24,69 @@ const styles = StyleSheet.create({
     color: '#2c3e50',
     fontWeight: '500',
   },
-  header: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  sectionsRow: {
+  buttonRow: {
+    position: 'absolute',
+    bottom: 30,
+    left: 0,
+    right: 0,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     paddingHorizontal: 20,
-    marginBottom: 30,
   },
-  dropZone: {
-    width: width * 0.4,
-    height: 250,
-    backgroundColor: '#cce5ff',
-    borderColor: '#3399ff',
-    borderWidth: 2,
-    borderRadius: 15,
-    alignItems: 'center',
+  chemButton: {
+    backgroundColor: '#ecf0f1',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 12,
+    elevation: 2,
+  },
+  chemText: {
+    fontSize: 16,
+    color: '#2c3e50',
+    fontWeight: '600',
+  },
+  molecule: {
+    position: 'absolute',
+    backgroundColor: '#fff',
     padding: 10,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+    zIndex: 10,
   },
-  dropZoneTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#003366',
-    marginBottom: 10,
-  },
-  innerDropZone: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#e6f2ff',
+  resetButton: {
+    position: 'absolute',
+    backgroundColor: '#ecf0f1',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     borderRadius: 10,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    elevation: 2,
+    zIndex: 10,
   },
-  resultMessage: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#cc0000',
-    marginBottom: 10,
-  },
-  explanationTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  examplesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-  imageWrapper: {
-    width: 80,
-    height: 80,
-    margin: 10,
-  },
-  image: {
-    width: 70,
-    height: 70,
+  explainButton: {
+    position: 'absolute',
+    backgroundColor: '#ecf0f1',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     borderRadius: 10,
-    margin: 5,
+    elevation: 2,
+    zIndex: 10,
   },
-  imageLabel: {
-    fontSize: 12,
-    color: '#555',
-    textAlign: 'center',
-    marginTop: 4,
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalContent: {
-    width: '80%',
-    maxHeight: '70%',
-    padding: 20,
+  explanationBox: {
+    position: 'absolute',
     backgroundColor: '#fff',
     borderRadius: 10,
+    padding: 10,
+    elevation: 3,
+    zIndex: 10,
+  },
+  explanationText: {
+    fontSize: 14,
+    color: '#2c3e50',
+    lineHeight: 20,
   },
   navigation: {
     flexDirection: 'row',
@@ -156,7 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#3498db',
     borderRadius: 25,
     paddingHorizontal: 16,
-    marginTop: 30,
   },
   nextButtonCircle: {
     width: 42,
@@ -169,7 +138,7 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#3498db',
+    color: '#fff',
   },
 });
 

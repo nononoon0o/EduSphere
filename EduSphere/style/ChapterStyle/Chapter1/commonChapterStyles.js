@@ -1,48 +1,71 @@
+// styles/ChapterStyle/commonChapterStyles.js
 import { StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#f4f4f4',
-    paddingTop: 40,
+    padding: 20,
+    backgroundColor: '#f9fcff',
   },
   backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 10,
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
+    marginBottom: 24,
   },
   backText: {
     fontSize: 16,
-    marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
+    marginLeft: 8,
+    color: '#1e3a8a',
+    fontWeight: '600',
   },
   header: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
   },
-  sectionsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 20,
+  icon: {
+    marginRight: 12,
+  },
+  subtitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#2c3e50',
+  },
+  sectionHeader: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#34495e',
+    marginBottom: 24,
+  },
+  sectionsContainer: {
     marginBottom: 30,
   },
+  sectionButton: {
+    backgroundColor: '#e3f2fd',
+    borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  sectionEmoji: {
+    fontSize: 22,
+    marginRight: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1e3a8a',
+  },
+
+  // LearnScreen-specific additions
   dropZone: {
     width: width * 0.4,
     height: 250,
@@ -82,6 +105,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
   },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContent: {
+    width: '80%',
+    maxHeight: '70%',
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+  },
   examplesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -104,19 +140,6 @@ const styles = StyleSheet.create({
     color: '#555',
     textAlign: 'center',
     marginTop: 4,
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalContent: {
-    width: '80%',
-    maxHeight: '70%',
-    padding: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
   },
   navigation: {
     flexDirection: 'row',
@@ -172,5 +195,3 @@ const styles = StyleSheet.create({
     color: '#3498db',
   },
 });
-
-export default styles;

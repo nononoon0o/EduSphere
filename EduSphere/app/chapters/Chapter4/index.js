@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import styles from '../../../style/ChapterStyle/Chapter4/indexStyles'; // Adjust the path as necessary
+import styles from '../../../style/sharedIndexStyles';
 
 export default function Chapter4Index() {
   const router = useRouter();
