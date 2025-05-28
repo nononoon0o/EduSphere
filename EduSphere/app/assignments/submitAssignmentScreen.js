@@ -7,15 +7,16 @@ import {
   Alert,
   StyleSheet,
   ScrollView,
-  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { Dropdown } from 'react-native-element-dropdown';
+import { useRouter } from 'expo-router'; // 👈 Add router
 import styles from '../../style/assignments/submitAssignmentScreenStyle';
 
-
 export default function SubmitAssignmentScreen() {
+  const router = useRouter(); // 👈 Initialize router
+
   const [assignments, setAssignments] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [title, setTitle] = useState('');
@@ -67,6 +68,12 @@ export default function SubmitAssignmentScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.card}>
+
+        {/* 🔙 Back Button */}
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <Text style={styles.backText}>← 뒤로가기</Text>
+        </TouchableOpacity>
+
         <Text style={styles.title}>과제 제출</Text>
 
         <Dropdown
