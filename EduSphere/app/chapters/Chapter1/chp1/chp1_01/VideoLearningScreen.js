@@ -6,52 +6,13 @@ import {
   Dimensions,
   Platform,
   TouchableOpacity,
-  Alert
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import { recordAttendanceOnComplete } from '../../../../service/attendanceService';
 
 export default function VideoLearningScreen() {
   const videoId = 'W82aT47cnwM';
-
-  const fetchDeadlineForChapter = async (chapter) => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
-      return res.data.deadline?.deadline || null;
-    } catch (e) {
-      console.error('데드라인 조회 실패:', e);
-      return null;
-    }
-  };
-
-  const handleCompleteLearning = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const studentId = await AsyncStorage.getItem('mongoId');
-      const chapter = 'Chapter1_01';
-      const deadline = await fetchDeadlineForChapter(chapter);
-
-      const result = await recordAttendanceOnComplete({
-        studentId,
-        chapter,
-        deadline,
-        token
-      });
-
-      if (result.success) {
-        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
-        router.push('/chapters/Chapter1');
-      } else {
-        Alert.alert('오류', '출석 기록에 실패했습니다.');
-      }
-    } catch (err) {
-      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -86,14 +47,6 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
-
-      {/* 학습 완료 버튼 */}
-      <TouchableOpacity
-        style={styles.completeButton}
-        onPress={handleCompleteLearning}
-      >
-        <Text style={styles.completeButtonText}>학습 완료</Text>
-      </TouchableOpacity>
 
       {/* 평가하기 버튼 */}
       <TouchableOpacity
@@ -183,20 +136,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#3498db',
-  },
-  // 학습 완료 버튼
-  completeButton: {
-    backgroundColor: '#4caf50',
-    padding: 16,
-    width: '90%',
-    alignItems: 'center',
-    borderRadius: 8,
-    marginTop: 20,
-  },
-  completeButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   // 평가하기 버튼
   evalButton: {

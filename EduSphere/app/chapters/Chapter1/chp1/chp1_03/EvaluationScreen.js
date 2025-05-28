@@ -6,9 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
-  Dimensions
+  Alert
 } from 'react-native';
 import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { recordAttendanceOnComplete } from '../../../../service/attendanceService';
+import axios from 'axios';
 
 export default function EvaluationScreen() {
   const questions = [
@@ -108,6 +111,42 @@ export default function EvaluationScreen() {
     return sum + (sel === q.correct.join() ? 1 : 0);
   }, 0);
 
+  const fetchDeadlineForChapter = async (chapter) => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
+        return res.data.deadline?.deadline || null;
+      } catch (e) {
+        console.error('데드라인 조회 실패:', e);
+        return null;
+      }
+    };
+    
+  const handleCompleteLearning = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const studentId = await AsyncStorage.getItem('mongoId');
+      const chapter = 'Chapter1_03';
+      const deadline = await fetchDeadlineForChapter(chapter);
+
+      const result = await recordAttendanceOnComplete({
+        studentId,
+        chapter,
+        deadline,
+        token
+      });
+
+      if (result.success) {
+        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
+        router.push('/chapters/Chapter1');
+      } else {
+        Alert.alert('오류', '출석 기록에 실패했습니다.');
+      }
+    } catch (err) {
+      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
+      console.log(err)
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {questions.map(q => {
@@ -182,6 +221,15 @@ export default function EvaluationScreen() {
           </TouchableOpacity>
         </View>
       )}
+
+      {/* 학습 완료 버튼 */}
+      <TouchableOpacity
+        style={styles.completeButton}
+        onPress={handleCompleteLearning}
+      >
+        <Text style={styles.completeButtonText}>학습 완료</Text>
+      </TouchableOpacity>
+
     </ScrollView>
   );
 }
@@ -300,6 +348,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   exitButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  // 학습 완료 버튼
+  completeButton: {
+    backgroundColor: '#4caf50',
+    padding: 16,
+    width: '90%',
+    alignItems: 'center',
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  completeButtonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
