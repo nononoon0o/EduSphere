@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
@@ -38,7 +38,7 @@ export default function WithdrawalScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Back Icon */}
+      {/* ✅ Circular Floating Back Button */}
       <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
         <Icon name="arrow-left" size={20} color="#fff" />
       </TouchableOpacity>
