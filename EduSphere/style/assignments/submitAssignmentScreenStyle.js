@@ -6,15 +6,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4F6',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 32, // More breathing room around the card
   },
 
   card: {
     width: '100%',
-    maxWidth: 500,
+    maxWidth: 1500,            // Increased card width
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 24,
+    borderRadius: 20,         // Softer corners
+    padding: 40,              // More inner spacing
+    marginTop: 20,            // Top space in case scroll is needed
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.08,
@@ -22,19 +23,9 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 
-  // 🔙 Back Button Styles
-  backButton: {
-    marginBottom: 16,
-  },
-  backText: {
-    fontSize: 16,
-    color: '#2563EB',
-    fontWeight: '600',
-  },
-
   title: {
-    fontSize: 24,
-    fontWeight: '800',
+    fontSize: 26,             // Slightly larger title
+    fontWeight: '900',
     textAlign: 'center',
     color: '#1F2937',
     marginBottom: 24,
@@ -63,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   textArea: {
-    height: 120,
+    height: 140,               // A bit taller for clarity
     textAlignVertical: 'top',
   },
 
@@ -84,6 +75,23 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
+  },
+
+  // ✅ Circular Back Button
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    alignSelf: 'flex-start',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
 
