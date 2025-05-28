@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../../style/stuResult/stuResultScreenStyle';
@@ -83,11 +84,10 @@ export default function StuResultScreen() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* 🔙 Back Button */}
-      <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-        <Text style={styles.backButtonIcon}>←</Text>
-        <Text style={styles.backButtonText}>뒤로가기</Text>
+      <TouchableOpacity onPress={() => router.push('/ProfileScreen')} style={styles.backButton}>
+      <Ionicons name="arrow-back" size={20} color="#fff" />
       </TouchableOpacity>
+
 
       {/* 🧑‍🎓 Header Title */}
       <View style={styles.card}>
