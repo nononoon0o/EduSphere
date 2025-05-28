@@ -112,7 +112,7 @@ const DetailForm = () => {
         </TouchableOpacity>
       </View>
 
-    {/* 이름(닉네임) 입력 */}
+      {/* 이름(닉네임) 입력 */}
       <View style={styles.inputContainer}>
         <TextInput
             style={styles.input}

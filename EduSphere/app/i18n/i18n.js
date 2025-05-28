@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      title: 'Discover the World of Chemistry',
+      title: 'Discover the World of Science',
       subtitle: 'Dive into atoms, reactions, and molecular mysteries.',
       goToAccount: 'Go to your account',
       chapterList: '3rd Year of Middle School Science Curriculum',
@@ -331,7 +331,7 @@ const resources = {
   },
   ko: {
     translation: {
-      title: '화학의 세계를 발견하세요',
+      title: '과학의 세계를 발견하세요',
       subtitle: '원자, 반응, 분자의 신비를 탐험해보세요.',
       goToAccount: '내 계정으로 이동',
       chapterList: '중학교 3학년 과학 목차',
@@ -494,8 +494,8 @@ const resources = {
 i18n.use(initReactI18next).init({
   compatibilityJSON: 'v3',
   resources,
-  lng: 'en',
-  fallbackLng: 'en',
+  lng: 'ko',
+  fallbackLng: 'ko',
   interpolation: {
     escapeValue: false,
   },

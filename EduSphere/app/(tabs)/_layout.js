@@ -1,7 +1,6 @@
 // app/(tabs)/_layout.js
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Feather } from '@expo/vector-icons';
 import CustomHeader from '../../components/header/Header';
 
 export default function TabLayout() {

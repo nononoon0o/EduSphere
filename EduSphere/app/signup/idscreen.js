@@ -8,7 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import { useRouter } from "expo-router";
-import Icon from "react-native-vector-icons/FontAwesome"; // Importing FontAwesome icon
+import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios"; 
 import styleid from "../../style/signupStyle/IdScreenStyle";
 
@@ -22,7 +22,6 @@ const SignupID = () => {
   const [isIDValid, setIsIDValid] = useState(false); // ID validation state
   const router = useRouter();
 
-  // ID validation function (checks if the ID is at least 6 characters long and contains only alphanumeric characters)
   const isValidIDLength = (id) => id.length >= 6;
   const isValidIDCharacters = (id) => /^[a-zA-Z0-9]+$/.test(id);
 

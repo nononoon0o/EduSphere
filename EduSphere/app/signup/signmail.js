@@ -1,4 +1,3 @@
-/* 회원가입 이메일 입력창 */
 import React, { useState } from "react";
 import {
   Text,
@@ -7,7 +6,6 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
-  Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
