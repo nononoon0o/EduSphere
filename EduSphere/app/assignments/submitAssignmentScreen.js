@@ -5,17 +5,17 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
-  StyleSheet,
   ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { Dropdown } from 'react-native-element-dropdown';
-import { useRouter } from 'expo-router'; // 👈 Add router
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import styles from '../../style/assignments/submitAssignmentScreenStyle';
 
 export default function SubmitAssignmentScreen() {
-  const router = useRouter(); // 👈 Initialize router
+  const navigation = useNavigation();
 
   const [assignments, setAssignments] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
@@ -68,10 +68,9 @@ export default function SubmitAssignmentScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.card}>
-
-        {/* 🔙 Back Button */}
-        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>← 뒤로가기</Text>
+        {/* ✅ Circular Icon Back Button */}
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={20} color="#fff" />
         </TouchableOpacity>
 
         <Text style={styles.title}>과제 제출</Text>
