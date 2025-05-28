@@ -22,6 +22,16 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
 
+  // 🔙 Back Button Styles
+  backButton: {
+    marginBottom: 16,
+  },
+  backText: {
+    fontSize: 16,
+    color: '#2563EB',
+    fontWeight: '600',
+  },
+
   title: {
     fontSize: 24,
     fontWeight: '800',
