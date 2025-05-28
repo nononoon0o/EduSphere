@@ -4,11 +4,11 @@ import FindId from "./FindId";
 import FindPassword from "./FindPassword";
 import styles from "../../style/findStyle/FindStyle";
 
-const findmain = () => {
+const FindMain = () => {
   const [selectedTab, setSelectedTab] = useState("ID");
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#1E1E1E" }}>
+    <View style={styles.container}>
       <View style={styles.tabContainer}>
         <TouchableOpacity
           style={[
@@ -17,7 +17,9 @@ const findmain = () => {
           ]}
           onPress={() => setSelectedTab("ID")}
         >
-          <Text style={{ color: "white" }}>아이디 찾기</Text>
+          <Text style={selectedTab === "ID" ? styles.tabTextSelected : styles.tabText}>
+            아이디 찾기
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -27,15 +29,17 @@ const findmain = () => {
           ]}
           onPress={() => setSelectedTab("PW")}
         >
-          <Text style={{ color: "white" }}>비밀번호 찾기</Text>
+          <Text style={selectedTab === "PW" ? styles.tabTextSelected : styles.tabText}>
+            비밀번호 찾기
+          </Text>
         </TouchableOpacity>
       </View>
 
-      <View style={{ flex: 1 }}>
+      <View style={styles.inputContainer}>
         {selectedTab === "ID" ? <FindId /> : <FindPassword />}
       </View>
     </View>
   );
 };
 
-export default findmain;
+export default FindMain;
