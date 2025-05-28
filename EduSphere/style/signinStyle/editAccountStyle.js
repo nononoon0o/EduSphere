@@ -3,49 +3,83 @@ import { StyleSheet, Platform } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F9FAFB", // light background
+    backgroundColor: "#F9FAFB",
     paddingHorizontal: 24,
     paddingTop: Platform.OS === "ios" ? 80 : 60,
   },
 
-  backIcon: {
-    position: "absolute",
-    top: Platform.OS === "ios" ? 48 : 28,
+  // ✅ Circular Floating Back Button Style
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 48 : 28,
     left: 20,
     zIndex: 10,
-    padding: 8,
-    backgroundColor: "#E5E7EB",
-    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
   },
 
   title: {
     fontSize: 30,
     fontWeight: "800",
-    color: "#1E3A8A", // indigo
+    color: "#1E3A8A",
     textAlign: "center",
     marginBottom: 40,
     letterSpacing: 0.5,
   },
 
-  input: {
-    backgroundColor: "#FFFFFF",
-    color: "#111827",
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    fontSize: 16,
+  card: {
+    backgroundColor: '#FFFFFF',
+    padding: 24,
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
+    elevation: 2,
+  },
+
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "#D1D5DB",
+    borderColor: '#D1D5DB',
     marginBottom: 20,
-    shadowColor: "#000",
+    paddingHorizontal: 12,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 1,
   },
 
+  inputIcon: {
+    marginRight: 10,
+  },
+
+  input: {
+    flex: 1,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: '#111827',
+  },
+
+  validationIcon: {
+    marginLeft: 10,
+  },
+
   button: {
-    backgroundColor: "#3B82F6", // modern blue
+    backgroundColor: "#3B82F6",
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: "center",
@@ -63,48 +97,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 0.3,
   },
-
-  label: {
-    color: "#6B7280", // gray-500
-    fontSize: 14,
-    marginBottom: 6,
-    paddingLeft: 4,
-  },
-
-  errorText: {
-    color: "#DC2626", // red
-    fontSize: 13,
-    marginTop: -12,
-    marginBottom: 16,
-    paddingLeft: 4,
-  },
-  inputWrapper: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  backgroundColor: '#FFFFFF',
-  borderRadius: 10,
-  borderWidth: 1,
-  borderColor: '#D1D5DB',
-  marginBottom: 20,
-  paddingHorizontal: 12,
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.05,
-  shadowRadius: 4,
-  elevation: 1,
-},
-
-inputIcon: {
-  marginRight: 10,
-},
-
-input: {
-  flex: 1,
-  paddingVertical: 14,
-  fontSize: 16,
-  color: '#111827',
-},
-
 });
 
 export default styles;
