@@ -1,54 +1,64 @@
 import { StyleSheet, Platform } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#F9FAFB',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
 
+  // ✅ Circular Floating Back Button
   backIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 50 : 30,
+    top: Platform.OS === 'ios' ? 48 : 28,
     left: 20,
-    backgroundColor: '#4B5563',
-    padding: 10,
-    borderRadius: 30,
     zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
   },
 
   card: {
     width: '100%',
-    maxWidth: 400,
-    backgroundColor: '#FFFFFF',
+    maxWidth: 500,
+    backgroundColor: '#ffffff',
     borderRadius: 16,
-    padding: 24,
+    padding: 32,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.08,
-    shadowRadius: 20,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
+    elevation: 3,
   },
 
   title: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#1F2937',
+    fontSize: 26,
+    fontWeight: '800',
+    color: '#DC2626', // red tone
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
   },
 
   infoText: {
     fontSize: 16,
-    color: '#6B7280',
+    color: '#374151',
     textAlign: 'center',
     marginBottom: 24,
+    lineHeight: 22,
   },
 
   inputContainer: {
-    marginBottom: 16,
+    marginBottom: 20,
   },
 
   input: {
@@ -57,27 +67,28 @@ export default StyleSheet.create({
     borderColor: '#D1D5DB',
     borderRadius: 10,
     paddingHorizontal: 16,
-    fontSize: 16,
     backgroundColor: '#F9FAFB',
+    fontSize: 16,
     color: '#111827',
   },
 
   button: {
-    backgroundColor: '#EF4444',
-    paddingVertical: 14,
-    borderRadius: 10,
+    backgroundColor: '#DC2626',
+    paddingVertical: 16,
+    borderRadius: 12,
     alignItems: 'center',
-    marginTop: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 3,
   },
 
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
   },
 });
+
+export default styles;

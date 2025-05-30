@@ -3,104 +3,91 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 20,
+    paddingTop: 40,
     paddingBottom: 30,
   },
-  inputContainer: {
-    width: "80%",
-    flex: 1,
-    marginTop: 50,
-  },
-  modalText: {
-    color: "#0097FB",
-  },
-  numberinput: {
-    width: "80%",
-    color: "white",
-    borderBottomWidth: 2,
-    borderBottomColor: "#0097FB",
-    height: 50,
-    paddingRight: 40,
-    paddingLeft: 10,
-  },
-  input: {
-    width: "100%",
-    color: "white",
-    borderBottomWidth: 2,
-    borderBottomColor: "#0097FB",
-    height: 50,
-    paddingRight: 40,
-    paddingLeft: 10,
-  },
-  inputPlaceholder: {
-    marginTop: 5,
-    color: "white",
-    width: "85%",
-    fontSize: 11,
-  },
-  button: {
-    backgroundColor: "#094771",
-    borderRadius: 5,
-    padding: 10,
-    borderColor: "#0097FB",
-    borderWidth: 2,
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
-  },
+
   tabContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    marginBottom: 30,
   },
+
   tabButton: {
-    width: "45%",
-    paddingVertical: 15,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "white",
     flex: 1,
-  },
-  selectedTab: {
-    backgroundColor: "#1E1E1E",
-    borderColor: "#1E1E1E",
-  },
-  unselectedTab: {
-    backgroundColor: "#292929",
-    borderColor: "white",
-  },
-  messageText: {
-    color: "white",
-    fontSize: 16,
-  },
-  modalContainer: {
-    width: "80%",
-    borderWidth: 2,
-    borderColor: "#AEAEAE",
-    borderRadius: 10,
-    height: 120,
-    padding: 15,
-    marginTop: 50,
-    justifyContent: "space-between",
-  },
-  timerText: {
-    color: "white",
-    marginLeft: 10,
-  },
-  confirmButton: {
-    marginLeft: 10,
-    borderColor: "#606060",
-    backgroundColor: "#606060",
-    borderRadius: 10,
-    borderWidth: 2,
-    width: "20%",
-    height: 40,
+    paddingVertical: 14,
+    marginHorizontal: 5,
+    borderRadius: 12,
+    backgroundColor: "#F3F4F6",
+    borderWidth: 1.5,
+    borderColor: "#D1D5DB",
     alignItems: "center",
   },
-  confirmText: {
-    color: "white",
-    marginTop: "10%",
+
+  selectedTab: {
+    backgroundColor: "#3B82F6", // blue
+    borderColor: "#3B82F6",
+  },
+
+  unselectedTab: {
+    backgroundColor: "#E5E7EB",
+  },
+
+  tabText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#111827",
+  },
+
+  tabTextSelected: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#FFFFFF",
+  },
+
+  inputContainer: {
+    width: "100%",
+    marginTop: 10,
+    marginBottom: 50,
+  },
+
+  input: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#3B82F6",
+    height: 48,
+    fontSize: 16,
+    paddingLeft: 8,
+    color: "#111827",
+    backgroundColor: "#F9FAFB",
+    borderRadius: 8,
+  },
+
+  inputPlaceholder: {
+    fontSize: 12,
+    color: "#6B7280",
+    marginTop: 8,
+  },
+
+  button: {
+    backgroundColor: "#2563EB",
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 30,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+    fontSize: 16,
   },
 });
 

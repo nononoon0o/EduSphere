@@ -59,8 +59,9 @@ export default function EditAccountScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#111827" />
+      {/* ✅ Circular Floating Back Button */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Icon name="arrow-left" size={20} color="#fff" />
       </TouchableOpacity>
 
       <Text style={styles.title}>계정 정보 수정</Text>
