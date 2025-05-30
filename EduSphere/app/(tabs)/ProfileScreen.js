@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useRouter } from "expo-router";
-import { fetchUserInfoAll } from '../service/userService';
+import { fetchUserInfoAll } from '../../services/userService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/profileStyles';

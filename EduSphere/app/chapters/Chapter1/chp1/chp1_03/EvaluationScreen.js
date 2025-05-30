@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { recordAttendanceOnComplete } from '../../../../service/attendanceService';
+import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import axios from 'axios';
 
 export default function EvaluationScreen() {
