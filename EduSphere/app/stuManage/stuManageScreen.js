@@ -10,22 +10,25 @@ import { useRouter } from 'expo-router';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/stuManageStyle/stuManageScreenStyle';
+import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
 
 export default function StudentManagementScreen() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  const handleBack = () => {
+    router.back(); // ✅ Navigate back when BackButton is pressed
+  };
+
   const fetchData = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
 
-      // 1. 교사 정보 조회
       const teacherRes = await axios.get('http://localhost:5000/user/role', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // 2. 학생 목록 조회
       const studentsRes = await axios.get('http://localhost:5000/api/students', {
         params: {
           classId: teacherRes.data.classId,
@@ -70,6 +73,8 @@ export default function StudentManagementScreen() {
 
   return (
     <View style={styles.container}>
+      <BackButton onPress={() => router.push('/ProfileScreen')} />
+
       <FlatList
         data={students}
         renderItem={renderStudentItem}
@@ -77,6 +82,7 @@ export default function StudentManagementScreen() {
         ListEmptyComponent={
           <Text style={styles.emptyText}>등록된 학생이 없습니다.</Text>
         }
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
 
       <TouchableOpacity
