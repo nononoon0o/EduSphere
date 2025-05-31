@@ -3,6 +3,7 @@ import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet, ScrollV
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPathWithConventionsCollapsed } from 'expo-router/build/fork/getPathFromState-forks';
 import styles from '../../../style/stuManageStyle/teacherDashboardStyle';
 
 let WebDatePicker = null;
@@ -28,6 +29,7 @@ const chapterList = rawChapters.map(c => ({
 const fileInputRef = useRef(null);
 
 const TeacherDashboard = ({ navigation }) => {
+  const [attendance, setAttendance] = useState([]);
 
   const [assignments, setAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
@@ -42,7 +44,7 @@ const TeacherDashboard = ({ navigation }) => {
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   const formatDate = (dateStr) => {
@@ -64,6 +66,21 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
+  // 출결 기록 불러오기
+  const fetchAttendance = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/api/attendance', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setAttendance(res.data);
+    } catch (err) {
+      setError('출결 기록을 불러올 수 없습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchDeadline = async () => {
      try {
         const res = await axios.get('http://localhost:5000/api/deadlines');
@@ -74,14 +91,13 @@ const TeacherDashboard = ({ navigation }) => {
         setDeadlines(deadlineObj);
       } catch (e) {
         console.log(e);
-      } finally {
-        setLoading(false);
       }
   }
 
   useEffect(() => {
     const fetchData = async () => {
       await fetchAssignments();
+      await fetchAttendance();
       await fetchDeadline();
     };
     fetchData();
@@ -140,6 +156,23 @@ const TeacherDashboard = ({ navigation }) => {
       setAssignments(assignments.filter(assignment => assignment._id !== id));
     } catch (err) {
       setError('과제 삭제 실패');
+    }
+  };
+
+  // 출결 기록 저장
+  const handleSaveAttendance = async (studentId, status) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/attendance', {
+        studentId,
+        status,
+        date: new Date().toISOString()
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      fetchAttendance();
+    } catch (err) {
+      setError('출결 기록 저장 실패');
     }
   };
 
@@ -237,6 +270,34 @@ const TeacherDashboard = ({ navigation }) => {
               >
                 <Text style={styles.deleteButtonText}>삭제</Text>
               </TouchableOpacity>
+            </View>
+          )}
+        />
+      </View>
+
+      {/* 출결 관리 섹션 */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>오늘의 출결 관리</Text>
+        <FlatList
+          data={attendance}
+          keyExtractor={item => item._id}
+          renderItem={({ item }) => (
+            <View style={styles.attendanceItem}>
+              <Text>{item.studentId}</Text>
+              <View style={styles.attendanceButtons}>
+                <TouchableOpacity
+                  style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'green' }]}
+                  onPress={() => handleSaveAttendance(item.studentId, 'present')}
+                >
+                  <Text style={styles.appButtonText}>출석</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'red' }]}
+                  onPress={() => handleSaveAttendance(item.studentId, 'absent')}
+                >
+                  <Text style={styles.appButtonText}>결석</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         />
