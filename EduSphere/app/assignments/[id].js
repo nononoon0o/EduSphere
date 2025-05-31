@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // ✅ Import Ionicons
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/assignments/assignmentDetailStyle';
+import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
 
 export default function AssignmentDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -74,12 +74,10 @@ export default function AssignmentDetailScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        {/* ✅ Circular Icon Back Button */}
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={20} color="#fff" />
-        </TouchableOpacity>
+      {/* ✅ Back button outside card */}
+      <BackButton onPress={() => navigation.goBack()} />
 
+      <View style={styles.card}>
         <Text style={styles.title}>{assignment.title}</Text>
 
         <Text style={styles.label}>설명</Text>
