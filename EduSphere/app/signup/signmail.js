@@ -1,3 +1,4 @@
+/* 회원가입 이메일 입력창 */
 import React, { useState } from "react";
 import {
   Text,
@@ -8,11 +9,11 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
-import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import stylemail from "../../style/signupStyle/EmailStyle";
 import BackPressModal from "../find/BackPressModal";
 import CodeModal from "./codemodal";
+import BackButton from "../../components/BackButton"; // ✅ Import reusable back button
 
 const SignupEmail = () => {
   const [email, setEmail] = useState("");
@@ -102,12 +103,8 @@ const SignupEmail = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={stylemail.container}>
-
-        {/* 🔙 Back Button with Text */}
-        <TouchableOpacity onPress={handleBack} style={stylemail.backButton}>
-          <Icon name="arrow-left" size={20} color="#111827" style={{ marginRight: 6 }} />
-          <Text style={stylemail.backButtonText}>뒤로가기</Text>
-        </TouchableOpacity>
+        {/* ✅ Reusable Back Button */}
+        <BackButton onPress={handleBack} label="뒤로가기" />
 
         <View style={stylemail.titleContainer}>
           <Text style={stylemail.title}>
@@ -129,7 +126,7 @@ const SignupEmail = () => {
           />
           {email.length > 0 && (
             <TouchableOpacity onPress={clearInput} style={stylemail.clearIcon}>
-              <Icon name="times-circle" size={15} color="#F48771" />
+              <Text style={{ fontSize: 16, color: "#F48771" }}>×</Text>
             </TouchableOpacity>
           )}
         </View>
