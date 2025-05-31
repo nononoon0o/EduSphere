@@ -4,29 +4,29 @@ import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
   return (
     <Modal
-      transparent={true}
-      animationType="slide" // fade
+      transparent
+      animationType="fade"
       visible={visible}
       onRequestClose={onClose}
     >
       <View style={styles.overlay}>
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalText}>{onText}를 중단하고</Text>
-          <Text style={styles.modalText}>
+        <View style={styles.container}>
+          <Text style={styles.message}>
+            <Text style={styles.bold}>{onText}</Text>를 중단하고
+          </Text>
+          <Text style={styles.message}>
             <Text style={styles.highlight}>종료</Text> 하시겠습니까?
           </Text>
-          <Text style={styles.modalsubText}>
-            {" "}
-            입력된 내용들은 초기화됩니다.
-          </Text>
-          <View style={styles.buttonContainer}>
+          <Text style={styles.subText}>입력된 내용은 초기화됩니다.</Text>
+
+          <View style={styles.buttonRow}>
             <Pressable
+              style={[styles.button, styles.cancelButton]}
               onPress={onClose}
-              style={[styles.button, { backgroundColor: "#7F7F7F" }]}
             >
               <Text style={styles.buttonText}>아니오</Text>
             </Pressable>
-            <Pressable onPress={onConfirm} style={styles.button}>
+            <Pressable style={styles.button} onPress={onConfirm}>
               <Text style={styles.buttonText}>예</Text>
             </Pressable>
           </View>
@@ -36,50 +36,61 @@ const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
   );
 };
 
+export default BackPressModal;
+
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  modalsubText: {
-    marginBottom: 10,
-    color: "white",
-    fontSize: 10,
-    paddingBottom: 15,
-  },
-  highlight: {
-    color: "#2196F3",
-  },
-  modalContainer: {
-    width: 300,
-    padding: 20,
-    backgroundColor: "#1E1E1E",
-    borderRadius: 10,
+  container: {
+    width: 320,
+    backgroundColor: "#1F2937", // dark gray
+    borderRadius: 16,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
     alignItems: "center",
   },
-  modalText: {
-    marginBottom: 10,
-    color: "white",
+  message: {
+    color: "#FFFFFF",
     fontSize: 16,
+    textAlign: "center",
+    marginBottom: 4,
   },
-  buttonContainer: {
+  subText: {
+    color: "#D1D5DB",
+    fontSize: 12,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  highlight: {
+    color: "#3B82F6", // blue
+    fontWeight: "600",
+  },
+  bold: {
+    fontWeight: "500",
+  },
+  buttonRow: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    gap: 12,
     width: "100%",
   },
   button: {
-    padding: 10,
-    backgroundColor: "#094771",
-    borderRadius: 10,
-    width: 100,
-    justifyContent: "center",
+    flex: 1,
+    paddingVertical: 12,
+    backgroundColor: "#2563EB",
+    borderRadius: 8,
     alignItems: "center",
   },
+  cancelButton: {
+    backgroundColor: "#6B7280", // gray
+  },
   buttonText: {
-    color: "white",
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });
-
-export default BackPressModal;
