@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/signinStyle/withdrawelStyle';
+import BackButton from '../../components/BackButton'; // ✅ Import du bouton
 
 export default function WithdrawalScreen() {
   const [password, setPassword] = useState('');
@@ -32,16 +32,10 @@ export default function WithdrawalScreen() {
     }
   };
 
-  const handleBack = () => {
-    router.push('/ProfileScreen');
-  };
-
   return (
     <View style={styles.container}>
-      {/* Back Icon */}
-      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#fff" />
-      </TouchableOpacity>
+      {/* ✅ Utilisation du composant BackButton */}
+      <BackButton onPress={() => router.push('/ProfileScreen')} />
 
       {/* Center Card */}
       <View style={styles.card}>
