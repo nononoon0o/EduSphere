@@ -1,33 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 
-const CountdownTimer = ({ initialTime = 300, onTimerEnd }) => {
+const CountdownTimer = ({
+  initialTime = 300,
+  onTimerEnd = () => {},
+  onTick = () => {},
+  textStyle = {},
+}) => {
   const [timeLeft, setTimeLeft] = useState(initialTime);
-  const [isTimeup, setIsTimeup] = useState(false);
 
   useEffect(() => {
     setTimeLeft(initialTime);
-    setIsTimeup(false);
-
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) {
+        const next = prev - 1;
+        onTick(next); // inform parent
+        if (next <= 0) {
           clearInterval(interval);
-          setIsTimeup(true);
+          onTimerEnd();
           return 0;
         }
-        return prev - 1;
+        return next;
       });
     }, 1000);
 
     return () => clearInterval(interval);
   }, [initialTime]);
-
-  useEffect(() => {
-    if (timeLeft === 0) {
-      onTimerEnd();
-    }
-  }, [timeLeft, onTimerEnd]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -37,7 +35,7 @@ const CountdownTimer = ({ initialTime = 300, onTimerEnd }) => {
 
   return (
     <View>
-      <Text style={{ color: isTimeup ? "red" : "white", marginRight: 25 }}>
+      <Text style={[{ color: "#1D4ED8", fontWeight: "600" }, textStyle]}>
         {formatTime(timeLeft)}
       </Text>
     </View>
