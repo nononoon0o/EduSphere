@@ -23,6 +23,7 @@ const VerificationScreen = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(300);
 
   const handleVerifyCode = async () => {
     setIsLoading(true);
@@ -105,12 +106,21 @@ const VerificationScreen = () => {
         <Text style={styles.title}>인증코드<Text style={styles.whitetitle}>를 입력해주세요</Text></Text>
       </View>
 
-      <Text style={[styles.emailText, { color: validationColor }]}>
-        {validationMessage}
-      </Text>
+      <Text style={[styles.emailText, { color: validationColor }]}> {validationMessage} </Text>
 
-      <Text style={styles.expirationText}>
-        인증번호 만료까지 <CountdownTimer initialTime={300} onTimerEnd={handleTimerEnd} />
+      <Text
+        style={[styles.expirationText, {
+          color:
+            remainingTime > 200 ? "#10B981" :
+            remainingTime > 100 ? "#FACC15" : "#EF4444"
+        }]}
+      >
+        인증번호 만료까지 {" "}
+        <CountdownTimer
+          initialTime={300}
+          onTimerEnd={handleTimerEnd}
+          onTick={(timeLeft) => setRemainingTime(timeLeft)}
+        />
       </Text>
 
       <View style={styles.codeContainer}>
@@ -118,7 +128,13 @@ const VerificationScreen = () => {
           <TextInput
             key={index}
             ref={(ref) => (inputRefs.current[index] = ref)}
-            style={[styles.input, { borderColor: "#0097FB" }]}
+            style={[
+              styles.input,
+              {
+                backgroundColor: digit ? "#DBEAFE" : "#E0F2FE",
+                borderColor: digit ? "#2563EB" : "#3B82F6"
+              }
+            ]}
             value={digit}
             keyboardType="numeric"
             maxLength={1}
