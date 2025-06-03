@@ -9,11 +9,13 @@ import {
 import axios from "axios";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styleid from "../../style/signupStyle/IdScreenStyle";
-import BackButton from "../../components/BackButton"; // ✅ Import reusable back button
+import BackButton from "../../components/BackButton";
+import { useRouter } from "expo-router";
 
 const existingIDs = ['testUser', 'sampleID'];
 
 const SignupID = () => {
+  const router = useRouter();
   const [userID, setUserID] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
   const [validationColor, setValidationColor] = useState("#888");
@@ -28,19 +30,19 @@ const SignupID = () => {
 
     if (!isValidIDLength(trimmedID)) {
       setValidationMessage("아이디를 6자 이상으로 적어주세요.");
-      setValidationColor("red");
+      setValidationColor("#DC2626");
       setIsIDValid(false);
     } else if (!isValidIDCharacters(trimmedID)) {
       setValidationMessage("대소문자와 숫자만 사용해주세요.");
-      setValidationColor("red");
+      setValidationColor("#DC2626");
       setIsIDValid(false);
     } else if (existingIDs.includes(trimmedID)) {
       setValidationMessage("이미 존재하는 아이디입니다. (로컬 검증)");
-      setValidationColor("red");
+      setValidationColor("#DC2626");
       setIsIDValid(false);
     } else {
       setValidationMessage("아이디 형식이 올바릅니다.");
-      setValidationColor("green");
+      setValidationColor("#10B981");
       setIsIDValid(true);
     }
   }, [userID]);
@@ -63,17 +65,17 @@ const SignupID = () => {
 
       if (response.data.exists) {
         setValidationMessage("이미 존재하는 아이디입니다.");
-        setValidationColor("red");
+        setValidationColor("#DC2626");
       } else {
         setValidationMessage("사용 가능한 아이디입니다.");
-        setValidationColor("green");
+        setValidationColor("#10B981");
         setTimeout(() => {
           router.push("/signup/password");
         }, 1500);
       }
     } catch (error) {
       setValidationMessage("아이디 확인 중 오류가 발생했습니다.");
-      setValidationColor("red");
+      setValidationColor("#DC2626");
     } finally {
       setIsProcessing(false);
     }
@@ -85,22 +87,19 @@ const SignupID = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={styleid.container}>
-        {/* ✅ Back Button Component */}
-        <BackButton target="/signup/signmail" color="#fff" />
+    <ScrollView contentContainerStyle={styleid.scroll}>
+      <BackButton to="/signup/signmail" />
 
-        <View style={styleid.titleContainer}>
-          <Text style={styleid.title}>
-            아이디<Text style={styleid.whitetitle}>를 입력해주세요</Text>
-          </Text>
-        </View>
+      <View style={styleid.card}>
+        <Text style={styleid.title}>
+          아이디 <Text style={styleid.highlight}>를 입력해주세요</Text>
+        </Text>
 
-        <View style={styleid.inputContainer}>
+        <View style={styleid.inputWrapper}>
           <TextInput
-            style={styleid.inputWithIcon}
+            style={styleid.input}
             placeholder="아이디를 입력해주세요"
-            placeholderTextColor="#888"
+            placeholderTextColor="#9CA3AF"
             value={userID}
             onChangeText={setUserID}
             autoCapitalize="none"
@@ -108,29 +107,22 @@ const SignupID = () => {
           />
           {userID.length > 0 && (
             <TouchableOpacity onPress={clearInput} style={styleid.clearIcon}>
-              <Icon name="times-circle" size={15} color="#F48771" />
+              <Icon name="times-circle" size={16} color="#EF4444" />
             </TouchableOpacity>
           )}
         </View>
 
         {validationMessage ? (
-          <Text
-            style={[
-              styleid.validationText,
-              {
-                color: validationColor,
-                textAlign: "left",
-                alignSelf: "flex-start",
-                marginLeft: 10,
-              },
-            ]}
-          >
+          <Text style={[styleid.validationText, { color: validationColor }]}>
             {validationMessage}
           </Text>
         ) : null}
 
         <TouchableOpacity
-          style={styleid.button}
+          style={[
+            styleid.button,
+            (!isIDValid || isProcessing) && styleid.buttonDisabled,
+          ]}
           onPress={handleNext}
           disabled={!isIDValid || isProcessing}
         >
