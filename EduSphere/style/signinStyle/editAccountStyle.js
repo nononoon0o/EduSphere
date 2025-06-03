@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "ios" ? 80 : 60,
   },
 
-  // ✅ Circular Floating Back Button Style
   backButton: {
     width: 40,
     height: 40,
@@ -28,12 +27,11 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 30,
-    fontWeight: "800",
+    fontSize: 26,
+    fontWeight: "700",
     color: "#1E3A8A",
     textAlign: "center",
-    marginBottom: 40,
-    letterSpacing: 0.5,
+    marginBottom: 30,
   },
 
   card: {
@@ -45,6 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 10,
     elevation: 2,
+    marginBottom: 24,
   },
 
   inputWrapper: {
@@ -54,13 +53,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    marginBottom: 20,
+    marginBottom: 16,
     paddingHorizontal: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 1,
+    paddingVertical: Platform.OS === 'ios' ? 14 : 10,
   },
 
   inputIcon: {
@@ -69,7 +64,6 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    paddingVertical: 14,
     fontSize: 16,
     color: '#111827',
   },
@@ -78,15 +72,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#1F2937',
+  button: {
+    backgroundColor: '#2563EB',
+    paddingVertical: 14,
+    borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
-    alignSelf: 'flex-start',
   },
 
   buttonText: {
