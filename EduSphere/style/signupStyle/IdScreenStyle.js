@@ -1,97 +1,89 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
-const styleid = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#F9FAFB', // light background
-    justifyContent: 'flex-start',
-    paddingHorizontal: '8%',
-    paddingTop: Platform.OS === 'ios' ? 60 : 40,
+const { width } = Dimensions.get("window");
+
+export default StyleSheet.create({
+  scroll: {
+    flexGrow: 1,
+    backgroundColor: "#F3F4F6",
+    padding: 24,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  validationText: {
-    height: 20,
-    textAlign: 'left',
-    fontSize: 14,
-    color: '#EF4444',
-    marginTop: 4,
-    marginBottom: 12,
+
+  card: {
+    width: "100%",
+    maxWidth: 500,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 28,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 6,
+    borderColor: "#E5E7EB",
+    borderWidth: 1,
+    gap: 16,
   },
-  inputContainer: {
-    position: 'relative',
-    width: '100%',
-    marginTop: 20,
-    marginBottom: 24,
-    height: 50,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  inputWithIcon: {
-    color: '#111827',
-    paddingHorizontal: 12,
-    paddingVertical: 14,
-    borderRadius: 6,
-    paddingRight: 44,
-    fontSize: 16,
-    width: '100%',
-  },
-  clearIcon: {
-    position: 'absolute',
-    right: '4%',
-    top: '50%',
-    transform: [{ translateY: -12 }],
-    zIndex: 5,
-  },
+
   title: {
-    fontSize: 36,
-    color: '#1E3A8A',
-    fontWeight: '800',
-    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#1F2937",
+    textAlign: "center",
     marginBottom: 20,
-    letterSpacing: 0.5,
   },
-  whitetitle: {
-    fontSize: 36,
-    color: '#334155',
-    textAlign: 'center',
-    fontWeight: '700',
+
+  highlight: {
+    color: "#2563EB",
   },
-  button: {
-    backgroundColor: '#3B82F6',
-    paddingVertical: 16,
+
+  inputWrapper: {
+    position: "relative",
+    width: "100%",
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: "#D1D5DB",
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: 40,
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: Platform.OS === 'android' ? 5 : 0,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    backgroundColor: "#F9FAFB",
+    color: "#111827",
   },
+
+  clearIcon: {
+    position: "absolute",
+    right: 12,
+    top: 14,
+  },
+
+  validationText: {
+    fontSize: 14,
+    fontWeight: "500",
+    marginTop: 8,
+    marginBottom: 12,
+    textAlign: "left",
+  },
+
+  button: {
+    backgroundColor: "#2563EB",
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 8,
+  },
+
+  buttonDisabled: {
+    backgroundColor: "#9CA3AF",
+  },
+
   buttonText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: '700',
-    letterSpacing: 0.3,
-  },
-  backIcon: {
-    position: 'absolute',
-    top: Platform.OS === 'ios' ? 40 : 24,
-    left: 20,
-    padding: 8,
-    zIndex: 10,
-    backgroundColor: '#E0E7FF',
-    borderRadius: 8,
+    color: "#FFFFFF",
+    fontWeight: "700",
+    fontSize: 16,
   },
 });
-
-export default styleid;
