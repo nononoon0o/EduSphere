@@ -3,15 +3,14 @@ import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-nati
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { router } from 'expo-router';
 import styles from '../../../style/ChapterStyle/Chapter3/Chapter3_01Styles'; // Adjust the path as necessary
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 const MatterChangeScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Back Navigation */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter3')}>
-        <Ionicons name="chevron-back" size={22} color="#fff" />
-        <Text style={styles.backButtonText}>돌아가기</Text>
-      </TouchableOpacity>
+      <BackButton onPress={() => router.replace('/chapters/Chapter3')} /> {/* ✅ Reusable */}
+            {/* Title & Content */}
 
       <Text style={styles.subtitle}>03 질량 보존 법칙, 일정 성분비 법칙</Text>
       <Text style={styles.description}>
