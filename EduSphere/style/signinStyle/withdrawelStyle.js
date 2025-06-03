@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  // ✅ Circular Floating Back Button
-  backIcon: {
+  // ✅ Unified Back Button Style (floating, top-left)
+  backButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: '800',
-    color: '#DC2626', // red tone
+    color: '#DC2626',
     textAlign: 'center',
     marginBottom: 16,
   },
