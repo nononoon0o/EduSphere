@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../style/ChapterStyle/Chapter4/Chapter4_02Styles'; // Adjust the path as necessary
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 export const subtitle = "02 신경계와 호르몬";
 
@@ -12,10 +13,7 @@ export default function Chapter4_02() {
   return (
     <View style={styles.container}>
       {/* 🔙 Back Button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter4')}>
-        <Ionicons name="arrow-back" size={20} color="#4a235a" />
-        <Text style={styles.backText}>돌아가기</Text>
-      </TouchableOpacity>
+      <BackButton onPress={() => router.replace('/chapters/Chapter4')} /> {/* ✅ Reusable */}
 
       {/* Title & Content */}
       <Text style={styles.subtitle}>{subtitle}</Text>
