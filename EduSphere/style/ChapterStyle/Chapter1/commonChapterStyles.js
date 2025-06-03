@@ -5,20 +5,15 @@ const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
-    padding: 20,
-    backgroundColor: '#f9fcff',
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  backText: {
-    fontSize: 16,
-    marginLeft: 8,
-    color: '#1e3a8a',
-    fontWeight: '600',
-  },
+  flex: 1,
+  paddingHorizontal: 20,
+  paddingTop: 100, // extra spacing under the back button/header
+  backgroundColor: '#F9FAFB', // ⬅️ more balanced and consistent neutral background
+},
+
+
+  // Removed: backButton, backText (now handled by shared BackButton component)
+
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -65,7 +60,7 @@ export default StyleSheet.create({
     color: '#1e3a8a',
   },
 
-  // LearnScreen-specific additions
+  // 🎓 LearnScreen-specific
   dropZone: {
     width: width * 0.4,
     height: 250,
@@ -141,6 +136,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 4,
   },
+
+  // 📚 Navigation buttons
   navigation: {
     flexDirection: 'row',
     justifyContent: 'space-between',
