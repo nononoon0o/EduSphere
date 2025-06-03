@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../style/sharedIndexStyles';
+import BackButton from '../../../components/BackButton'; // ✅ Import du composant
 
 export default function Chapter4Index() {
   const router = useRouter();
@@ -29,15 +30,9 @@ export default function Chapter4Index() {
       resizeMode="cover"
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <TouchableOpacity
-          onPress={() => router.replace('/HomeScreen')}
-          style={[styles.backButton, styles.backButtonStyled]}
-          activeOpacity={0.8}
-        >
-          <Feather name="arrow-left" size={18} color="#fff" />
-          <Text style={styles.backTextStyled}> Home</Text>
-        </TouchableOpacity>
-
+        {/* ✅ Use reusable BackButton */}
+            <BackButton onPress={() => router.replace('/HomeScreen')} label="Home" />
+        
         <View style={styles.headerRow}>
           <FontAwesome5 name="brain" size={24} color="#7d3c98" style={{ marginRight: 8 }} />
           <Text style={styles.chapterTitle}>{t('chapter4.title')}</Text>
