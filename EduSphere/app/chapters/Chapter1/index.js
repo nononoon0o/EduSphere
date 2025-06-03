@@ -2,16 +2,16 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  TouchableOpacity,
   ScrollView,
   Pressable,
   ImageBackground,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Feather, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+
 import styles from '../../../style/sharedIndexStyles';
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable back button
 
 export default function Chapter1Index() {
   const router = useRouter();
@@ -30,11 +30,10 @@ export default function Chapter1Index() {
       resizeMode="cover"
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <TouchableOpacity onPress={() => router.replace('/HomeScreen')} style={styles.backButton}>
-          <Feather name="arrow-left" size={20} color="#ffffff" />
-          <Text style={styles.backText}> Home</Text>
-        </TouchableOpacity>
+        {/* ✅ Use reusable BackButton */}
+        <BackButton onPress={() => router.replace('/HomeScreen')} label="Home" />
 
+        {/* 🧪 Header */}
         <View style={styles.headerRow}>
           <FontAwesome5 name="flask" size={30} color="#ffffff" style={styles.icon} />
           <Text style={styles.chapterTitle}>{t('chapter1.title')}</Text>
@@ -42,6 +41,7 @@ export default function Chapter1Index() {
 
         <View style={styles.divider} />
 
+        {/* ✅ Subtitle Cards */}
         {subtitles.map(({ id, route }) => (
           <Pressable
             key={id}
