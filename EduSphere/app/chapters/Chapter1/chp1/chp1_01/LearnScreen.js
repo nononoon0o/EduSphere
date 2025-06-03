@@ -9,6 +9,8 @@ import Animated, {
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/LearnScreenStyles';
+import BackButton from '../../../../../components/BackButton';
+
 
 
 const { width } = Dimensions.get('window');
@@ -123,10 +125,9 @@ function learnScreen() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}>
-        <Ionicons name="arrow-back" size={20} color="#2c3e50" />
-        <Text style={styles.backText}>뒤로가기</Text>
-      </TouchableOpacity>
+      {/* ✅ Shared 뒤로가기 버튼 */}
+            <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
+
       <Text style={styles.header}>변화 유형에 따라 이미지를 분류해보세요</Text>
       <View style={styles.sectionsRow}>
         <View style={styles.dropZone} onLayout={(e) => onLayoutZone(e, 'physical')}>
