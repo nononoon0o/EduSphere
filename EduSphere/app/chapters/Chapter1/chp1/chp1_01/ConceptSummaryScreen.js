@@ -1,19 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
+import BackButton from '../../../../../components/BackButton'; // ✅ Import shared back button
 
 export default function ConceptSummaryScreen() {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      {/* 뒤로가기 버튼 */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}>
-        <Ionicons name="arrow-back" size={20} color="#2c3e50" />
-        <Text style={styles.backText}>뒤로가기</Text>
-      </TouchableOpacity>
+      {/* ✅ Shared 뒤로가기 버튼 */}
+      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
 
       {/* 학습목표 */}
       <Text style={styles.text}>
@@ -45,12 +43,12 @@ export default function ConceptSummaryScreen() {
         <Text style={styles.description}>- 철이 녹슬어 산화철이 되는 것</Text>
       </View>
 
-      {/* 다음 페이지 버튼 */}
+      {/* 다음 버튼 */}
       <TouchableOpacity
         style={styles.nextButton}
         onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
       >
-        <Ionicons name="arrow-forward" size={24} color="#fff" />
+        <Ionicons name="arrow-forward" size={20} color="#fff" />
         <View style={styles.nextButtonCircle}>
           <Text style={styles.nextButtonText}>다음</Text>
         </View>
