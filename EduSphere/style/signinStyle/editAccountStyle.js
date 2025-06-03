@@ -78,17 +78,15 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  button: {
-    backgroundColor: "#3B82F6",
-    paddingVertical: 16,
-    borderRadius: 12,
-    alignItems: "center",
-    marginTop: 30,
-    shadowColor: "#3B82F6",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: Platform.OS === "android" ? 6 : 4,
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    alignSelf: 'flex-start',
   },
 
   buttonText: {
