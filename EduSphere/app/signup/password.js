@@ -1,4 +1,3 @@
-/* 회원가입 비밀번호 입력창 */
 import React, { useState, useRef, useEffect } from "react";
 import {
   Text,
@@ -12,6 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import Passwordmodal from "./PasswordModal";
 import styles from "../../style/signupStyle/PasswordStyle";
+import BackButton from "../../components/BackButton"; // ✅ Reusable BackButton
 
 const SignupPassword = () => {
   const [password, setPassword] = useState("");
@@ -30,35 +30,35 @@ const SignupPassword = () => {
 
   const isValidPasswordLength = (password) => password.length >= 8;
 
-const calculatePasswordStrength = (password) => {
-  if (/^(.)\1+$/.test(password)) return 0; // Extremely weak: repetitive characters
+  const calculatePasswordStrength = (password) => {
+    if (/^(.)\1+$/.test(password)) return 0;
 
-  const isLongEnough = password.length >= 8;
-  const checks = [
-    /[a-z]/.test(password),         // Lowercase
-    /[A-Z]/.test(password),         // Uppercase
-    /\d/.test(password),            // Numbers
-    /[!@#$%^&*(),.?":{}|<>]/.test(password) // Special characters
-  ];
+    const isLongEnough = password.length >= 8;
+    const checks = [
+      /[a-z]/.test(password),
+      /[A-Z]/.test(password),
+      /\d/.test(password),
+      /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    ];
 
-  const varietyCount = checks.filter(Boolean).length;
-  const strength = isLongEnough ? varietyCount : 0; // Add length check to variety count
+    const varietyCount = checks.filter(Boolean).length;
+    const strength = isLongEnough ? varietyCount : 0;
 
-  return Math.min(strength, 4); // Ensure max strength is 4
-};
+    return Math.min(strength, 4);
+  };
 
   const handlePasswordChange = (pw) => {
     setPassword(pw);
     const isValidLength = isValidPasswordLength(pw);
     const strength = calculatePasswordStrength(pw);
     setPasswordStrength(strength);
-  
+
     if (!isValidLength) {
       setValidationMessage("> 최소 8글자 이상 입력해주세요.");
       setValidationColor("#FF0000");
       return;
     }
-  
+
     switch (strength) {
       case 0:
         setValidationMessage("> 비밀번호 강도: 매우 약함");
@@ -94,28 +94,22 @@ const calculatePasswordStrength = (password) => {
       setConfirmValidationColor("red");
     }
   };
+
   const getProgressBarColor = () => {
     switch (passwordStrength) {
-      case 0:
-        return "#FF0000";
-      case 1:
-        return "#EE9D28";
-      case 2:
-        return "#FAE100";
-      case 3:
-        return "#9ACD32";
-      case 4:
-        return "#00BF18";
+      case 0: return "#FF0000";
+      case 1: return "#EE9D28";
+      case 2: return "#FAE100";
+      case 3: return "#9ACD32";
+      case 4: return "#00BF18";
     }
   };
 
-
-
   const handlePasswordAttempt = () => {
     if (passwordStrength <= 1) {
-      setPasswordModalVisible(true); // Show the modal if password strength is weak
+      setPasswordModalVisible(true);
     } else if (passwordStrength >= 3 && password === confirmPassword) {
-      setConfirmationModalVisible(true); // If password is strong, proceed directly
+      setConfirmationModalVisible(true);
       handlePassword();
     } else if (password !== confirmPassword) {
       setConfirmValidationMessage("> 비밀번호가 일치하지 않습니다.");
@@ -130,9 +124,9 @@ const calculatePasswordStrength = (password) => {
         { password },
         { withCredentials: true }
       );
-  
+
       if (response.data.success) {
-        router.push("/signup/detailScreen");  // Navigate to next screen on success
+        router.push("/signup/detailScreen");
       } else {
         setValidationMessage(response.data.message || "> 서버 오류 발생.");
         setValidationColor("red");
@@ -150,21 +144,18 @@ const calculatePasswordStrength = (password) => {
 
   useEffect(() => {
     Animated.timing(progressAnim, {
-      toValue: (passwordStrength / 4) * 100, // 4단계로 조정
+      toValue: (passwordStrength / 4) * 100,
       duration: 500,
       useNativeDriver: false,
     }).start();
   }, [passwordStrength]);
 
-  // The button is enabled if the passwords match, regardless of the strength
   const isPasswordsMatching = password === confirmPassword;
 
   return (
     <View style={styles.container}>
-      {/* 뒤로가기 버튼 */}
-      <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-        <Icon name="arrow-left" size={20} color="#fff" />
-      </TouchableOpacity>
+      {/* ✅ Reusable Back Button */}
+      <BackButton onPress={handleBack} />
 
       {/* 타이틀 */}
       <View style={styles.titleContainer}>
@@ -174,7 +165,7 @@ const calculatePasswordStrength = (password) => {
         </Text>
       </View>
 
-      {/* 비밀번호 입력 필드 */}
+      {/* 비밀번호 입력 */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -197,23 +188,23 @@ const calculatePasswordStrength = (password) => {
         </TouchableOpacity>
       </View>
 
-      {/* 프로그래스바 */}
+      {/* 강도 표시 */}
       <View style={styles.progressBarContainer}>
         {[...Array(4)].map((_, index) => (
           <View
             key={index}
             style={[styles.progressBarSegment, {
               backgroundColor: passwordStrength > index ? getProgressBarColor() : "#ccc",
-            }]}/>
+            }]}
+          />
         ))}
       </View>
 
-      {/* 유효성 메시지 */}
       <Text style={[styles.validationText, { color: validationColor }]}>
         {validationMessage}
       </Text>
 
-      {/* 비밀번호 확인 입력 필드 */}
+      {/* 비밀번호 확인 */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -235,7 +226,6 @@ const calculatePasswordStrength = (password) => {
         </TouchableOpacity>
       </View>
 
-      {/* 확인 메시지 */}
       <Text style={[styles.validationText, { color: confirmValidationColor }]}>
         {confirmValidationMessage}
       </Text>
@@ -264,4 +254,4 @@ const calculatePasswordStrength = (password) => {
   );
 };
 
-export default SignupPassword; 
+export default SignupPassword;
