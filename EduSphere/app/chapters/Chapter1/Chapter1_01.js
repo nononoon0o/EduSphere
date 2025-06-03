@@ -6,10 +6,12 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+
 import styles from '../../../style/ChapterStyle/Chapter1/commonChapterStyles';
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 export default function Chapter1_01() {
   const router = useRouter();
@@ -17,10 +19,8 @@ export default function Chapter1_01() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter1')}>
-        <Ionicons name="chevron-back" size={24} color="#1e3a8a" />
-        <Text style={styles.backText}>Home</Text>
-      </TouchableOpacity>
+      {/* ✅ Use the shared BackButton */}
+      <BackButton onPress={() => router.replace('/chapters/Chapter1')} label="Home" />
 
       <View style={styles.header}>
         <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
@@ -32,7 +32,9 @@ export default function Chapter1_01() {
       <View style={styles.sectionsContainer}>
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
+          onPress={() =>
+            router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')
+          }
         >
           <Text style={styles.sectionEmoji}>📘</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
@@ -40,7 +42,9 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+          onPress={() =>
+            router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')
+          }
         >
           <Text style={styles.sectionEmoji}>📦</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
@@ -48,7 +52,9 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
+          onPress={() =>
+            router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')
+          }
         >
           <Text style={styles.sectionEmoji}>🎬</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>
