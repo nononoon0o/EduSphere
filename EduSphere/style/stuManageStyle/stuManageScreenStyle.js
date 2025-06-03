@@ -4,14 +4,25 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F3F4F6',
-    padding: 16,
+    padding: 100,
+  },
+
+  // ✅ Back Button Wrapper
+  backWrapper: {
+    marginBottom: 16, // Spacing between back button and cards
+    alignSelf: 'flex-start',
+  },
+
+  // ✅ Card Styles
+  cardListWrapper: {
+    flex: 1,
   },
 
   card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
+    padding: 25,
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.06,
@@ -24,23 +35,24 @@ export default StyleSheet.create({
   studentName: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1E3A8A', // Indigo-800
+    color: '#1E3A8A',
     marginBottom: 4,
   },
 
   detailText: {
     fontSize: 15,
-    color: '#374151', // gray-700
+    color: '#374151',
     marginBottom: 2,
   },
 
   dashboardButton: {
-    backgroundColor: '#10B981', // emerald-500
+    backgroundColor: '#10B981',
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 20,
     alignItems: 'center',
     marginTop: 20,
+    marginBottom: 40,
   },
 
   dashboardButtonText: {
