@@ -26,7 +26,6 @@ const NextScreen = () => {
         <Text style={styles.title}>환영합니다!</Text>
         <Text style={styles.subtitle}>회원가입이 완료되었습니다.</Text>
         <TouchableOpacity style={styles.button} onPress={handleNavigate}>
-          <Text style={styles.buttonText}>로그인 화면으로 이동</Text>
         </TouchableOpacity>
       </View>
     </View>
