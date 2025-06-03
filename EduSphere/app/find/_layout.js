@@ -1,57 +1,70 @@
 // app/_layout.js
+import React, { useState } from "react";
 import { Stack } from "expo-router";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
 import BackPressModal from "./BackPressModal";
 
 export default function Layout() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
-  const handleBackPress = () => {
-    setModalVisible(true);
-  };
+  // ⬅️ Show modal when back button is pressed
+  const showBackModal = () => setModalVisible(true);
 
-  const handleCloseModal = () => {
+  // ❌ Hide modal
+  const hideModal = () => setModalVisible(false);
+
+  // ✅ Confirm back navigation
+  const confirmNavigation = () => {
     setModalVisible(false);
-  };
-
-  const handleConfirm = () => {
     router.replace("/ProfileScreen");
-    setModalVisible(false);
   };
+
   return (
     <>
       <Stack>
         <Stack.Screen
           name="findmain"
-          options={({ navigation }) => ({
+          options={{
             headerTitle: "아이디 / 비밀번호 찾기",
-            headerStyle: {
-              backgroundColor: "#1E1E1E",
-            },
-            headerTitleStyle: {
-              color: "white",
-            },
+            headerStyle: styles.headerStyle,
+            headerTitleStyle: styles.headerTitle,
             headerLeft: () => (
-              <TouchableOpacity
-                style={{ marginLeft: 0, padding: 5 }}
-                onPress={handleBackPress}
-              >
-                <FontAwesome5 name="arrow-left" size={20} color="white" />
+              <TouchableOpacity style={styles.backButton} onPress={showBackModal}>
+                <FontAwesome5 name="arrow-left" size={20} color="#2563EB" />
               </TouchableOpacity>
             ),
-          })}
+          }}
         />
       </Stack>
+
+      {/* 🔒 Modal on back press */}
       <BackPressModal
-        visible={modalVisible}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirm}
-        onText={"아이디 찾기"}
+        visible={isModalVisible}
+        onClose={hideModal}
+        onConfirm={confirmNavigation}
+        onText="아이디 찾기"
       />
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: "#F0F9FF", // light blue background
+    elevation: 0, // remove Android shadow
+    shadowOpacity: 0, // remove iOS shadow
+    borderBottomWidth: 0,
+  },
+  headerTitle: {
+    color: "#111827",
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  backButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+});
