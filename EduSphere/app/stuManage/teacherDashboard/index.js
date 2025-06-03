@@ -1,10 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet, ScrollView, TouchableOpacity, Platform, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  ActivityIndicator,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+  Alert
+} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getPathWithConventionsCollapsed } from 'expo-router/build/fork/getPathFromState-forks';
 import styles from '../../../style/stuManageStyle/teacherDashboardStyle';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 let WebDatePicker = null;
 if (Platform.OS === 'web') {
@@ -26,10 +37,9 @@ const chapterList = rawChapters.map(c => ({
   value: c.chapter
 }));
 
-const fileInputRef = useRef(null);
-
-const TeacherDashboard = ({ navigation }) => {
-  const [attendance, setAttendance] = useState([]);
+const TeacherDashboard = () => {
+  const router = useRouter();
+  const fileInputRef = useRef(null);
 
   const [assignments, setAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
@@ -44,7 +54,8 @@ const TeacherDashboard = ({ navigation }) => {
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const [loading, setLoading] = useState(true);
+  const [deadlines, setDeadlines] = useState({});
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const formatDate = (dateStr) => {
@@ -53,7 +64,6 @@ const TeacherDashboard = ({ navigation }) => {
     return date.toLocaleDateString('ko-KR');
   };
 
-  // 과제 목록 불러오기
   const fetchAssignments = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -66,44 +76,29 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
-  // 출결 기록 불러오기
-  const fetchAttendance = async () => {
+  const fetchDeadline = async () => {
     try {
-      const token = await AsyncStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/attendance', {
-        headers: { Authorization: `Bearer ${token}` }
+      const res = await axios.get('http://localhost:5000/api/deadlines');
+      const deadlineObj = {};
+      res.data.deadlines.forEach(d => {
+        deadlineObj[d.chapter] = d.deadline;
       });
-      setAttendance(res.data);
-    } catch (err) {
-      setError('출결 기록을 불러올 수 없습니다.');
+      setDeadlines(deadlineObj);
+    } catch (e) {
+      console.log(e);
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchDeadline = async () => {
-     try {
-        const res = await axios.get('http://localhost:5000/api/deadlines');
-        const deadlineObj = {};
-        res.data.deadlines.forEach(d => {
-          deadlineObj[d.chapter] = d.deadline;
-        });
-        setDeadlines(deadlineObj);
-      } catch (e) {
-        console.log(e);
-      }
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       await fetchAssignments();
-      await fetchAttendance();
       await fetchDeadline();
     };
     fetchData();
   }, []);
 
-  // 파일 선택 핸들러
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && (file.name.endsWith('.docx') || file.name.endsWith('.hwp'))) {
@@ -115,7 +110,6 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
-  // 새 과제 생성
   const handleCreateAssignment = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -128,9 +122,7 @@ const TeacherDashboard = ({ navigation }) => {
       }
 
       const res = await axios.post('http://localhost:5000/api/assignments', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
+        headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments([...assignments, res.data.assignment]);
       setNewAssignment({ title: '', description: '', dueDate: '' });
@@ -146,7 +138,6 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
-  // 과제 삭제
   const handleDeleteAssignment = async (id) => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -159,30 +150,9 @@ const TeacherDashboard = ({ navigation }) => {
     }
   };
 
-  // 출결 기록 저장
-  const handleSaveAttendance = async (studentId, status) => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/attendance', {
-        studentId,
-        status,
-        date: new Date().toISOString()
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      fetchAttendance();
-    } catch (err) {
-      setError('출결 기록 저장 실패');
-    }
-  };
-
   const handleSaveDeadline = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      console.log("전송할 데이터:", {
-        chapter: selectedChapter,
-        deadline: selectedDate ? selectedDate.toISOString() : null
-      });
       await axios.post(
         'http://localhost:5000/api/deadlines',
         {
@@ -193,7 +163,6 @@ const TeacherDashboard = ({ navigation }) => {
           headers: { Authorization: `Bearer ${token}` }
         }
       );
-      
       console.log('데드라인 저장 완료');
     } catch (e) {
       console.log('데드라인 저장 실패', e);
@@ -203,26 +172,29 @@ const TeacherDashboard = ({ navigation }) => {
   if (loading) return <ActivityIndicator size="large" />;
 
   return (
+    <View>
+      <TouchableOpacity style={styles.floatingBackButton} onPress={() => router.back()}>
+      <Ionicons name="arrow-back" size={20} color="#fff" />
+    </TouchableOpacity>
     <ScrollView style={styles.container}>
+
+
       {/* 과제 생성 섹션 */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>새 과제 생성</Text>
         <TextInput
-          id="assignment-title"
           style={styles.input}
           placeholder="과제명"
           value={newAssignment.title}
           onChangeText={t => setNewAssignment({ ...newAssignment, title: t })}
         />
         <TextInput
-          id="assignment-description"
           style={styles.input}
           placeholder="설명"
           value={newAssignment.description}
           onChangeText={t => setNewAssignment({ ...newAssignment, description: t })}
         />
         <WebDatePicker
-          id="assignment-due-date"
           selected={newAssignmentDate}
           onChange={date => {
             setNewAssignmentDate(date);
@@ -275,34 +247,6 @@ const TeacherDashboard = ({ navigation }) => {
         />
       </View>
 
-      {/* 출결 관리 섹션 */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>오늘의 출결 관리</Text>
-        <FlatList
-          data={attendance}
-          keyExtractor={item => item._id}
-          renderItem={({ item }) => (
-            <View style={styles.attendanceItem}>
-              <Text>{item.studentId}</Text>
-              <View style={styles.attendanceButtons}>
-                <TouchableOpacity
-                  style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'green' }]}
-                  onPress={() => handleSaveAttendance(item.studentId, 'present')}
-                >
-                  <Text style={styles.appButtonText}>출석</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.appButtonContainer, styles.attendanceBtn, { backgroundColor: 'red' }]}
-                  onPress={() => handleSaveAttendance(item.studentId, 'absent')}
-                >
-                  <Text style={styles.appButtonText}>결석</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          )}
-        />
-      </View>
-
       {/* 챕터별 데드라인 설정 */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>챕터별 데드라인 설정</Text>
@@ -318,28 +262,26 @@ const TeacherDashboard = ({ navigation }) => {
           />
         )}
         <WebDatePicker
-          id="deadline-date"
           selected={selectedDate}
           onChange={date => setSelectedDate(date)}
           showTimeSelect
           timeIntervals={10}
-          timeFormat="HH:mm" 
+          timeFormat="HH:mm"
           dateFormat="yyyy-MM-dd HH:mm"
           placeholderText="날짜를 선택하세요"
           popperPlacement="bottom-start"
           className="react-datepicker__input"
           style={{ width: '100%', height: 40, fontSize: 16 }}
         />
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={handleSaveDeadline}
-        >
+        <TouchableOpacity style={styles.saveButton} onPress={handleSaveDeadline}>
           <Text style={{ fontWeight: 'bold' }}>데드라인 저장</Text>
         </TouchableOpacity>
       </View>
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </ScrollView>
+    </View>
   );
 };
+
 export default TeacherDashboard;
