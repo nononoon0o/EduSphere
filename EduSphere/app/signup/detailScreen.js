@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import axios from 'axios';
 import styles from '../../style/signupStyle/DetailStyle';
@@ -7,10 +7,10 @@ import BackButton from '../../components/BackButton';
 
 const DetailForm = () => {
   const router = useRouter();
-  const [nickname, setNickname] = useState("");
-  const [school, setSchool] = useState("");
-  const [classId, setClassId] = useState("");
-  const [role, setRole] = useState("student");
+  const [nickname, setNickname] = useState('');
+  const [school, setSchool] = useState('');
+  const [classId, setClassId] = useState('');
+  const [role, setRole] = useState('student');
   const [studentNumber, setStudentNumber] = useState('');
   const [subjects, setSubjects] = useState('');
   const [error, setError] = useState('');
@@ -18,30 +18,15 @@ const DetailForm = () => {
   const handleSubmit = async () => {
     setError('');
 
-    if (!nickname) {
-      setError('이름(닉네임)을 입력해주세요');
-      return;
-    }
-    if (!school) {
-      setError('학교명을 입력해주세요');
-      return;
-    }
-    if (role === 'teacher' && !classId) {
-      setError('담당 반을 입력해주세요');
-      return;
-    }
+    if (!nickname) return setError('이름(닉네임)을 입력해주세요');
+    if (!school) return setError('학교명을 입력해주세요');
+    if (role === 'teacher' && !classId) return setError('담당 반을 입력해주세요');
     if (role === 'student') {
-      if (!studentNumber) {
-        setError('학번을 입력해주세요');
-        return;
-      }
-      if (!subjects) {
-        setError('수강 과목을 입력해주세요');
-        return;
-      }
+      if (!studentNumber) return setError('학번을 입력해주세요');
+      if (!subjects) return setError('수강 과목을 입력해주세요');
     }
 
-    const subjectsArray = subjects.split(',').map(s => s.trim()).filter(s => s.length > 0);
+    const subjectsArray = subjects.split(',').map(s => s.trim()).filter(s => s);
 
     try {
       const response = await axios.post('http://localhost:5000/api/signup/details', {
@@ -51,7 +36,10 @@ const DetailForm = () => {
         role,
         studentNumber,
         subjects: subjectsArray,
-      }, { withCredentials: true, headers: { 'Content-Type': 'application/json' }});
+      }, {
+        withCredentials: true,
+        headers: { 'Content-Type': 'application/json' },
+      });
 
       if (response.data.success) {
         router.push('/signup/nextscreen');
@@ -68,111 +56,96 @@ const DetailForm = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <BackButton target="/signup/password" color="#fff" />
+    <ScrollView contentContainerStyle={styles.scroll}>
+      <BackButton to="/signup/password" />
+      <View style={styles.card}>
+        <Text style={styles.title}>👋 추가 정보를 입력해주세요</Text>
 
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>추가 정보를 입력해주세요</Text>
-      </View>
+        {/* Role Switch */}
+        <View style={styles.roleSwitch}>
+          <TouchableOpacity
+            style={[styles.roleTab, role === 'student' && styles.activeTab]}
+            onPress={() => setRole('student')}
+          >
+            <Text style={role === 'student' ? styles.activeTabText : styles.roleText}>학생</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.roleTab, role === 'teacher' && styles.activeTab]}
+            onPress={() => setRole('teacher')}
+          >
+            <Text style={role === 'teacher' ? styles.activeTabText : styles.roleText}>교사</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.roleContainer}>
-        <TouchableOpacity
-          style={[styles.roleButton, role === 'student' && styles.activeRole]}
-          onPress={() => setRole('student')}
-        >
-          <Text style={styles.buttonText}>학생</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.roleButton, role === 'teacher' && styles.activeRole]}
-          onPress={() => setRole('teacher')}
-        >
-          <Text style={styles.buttonText}>교사</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="이름(닉네임)"
-          placeholderTextColor="#bbb"
+          placeholderTextColor="#aaa"
           value={nickname}
           onChangeText={setNickname}
         />
-      </View>
-
-      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="학교명"
-          placeholderTextColor="#bbb"
+          placeholderTextColor="#aaa"
           value={school}
           onChangeText={setSchool}
         />
-      </View>
 
-      {role === 'student' && (
-        <>
-          <View style={styles.inputContainer}>
+        {role === 'student' && (
+          <>
             <TextInput
               style={styles.input}
               placeholder="반 입력"
-              placeholderTextColor="#bbb"
+              placeholderTextColor="#aaa"
               keyboardType="numeric"
               value={classId}
               onChangeText={setClassId}
             />
-          </View>
-          <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
               placeholder="학번"
-              placeholderTextColor="#bbb"
+              placeholderTextColor="#aaa"
               keyboardType="numeric"
               value={studentNumber}
               onChangeText={setStudentNumber}
             />
-          </View>
-          <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
               placeholder="수강 과목 (콤마로 구분)"
-              placeholderTextColor="#bbb"
+              placeholderTextColor="#aaa"
               value={subjects}
               onChangeText={setSubjects}
             />
-          </View>
-        </>
-      )}
+          </>
+        )}
 
-      {role === 'teacher' && (
-        <>
-          <View style={styles.inputContainer}>
+        {role === 'teacher' && (
+          <>
             <TextInput
               style={styles.input}
               placeholder="담당 반 (예: 2025-111)"
-              placeholderTextColor="#bbb"
+              placeholderTextColor="#aaa"
               value={classId}
               onChangeText={setClassId}
             />
-          </View>
-          <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
               placeholder="담당 과목 (예: 수학)"
-              placeholderTextColor="#bbb"
+              placeholderTextColor="#aaa"
               value={subjects}
               onChangeText={setSubjects}
             />
-          </View>
-        </>
-      )}
+          </>
+        )}
 
-      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>다음 단계로</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+          <Text style={styles.submitText}>다음 단계로</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
