@@ -65,12 +65,12 @@ export default function EditAccountScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* ✅ Reusable Back Button */}
       <BackButton onPress={handleBack} />
 
-      <Text style={styles.title}>계정 정보 수정</Text>
-
       <View style={styles.card}>
+        {/* ✅ Title moved inside card */}
+        <Text style={styles.title}>계정 정보 수정</Text>
+
         {/* 닉네임 */}
         <View style={styles.inputWrapper}>
           <Icon name="user" size={18} color="#9CA3AF" style={styles.inputIcon} />
@@ -131,11 +131,12 @@ export default function EditAccountScreen() {
             />
           )}
         </View>
-      </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText}>저장</Text>
-      </TouchableOpacity>
+        {/* ✅ Save Button moved inside card */}
+        <TouchableOpacity style={styles.button} onPress={handleSave}>
+          <Text style={styles.buttonText}>저장</Text>
+        </TouchableOpacity>
+      </View>
 
       <EditAccountModal
         visible={modalVisible}
