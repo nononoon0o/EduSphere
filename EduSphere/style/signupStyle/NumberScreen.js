@@ -39,27 +39,6 @@ const nextstyle = StyleSheet.create({
     marginBottom: 30,
     lineHeight: 26,
   },
-
-  HomeButton: {
-    width: '100%',
-    height: 52,
-    backgroundColor: '#3B82F6',
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#3B82F6',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 8,
-    elevation: Platform.OS === 'android' ? 5 : 0,
-  },
-
-  HomeButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '600',
-    letterSpacing: 0.3,
-  },
 });
 
 export default nextstyle;
