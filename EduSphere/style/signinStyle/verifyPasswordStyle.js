@@ -48,16 +48,28 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
 
+  inputContainer: {
+    position: 'relative',
+    width: '100%',
+    marginBottom: 20,
+  },
+
   input: {
     height: 50,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     borderRadius: 10,
     paddingHorizontal: 16,
+    paddingRight: 40, // space for icon
     fontSize: 16,
     backgroundColor: '#F9FAFB',
     color: '#111827',
-    marginBottom: 20,
+  },
+
+  eyeIcon: {
+    position: 'absolute',
+    right: 12,
+    top: 14,
   },
 
   button: {
