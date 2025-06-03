@@ -1,99 +1,98 @@
-// // style/VideoLearning/videoLearningStyles.js
-// import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-// export default StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     paddingTop: 50,
-//     alignItems: 'center',
-//     backgroundColor: '#fff7f5',
-//   },
-//   text: {
-//     fontSize: 20,
-//     color: '#c0392b',
-//     fontWeight: '600',
-//     marginBottom: 20,
-//   },
-//   videoContainer: {
-//     width: '90%',
-//     height: Dimensions.get('window').width * 0.5625,
-//     borderRadius: 10,
-//     overflow: 'hidden',
-//   },
-//   video: {
-//     flex: 1,
-//   },
-//   iframe: {
-//     borderWidth: 0,
-//   },
-//   backButton: {
-//     position: 'absolute',
-//     top: 10,
-//     left: 10,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     padding: 8,
-//     backgroundColor: '#ecf0f1',
-//     borderRadius: 8,
-//   },
-//   backText: {
-//     marginLeft: 5,
-//     fontSize: 16,
-//     color: '#2c3e50',
-//   },
-//   prevNavButton: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-//     width: 200,
-//     height: 50,
-//     backgroundColor: '#fff',
-//     borderRadius: 25,
-//     paddingHorizontal: 16,
-//     marginTop: 30,
-//     alignSelf: 'center',
-//   },
-//   prevNavCircle: {
-//     width: 42,
-//     height: 42,
-//     borderRadius: 21,
-//     backgroundColor: '#3498db',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   prevNavText: {
-//     fontSize: 14,
-//     fontWeight: '600',
-//     color: '#3498db',
-//   },
+const { width } = Dimensions.get('window');
 
-//   // ─── 학습 완료 버튼 스타일 ─────────────────────────────
-//   completeButton: {
-//     backgroundColor: '#4caf50',
-//     padding: 16,
-//     width: '90%',
-//     alignItems: 'center',
-//     borderRadius: 8,
-//     marginTop: 20,
-//   },
-//   completeButtonText: {
-//     color: '#fff',
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//   },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f9f9f9',
+    paddingTop: 60,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 20,
+  },
 
-//   // ─── 평가하기 버튼 스타일 ─────────────────────────────
-//   evalButton: {
-//     backgroundColor: '#ffa000',
-//     padding: 16,
-//     width: '90%',
-//     alignItems: 'center',
-//     borderRadius: 8,
-//     marginTop: 12,
-//   },
-//   evalButtonText: {
-//     color: '#fff',
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//   },
-// });
+  backButton: {
+    position: 'absolute',
+    top: 30,
+    left: 16,
+    zIndex: 10,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+
+  backText: {
+    fontSize: 16,
+    marginLeft: 6,
+    color: '#2c3e50',
+    fontWeight: '500',
+  },
+
+  text: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginVertical: 20,
+    textAlign: 'center',
+    color: '#1a1a1a',
+  },
+
+  videoContainer: {
+    width: width * 0.9,
+    height: width * 0.5625,
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#000',
+    marginBottom: 20,
+  },
+
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+
+  iframe: {
+    border: 'none',
+    borderRadius: 12,
+    marginTop: 10,
+    alignSelf: 'center',
+  },
+
+  prevNavButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 180,
+    height: 50,
+    backgroundColor: '#3498db',
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    marginTop: 20,
+    alignSelf: 'center',
+  },
+
+  prevNavCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  prevNavText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
+  },
+});
+
+export default styles;
