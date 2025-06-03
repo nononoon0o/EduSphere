@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
 
+
 export default function ConceptSummaryScreen() {
   const router = useRouter();
 
