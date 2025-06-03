@@ -3,7 +3,7 @@ import { StyleSheet, Platform } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#F3F4F6', // light gray background
     paddingHorizontal: '6%',
     paddingTop: Platform.OS === 'ios' ? 60 : 40,
   },
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     left: 16,
     padding: 10,
     zIndex: 10,
-    backgroundColor: '#E0E7FF',
+    backgroundColor: '#DBEAFE', // soft blue
     borderRadius: 8,
   },
   titleContainer: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#1E3A8A',
+    color: '#1D4ED8', // deep blue
     textAlign: 'center',
   },
   roleContainer: {
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 10,
-    backgroundColor: '#E5E7EB',
+    backgroundColor: '#E5E7EB', // neutral gray
     marginHorizontal: 10,
   },
   activeRole: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#3B82F6', // active blue
   },
   buttonText: {
     fontSize: 16,
@@ -63,19 +63,19 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: '#111827',
+    color: '#1F2937', // neutral dark
   },
   iconRight: {
     marginLeft: 10,
   },
   button: {
-    backgroundColor: '#2563EB',
+    backgroundColor: '#1D4ED8', // strong indigo
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 24,
-    shadowColor: '#2563EB',
+    shadowColor: '#1D4ED8',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   errorText: {
-    color: '#DC2626',
+    color: '#EF4444', // red-500
     fontSize: 14,
     textAlign: 'center',
     marginTop: 8,
