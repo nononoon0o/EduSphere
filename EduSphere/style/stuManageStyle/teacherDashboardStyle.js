@@ -133,29 +133,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
-
-  // ✅ Back Button Styles
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    backgroundColor: '#E5E7EB',
-    padding: 10,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-  },
-
-  backButtonIcon: {
-    fontSize: 18,
-    color: '#1F2937',
-    marginRight: 8,
-  },
-
-  backButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1F2937',
-  },
+  
 });
 
 export default styles;
