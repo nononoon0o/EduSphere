@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/stuManageStyle/studentDetailStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
 
 export default function StudentDetail() {
   const { id } = useLocalSearchParams();
@@ -71,10 +72,10 @@ export default function StudentDetail() {
   }
 
   return (
+    <View>
+       <BackButton onPress={() => router.back()} />
     <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-        <Icon name="arrow-left" size={20} color="#1F2937" />
-      </TouchableOpacity>
+     
 
       <View style={styles.card}>
         <Text style={styles.name}>{student.nickname}</Text>
@@ -133,5 +134,6 @@ export default function StudentDetail() {
         <Text style={styles.feedbackText}>교사 코멘트 (추후 연동)</Text>
       </View>
     </ScrollView>
+    </View>
   );
 }
