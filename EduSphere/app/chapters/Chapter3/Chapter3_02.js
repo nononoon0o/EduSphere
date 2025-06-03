@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../style/ChapterStyle/Chapter3/Chapter3_02Styles'; // Adjust the path as necessary
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 export const subtitle = '일과 에너지';
 
@@ -12,10 +13,8 @@ export default function Chapter3_02() {
   return (
     <View style={styles.container}>
       {/* 🔙 Back Button */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter3')}>
-        <Ionicons name="arrow-back" size={20} color="#1e3a8a" />
-        <Text style={styles.backText}>돌아가기</Text>
-      </TouchableOpacity>
+      <BackButton onPress={() => router.replace('/chapters/Chapter3')} /> {/* ✅ Reusable */}
+            {/* Title & Content */}
 
       <Text style={styles.title}>02 {subtitle}</Text>
       <Text style={styles.content}>
