@@ -1,11 +1,29 @@
-// style/stuManageStyle/teacherDashboardStyle.js
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
-    padding: 16,
+    padding: 100,
+  },
+
+  // ✅ Floating circular back button (top-left corner)
+  floatingBackButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 48 : 28,
+    left: 20,
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
   },
 
   section: {
@@ -133,7 +151,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
-  
 });
 
 export default styles;
