@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
-import BackButton from '../../../../../components/BackButton'; // ✅ Import shared back button
+import BackButton from '../../../../../components/BackButton';
 
 export default function ConceptSummaryScreen() {
   const router = useRouter();
@@ -11,44 +11,61 @@ export default function ConceptSummaryScreen() {
   return (
     <View style={styles.container}>
       {/* ✅ Shared 뒤로가기 버튼 */}
-      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
+            <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_03')} />
 
-      {/* 학습목표 */}
+      {/* 학습 목표 */}
       <Text style={styles.text}>
-        📘 학습목표 : 물리 변화와 화학 변화의 차이를 설명할 수 있다.
+        📘 학습목표 : 화학 반응을 화학 반응식으로 표현할 수 있다.
       </Text>
 
-      {/* 주요개념 섹션 */}
+      {/* 주요 개념 섹션 */}
       <View style={styles.conceptSection}>
-        {/* 물리변화 */}
-        <Text style={styles.conceptTitle}>🔷 물리변화</Text>
+        {/* 화학 반응식 */}
+        <Text style={styles.conceptTitle}>⚗️ 화학 반응식</Text>
 
-        <Text style={styles.itemTitle}>특징 :</Text>
-        <Text style={styles.description}>- 새로운 물질이 만들어지지 않습니다.</Text>
-        <Text style={styles.description}>- 변화는 보통 되돌릴 수 있습니다.</Text>
+        <Text style={styles.itemTitle}>정의 :</Text>
+        <Text style={styles.description}>
+          화학 반응이 일어날 때, 반응하는 물질과 생성되는 물질을 기호와 수식으로 간단하게 나타낸 식입니다.
+        </Text>
 
-        <Text style={styles.itemTitle}>예시 :</Text>
-        <Text style={styles.description}>- 종이를 자르는 것</Text>
-        <Text style={styles.description}>- 얼음이 녹아 물이 되는 것</Text>
-
-        {/* 화학변화 */}
-        <Text style={styles.conceptTitle}>🔶 화학변화</Text>
-
-        <Text style={styles.itemTitle}>특징 :</Text>
-        <Text style={styles.description}>- 원래의 물질이 사라지고 새로운 물질이 생성됩니다.</Text>
-        <Text style={styles.description}>- 변화는 보통 되돌리기 어렵습니다.</Text>
+        <Text style={styles.itemTitle}>구성 요소 :</Text>
+        <Text style={styles.description}>- 반응물(Reactants): 반응하기 전의 물질 (화학 반응식의 왼쪽에 위치)</Text>
+        <Text style={styles.description}>- 생성물(Products): 반응한 뒤에 생성된 물질 (화학 반응식의 오른쪽에 위치)</Text>
 
         <Text style={styles.itemTitle}>예시 :</Text>
-        <Text style={styles.description}>- 나무가 타서 재가 되는 것</Text>
-        <Text style={styles.description}>- 철이 녹슬어 산화철이 되는 것</Text>
+        <Text style={styles.description}>2H₂ + 1O₂ → 2H₂O</Text>
+
+        {/* 화학 변화 */}
+        <Text style={styles.conceptTitle}>🔢 화학변화</Text>
+
+        <Text style={styles.itemTitle}>정의 :</Text>
+        <Text style={styles.description}>
+          화학 반응식에서 물질 앞에 붙는 숫자로, 입자의 수(개수)를 나타냅니다.
+        </Text>
+
+        <Text style={styles.itemTitle}>역할 :</Text>
+        <Text style={styles.description}>
+          화학 반응이 일어날 때, 반응 전과 후의 원자 수를 같게 만들어 줍니다. (질량 보존의 법칙)
+        </Text>
+
+        <Text style={styles.itemTitle}>주의할 점 :</Text>
+        <Text style={styles.description}>
+          화학식 자체(원자나 분자 내부)는 절대 바꾸지 않고, 앞에 있는 숫자(계수)만 조정합니다.
+        </Text>
+
+        <Text style={styles.itemTitle}>예시 :</Text>
+        <Text style={styles.description}>2H₂ + 1O₂ → 2H₂O</Text>
+        <Text style={styles.description}>- 수소 분자(H₂)는 2개</Text>
+        <Text style={styles.description}>- 산소 분자(O₂)는 1개가 반응해서</Text>
+        <Text style={styles.description}>- 물 분자(H₂O) 2개가 생성됨</Text>
       </View>
 
-      {/* 다음 버튼 */}
+      {/* 다음 페이지 버튼 */}
       <TouchableOpacity
         style={styles.nextButton}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+        onPress={() => router.push('/chapters/Chapter1/Chapter1_01')}
       >
-        <Ionicons name="arrow-forward" size={20} color="#fff" />
+        <Ionicons name="arrow-forward" size={24} color="#fff" />
         <View style={styles.nextButtonCircle}>
           <Text style={styles.nextButtonText}>다음</Text>
         </View>
