@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../style/ChapterStyle/Chapter2/Chapter2_03Styles';
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 const PressureWindScreen = () => {
   const router = useRouter();
@@ -11,10 +12,7 @@ const PressureWindScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter2')}>
-        <Ionicons name="chevron-back" size={22} color="#1e3a8a" />
-        <Text style={styles.backText}>Home</Text>
-      </TouchableOpacity>
+        <BackButton onPress={() => router.replace('/chapters/Chapter2')} /> {/* ✅ Reusable */}
 
       <Text style={styles.title}>{t('chapter2_03.title')}</Text>
       <Text style={styles.subtitle}>{t('chapter2_03.description')}</Text>
