@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../style/ChapterStyle/Chapter2/Chapter2_04Styles'; // Adjust the path as necessary
+import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
 
 const AtmosphereMenuScreen = () => {
   const router = useRouter();
@@ -10,10 +11,7 @@ const AtmosphereMenuScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Back Navigation */}
-      <TouchableOpacity style={styles.backButton} onPress={() => router.replace('/chapters/Chapter2')}>
-        <Ionicons name="chevron-back" size={22} color="#1e3a8a" />
-        <Text style={styles.backText}>돌아가기</Text>
-      </TouchableOpacity>
+            <BackButton onPress={() => router.replace('/chapters/Chapter2')} /> {/* ✅ Reusable */}
 
       <Text style={styles.title}>04 날씨의 변화</Text>
       <Text style={styles.subtitle}>날씨 변화는 단순히 기온이나 비가 내리는 정도를 넘어서...</Text>
