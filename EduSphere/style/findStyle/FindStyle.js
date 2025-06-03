@@ -3,32 +3,52 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#F9FAFB",
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 50,
     paddingBottom: 30,
+  },
+
+  // ✅ Back Button (top left)
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#2563EB", // blue
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    top: 20,
+    left: 20,
+    zIndex: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 
   tabContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 30,
+    marginTop: 60,
   },
 
   tabButton: {
     flex: 1,
     paddingVertical: 14,
-    marginHorizontal: 5,
-    borderRadius: 12,
-    backgroundColor: "#F3F4F6",
+    marginHorizontal: 6,
+    borderRadius: 10,
     borderWidth: 1.5,
-    borderColor: "#D1D5DB",
+    borderColor: "#CBD5E1",
     alignItems: "center",
+    backgroundColor: "#E5E7EB",
   },
 
   selectedTab: {
-    backgroundColor: "#3B82F6", // blue
-    borderColor: "#3B82F6",
+    backgroundColor: "#2563EB",
+    borderColor: "#2563EB",
   },
 
   unselectedTab: {
@@ -38,7 +58,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#111827",
+    color: "#1F2937",
   },
 
   tabTextSelected: {
@@ -49,19 +69,44 @@ const styles = StyleSheet.create({
 
   inputContainer: {
     width: "100%",
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 50,
   },
 
   input: {
     borderBottomWidth: 2,
-    borderBottomColor: "#3B82F6",
+    borderBottomColor: "#2563EB",
     height: 48,
     fontSize: 16,
-    paddingLeft: 8,
+    paddingLeft: 10,
     color: "#111827",
-    backgroundColor: "#F9FAFB",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+  },
+
+  numberinput: {
+    flex: 1,
+    height: 48,
+    fontSize: 16,
+    paddingHorizontal: 12,
+    backgroundColor: "#FFFFFF",
+    borderColor: "#2563EB",
+    borderWidth: 1.5,
+    borderRadius: 10,
+    marginRight: 8,
+  },
+
+  confirmButton: {
+    backgroundColor: "#2563EB",
+    paddingHorizontal: 14,
+    paddingVertical: 12,
     borderRadius: 8,
+  },
+
+  confirmText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+    fontSize: 14,
   },
 
   inputPlaceholder: {
@@ -79,9 +124,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
 
   buttonText: {
