@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Text, TextInput, TouchableOpacity, SafeAreaView, Alert, View
+  Text,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+  Alert,
+  View
 } from 'react-native';
 import { useRouter } from "expo-router";
 import EditAccountModal from './editAccountModal';
@@ -8,6 +13,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/signinStyle/editAccountStyle';
+import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
 
 export default function EditAccountScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -59,10 +65,8 @@ export default function EditAccountScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* ✅ Circular Floating Back Button */}
-      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-        <Icon name="arrow-left" size={20} color="#fff" />
-      </TouchableOpacity>
+      {/* ✅ Reusable Back Button */}
+      <BackButton onPress={handleBack} />
 
       <Text style={styles.title}>계정 정보 수정</Text>
 
