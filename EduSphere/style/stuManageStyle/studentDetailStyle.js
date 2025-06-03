@@ -4,15 +4,12 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F0F4F8',
-    padding: 20,
+    padding: 100,
   },
 
-  backButton: {
-    marginBottom: 16,
+  backWrapper: {
+    marginBottom: 24, // ✅ espace ajouté
     alignSelf: 'flex-start',
-    padding: 8,
-    borderRadius: 8,
-    backgroundColor: '#E5E7EB',
   },
 
   card: {
