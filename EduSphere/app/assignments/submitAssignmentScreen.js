@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -66,45 +67,48 @@ export default function SubmitAssignmentScreen() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.card}>
-        {/* ✅ Circular Icon Back Button */}
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={20} color="#fff" />
-        </TouchableOpacity>
+    <View style={{ flex: 1, backgroundColor: '#F3F4F6' }}> {/* ✅ Unified Background */}
+      {/* ✅ Back Button */}
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Ionicons name="arrow-back" size={20} color="#fff" />
+      </TouchableOpacity>
 
-        <Text style={styles.title}>과제 제출</Text>
+      {/* ✅ Scrollable content */}
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.card}>
+          <Text style={styles.title}>과제 제출</Text>
 
-        <Dropdown
-          style={styles.dropdown}
-          data={assignments}
-          labelField="label"
-          valueField="value"
-          placeholder="제출할 과제를 선택하세요"
-          value={selectedAssignment}
-          onChange={(item) => setSelectedAssignment(item.value)}
-          maxHeight={300}
-        />
+          <Dropdown
+            style={styles.dropdown}
+            data={assignments}
+            labelField="label"
+            valueField="value"
+            placeholder="제출할 과제를 선택하세요"
+            value={selectedAssignment}
+            onChange={(item) => setSelectedAssignment(item.value)}
+            maxHeight={300}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="과제 제목"
-          value={title}
-          onChangeText={setTitle}
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="과제 제목"
+            value={title}
+            onChangeText={setTitle}
+          />
 
-        <TextInput
-          style={[styles.input, styles.textArea]}
-          placeholder="내용"
-          value={content}
-          onChangeText={setContent}
-          multiline
-        />
+          <TextInput
+            style={[styles.input, styles.textArea]}
+            placeholder="내용"
+            value={content}
+            onChangeText={setContent}
+            multiline
+          />
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>제출하기</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.submitButtonText}>제출하기</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
