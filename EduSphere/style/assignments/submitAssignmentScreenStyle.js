@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 
-  // ✅ Circular Back Button
+  // ✅ Circular Back Button - FIXED version
   backButton: {
     width: 40,
     height: 40,
@@ -85,8 +85,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#1F2937',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
-    alignSelf: 'flex-start',
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 48 : 28,
+    left: 20,
+    zIndex: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
