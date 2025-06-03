@@ -8,17 +8,17 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
-  // ✅ Circular Icon Back Button (replaces old styles)
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#1F2937',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
-    alignSelf: 'flex-start',
-  },
+  // // ✅ Circular Icon Back Button (replaces old styles)
+  // backButton: {
+  //   width: 40,
+  //   height: 40,
+  //   borderRadius: 20,
+  //   backgroundColor: '#1F2937',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   marginBottom: 16,
+  //   alignSelf: 'flex-start',
+  // },
 
   // 🔺 Header Title Card
   headerTitle: {
