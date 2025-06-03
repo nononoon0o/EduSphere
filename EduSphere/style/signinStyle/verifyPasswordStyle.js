@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F3F4F6',
@@ -9,71 +9,69 @@ export default StyleSheet.create({
     padding: 24,
   },
 
-  backIcon: {
-    position: 'absolute',
-    top: Platform.OS === 'ios' ? 50 : 30,
-    left: 20,
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: '#1F2937',
-    padding: 12,
-    borderRadius: 32,
-    zIndex: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    alignSelf: 'flex-start',
   },
 
   card: {
     width: '100%',
-    maxWidth: 480,
-    backgroundColor: '#FFFFFF',
+    maxWidth: 500,
+    backgroundColor: '#fff',
     borderRadius: 20,
     padding: 32,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.1,
-    shadowRadius: 24,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
+    elevation: 3,
   },
 
   title: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#111827',
+    fontSize: 24,
+    fontWeight: '700',
     textAlign: 'center',
     marginBottom: 12,
+    color: '#111827',
   },
 
   subtitle: {
-    fontSize: 18,
+    fontSize: 14,
     color: '#6B7280',
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 24,
   },
 
   input: {
-    height: 56,
+    height: 50,
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    borderRadius: 12,
-    paddingHorizontal: 20,
-    fontSize: 18,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    fontSize: 16,
     backgroundColor: '#F9FAFB',
     color: '#111827',
-    marginBottom: 28,
+    marginBottom: 20,
   },
 
   button: {
     backgroundColor: '#2563EB',
-    paddingVertical: 16,
-    borderRadius: 12,
+    paddingVertical: 14,
+    borderRadius: 10,
     alignItems: 'center',
-    shadowColor: '#2563EB',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 3,
   },
 
   buttonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
+    color: '#fff',
+    fontSize: 16,
     fontWeight: '700',
   },
 });
+
+export default styles;
