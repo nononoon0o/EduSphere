@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'; // 아이콘 사용
 import { router } from 'expo-router'; // 뒤로가기 기능
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { recordAttendanceOnComplete } from '../../../../service/attendanceService';
+import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLearningStyle';
 import BackButton from '../../../../../components/BackButton';
 
