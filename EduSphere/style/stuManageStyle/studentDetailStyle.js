@@ -88,4 +88,20 @@ export default StyleSheet.create({
     color: '#3B82F6',
     fontWeight: 'bold',
   },
+
+  sectionHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    gap: 6,
+  },
+  sectionIcon: {
+    fontSize: 22,
+    marginRight: 4,
+  },
+  sectionTitleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1E3A8A',
+  },
 });

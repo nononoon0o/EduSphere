@@ -4,14 +4,20 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/stuManageStyle/studentDetailStyle';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
+
+const allChapters = [
+  { chapter: "Chapter1_01", title: "Chapter1_01" },
+  { chapter: "Chapter1_02", title: "Chapter1_02" },
+  { chapter: "Chapter1_03", title: "Chapter1_03" }
+];
 
 export default function StudentDetail() {
   const { id } = useLocalSearchParams();
   const [student, setStudent] = useState(null);
   const [attendance, setAttendance] = useState([]);
   const [assignments, setAssignments] = useState([]);
+  const [deadlines, setDeadlines] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -28,12 +34,17 @@ export default function StudentDetail() {
   };
 
   const fetchAttendance = async (studentId) => {
+    console.log('서버에 요청하는 studentId:', studentId);
     try {
       const token = await AsyncStorage.getItem('token');
       const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setAttendance(res.data.attendance || []);
+      if (res.data.success && res.data.records) {
+        setAttendance(res.data.records);
+      } else {
+        setAttendance([]);
+      }
     } catch (err) {
       console.error('출결 정보 요청 실패:', err.response?.data || err.message);
     }
@@ -50,12 +61,25 @@ export default function StudentDetail() {
       console.error('과제 정보 요청 실패:', err.response?.data || err.message);
     }
   };
+  
+  const fetchDeadlines = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/api/deadlines/all', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setDeadlines(res.data.deadlines || []);
+    } catch (err) {
+      console.error('데드라인 정보 요청 실패:', err);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       await fetchStudent();
       await fetchAttendance(id);
       await fetchAssignments(id);
+      await fetchDeadlines();
       setLoading(false);
     };
     fetchData();
@@ -70,6 +94,43 @@ export default function StudentDetail() {
       </View>
     );
   }
+
+  const getAttendanceStatus = (chapter) => {
+    // 출석/지각 기록에서 해당 챕터 찾기
+    console.log('입력받은 chapter:', chapter);
+    const attendanceObj = Array.isArray(attendance)
+      ? attendance.find(a => a.chapter === chapter)
+      : null;
+    console.log('찾은 attendanceObj:', attendanceObj);
+    // 데드라인에서 해당 챕터 찾기
+    const deadlineObj = Array.isArray(deadlines)
+      ? deadlines.find(d => d.chapter === chapter)
+      : null;
+
+    if (attendanceObj) {
+      return attendanceObj.status; // '출석' 또는 '지각'
+    } else if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) {
+      return "결석"; // 데드라인 지났고 기록 없으면 결석
+    } else if (deadlineObj) {
+      return "미완료"; // 데드라인 안 지났고 기록 없으면 미완료
+    } else {
+      return "정보 없음";
+    }
+  };
+
+  const countAttendance = () => {
+    const counts = { 출석: 0, 지각: 0, 결석: 0, 미완료: 0 };
+    allChapters.forEach(ch => {
+      const status = getAttendanceStatus(ch.chapter);
+      if (status === '출석') counts.출석 += 1;
+      else if (status === '지각') counts.지각 += 1;
+      else if (status === '결석') counts.결석 += 1;
+      else if (status === '미완료') counts.미완료 += 1;
+    });
+    return counts;
+  };
+
+  const attendanceCounts = countAttendance();
 
   return (
     <View>
@@ -110,6 +171,24 @@ export default function StudentDetail() {
             </Text>
           );
         })}
+        <View style={styles.sectionHeaderRow}>
+          <Text style={styles.sectionIcon}>📅</Text>
+          <Text style={styles.sectionTitleText}>출결 현황</Text>
+        </View>
+        <View style={styles.attendanceTagWrapper}>
+          <Text style={[styles.tag, styles.tagPresent]}>
+            출석: {attendanceCounts.출석}개
+          </Text>
+          <Text style={[styles.tag, styles.tagLate]}>
+            지각: {attendanceCounts.지각}개
+          </Text>
+          <Text style={[styles.tag, styles.tagAbsent]}>
+            결석: {attendanceCounts.결석}개
+          </Text>
+          <Text style={[styles.tag, styles.tagAbsent]}>
+            미완료: {attendanceCounts.미완료}개
+          </Text>
+        </View>
       </View>
 
       <View style={styles.card}>
