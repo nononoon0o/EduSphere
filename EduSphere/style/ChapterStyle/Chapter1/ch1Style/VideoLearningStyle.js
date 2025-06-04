@@ -12,31 +12,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  backButton: {
-    position: 'absolute',
-    top: 30,
-    left: 16,
-    zIndex: 10,
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
-  },
-
-  backText: {
-    fontSize: 16,
-    marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
-  },
-
   text: {
     fontSize: 20,
     fontWeight: '700',
@@ -47,7 +22,7 @@ const styles = StyleSheet.create({
 
   videoContainer: {
     width: width * 0.9,
-    height: width * 0.5625,
+    height: width * 0.5625, // 16:9 ratio
     borderRadius: 12,
     overflow: 'hidden',
     backgroundColor: '#000',
@@ -64,6 +39,50 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginTop: 10,
     alignSelf: 'center',
+  },
+
+  completeButton: {
+    backgroundColor: '#4caf50',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 25,
+    marginVertical: 10,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginHorizontal: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+
+  completeButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  evaluationButton: {
+    backgroundColor: '#f57c00',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 25,
+    marginTop: 12,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginHorizontal: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+
+  evaluationText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 
   prevNavButton: {
