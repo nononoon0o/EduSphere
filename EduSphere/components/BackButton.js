@@ -1,35 +1,32 @@
 // components/BackButton.js
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Platform, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 
-export default function BackButton({ label = '돌아가기' }) {
-  const router = useRouter();
-
+export default function BackButton({ onPress }) {
   return (
-    <TouchableOpacity style={styles.button} onPress={() => router.back()}>
-      <Ionicons name="chevron-back" size={22} color="#fff" />
-      <Text style={styles.text}>{label}</Text>
+    <TouchableOpacity onPress={onPress} style={styles.backButton}>
+      <Ionicons name="arrow-back" size={20} color="#fff" />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1F2937',
     alignItems: 'center',
-    backgroundColor: '#1e3a8a',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 30,
-    alignSelf: 'flex-start',
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 16,
-    marginLeft: 6,
-    color: '#fff',
-    fontWeight: '600',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: Platform.OS === 'ios' ? 48 : 28,
+    left: 20,
+    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
