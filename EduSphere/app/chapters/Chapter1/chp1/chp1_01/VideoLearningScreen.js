@@ -1,7 +1,7 @@
 import { View, Text, Dimensions, Platform, TouchableOpacity, Alert } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { Ionicons } from '@expo/vector-icons'; // 아이콘 사용
-import { router } from 'expo-router'; // 뒤로가기 기능
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
@@ -9,7 +9,7 @@ import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLea
 import BackButton from '../../../../../components/BackButton';
 
 export default function VideoLearningScreen() {
-  const videoId = 'W82aT47cnwM'; // 원하는 유튜브 영상 ID
+  const videoId = 'W82aT47cnwM';
 
   const fetchDeadlineForChapter = async (chapter) => {
     try {
@@ -21,10 +21,8 @@ export default function VideoLearningScreen() {
     }
   };
 
-  //학습 완료 DB 저장 함수
   const handleCompleteLearning = async () => {
     try {
-      // 필요한 정보 준비
       const token = await AsyncStorage.getItem('token');
       const studentId = await AsyncStorage.getItem('mongoId');
       const chapter = 'Chapter1_01';
@@ -50,9 +48,7 @@ export default function VideoLearningScreen() {
 
   return (
     <View style={styles.container}>
-      
-      {/* ✅ Shared 뒤로가기 버튼 */}
-                  <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
+      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
 
       <Text style={styles.text}>🎬 영상 학습 페이지입니다.</Text>
 
@@ -67,6 +63,21 @@ export default function VideoLearningScreen() {
         onPress={handleCompleteLearning}
       >
         <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>학습 완료</Text>
+      </TouchableOpacity>
+
+      {/* ✅ 평가하기 버튼 추가 */}
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#f57c00',
+          padding: 16,
+          marginHorizontal: 16,
+          marginBottom: 16,
+          borderRadius: 8,
+          alignItems: 'center'
+        }}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/EvaluationScreen')}
+      >
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>평가하기</Text>
       </TouchableOpacity>
 
       {Platform.OS === 'web' ? (
@@ -88,15 +99,16 @@ export default function VideoLearningScreen() {
           />
         </View>
       )}
+
       <TouchableOpacity
-     style={styles.prevNavButton}
-     onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
-   >
-     <View style={styles.prevNavCircle}>
-       <Ionicons name="arrow-back" size={24} color="#fff" />
-     </View>
-     <Text style={styles.prevNavText}>이전으로</Text>
-   </TouchableOpacity>
+        style={styles.prevNavButton}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+      >
+        <View style={styles.prevNavCircle}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </View>
+        <Text style={styles.prevNavText}>이전으로</Text>
+      </TouchableOpacity>
     </View>
   );
 }
