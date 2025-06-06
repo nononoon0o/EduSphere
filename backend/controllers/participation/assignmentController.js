@@ -9,7 +9,8 @@ const createAssignments = async (req, res) => {
     let teafileId = null;
     if (req.file) {
       const fileStream = req.file.buffer;
-      teafileId = await uploadFileToGridFS(fileStream, req.file.originalname);
+      const decodedFileName = Buffer.from(req.file.originalname, 'latin1').toString('utf8');
+      teafileId = await uploadFileToGridFS(fileStream, decodedFileName);
     }
     console.log('Raw request body:', req.body);
     const assignment = new Assignment({
@@ -93,9 +94,18 @@ const deleteAssignment = async(req, res) => {
 const downloadFile = async (req, res) => {
   try {
     const fileId = new mongoose.Types.ObjectId(req.params.fileId);
-    const downloadStream = getFileFromGridFS(fileId);
     
+    const bucket = new GridFSBucket(mongoose.connection.db, { bucketName: 'assignments' });
+    const files = await bucket.find({ _id: fileId }).toArray();
+    if (files.length === 0) {
+      return res.status(404).json({ success: false, message: 'File not found' });
+    }
+    const filename = files[0].filename;
     res.set('Content-Type', 'application/octet-stream');
+    res.set('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"`);    
+    console.log(res)
+    
+    const downloadStream = getFileFromGridFS(fileId);
     downloadStream.pipe(res);
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
