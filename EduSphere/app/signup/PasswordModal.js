@@ -1,28 +1,31 @@
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
+import { useTranslation } from "react-i18next";
 
-const Passwordmodal = ({ visible, onConfirm, onCancel }) => (
-  <Modal visible={visible} transparent animationType="fade">
-    <View style={styles.overlay}>
-      <View style={styles.modalCard}>
-        <Text style={styles.modalTitle}>⚠️ 보안 경고</Text>
-        <Text style={styles.modalText}>
-          이 비밀번호는 보안에 취약할 수 있습니다.
-        </Text>
-        <Text style={styles.modalSmallText}>해당 비밀번호를 사용하시겠습니까?</Text>
+const Passwordmodal = ({ visible, onConfirm, onCancel }) => {
+  const { t } = useTranslation();
 
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity onPress={onCancel} style={[styles.button, styles.cancelButton]}>
-            <Text style={styles.buttonText}>아니요</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onConfirm} style={[styles.button, styles.confirmButton]}>
-            <Text style={styles.buttonText}>예</Text>
-          </TouchableOpacity>
+  return (
+    <Modal visible={visible} transparent animationType="fade">
+      <View style={styles.overlay}>
+        <View style={styles.modalCard}>
+          <Text style={styles.modalTitle}>⚠️ {t("passwordModal.title")}</Text>
+          <Text style={styles.modalText}>{t("passwordModal.warning")}</Text>
+          <Text style={styles.modalSmallText}>{t("passwordModal.confirmQuestion")}</Text>
+
+          <View style={styles.buttonGroup}>
+            <TouchableOpacity onPress={onCancel} style={[styles.button, styles.cancelButton]}>
+              <Text style={[styles.buttonText, { color: "#111827" }]}>{t("passwordModal.no")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onConfirm} style={[styles.button, styles.confirmButton]}>
+              <Text style={styles.buttonText}>{t("passwordModal.yes")}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  </Modal>
-);
+    </Modal>
+  );
+};
 
 const styles = StyleSheet.create({
   overlay: {
@@ -75,10 +78,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   confirmButton: {
-    backgroundColor: "#2563EB", // Blue
+    backgroundColor: "#2563EB",
   },
   cancelButton: {
-    backgroundColor: "#E5E7EB", // Gray
+    backgroundColor: "#E5E7EB",
   },
   buttonText: {
     color: "#FFFFFF",
