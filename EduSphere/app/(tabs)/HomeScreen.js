@@ -14,11 +14,12 @@ import styles from '../../style/HomeStyle/HomeScreenStyles';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(); // 다국어 번역 훅
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(50)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current; // 투명도 애니메이션
+  const slideAnim = useRef(new Animated.Value(50)).current; // Y축 슬라이드 애니메이션
 
+  // 화면 진입 시 애니메이션 시작
   useEffect(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
@@ -34,6 +35,7 @@ export default function HomeScreen() {
     ]).start();
   }, []);
 
+  // 챕터 카드 목록
   const chapters = [
     { id: 'Chapter1', title: 'Ⅰ. CHAPTER I', icon: 'flask', bgColor: '#e74c3c' },
     { id: 'Chapter2', title: 'Ⅱ. CHAPTER II', icon: 'cloud-sun', bgColor: '#2980b9' },
@@ -41,7 +43,7 @@ export default function HomeScreen() {
     { id: 'Chapter4', title: 'Ⅳ. CHAPTER IV', icon: 'brain', bgColor: '#f39c12' },
   ];
 
-  // Create press animations refs only once
+  // 각 챕터 카드의 터치 애니메이션 값 초기화
   const pressAnims = useRef(chapters.map(() => new Animated.Value(1))).current;
 
   return (
@@ -52,6 +54,7 @@ export default function HomeScreen() {
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.overlay}>
+          {/* 타이틀, 서브텍스트, CTA 버튼 */}
           <Animated.View
             style={[
               styles.centerTextContainer,
@@ -68,14 +71,17 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </Animated.View>
 
+          {/* 챕터 리스트 타이틀 */}
           <View style={{ marginTop: 40, marginBottom: 12 }}>
             <Text style={styles.chapterSectionTitle}>{t('chapterList')}</Text>
           </View>
 
+          {/* 챕터 카드 */}
           <View style={styles.chapterRow}>
             {chapters.map((chapter, index) => {
               const pressAnim = pressAnims[index];
 
+              // 카드 눌렀을 때 작아짐
               const onPressIn = () => {
                 Animated.spring(pressAnim, {
                   toValue: 0.95,
@@ -83,6 +89,7 @@ export default function HomeScreen() {
                 }).start();
               };
 
+              // 손 뗐을 때 원래 크기로
               const onPressOut = () => {
                 Animated.spring(pressAnim, {
                   toValue: 1,
@@ -124,11 +131,11 @@ export default function HomeScreen() {
             })}
           </View>
 
+          {/* 하단 푸터 영역 */}
           <View style={styles.footer}>
-
-
             <Text style={styles.legalText}>© 2025 Edusphere. {t('legal')}</Text>
 
+            {/* 언어 변경 버튼 */}
             <View style={styles.languageSwitcher}>
               <TouchableOpacity onPress={() => i18n.changeLanguage('en')}>
                 <Text style={styles.footerLinkText}>English</Text>
