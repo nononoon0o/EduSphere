@@ -6,12 +6,13 @@ import {
   Pressable,
   StyleSheet,
   Dimensions,
-  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const CodeModal = ({ visible, onClose, onConfirm, onText }) => {
-  // Optional auto-dismiss after 3 seconds
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (visible) {
       const timer = setTimeout(() => {
@@ -34,12 +35,13 @@ const CodeModal = ({ visible, onClose, onConfirm, onText }) => {
           <View style={styles.iconCircle}>
             <Ionicons name="checkmark" size={28} color="#fff" />
           </View>
-          <Text style={styles.title}>환영합니다!</Text>
+          <Text style={styles.title}>{t('codeModal.welcome')}</Text>
           <Text style={styles.subtitle}>
-            <Text style={styles.highlight}>{onText}</Text> 완료되었습니다.
+            <Text style={styles.highlight}>{t('codeModal.code')} </Text>
+            {t('codeModal.success')}
           </Text>
           <Pressable onPress={onConfirm} style={styles.button}>
-            <Text style={styles.buttonText}>확인</Text>
+            <Text style={styles.buttonText}>{t('codeModal.ok')}</Text>
           </Pressable>
         </View>
       </View>
