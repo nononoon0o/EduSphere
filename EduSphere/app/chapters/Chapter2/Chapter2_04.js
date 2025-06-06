@@ -1,37 +1,46 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import styles from '../../../style/ChapterStyle/Chapter2/Chapter2_04Styles'; // Adjust the path as necessary
-import BackButton from '../../../components/BackButton'; // ✅ Import reusable BackButton
+import { useTranslation } from 'react-i18next';
+import styles from '../../../style/ChapterStyle/Chapter2/Chapter2_04Styles'; // ✅ Style import
+import BackButton from '../../../components/BackButton'; // ✅ Reusable back button
 
 const AtmosphereMenuScreen = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Back Navigation */}
-            <BackButton onPress={() => router.replace('/chapters/Chapter2')} /> {/* ✅ Reusable */}
+      {/* 🔙 Back Navigation */}
+      <BackButton onPress={() => router.replace('/chapters/Chapter2')} />
 
-      <Text style={styles.title}>04 날씨의 변화</Text>
-      <Text style={styles.subtitle}>날씨 변화는 단순히 기온이나 비가 내리는 정도를 넘어서...</Text>
+      {/* 🧪 Title and Subtitle */}
+      <Text style={styles.title}>{t('chapter2_04.title')}</Text>
+      <Text style={styles.subtitle}>{t('chapter2_04.description')}</Text>
 
-
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/ScientificPrinciples')}>
-        <Text style={styles.optionText}>1. 날씨 변화의 과학적 원리</Text>
+      {/* 📚 Menu Options */}
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/ScientificPrinciples')}
+      >
+        <Text style={styles.optionText}>{t('chapter2_04.menu.item1')}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/ForecastingModeling')}>
-        <Text style={styles.optionText}>2. 날씨 변화의 예측과 모델링</Text>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/ForecastingModeling')}
+      >
+        <Text style={styles.optionText}>{t('chapter2_04.menu.item2')}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.option} onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/WeatherImpact')}>
-        <Text style={styles.optionText}>3. 날씨 변화가 인간과 환경에 미치는 영향</Text>
+      <TouchableOpacity
+        style={styles.option}
+        onPress={() => router.push('/chapters/Chapter2/chp2/chp2_04/WeatherImpact')}
+      >
+        <Text style={styles.optionText}>{t('chapter2_04.menu.item3')}</Text>
       </TouchableOpacity>
-
     </ScrollView>
   );
 };
-
 
 export default AtmosphereMenuScreen;
