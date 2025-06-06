@@ -10,110 +10,96 @@ import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import axios from "axios";
 import styles from "../../style/signinStyle/loginStyle";
-import AsyncStorage from "@react-native-async-storage/async-storage"; // JWT 저장용
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 const LoginScreen = () => {
   const router = useRouter();
-  const [userID, setUserID] = useState(""); // 아이디 상태
-  const [password, setPassword] = useState(""); // 비밀번호 상태
-  const [passwordVisible, setPasswordVisible] = useState(false); // 비밀번호 가시성 상태
+  const { t } = useTranslation();
+
+  const [userID, setUserID] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleBack = () => {
     router.push("/HomeScreen");
   };
 
-  // 로그인 요청 처리 함수
   const handleLogin = async () => {
     try {
-      const loginData = {
-        userID: userID.trim(),
-        password: password.trim(),
-      };
-
-      const response =
-        await axios.post('http://localhost:5000/api/auth/login', {
-            userID, password
-          }, {
-            withCredentials: true,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        { userID: userID.trim(), password: password.trim() },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.data.success) {
-        // JWT 토큰 저장
         const token = response.data.token;
         const user = response.data.user;
-        await AsyncStorage.setItem("token", token); // AsyncStorage에 저장
-        await AsyncStorage.setItem('userData', JSON.stringify(response.data.user));
-        console.log(response.data.user)
+        await AsyncStorage.setItem("token", token);
+        await AsyncStorage.setItem("userData", JSON.stringify(user));
+
         if (user && user._id) {
           await AsyncStorage.setItem("mongoId", user._id.toString());
         }
-        console.log(user._id)
+
         setErrorMessage("");
-        Alert.alert("로그인 성공", "홈 화면으로 이동합니다.");
-        router.push("/HomeScreen"); // 홈 화면으로 이동
+        Alert.alert(t("login.successTitle"), t("login.successMessage"));
+        router.push("/HomeScreen");
       } else {
-        // 서버에서 오는 메시지에 따라 에러 메시지 설정
-        if (response.data.message === "비밀번호가 일치하지 않습니다.") {
-          setErrorMessage("비밀번호가 일치하지 않습니다.");
-        } else if (response.data.message === "존재하지 않는 사용자입니다.") {
-          setErrorMessage("존재하지 않는 사용자입니다.");
+        const msg = response.data.message;
+        if (msg === "비밀번호가 일치하지 않습니다.") {
+          setErrorMessage(t("login.errorWrongPassword"));
+        } else if (msg === "존재하지 않는 사용자입니다.") {
+          setErrorMessage(t("login.errorNoUser"));
         } else {
-          setErrorMessage(response.data.message || "로그인에 실패했습니다.");
+          setErrorMessage(t("login.errorDefault"));
         }
       }
     } catch (error) {
-      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
+      Alert.alert(t("login.errorTitle"), t("login.errorServer"));
       console.error(error);
     }
   };
 
-  // 회원가입 화면으로 이동하는 함수
-  const handleAccount = () => {
-    router.push("/signup/signmail");
-  };
-
-  const handleIdfind = () => {
-    router.push("/find/findmain");
-  };
-
-  const testHome = () => {
-    router.push("/HomeScreen")
-  }
+  const handleAccount = () => router.push("/signup/signmail");
+  const handleIdfind = () => router.push("/find/findmain");
+  const testHome = () => router.push("/HomeScreen");
 
   return (
     <View style={styles.container}>
-      
       <Text style={styles.title}>EduSphere</Text>
-    
-      {/* 에러 메시지 표시 */}
+
       {errorMessage !== "" && (
         <Text style={{ color: "red", marginBottom: 10, fontWeight: "bold" }}>
           {errorMessage}
         </Text>
       )}
 
-      {/* ID 입력 필드 */}
+      {/* ID input */}
       <View style={styles.inputContainer}>
         <Icon name="user" size={20} color="#aaa" style={styles.icon} />
         <TextInput
           style={styles.input}
-          placeholder="아이디"
+          placeholder={t("login.userIdPlaceholder")}
           placeholderTextColor="#aaa"
           value={userID}
           onChangeText={setUserID}
         />
       </View>
 
-      {/* 비밀번호 입력 필드 */}
+      {/* Password input */}
       <View style={styles.inputContainer}>
         <Icon name="lock" size={20} color="#aaa" style={styles.icon} />
         <TextInput
           style={styles.input}
-          placeholder="비밀번호"
+          placeholder={t("login.passwordPlaceholder")}
           secureTextEntry={!passwordVisible}
           placeholderTextColor="#aaa"
           value={password}
@@ -129,27 +115,27 @@ const LoginScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* 로그인 버튼 */}
+      {/* Login button */}
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>로그인</Text>
+        <Text style={styles.loginButtonText}>{t("login.loginButton")}</Text>
       </TouchableOpacity>
 
-      {/* 옵션들 */}
+      {/* Footer options */}
       <View style={styles.options}>
         <TouchableOpacity onPress={handleIdfind}>
-          <Text style={styles.optionText}>아이디찾기</Text>
+          <Text style={styles.optionText}>{t("login.findId")}</Text>
         </TouchableOpacity>
         <Text style={styles.separator}> | </Text>
         <TouchableOpacity onPress={handleIdfind}>
-          <Text style={styles.optionText}>비밀번호찾기</Text>
+          <Text style={styles.optionText}>{t("login.findPassword")}</Text>
         </TouchableOpacity>
         <Text style={styles.separator}> | </Text>
         <TouchableOpacity onPress={handleAccount}>
-          <Text style={styles.optionText}>회원가입</Text>
+          <Text style={styles.optionText}>{t("login.signup")}</Text>
         </TouchableOpacity>
         <Text style={styles.separator}> | </Text>
         <TouchableOpacity onPress={testHome}>
-          <Text style={styles.optionText}>테스트용</Text>
+          <Text style={styles.optionText}>{t("login.test")}</Text>
         </TouchableOpacity>
       </View>
     </View>
