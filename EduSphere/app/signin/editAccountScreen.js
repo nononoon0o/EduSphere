@@ -13,7 +13,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/signinStyle/editAccountStyle';
-import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
+import BackButton from '../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export default function EditAccountScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,6 +22,7 @@ export default function EditAccountScreen() {
   const [school, setSchool] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const { t } = useTranslation();
 
   const isValidNickname = nickname.length >= 2;
   const isValidSchool = school.length >= 2;
@@ -28,7 +30,7 @@ export default function EditAccountScreen() {
 
   const handleSave = async () => {
     if (!isValidNickname || !isValidSchool || !isValidPassword) {
-      Alert.alert("입력 오류", "모든 필드를 올바르게 입력해주세요.");
+      Alert.alert(t('edit.errorTitle'), t('edit.errorInput'));
       return;
     }
 
@@ -49,11 +51,11 @@ export default function EditAccountScreen() {
       if (response.data.success) {
         setModalVisible(true);
       } else {
-        Alert.alert('실패', response.data.message || '수정에 실패했습니다.');
+        Alert.alert(t('edit.failTitle'), response.data.message || t('edit.failMessage'));
       }
     } catch (err) {
       console.error(err);
-      Alert.alert('오류', '서버 오류가 발생했습니다.');
+      Alert.alert(t('edit.errorTitle'), t('edit.serverError'));
     }
   };
 
@@ -68,15 +70,14 @@ export default function EditAccountScreen() {
       <BackButton onPress={handleBack} />
 
       <View style={styles.card}>
-        {/* ✅ Title moved inside card */}
-        <Text style={styles.title}>계정 정보 수정</Text>
+        <Text style={styles.title}>{t('edit.title')}</Text>
 
-        {/* 닉네임 */}
+        {/* Nickname */}
         <View style={styles.inputWrapper}>
           <Icon name="user" size={18} color="#9CA3AF" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="닉네임"
+            placeholder={t('edit.nicknamePlaceholder')}
             placeholderTextColor="#9CA3AF"
             value={nickname}
             onChangeText={setNickname}
@@ -91,12 +92,12 @@ export default function EditAccountScreen() {
           )}
         </View>
 
-        {/* 학교명 */}
+        {/* School */}
         <View style={styles.inputWrapper}>
           <Icon name="building" size={18} color="#9CA3AF" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="학교명"
+            placeholder={t('edit.schoolPlaceholder')}
             placeholderTextColor="#9CA3AF"
             value={school}
             onChangeText={setSchool}
@@ -111,12 +112,12 @@ export default function EditAccountScreen() {
           )}
         </View>
 
-        {/* 비밀번호 */}
+        {/* Password */}
         <View style={styles.inputWrapper}>
           <Icon name="lock" size={18} color="#9CA3AF" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="새 비밀번호"
+            placeholder={t('edit.passwordPlaceholder')}
             placeholderTextColor="#9CA3AF"
             secureTextEntry
             value={password}
@@ -132,9 +133,8 @@ export default function EditAccountScreen() {
           )}
         </View>
 
-        {/* ✅ Save Button moved inside card */}
         <TouchableOpacity style={styles.button} onPress={handleSave}>
-          <Text style={styles.buttonText}>저장</Text>
+          <Text style={styles.buttonText}>{t('edit.saveButton')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -142,7 +142,7 @@ export default function EditAccountScreen() {
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onConfirm={handleModalConfirm}
-        onText="수정 완료"
+        onText={t('edit.modalText')}
       />
     </SafeAreaView>
   );
