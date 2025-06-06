@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import FindId from "./FindId";
 import FindPassword from "./FindPassword";
 import styles from "../../style/findStyle/FindStyle";
+import { useTranslation } from "react-i18next";
 
 const FindMain = () => {
   const [selectedTab, setSelectedTab] = useState("ID");
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
@@ -18,7 +20,7 @@ const FindMain = () => {
           onPress={() => setSelectedTab("ID")}
         >
           <Text style={selectedTab === "ID" ? styles.tabTextSelected : styles.tabText}>
-            아이디 찾기
+            {t("find.tabFindId")}
           </Text>
         </TouchableOpacity>
 
@@ -30,7 +32,7 @@ const FindMain = () => {
           onPress={() => setSelectedTab("PW")}
         >
           <Text style={selectedTab === "PW" ? styles.tabTextSelected : styles.tabText}>
-            비밀번호 찾기
+            {t("find.tabFindPassword")}
           </Text>
         </TouchableOpacity>
       </View>
