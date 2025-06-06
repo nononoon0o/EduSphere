@@ -1,27 +1,27 @@
 import React from "react";
 import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const CustomModal = ({ visible, onClose, onConfirm, idText }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       transparent={true}
-      animationType="slide" // fade
+      animationType="slide"
       visible={visible}
       onRequestClose={onClose}
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>
-            <Text style={styles.idText}>{idText}</Text>으로
+            <Text style={styles.idText}>{idText}</Text>
+            {t("find.modalSentTo")}
           </Text>
-          <Text style={styles.modalText}>인증번호가 전송되었습니다.</Text>
-          <Pressable
-            onPress={() => {
-              onConfirm();
-            }}
-            style={[styles.button, { marginBottom: 10 }]}
-          >
-            <Text style={styles.buttonText}>확인</Text>
+          <Text style={styles.modalText}>{t("find.modalSentMessage")}</Text>
+
+          <Pressable onPress={onConfirm} style={[styles.button, { marginBottom: 10 }]}>
+            <Text style={styles.buttonText}>{t("find.confirm")}</Text>
           </Pressable>
         </View>
       </View>
