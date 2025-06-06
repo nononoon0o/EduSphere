@@ -10,27 +10,13 @@ import { Ionicons } from '@expo/vector-icons';
 import Draggable from 'react-draggable';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch2Style/ChemicalReactionStyle';
 import BackButton from '../../../../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
-const REAGENTS = [
-  { id: 'CuSO4', label: 'CuSO₄' },
-  { id: 'Fe', label: 'Fe' },
-  { id: 'Zn', label: 'Zn' },
-  { id: 'AgNO3', label: 'AgNO₃' },
-];
-
-const PRECIPITATES = {
-  'CuSO4+Fe': {
-    color: 0xff6347,
-    description: 'CuSO₄ + Fe → FeSO₄ + Cu↓ (붉은색 구리 석출)',
-  },
-  'AgNO3+Cu': {
-    color: 0xd3d3d3,
-    description: '2AgNO₃ + Cu → Cu(NO₃)₂ + 2Ag↓ (은색 석출)',
-  },
-};
+const REAGENTS = ['CuSO4', 'Fe', 'Zn', 'AgNO3'];
 
 export default function ChemicalReactionScreen() {
   const router = useRouter();
+  const { t } = useTranslation();
   const modelRef = useRef();
   const sceneRef = useRef();
   const glContext = useRef();
@@ -50,6 +36,7 @@ export default function ChemicalReactionScreen() {
   const precipMat = useRef(new THREE.MeshBasicMaterial({ color: 0xff6347 }));
 
   const { width, height } = Dimensions.get('window');
+
   useEffect(() => {
     setBeakerLayout({
       x: width / 2 - 100,
@@ -70,8 +57,7 @@ export default function ChemicalReactionScreen() {
   };
 
   const precipKey = [...droppedReagents].sort().join('+');
-  const precipData = PRECIPITATES[precipKey];
-  const hasPrecip = Boolean(precipData);
+  const precipData = t(`chapter1_03.chemicalReaction.precipDescriptions.${precipKey}`, { defaultValue: null });
 
   const panResponder = useRef(
     PanResponder.create({
@@ -126,7 +112,7 @@ export default function ChemicalReactionScreen() {
   useEffect(() => {
     if (precipData && sceneRef.current) {
       if (!sceneRef.current.getObjectByName('precip')) {
-        precipMat.current.color.set(precipData.color);
+        precipMat.current.color.set(precipKey === 'CuSO4+Fe' ? 0xff6347 : 0xd3d3d3);
         const mesh = new THREE.Mesh(precipGeom.current, precipMat.current);
         mesh.name = 'precip';
         mesh.rotation.x = -Math.PI / 2;
@@ -138,8 +124,7 @@ export default function ChemicalReactionScreen() {
 
   return (
     <View style={{ flex: 1 }} {...panResponder.panHandlers}>
-        {/* ✅ Shared 뒤로가기 버튼 */}
-                  <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_03')} />
+      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_03')} />
 
       <GLView
         style={{ flex: 1 }}
@@ -169,13 +154,19 @@ export default function ChemicalReactionScreen() {
         }}
       />
 
-      {hasPrecip && beakerLayout && (
+      {precipData && beakerLayout && (
         <>
-          <TouchableOpacity style={[styles.resetButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y }]} onPress={reset}>
-            <Text style={styles.resetText}>다시 해보기</Text>
+          <TouchableOpacity
+            style={[styles.resetButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y }]}
+            onPress={reset}
+          >
+            <Text style={styles.resetText}>{t('chapter1_03.chemicalReaction.reset')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.explainButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y + 50 }]} onPress={() => setShowExplanation(true)}>
-            <Text style={styles.resetText}>앙금 생성 풀이</Text>
+          <TouchableOpacity
+            style={[styles.explainButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y + 50 }]}
+            onPress={() => setShowExplanation(true)}
+          >
+            <Text style={styles.resetText}>{t('chapter1_03.chemicalReaction.explanation')}</Text>
           </TouchableOpacity>
         </>
       )}
@@ -183,22 +174,24 @@ export default function ChemicalReactionScreen() {
       {showExplanation && beakerLayout && (
         <View style={[styles.explanationBox, { left: beakerLayout.x + beakerLayout.width + 300, top: beakerLayout.y, width: 350, maxHeight: 500 }]}>
           <ScrollView>
-            <Text style={styles.explanationText}>{precipData?.description}</Text>
+            <Text style={styles.explanationText}>{precipData}</Text>
           </ScrollView>
         </View>
       )}
 
       <View style={styles.buttonRow}>
         {REAGENTS.map(r => (
-          <TouchableOpacity key={r.id} style={styles.chemButton} onPress={() => setReagents(prev => [...prev, r.id])}>
-            <Text style={styles.chemText}>{r.label}</Text>
+          <TouchableOpacity key={r} style={styles.chemButton} onPress={() => setReagents(prev => [...prev, r])}>
+            <Text style={styles.chemText}>{t(`chapter1_03.chemicalReaction.reagents.${r}`)}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {reagents.map((id, idx) => (
         <Draggable key={`${id}-${idx}`} defaultPosition={{ x: 20, y: 150 + idx * 60 }} onStop={e => handleDrop(id, idx, e)}>
-          <View style={styles.molecule}><Text style={styles.chemText}>{REAGENTS.find(r => r.id === id).label}</Text></View>
+          <View style={styles.molecule}>
+            <Text style={styles.chemText}>{t(`chapter1_03.chemicalReaction.reagents.${id}`)}</Text>
+          </View>
         </Draggable>
       ))}
 
@@ -210,14 +203,14 @@ export default function ChemicalReactionScreen() {
           <View style={styles.prevButtonCircle}>
             <Ionicons name="arrow-back" size={24} color="#fff" />
           </View>
-          <Text style={styles.prevButtonText}>이전으로</Text>
+          <Text style={styles.prevButtonText}>{t('chapter1_03.chemicalReaction.back')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.nextButton}
           onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen')}
         >
-          <Text style={styles.nextButtonText}>다음으로</Text>
+          <Text style={styles.nextButtonText}>{t('chapter1_03.chemicalReaction.next')}</Text>
           <View style={styles.nextButtonCircle}>
             <Ionicons name="arrow-forward" size={24} color="#3498db" />
           </View>
