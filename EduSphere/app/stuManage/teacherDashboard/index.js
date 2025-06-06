@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../../style/stuManageStyle/teacherDashboardStyle';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 let WebDatePicker = null;
 if (Platform.OS === 'web') {
@@ -40,6 +41,7 @@ const chapterList = rawChapters.map(c => ({
 const TeacherDashboard = () => {
   const router = useRouter();
   const fileInputRef = useRef(null);
+  const { t } = useTranslation();
 
   const [assignments, setAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
@@ -50,10 +52,8 @@ const TeacherDashboard = () => {
   });
   const [newAssignmentDate, setNewAssignmentDate] = useState(null);
   const [assignmentFile, setAssignmentFile] = useState(null);
-
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
-
   const [deadlines, setDeadlines] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -61,7 +61,7 @@ const TeacherDashboard = () => {
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
     const date = new Date(dateStr);
-    return date.toLocaleDateString('ko-KR');
+    return date.toLocaleDateString();
   };
 
   const fetchAssignments = async () => {
@@ -72,7 +72,7 @@ const TeacherDashboard = () => {
       });
       setAssignments(res.data);
     } catch (err) {
-      setError('과제를 불러올 수 없습니다.');
+      setError(t('dashboard.errorLoadingAssignments'));
     }
   };
 
@@ -104,7 +104,7 @@ const TeacherDashboard = () => {
     if (file && (file.name.endsWith('.docx') || file.name.endsWith('.hwp'))) {
       setAssignmentFile(file);
     } else {
-      Alert.alert('docx 또는 hwp 파일만 업로드할 수 있습니다.');
+      Alert.alert(t('dashboard.fileTypeAlert'));
       e.target.value = '';
       setAssignmentFile(null);
     }
@@ -134,7 +134,7 @@ const TeacherDashboard = () => {
       setError('');
     } catch (err) {
       console.log(err);
-      setError('과제 생성 실패');
+      setError(t('dashboard.errorCreateAssignment'));
     }
   };
 
@@ -146,7 +146,7 @@ const TeacherDashboard = () => {
       });
       setAssignments(assignments.filter(assignment => assignment._id !== id));
     } catch (err) {
-      setError('과제 삭제 실패');
+      setError(t('dashboard.errorDeleteAssignment'));
     }
   };
 
@@ -163,9 +163,9 @@ const TeacherDashboard = () => {
           headers: { Authorization: `Bearer ${token}` }
         }
       );
-      console.log('데드라인 저장 완료');
+      console.log(t('dashboard.deadlineSaved'));
     } catch (e) {
-      console.log('데드라인 저장 실패', e);
+      console.log(t('dashboard.deadlineSaveError'), e);
     }
   };
 
@@ -174,112 +174,110 @@ const TeacherDashboard = () => {
   return (
     <View>
       <TouchableOpacity style={styles.floatingBackButton} onPress={() => router.back()}>
-      <Ionicons name="arrow-back" size={20} color="#fff" />
-    </TouchableOpacity>
-    <ScrollView style={styles.container}>
+        <Ionicons name="arrow-back" size={20} color="#fff" />
+      </TouchableOpacity>
 
+      <ScrollView style={styles.container}>
 
-      {/* 과제 생성 섹션 */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>새 과제 생성</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="과제명"
-          value={newAssignment.title}
-          onChangeText={t => setNewAssignment({ ...newAssignment, title: t })}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="설명"
-          value={newAssignment.description}
-          onChangeText={t => setNewAssignment({ ...newAssignment, description: t })}
-        />
-        <WebDatePicker
-          selected={newAssignmentDate}
-          onChange={date => {
-            setNewAssignmentDate(date);
-            setNewAssignment({ ...newAssignment, dueDate: date });
-          }}
-          showTimeSelect
-          timeIntervals={10}
-          timeFormat="HH:mm"
-          dateFormat="yyyy-MM-dd HH:mm"
-          placeholderText="날짜를 선택하세요"
-          popperPlacement="bottom-start"
-          className="react-datepicker__input"
-          portalId="root-portal"
-          style={{ width: '100%', height: 40, fontSize: 16 }}
-        />
-        <input
-          type="file"
-          ref={fileInputRef}
-          accept=".docx,.hwp"
-          onChange={handleFileChange}
-          style={{ marginVertical: 10 }}
-        />
-        {assignmentFile && <Text>선택된 파일: {assignmentFile.name}</Text>}
-        <TouchableOpacity style={styles.appButtonContainer} onPress={handleCreateAssignment}>
-          <Text style={styles.appButtonText}>과제 생성</Text>
-        </TouchableOpacity>
-      </View>
+        {/* Assignment Creation */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('dashboard.createAssignment')}</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={t('dashboard.assignmentTitle')}
+            value={newAssignment.title}
+            onChangeText={t => setNewAssignment({ ...newAssignment, title: t })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder={t('dashboard.assignmentDescription')}
+            value={newAssignment.description}
+            onChangeText={t => setNewAssignment({ ...newAssignment, description: t })}
+          />
+          <WebDatePicker
+            selected={newAssignmentDate}
+            onChange={date => {
+              setNewAssignmentDate(date);
+              setNewAssignment({ ...newAssignment, dueDate: date });
+            }}
+            showTimeSelect
+            timeIntervals={10}
+            timeFormat="HH:mm"
+            dateFormat="yyyy-MM-dd HH:mm"
+            placeholderText={t('dashboard.selectDate')}
+            popperPlacement="bottom-start"
+            className="react-datepicker__input"
+            portalId="root-portal"
+            style={{ width: '100%', height: 40, fontSize: 16 }}
+          />
+          <input
+            type="file"
+            ref={fileInputRef}
+            accept=".docx,.hwp"
+            onChange={handleFileChange}
+            style={{ marginVertical: 10 }}
+          />
+          {assignmentFile && <Text>{t('dashboard.selectedFile')}: {assignmentFile.name}</Text>}
+          <TouchableOpacity style={styles.appButtonContainer} onPress={handleCreateAssignment}>
+            <Text style={styles.appButtonText}>{t('dashboard.create')}</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* 기존 과제 목록 */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>현재 과제 목록</Text>
-        <FlatList
-          data={assignments}
-          keyExtractor={item => item._id}
-          renderItem={({ item }) => (
-            <View style={styles.assignmentRow}>
-              <View style={styles.assignmentInfo}>
-                <Text style={styles.itemTitle}>
-                  {item.title} || {item.description} || {formatDate(item.dueDate)}
-                </Text>
+        {/* Assignment List */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('dashboard.currentAssignments')}</Text>
+          <FlatList
+            data={assignments}
+            keyExtractor={item => item._id}
+            renderItem={({ item }) => (
+              <View style={styles.assignmentRow}>
+                <View style={styles.assignmentInfo}>
+                  <Text style={styles.itemTitle}>
+                    {item.title} || {item.description} || {formatDate(item.dueDate)}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.deleteButtonWrapper}
+                  onPress={() => handleDeleteAssignment(item._id)}
+                >
+                  <Text style={styles.deleteButtonText}>{t('dashboard.delete')}</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={styles.deleteButtonWrapper}
-                onPress={() => handleDeleteAssignment(item._id)}
-              >
-                <Text style={styles.deleteButtonText}>삭제</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-      </View>
+            )}
+          />
+        </View>
 
-      {/* 챕터별 데드라인 설정 */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>챕터별 데드라인 설정</Text>
-        {chapterList.length > 0 && (
+        {/* Deadline Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('dashboard.setChapterDeadline')}</Text>
           <Dropdown
             style={styles.dropdown}
             data={chapterList}
             labelField="label"
             valueField="value"
-            placeholder="챕터를 선택하세요"
+            placeholder={t('dashboard.selectChapter')}
             value={selectedChapter}
             onChange={item => setSelectedChapter(item.value)}
           />
-        )}
-        <WebDatePicker
-          selected={selectedDate}
-          onChange={date => setSelectedDate(date)}
-          showTimeSelect
-          timeIntervals={10}
-          timeFormat="HH:mm"
-          dateFormat="yyyy-MM-dd HH:mm"
-          placeholderText="날짜를 선택하세요"
-          popperPlacement="bottom-start"
-          className="react-datepicker__input"
-          style={{ width: '100%', height: 40, fontSize: 16 }}
-        />
-        <TouchableOpacity style={styles.saveButton} onPress={handleSaveDeadline}>
-          <Text style={{ fontWeight: 'bold' }}>데드라인 저장</Text>
-        </TouchableOpacity>
-      </View>
+          <WebDatePicker
+            selected={selectedDate}
+            onChange={date => setSelectedDate(date)}
+            showTimeSelect
+            timeIntervals={10}
+            timeFormat="HH:mm"
+            dateFormat="yyyy-MM-dd HH:mm"
+            placeholderText={t('dashboard.selectDate')}
+            popperPlacement="bottom-start"
+            className="react-datepicker__input"
+            style={{ width: '100%', height: 40, fontSize: 16 }}
+          />
+          <TouchableOpacity style={styles.saveButton} onPress={handleSaveDeadline}>
+            <Text style={{ fontWeight: 'bold' }}>{t('dashboard.saveDeadline')}</Text>
+          </TouchableOpacity>
+        </View>
 
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-    </ScrollView>
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+      </ScrollView>
     </View>
   );
 };
