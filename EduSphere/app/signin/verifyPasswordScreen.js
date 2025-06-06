@@ -14,8 +14,10 @@ import axios from 'axios';
 import BackButton from '../../components/BackButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../../style/signinStyle/verifyPasswordStyle';
+import { useTranslation } from 'react-i18next';
 
 export default function VerifyPasswordScreen() {
+  const { t } = useTranslation();
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -27,7 +29,7 @@ export default function VerifyPasswordScreen() {
 
   const handleVerify = async () => {
     if (!password) {
-      Alert.alert('오류', '비밀번호를 입력해주세요.');
+      Alert.alert(t('verifyPassword.errorEmpty'));
       return;
     }
 
@@ -50,10 +52,10 @@ export default function VerifyPasswordScreen() {
       if (response.data.success) {
         router.push('/signin/editAccountScreen');
       } else {
-        Alert.alert('실패', '비밀번호가 일치하지 않습니다.');
+        Alert.alert(t('verifyPassword.errorMismatch'));
       }
     } catch (err) {
-      Alert.alert('오류', '서버 오류가 발생했습니다.');
+      Alert.alert(t('verifyPassword.errorServer'));
     } finally {
       setIsSubmitting(false);
     }
@@ -64,13 +66,13 @@ export default function VerifyPasswordScreen() {
       <BackButton onPress={handleBack} />
 
       <View style={styles.card}>
-        <Text style={styles.title}>비밀번호 확인</Text>
-        <Text style={styles.subtitle}>계정 수정을 위해 비밀번호를 입력해주세요.</Text>
+        <Text style={styles.title}>{t('verifyPassword.title')}</Text>
+        <Text style={styles.subtitle}>{t('verifyPassword.subtitle')}</Text>
 
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="비밀번호 입력"
+            placeholder={t('verifyPassword.placeholder')}
             placeholderTextColor="#9CA3AF"
             secureTextEntry={!passwordVisible}
             value={password}
@@ -96,7 +98,9 @@ export default function VerifyPasswordScreen() {
           {isSubmitting ? (
             <ActivityIndicator color="#fff" />
           ) : (
-            <Text style={styles.buttonText}>확인</Text>
+            <Text style={styles.buttonText}>
+              {t('verifyPassword.confirmButton')}
+            </Text>
           )}
         </TouchableOpacity>
       </View>
