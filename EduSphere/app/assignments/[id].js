@@ -49,18 +49,25 @@ export default function AssignmentDetailScreen() {
       const token = await AsyncStorage.getItem('token');
       const fileId = assignment.teafileId;
       const url = `http://localhost:5000/api/assignments/files/${fileId}`;
-      const response = await fetch(url, {
+      const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (!response.ok) {
+      if (!res.ok) {
         alert(t('assignment.downloadFail'));
         return;
       }
 
-      const blob = await response.blob();
-      const filename = fileId ? `${fileId}.docx` : t('assignment.defaultFilename');
+      const contentDisposition = res.headers.get('Content-Disposition');
+      let filename = t('assignment.defaultFilename');
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="(.+)"/);
+        if (match && match[1]) {
+          filename = decodeURIComponent(match[1]);
+        }
+      }
 
+      const blob = await res.blob();
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
       link.download = filename;
