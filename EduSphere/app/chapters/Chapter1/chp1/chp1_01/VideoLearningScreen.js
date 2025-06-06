@@ -1,4 +1,12 @@
-import { View, Text, Dimensions, Platform, TouchableOpacity, Alert } from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  Dimensions,
+  Platform,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -7,8 +15,10 @@ import axios from 'axios';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLearningStyle';
 import BackButton from '../../../../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export default function VideoLearningScreen() {
+  const { t } = useTranslation();
   const videoId = 'W82aT47cnwM';
 
   const fetchDeadlineForChapter = async (chapter) => {
@@ -16,7 +26,7 @@ export default function VideoLearningScreen() {
       const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
       return res.data.deadline?.deadline || null;
     } catch (e) {
-      console.error('데드라인 조회 실패:', e);
+      console.error('Failed to fetch deadline:', e);
       return null;
     }
   };
@@ -36,13 +46,16 @@ export default function VideoLearningScreen() {
       });
 
       if (result.success) {
-        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
+        Alert.alert(
+          t('videoLearning.complete'),
+          t('videoLearning.completeMessage', { status: result.status })
+        );
         router.push('chapters/Chapter1');
       } else {
-        Alert.alert('오류', '출석 기록에 실패했습니다.');
+        Alert.alert(t('videoLearning.error'), t('videoLearning.attendanceFail'));
       }
     } catch (err) {
-      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
+      Alert.alert(t('videoLearning.error'), t('videoLearning.unexpectedError'));
     }
   };
 
@@ -50,35 +63,7 @@ export default function VideoLearningScreen() {
     <View style={styles.container}>
       <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
 
-      <Text style={styles.text}>🎬 영상 학습 페이지입니다.</Text>
-
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#4caf50',
-          padding: 16,
-          margin: 16,
-          borderRadius: 8,
-          alignItems: 'center'
-        }}
-        onPress={handleCompleteLearning}
-      >
-        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>학습 완료</Text>
-      </TouchableOpacity>
-
-      {/* ✅ 평가하기 버튼 추가 */}
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#f57c00',
-          padding: 16,
-          marginHorizontal: 16,
-          marginBottom: 16,
-          borderRadius: 8,
-          alignItems: 'center'
-        }}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/EvaluationScreen')}
-      >
-        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>평가하기</Text>
-      </TouchableOpacity>
+      <Text style={styles.text}>{t('videoLearning.title')}</Text>
 
       {Platform.OS === 'web' ? (
         <iframe
@@ -100,6 +85,25 @@ export default function VideoLearningScreen() {
         </View>
       )}
 
+      {/* ✅ Evaluation Button */}
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#f57c00',
+          padding: 16,
+          marginHorizontal: 16,
+          marginBottom: 16,
+          borderRadius: 8,
+          alignItems: 'center',
+          width: '90%',
+        }}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/EvaluationScreen')}
+      >
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+          {t('videoLearning.evaluate')}
+        </Text>
+      </TouchableOpacity>
+
+      {/* ✅ Previous Button */}
       <TouchableOpacity
         style={styles.prevNavButton}
         onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
@@ -107,7 +111,7 @@ export default function VideoLearningScreen() {
         <View style={styles.prevNavCircle}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </View>
-        <Text style={styles.prevNavText}>이전으로</Text>
+        <Text style={styles.prevNavText}>{t('videoLearning.prev')}</Text>
       </TouchableOpacity>
     </View>
   );
