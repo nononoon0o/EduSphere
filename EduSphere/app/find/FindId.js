@@ -5,22 +5,24 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import CustomModal from "./CustomModal";
 import CountdownTimer from "../find/CountdownTimer";
 import styles from "../../style/findStyle/FindStyle";
+import { useTranslation } from "react-i18next";
 
 function FindId() {
   const router = useRouter();
+  const { t } = useTranslation();
+
   const [idText, setIdText] = useState("");
   const [flag, setFlag] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [emailholder, setEmailholder] = useState("> 이메일을 입력해주세요.");
-  const [numberholder, setNumberholder] =
-    useState("> 인증번호를 입력해주세요.");
+  const [emailholder, setEmailholder] = useState(t("find.emailGuide"));
+  const [numberholder, setNumberholder] = useState(t("find.codeGuide"));
   const [end, setEnd] = useState(false);
   const [emailCenter, setEmailCenter] = useState(false);
   const today = new Date();
   const formattedDate = today.toISOString().slice(0, 10).replace(/-/g, ".");
 
   const handleTimerEnd = () => {
-    setNumberholder("> 인증번호가 만료되었습니다.");
+    setNumberholder(t("find.codeExpired"));
     setEnd(true);
   };
 
@@ -28,20 +30,20 @@ function FindId() {
     <View style={styles.container}>
       <View style={{ flexDirection: "row", marginTop: 50 }}>
         <Text style={{ color: "#0097FB" }}>{idText}</Text>
-        <Text style={{ color: "white" }}>와 일치하는</Text>
+        <Text style={{ color: "white" }}>{t("find.matchedMessage")}</Text>
       </View>
-      <View>
-        <Text style={{ color: "white" }}>사용자 정보입니다.</Text>
-      </View>
+      <Text style={{ color: "white" }}>{t("find.userInfoMessage")}</Text>
+
       <View style={styles.modalContainer}>
-        <Text style={{ color: "white", margin: 10 }}>아이디:</Text>
+        <Text style={{ color: "white", margin: 10 }}>{t("find.userId")}:</Text>
         <Text style={{ color: "white", margin: 10 }}>
-          가입일: {formattedDate}
+          {t("find.joinDate")}: {formattedDate}
         </Text>
       </View>
+
       <View style={{ width: "80%", marginTop: "auto" }}>
         <Pressable onPress={() => router.push("/")} style={styles.button}>
-          <Text style={styles.buttonText}>로그인 화면으로 이동</Text>
+          <Text style={styles.buttonText}>{t("find.goToLogin")}</Text>
         </Pressable>
       </View>
     </View>
@@ -50,7 +52,7 @@ function FindId() {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="이메일을 입력해 주세요"
+          placeholder={t("find.inputEmail")}
           placeholderTextColor="#AEAEAE"
           value={idText}
           onChangeText={setIdText}
@@ -64,23 +66,17 @@ function FindId() {
           <FontAwesome5 name="times-circle" size={15} color="#F48771" />
         </Pressable>
         <Text style={styles.inputPlaceholder}>{emailholder}</Text>
+
         {flag && (
           <>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 30,
-              }}
-            >
+            <View style={{ flexDirection: "row", alignItems: "center", marginTop: 30 }}>
               <TextInput
                 style={styles.numberinput}
-                placeholder="인증번호를 입력해주세요"
+                placeholder={t("find.codeGuide")}
                 placeholderTextColor="#AEAEAE"
               />
               <Pressable style={styles.confirmButton}>
-                {/*여기에 인증번호가 일치하는지 확인 절차 필요*/}
-                <Text style={styles.confirmText}>확인</Text>
+                <Text style={styles.confirmText}>{t("find.confirm")}</Text>
               </Pressable>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -90,13 +86,13 @@ function FindId() {
                   color: end ? "red" : "white",
                 }}
               >
-                {/*이 부분에 이메일 인증 텍스트 추가  */}
                 {numberholder}
               </Text>
               <CountdownTimer initialTime={300} onTimerEnd={handleTimerEnd} />
             </View>
           </>
         )}
+
         <View style={{ width: "100%", marginTop: "auto" }}>
           <Pressable
             onPress={() => {
@@ -109,11 +105,12 @@ function FindId() {
             style={styles.button}
           >
             <Text style={styles.buttonText}>
-              {flag ? "아이디 찾기" : "인증번호 받기"}
+              {flag ? t("find.findId") : t("find.getCode")}
             </Text>
           </Pressable>
         </View>
       </View>
+
       <CustomModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
