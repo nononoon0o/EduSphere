@@ -11,7 +11,7 @@ router.post('/', upload.single('teafileUrl'), authenticateToken, createAssignmen
 router.get('/', authenticateToken, getAllAssignment);
 
 // 과제 제출 (학생용)
-router.post('/:id/submit', authenticateToken, submitAssignment);
+router.post('/:id/submit', upload.single('stufileUrl'), authenticateToken, submitAssignment);
 
 // 과제 삭제
 router.delete('/:id', authenticateToken, deleteAssignment);

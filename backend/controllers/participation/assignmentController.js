@@ -31,12 +31,19 @@ const submitAssignment = async(req, res) => {
     const assignment = await Assignment.findById(req.params.id);
     if (!assignment) return res.status(404).json({ success: false, message: '과제를 찾을 수 없습니다.' });
 
+    let stufileUrl = null;
+    if (req.file) {
+      const fileStream = req.file.buffer;
+      const decodedFileName = Buffer.from(req.file.originalname, 'latin1').toString('utf8');
+      stufileUrl = await uploadFileToGridFS(fileStream, decodedFileName);
+    }
+
     assignment.submissions.push({
       studentId: req.user.id,
       submittedAt: new Date(),
       stuTitle: req.body.stuTitle,
       stuContent: req.body.stuContent,
-      stufileUrl: req.body.stufileUrl,
+      stufileUrl,
       score: null
     });
 
