@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import CodeModal from "./codemodal";
 import CountdownTimer from "../find/CountdownTimer";
 import styles from "../../style/signupStyle/CodeStyle";
@@ -15,10 +16,11 @@ import styles from "../../style/signupStyle/CodeStyle";
 const VerificationScreen = () => {
   const { email } = useLocalSearchParams();
   const router = useRouter();
+  const { t } = useTranslation();
   const inputRefs = useRef([]);
 
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [validationMessage, setValidationMessage] = useState(`> ${email} 확인 진행중...`);
+  const [validationKey, setValidationKey] = useState("verification.checking");
   const [validationColor, setValidationColor] = useState("#888");
   const [isVerified, setIsVerified] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,7 +29,7 @@ const VerificationScreen = () => {
 
   const handleVerifyCode = async () => {
     setIsLoading(true);
-    setValidationMessage("> 인증번호 확인중...");
+    setValidationKey("verification.verifying");
     setValidationColor("#888");
 
     try {
@@ -40,15 +42,15 @@ const VerificationScreen = () => {
 
       if (response.data.success) {
         setIsVerified(true);
-        setValidationMessage("> 인증번호가 확인되었습니다.");
+        setValidationKey("verification.verified");
         setValidationColor("#00FF00");
         setModalVisible(true);
       } else {
-        setValidationMessage("> 인증코드가 틀립니다.");
+        setValidationKey("verification.wrongCode");
         setValidationColor("#FF0000");
       }
     } catch (error) {
-      setValidationMessage("> 서버 오류가 발생했습니다.");
+      setValidationKey("verification.serverError");
       setValidationColor("red");
     } finally {
       setIsLoading(false);
@@ -64,14 +66,14 @@ const VerificationScreen = () => {
       );
 
       if (response.data.success) {
-        setValidationMessage("> 인증번호가 재전송되었습니다.");
+        setValidationKey("verification.resendSuccess");
         setValidationColor("#0097FB");
       } else {
-        setValidationMessage("> 인증번호 재전송에 실패했습니다.");
+        setValidationKey("verification.resendFail");
         setValidationColor("red");
       }
     } catch (error) {
-      setValidationMessage("> 서버 오류가 발생했습니다.");
+      setValidationKey("verification.serverError");
       setValidationColor("red");
     }
   };
@@ -91,7 +93,7 @@ const VerificationScreen = () => {
   };
 
   const handleTimerEnd = () => {
-    setValidationMessage("> 인증번호가 만료되었습니다.");
+    setValidationKey("verification.expired");
     setValidationColor("#FF0000");
   };
 
@@ -103,19 +105,30 @@ const VerificationScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>인증코드<Text style={styles.whitetitle}>를 입력해주세요</Text></Text>
+        <Text style={styles.title}>
+          {t("verification.title")}
+          <Text style={styles.whitetitle}>{t("verification.titleAccent")}</Text>
+        </Text>
       </View>
 
-      <Text style={[styles.emailText, { color: validationColor }]}> {validationMessage} </Text>
+      <Text style={[styles.emailText, { color: validationColor }]}>
+        {t(validationKey, { email })}
+      </Text>
 
       <Text
-        style={[styles.expirationText, {
-          color:
-            remainingTime > 200 ? "#10B981" :
-            remainingTime > 100 ? "#FACC15" : "#EF4444"
-        }]}
+        style={[
+          styles.expirationText,
+          {
+            color:
+              remainingTime > 200
+                ? "#10B981"
+                : remainingTime > 100
+                ? "#FACC15"
+                : "#EF4444",
+          },
+        ]}
       >
-        인증번호 만료까지 {" "}
+        {t("verification.expiresIn")}{" "}
         <CountdownTimer
           initialTime={300}
           onTimerEnd={handleTimerEnd}
@@ -132,8 +145,8 @@ const VerificationScreen = () => {
               styles.input,
               {
                 backgroundColor: digit ? "#DBEAFE" : "#E0F2FE",
-                borderColor: digit ? "#2563EB" : "#3B82F6"
-              }
+                borderColor: digit ? "#2563EB" : "#3B82F6",
+              },
             ]}
             value={digit}
             keyboardType="numeric"
@@ -145,22 +158,26 @@ const VerificationScreen = () => {
 
       {!isVerified && (
         <TouchableOpacity style={styles.resendButton} onPress={handleResendCode}>
-          <Text style={styles.resendButtonText}>인증번호를 재전송해주세요</Text>
+          <Text style={styles.resendButtonText}>{t("verification.resendCode")}</Text>
         </TouchableOpacity>
       )}
 
       {!isVerified && (
         <TouchableOpacity
-          style={[styles.continueButton, {
-            backgroundColor: code.join("").length === 6 ? "#007BFF" : "#A9A9A9"
-          }]}
+          style={[
+            styles.continueButton,
+            {
+              backgroundColor:
+                code.join("").length === 6 ? "#007BFF" : "#A9A9A9",
+            },
+          ]}
           onPress={handleVerifyCode}
           disabled={code.join("").length !== 6 || isLoading}
         >
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={styles.continueButtonText}>계속하기</Text>
+            <Text style={styles.continueButtonText}>{t("verification.continue")}</Text>
           )}
         </TouchableOpacity>
       )}
@@ -169,7 +186,7 @@ const VerificationScreen = () => {
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
         onConfirm={handleModalConfirm}
-        onText="인증번호"
+        onText={t("verification.code")}
       />
     </View>
   );
