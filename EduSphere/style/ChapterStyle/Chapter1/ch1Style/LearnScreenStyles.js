@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   dropZone: {
-    width: width * 0.4,
+    width: width * 0.6,
     height: 250,
     backgroundColor: '#cce5ff',
     borderColor: '#3399ff',
