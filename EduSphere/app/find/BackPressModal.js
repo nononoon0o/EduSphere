@@ -1,7 +1,10 @@
 import React from "react";
 import { Modal, View, Text, Pressable, StyleSheet, Dimensions } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       transparent
@@ -12,12 +15,14 @@ const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
       <View style={styles.overlay}>
         <View style={styles.container}>
           <Text style={styles.message}>
-            <Text style={styles.bold}>{onText}</Text>를 중단하고
+            <Text style={styles.bold}>{onText}</Text>
+            {t("backModal.quitPrefix")}
           </Text>
           <Text style={styles.message}>
-            <Text style={styles.highlight}>종료</Text> 하시겠습니까?
+            <Text style={styles.highlight}>{t("backModal.quit")}</Text>
+            {t("backModal.confirmSuffix")}
           </Text>
-          <Text style={styles.subText}>입력된 내용은 초기화됩니다.</Text>
+          <Text style={styles.subText}>{t("backModal.warningReset")}</Text>
 
           <View style={styles.buttonRow}>
             <Pressable
@@ -28,7 +33,7 @@ const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
               ]}
               onPress={onClose}
             >
-              <Text style={styles.buttonText}>아니오</Text>
+              <Text style={styles.buttonText}>{t("backModal.no")}</Text>
             </Pressable>
             <Pressable
               style={({ pressed }) => [
@@ -37,7 +42,7 @@ const BackPressModal = ({ visible, onClose, onConfirm, onText }) => {
               ]}
               onPress={onConfirm}
             >
-              <Text style={styles.buttonText}>예</Text>
+              <Text style={styles.buttonText}>{t("backModal.yes")}</Text>
             </Pressable>
           </View>
         </View>
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: width * 0.85,
-    backgroundColor: "#1F2937", // dark background
+    backgroundColor: "#1F2937",
     borderRadius: 20,
     paddingVertical: 28,
     paddingHorizontal: 24,
@@ -78,7 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   subText: {
-    color: "#9CA3AF", // slate-400
+    color: "#9CA3AF",
     fontSize: 13,
     marginBottom: 24,
     textAlign: "center",
@@ -99,13 +104,13 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     paddingVertical: 14,
-    backgroundColor: "#2563EB", // blue
+    backgroundColor: "#2563EB",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
   },
   cancelButton: {
-    backgroundColor: "#4B5563", // slate gray
+    backgroundColor: "#4B5563",
   },
   buttonPressed: {
     opacity: 0.85,
