@@ -18,19 +18,18 @@ export default function Chapter1_01() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <BackButton onPress={() => router.replace('/chapters/Chapter1')} /> {/* ✅ Reusable */}
+      {/* ✅ Use the shared BackButton */}
+            <BackButton onPress={() => router.replace('/chapters/Chapter1')} label="Home" />
 
       <View style={styles.header}>
         <FontAwesome5 name="flask" size={24} color="#2980b9" style={styles.icon} />
-        <Text style={styles.subtitle}>{t('chapter1_01.subtitle')}</Text>
+        <Text style={styles.subtitle}>{t('chapter1_02.subtitle')}</Text>
       </View>
-
-      <Text style={styles.sectionHeader}>{t('chapter1_01.title')}</Text>
 
       <View style={styles.sectionsContainer}>
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}
         >
           <Text style={styles.sectionEmoji}>📘</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.concept')}</Text>
@@ -38,7 +37,7 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
         >
           <Text style={styles.sectionEmoji}>📦</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.learn')}</Text>
@@ -46,7 +45,7 @@ export default function Chapter1_01() {
 
         <TouchableOpacity
           style={styles.sectionButton}
-          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
+          onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}
         >
           <Text style={styles.sectionEmoji}>🎬</Text>
           <Text style={styles.sectionTitle}>{t('chapter1_01.sections.video')}</Text>
