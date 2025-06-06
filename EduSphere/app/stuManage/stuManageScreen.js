@@ -9,17 +9,15 @@ import {
 import { useRouter } from 'expo-router';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next'; // ✅ Added
 import styles from '../../style/stuManageStyle/stuManageScreenStyle';
-import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
+import BackButton from '../../components/BackButton';
 
 export default function StudentManagementScreen() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
-  const handleBack = () => {
-    router.back(); // ✅ Navigate back when BackButton is pressed
-  };
+  const { t } = useTranslation(); // ✅ Added
 
   const fetchData = async () => {
     try {
@@ -39,7 +37,7 @@ export default function StudentManagementScreen() {
 
       setStudents(studentsRes.data);
     } catch (error) {
-      console.error('데이터 불러오기 실패:', error);
+      console.error('Failed to fetch students:', error);
     } finally {
       setLoading(false);
     }
@@ -55,9 +53,9 @@ export default function StudentManagementScreen() {
       onPress={() => router.push(`/stuManage/${item._id}`)}
     >
       <Text style={styles.studentName}>{item.nickname}</Text>
-      <Text style={styles.detailText}>학번: {item.studentNumber}</Text>
+      <Text style={styles.detailText}>{t("stuManage.studentNumber")}: {item.studentNumber}</Text>
       <Text style={styles.detailText}>
-        수강과목: {item.subjects.map((s) => s.name).join(', ')}
+        {t("stuManage.subjects")}: {item.subjects.map((s) => s.name).join(', ')}
       </Text>
     </TouchableOpacity>
   );
@@ -66,7 +64,7 @@ export default function StudentManagementScreen() {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#3B82F6" />
-        <Text style={styles.loadingText}>불러오는 중...</Text>
+        <Text style={styles.loadingText}>{t("stuManage.loading")}</Text>
       </View>
     );
   }
@@ -80,7 +78,7 @@ export default function StudentManagementScreen() {
         renderItem={renderStudentItem}
         keyExtractor={(item) => item._id}
         ListEmptyComponent={
-          <Text style={styles.emptyText}>등록된 학생이 없습니다.</Text>
+          <Text style={styles.emptyText}>{t("stuManage.noStudents")}</Text>
         }
         contentContainerStyle={{ paddingBottom: 100 }}
       />
@@ -89,7 +87,7 @@ export default function StudentManagementScreen() {
         style={styles.dashboardButton}
         onPress={() => router.push('/stuManage/teacherDashboard')}
       >
-        <Text style={styles.dashboardButtonText}>📊 대시보드로 이동</Text>
+        <Text style={styles.dashboardButtonText}>📊 {t("stuManage.goToDashboard")}</Text>
       </TouchableOpacity>
     </View>
   );
