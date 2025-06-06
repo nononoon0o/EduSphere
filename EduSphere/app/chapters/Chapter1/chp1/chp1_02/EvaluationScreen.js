@@ -1,4 +1,4 @@
-// app/chapters/Chapter1/chp1/chp1_02/EvaluationScreen.js
+// EvaluationScreen.js
 import React, { useState } from 'react';
 import {
   View,
@@ -8,91 +8,29 @@ import {
   StyleSheet,
   Alert
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import axios from 'axios';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EvaluationScreenStyle';
 
-
 export default function EvaluationScreen() {
-  const questions = [
-    {
-      id: 'q1',
-      text:
-        '1. 다음 중 화학 반응에 해당하지 않는 것은 무엇입니까?\n\n' +
-        '(1) 천연가스가 연소하여 이산화탄소와 물이 생성된다.\n' +
-        '(2) 물이 끓어 수증기로 변한다.\n' +
-        '(3) 달걀을 가열하니 흰자가 하얗게 굳어진다.\n' +
-        '(4) 김치가 발효되어 신맛이 난다.\n' +
-        '(5) 은반지가 공기 중에서 검게 변색된다.',
-      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
-      correct: ['(2)'],
-      explanation:
-        '(2)는 물의 상태 변화만을 나타내는 물리 변화입니다.\n' +
-        '(1), (3), (4), (5)는 모두 새로운 물질이 생성되거나 성질이 변화하는 화학 반응입니다.'
-    },
-    {
-      id: 'q2',
-      text:
-        '2. 다음 현상 중 화학 반응의 증거로 볼 수 없는 것은 무엇입니까?\n\n' +
-        '(1) 반응 용기 주변이 뜨거워졌다.\n' +
-        '(2) 용액에 다른 용액을 넣으니 뿌옇게 흐려졌다.\n' +
-        '(3) 물질의 덩어리가 잘게 부서졌다.\n' +
-        '(4) 두 물질을 섞으니 기포가 발생했다.\n' +
-        '(5) 시간이 지나면서 물질의 색깔이 변했다.',
-      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
-      correct: ['(3)'],
-      explanation:
-        '(3)은 물질의 형태만 변하는 물리 변화입니다.\n' +
-        '(1) 열 발생, (2) 침전 생성, (4) 기체 발생, (5) 색 변화는 모두 화학 반응의 증거가 될 수 있습니다.'
-    },
-    {
-      id: 'q3',
-      text:
-        '3. 다음 화학 반응의 예시와 그 특징을 연결한 것으로 가장 적절하지 않은 것은 무엇입니까?\n\n' +
-        '(1) 철이 녹슬어 갈색으로 변함 - 색깔 변화\n' +
-        '(2) 식초와 베이킹소다를 섞으니 거품이 일어남 - 기체 발생\n' +
-        '(3) 얼음이 녹아 물이 됨 - 상태 변화\n' +
-        '(4) 폭죽이 터지면서 밝은 빛이 남 - 빛 발생\n' +
-        '(5) 석회수에 이산화탄소를 불어넣으니 흰색 앙금이 생김 - 고체 생성',
-      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
-      correct: ['(3)'],
-      explanation:
-        '(3)은 물리 변화(상태 변화) 예시입니다.\n' +
-        '(1), (2), (4), (5)는 모두 화학 반응의 특징과 올바르게 연결된 예시입니다.'
-    },
-    {
-      id: 'q4',
-      text:
-        '4. 화학 반응이 일어날 때, 반응 전과 후에 변하지 않는 것은 무엇입니까?\n\n' +
-        '(1) 물질의 성질\n' +
-        '(2) 물질의 색깔\n' +
-        '(3) 물질의 냄새\n' +
-        '(4) 원자의 종류와 수\n' +
-        '(5) 입자 배열',
-      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
-      correct: ['(4)'],
-      explanation:
-        '질량 보존 법칙에 의해 반응 전후의 원자 종류와 총 수는 변하지 않습니다.\n' +
-        '(1),(2),(3),(5)는 화학 반응 중에 변할 수 있습니다.'
-    },
-    {
-      id: 'q5',
-      text:
-        '5. 다음 중 화학 반응으로 인해 새로운 냄새가 발생하는 예로 가장 적절한 것은 무엇입니까?\n\n' +
-        '(1) 향수를 뿌렸을 때 주변에 꽃 향기가 퍼진다.\n' +
-        '(2) 냉장고에 있던 우유가 상해서 시큼한 냄새가 난다.\n' +
-        '(3) 더운 여름날 땀을 흘린 후 불쾌한 냄새가 난다.\n' +
-        '(4) 페인트를 칠한 방에서 독한 냄새가 난다.\n' +
-        '(5) 숯불에 고기를 구울 때 맛있는 냄새가 난다.',
-      choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
-      correct: ['(2)'],
-      explanation:
-        '(2)는 우유가 부패하면서 새로운 물질이 생성되어 냄새가 나는 화학 반응 예시입니다.\n' +
-        '나머지는 물리적 확산이나 휘발에 의한 냄새 변화입니다.'
-    }
-  ];
+  const { t } = useTranslation();
+
+  const questions = ['q1', 'q2', 'q3', 'q4', 'q5'].map(id => ({
+    id,
+    text: t(`evaluation2.${id}.text`),
+    explanation: t(`evaluation2.${id}.explanation`),
+    choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
+    correct: {
+      q1: ['(2)'],
+      q2: ['(3)'],
+      q3: ['(3)'],
+      q4: ['(4)'],
+      q5: ['(2)']
+    }[id]
+  }));
 
   const [selected, setSelected] = useState({});
   const [showResult, setShowResult] = useState(false);
@@ -124,15 +62,15 @@ export default function EvaluationScreen() {
   }, 0);
 
   const fetchDeadlineForChapter = async (chapter) => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
-        return res.data.deadline?.deadline || null;
-      } catch (e) {
-        console.error('데드라인 조회 실패:', e);
-        return null;
-      }
-    };
-    
+    try {
+      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
+      return res.data.deadline?.deadline || null;
+    } catch (e) {
+      console.error('데드라인 조회 실패:', e);
+      return null;
+    }
+  };
+
   const handleCompleteLearning = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -148,14 +86,13 @@ export default function EvaluationScreen() {
       });
 
       if (result.success) {
-        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
+        Alert.alert(t('evaluation.complete'), t('evaluation.attendanceSuccess', { status: result.status }));
         router.push('/chapters/Chapter1');
       } else {
-        Alert.alert('오류', '출석 기록에 실패했습니다.');
+        Alert.alert(t('evaluation.error'), t('evaluation.attendanceFail'));
       }
     } catch (err) {
-      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
-      console.log(err)
+      Alert.alert(t('evaluation.error'), t('evaluation.unexpectedError'));
     }
   };
 
@@ -173,14 +110,7 @@ export default function EvaluationScreen() {
               return (
                 <TouchableOpacity
                   key={choice}
-                  style={[
-                    styles.choice,
-                    checked && styles.choiceSelected,
-                    showResult &&
-                      (checked
-                        ? styles.correct
-                        : styles.wrong)
-                  ]}
+                  style={[styles.choice, checked && styles.choiceSelected, showResult && (checked ? styles.correct : styles.wrong)]}
                   onPress={() => toggleChoice(q.id, choice)}
                 >
                   <Text style={styles.choiceText}>
@@ -192,15 +122,11 @@ export default function EvaluationScreen() {
             {showResult && (
               <View style={styles.resultRow}>
                 <Text style={styles.resultText}>
-                  {isCorrect ? '✅ 정답입니다.' : '❌ 오답입니다.'}
+                  {isCorrect ? t('evaluation.correct') : t('evaluation.incorrect')}
                 </Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))
-                  }
-                >
+                <TouchableOpacity onPress={() => setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))}>
                   <Text style={styles.expButton}>
-                    {showExp[q.id] ? '해설 숨기기' : '해설 보기'}
+                    {showExp[q.id] ? t('evaluation.hideExplanation') : t('evaluation.showExplanation')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -215,30 +141,24 @@ export default function EvaluationScreen() {
       })}
       {!showResult ? (
         <TouchableOpacity style={styles.submitButton} onPress={grade}>
-          <Text style={styles.submitButtonText}>체점하기</Text>
+          <Text style={styles.submitButtonText}>{t('evaluation.grade')}</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.footer}>
           <Text style={styles.finalText}>
-            총 {questions.length}문제 중 {correctCount}문제 정답
+            {t('evaluation.finalResult', { correct: correctCount, total: questions.length })}
           </Text>
           <TouchableOpacity style={styles.resetButton} onPress={reset}>
-            <Text style={styles.resetButtonText}>다시 풀기</Text>
+            <Text style={styles.resetButtonText}>{t('evaluation.retry')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.exitButton} onPress={exit}>
-            <Text style={styles.exitButtonText}>나가기</Text>
+            <Text style={styles.exitButtonText}>{t('evaluation.exit')}</Text>
           </TouchableOpacity>
         </View>
       )}
-
-      {/* 학습 완료 버튼 */}
-      <TouchableOpacity
-        style={styles.completeButton}
-        onPress={handleCompleteLearning}
-      >
-        <Text style={styles.completeButtonText}>학습 완료</Text>
+      <TouchableOpacity style={styles.completeButton} onPress={handleCompleteLearning}>
+        <Text style={styles.completeButtonText}>{t('evaluation.completeLearning')}</Text>
       </TouchableOpacity>
-
     </ScrollView>
   );
 }
