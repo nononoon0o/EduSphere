@@ -5,11 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/assignments/assignmentDetailStyle';
-import BackButton from '../../components/BackButton'; // ✅ Import reusable back button
+import BackButton from '../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export default function AssignmentDetailScreen() {
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
+  const { t } = useTranslation();
+
   const [assignment, setAssignment] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -22,14 +25,14 @@ export default function AssignmentDetailScreen() {
       });
 
       if (!res.data || !res.data.assignment) {
-        setError('과제 정보를 불러올 수 없습니다.');
+        setError(t('assignment.errorFetch'));
         setAssignment(null);
         return;
       }
 
       setAssignment(res.data.assignment);
     } catch (err) {
-      setError('과제 정보를 불러올 수 없습니다.');
+      setError(t('assignment.errorFetch'));
       setAssignment(null);
       console.log(err);
     } finally {
@@ -51,50 +54,49 @@ export default function AssignmentDetailScreen() {
       });
 
       if (!response.ok) {
-        alert('파일 다운로드 실패');
+        alert(t('assignment.downloadFail'));
         return;
       }
 
       const blob = await response.blob();
-      const filename = fileId ? `${fileId}.docx` : '첨부파일.docx';
+      const filename = fileId ? `${fileId}.docx` : t('assignment.defaultFilename');
 
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
       link.download = filename;
       link.click();
     } catch (err) {
-      alert('파일 다운로드 중 오류가 발생했습니다.');
+      alert(t('assignment.downloadError'));
       console.log(err);
     }
   };
 
   if (loading) return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
   if (error) return <Text style={styles.error}>{error}</Text>;
-  if (!assignment) return <Text style={styles.error}>과제 정보를 찾을 수 없습니다.</Text>;
+  if (!assignment) return <Text style={styles.error}>{t('assignment.notFound')}</Text>;
 
   return (
     <View style={styles.container}>
-      {/* ✅ Back button outside card */}
       <BackButton onPress={() => navigation.goBack()} />
 
       <View style={styles.card}>
         <Text style={styles.title}>{assignment.title}</Text>
 
-        <Text style={styles.label}>설명</Text>
+        <Text style={styles.label}>{t('assignment.description')}</Text>
         <Text style={styles.text}>{assignment.description}</Text>
 
-        <Text style={styles.label}>마감일</Text>
+        <Text style={styles.label}>{t('assignment.dueDate')}</Text>
         <View style={styles.dueDateBadge}>
           <Text style={styles.dueDateText}>
             {assignment.dueDate
-              ? new Date(assignment.dueDate).toLocaleDateString('ko-KR')
+              ? new Date(assignment.dueDate).toLocaleDateString()
               : '-'}
           </Text>
         </View>
 
         {assignment.teafileId && (
           <TouchableOpacity onPress={handleDownload}>
-            <Text style={styles.downloadLink}>📎 첨부파일 다운로드</Text>
+            <Text style={styles.downloadLink}>📎 {t('assignment.download')}</Text>
           </TouchableOpacity>
         )}
       </View>
