@@ -1,334 +1,183 @@
-import { StyleSheet, Dimensions, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const { width } = Dimensions.get('window');
-
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 100,
-    backgroundColor: '#F3F4F6', // light neutral gray
+    paddingTop: 50,
+    paddingBottom: 30,
+    alignItems: 'center',
+    backgroundColor: '#e6f0ff', // bright blue-gray background
   },
 
-  // 🔙 Back Button
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#E0E7FF',
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 20,
-    alignSelf: 'flex-start',
+  questionBox: {
+    width: '92%',
+    backgroundColor: '#ffffff',
     marginBottom: 24,
-    shadowColor: '#6366F1',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#c7d2fe',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
     elevation: 3,
   },
-  backText: {
-    fontSize: 16,
-    marginLeft: 8,
-    fontWeight: '600',
-    color: '#3730A3',
-  },
 
-  // 🧠 Learning Objective
-  text: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#1F2937',
-    marginBottom: 24,
-    lineHeight: 30,
-  },
-
-  // 📚 Concept Section
-  conceptSection: {
-    marginTop: 10,
-  },
-  conceptTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#3B82F6',
-    marginTop: 24,
-    marginBottom: 12,
-  },
-  itemTitle: {
+  questionText: {
     fontSize: 17,
-    fontWeight: '600',
+    marginBottom: 12,
+    lineHeight: 25,
+    color: '#1e3a8a', // dark blue
+    fontWeight: '700',
+  },
+
+  choice: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginVertical: 6,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#d1d5db',
+    backgroundColor: '#f9fafb',
+  },
+
+  choiceSelected: {
+    backgroundColor: '#dbeafe', // soft blue
+    borderColor: '#3b82f6',
+  },
+
+  correct: {
+    backgroundColor: '#d1fae5', // light green
+    borderColor: '#10b981',
+  },
+
+  wrong: {
+    backgroundColor: '#fee2e2', // light red
+    borderColor: '#ef4444',
+  },
+
+  choiceText: {
+    fontSize: 15,
     color: '#111827',
+  },
+
+  resultRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 12,
   },
-  description: {
-    fontSize: 15.5,
-    color: '#4B5563',
-    marginLeft: 12,
-    marginTop: 4,
-  },
 
-  // 👉 Next Button
-  nextButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 220,
-    height: 52,
-    backgroundColor: '#3B82F6',
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    marginTop: 40,
-    alignSelf: 'center',
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 5,
-  },
-  nextButtonCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: '#F9FAFB',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  nextButtonText: {
+  resultText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1D4ED8',
+    color: '#374151',
   },
 
-  // ⬅️ Previous Nav Button
-  prevNavButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    marginTop: 20,
-  },
-  prevNavCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#6B7280',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  prevNavText: {
+  expButton: {
     fontSize: 14,
-    fontWeight: '600',
-    color: '#6B7280',
-    marginLeft: 10,
+    color: '#2563eb',
+    fontWeight: '500',
+    textDecorationLine: 'underline',
   },
 
-  // 🎬 Video Styles
-  videoContainer: {
-    height: width * 0.5625,
-    width: '100%',
-    borderRadius: 16,
-    overflow: 'hidden',
-    marginVertical: 24,
-    backgroundColor: '#E0E7FF',
-  },
-  video: {
-    flex: 1,
-    borderRadius: 16,
-  },
-  iframe: {
-    border: 'none',
-    borderRadius: 16,
-    marginTop: 16,
+  explanationBox: {
+    marginTop: 10,
+    backgroundColor: '#fefce8',
+    padding: 14,
+    borderRadius: 10,
+    borderLeftWidth: 5,
+    borderLeftColor: '#facc15', // yellow border
   },
 
-  // 🧪 Drop Zones
-  dropZone: {
-    width: width * 0.42,
-    height: 260,
-    backgroundColor: '#DBEAFE',
-    borderColor: '#3B82F6',
-    borderWidth: 2,
-    borderRadius: 18,
+  explanationText: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#4b5563',
+  },
+
+  submitButton: {
+    backgroundColor: '#3b82f6', // blue
+    paddingVertical: 14,
+    width: '92%',
     alignItems: 'center',
-    padding: 12,
+    borderRadius: 12,
+    marginTop: 14,
+    shadowColor: '#3b82f6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  dropZoneTitle: {
+
+  submitButtonText: {
+    color: '#fff',
     fontSize: 18,
     fontWeight: '700',
-    color: '#1E3A8A',
-    marginBottom: 10,
   },
-  innerDropZone: {
-    flex: 1,
+
+  footer: {
+    width: '92%',
+    alignItems: 'center',
+    marginVertical: 24,
+  },
+
+  finalText: {
+    fontSize: 19,
+    fontWeight: '700',
+    color: '#111827',
+    marginBottom: 18,
+  },
+
+  resetButton: {
+    backgroundColor: '#22c55e',
+    paddingVertical: 14,
     width: '100%',
-    backgroundColor: '#EFF6FF',
+    alignItems: 'center',
     borderRadius: 12,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: 12,
   },
 
-  // Result messages
-  resultMessage: {
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'center',
-    color: '#DC2626',
-    marginBottom: 10,
-  },
-  explanationTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    marginTop: 10,
-    marginBottom: 5,
+  resetButtonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '600',
   },
 
-  // 🖼️ Images
-  examplesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-  imageWrapper: {
-    width: 80,
-    height: 80,
-    margin: 10,
-    backgroundColor: '#F3F4F6',
-    borderRadius: 10,
-    justifyContent: 'center',
+  exitButton: {
+    backgroundColor: '#ef4444',
+    paddingVertical: 14,
+    width: '100%',
     alignItems: 'center',
-  },
-  image: {
-    width: 68,
-    height: 68,
-    borderRadius: 10,
-  },
-  imageLabel: {
-    fontSize: 13,
-    color: '#374151',
-    textAlign: 'center',
-    marginTop: 6,
+    borderRadius: 12,
   },
 
-  // 🧊 Modal
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalContent: {
-    width: '85%',
-    maxHeight: '70%',
-    padding: 24,
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
+  exitButtonText: {
+    color: '#fff',
+    fontSize: 17,
+    fontWeight: '600',
   },
 
-  // 📍 Prev / Next Navigation Row
-  navigation: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    marginTop: 32,
-  },
-  prevButton: {
-    flexDirection: 'row',
+  completeButton: {
+    backgroundColor: '#10b981',
+    paddingVertical: 14,
+    width: '92%',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 200,
-    height: 50,
-    backgroundColor: '#ffffff',
-    borderRadius: 25,
-    paddingHorizontal: 16,
-    shadowColor: '#9CA3AF',
+    borderRadius: 12,
+    marginTop: 30,
+    shadowColor: '#10b981',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 4,
-    elevation: 4,
-  },
-  prevButtonCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: '#60A5FA',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  prevButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#3B82F6',
+    elevation: 3,
   },
 
-  // 🧾 Beautiful Card Wrapper
-  card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    borderRadius: 20,
-    padding: 24,
-    marginTop: 10,
-    marginHorizontal: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 6,
-    backdropFilter: Platform.OS === 'web' ? 'blur(10px)' : undefined,
+  completeButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
   },
-  // 🎯 학습목표 카드
-objectiveCard: {
-  backgroundColor: '#F9FAFB',
-  borderRadius: 20,
-  padding: 24,
-  marginVertical: 12,
-  marginHorizontal: 4,
-  shadowColor: '#D1D5DB',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.12,
-  shadowRadius: 6,
-  elevation: 4,
-},
-
-// 💙 물리변화 카드
-physicalCard: {
-  backgroundColor: '#DBEAFE', // soft blue
-  borderRadius: 20,
-  padding: 24,
-  marginVertical: 12,
-  marginHorizontal: 4,
-  shadowColor: '#60A5FA',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.15,
-  shadowRadius: 8,
-  elevation: 5,
-},
-
-// 🧡 화학변화 카드
-chemicalCard: {
-  backgroundColor: '#FEF3C7', // soft amber
-  borderRadius: 20,
-  padding: 24,
-  marginVertical: 12,
-  marginHorizontal: 4,
-  shadowColor: '#F59E0B',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.15,
-  shadowRadius: 8,
-  elevation: 5,
-},
-
-// 📘 다음 버튼 카드
-buttonCard: {
-  backgroundColor: '#E0E7FF',
-  borderRadius: 20,
-  padding: 24,
-  marginVertical: 20,
-  marginHorizontal: 4,
-  shadowColor: '#6366F1',
-  shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.2,
-  shadowRadius: 10,
-  elevation: 6,
-},
-
 });
+
+export default styles;
