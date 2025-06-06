@@ -7,29 +7,23 @@ import {
   ScrollView,
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../../style/stuResult/stuResultScreenStyle';
-import BackButton from '../../../components/BackButton'; // ✅ Import reusable button
-
-const allChapters = [
-  { chapter: "Chapter1_01", title: "Chapter1_01" },
-  { chapter: "Chapter1_02", title: "Chapter1_02" },
-  { chapter: "Chapter1_03", title: "Chapter1_03" }
-];
+import BackButton from '../../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export default function StuResultScreen() {
   const { studentId } = useLocalSearchParams();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const [student, setStudent] = useState({});
   const [assignments, setAssignments] = useState([]);
   const [results, setResults] = useState(null);
-  const [deadlines, setDeadlines] = useState([]);
-  const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
 
   const fetchStudentInfo = async () => {
     try {
@@ -71,114 +65,43 @@ export default function StuResultScreen() {
       });
       setAssignments(res.data);
     } catch (err) {
-      setError('과제를 불러올 수 없습니다.');
-    }
-  };
-
-  const fetchAttendance = async (studentId) => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(
-        `http://localhost:5000/api/attendance/student/${studentId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (res.data.success && res.data.records) {
-        setAttendance(res.data.records);
-      } else {
-        setAttendance([]);
-      }
-    } catch (err) {
-      console.error('출석 기록 불러오기 실패:', err);
-    }
-  };
-
-  const fetchDeadlines = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/deadlines/all', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setDeadlines(res.data.deadlines || []);
-    } catch (err) {
-      console.error('데드라인 정보 요청 실패:', err);
+      setError(t('result.errorFetchingAssignments'));
     }
   };
 
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
     const date = new Date(dateStr);
-    return date.toLocaleDateString('ko-KR');
+    return date.toLocaleDateString();
   };
 
   useEffect(() => {
     fetchStudentInfo();
     fetchAssignments();
     fetchResults();
-    fetchAttendance(studentId);
-    fetchDeadlines();
   }, [studentId]);
 
   if (loading) {
     return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
   }
 
-const getAttendanceStatus = (chapter) => {
-    // 출석/지각 기록에서 해당 챕터 찾기
-    console.log('입력받은 chapter:', chapter);
-    const attendanceObj = Array.isArray(attendance)
-      ? attendance.find(a => a.chapter === chapter)
-      : null;
-    console.log('찾은 attendanceObj:', attendanceObj);
-    // 데드라인에서 해당 챕터 찾기
-    const deadlineObj = Array.isArray(deadlines)
-      ? deadlines.find(d => d.chapter === chapter)
-      : null;
-
-    if (attendanceObj) {
-      return attendanceObj.status; // '출석' 또는 '지각'
-    } else if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) {
-      return "결석"; // 데드라인 지났고 기록 없으면 결석
-    } else if (deadlineObj) {
-      return "미완료"; // 데드라인 안 지났고 기록 없으면 미완료
-    } else {
-      return "정보 없음";
-    }
-  };
-
-  // 챕터별 출결 상태 집계
-  const countAttendance = () => {
-    const counts = { 출석: 0, 지각: 0, 결석: 0, 미완료: 0 };
-    allChapters.forEach(ch => {
-      const status = getAttendanceStatus(ch.chapter);
-      if (status === '출석') counts.출석 += 1;
-      else if (status === '지각') counts.지각 += 1;
-      else if (status === '결석') counts.결석 += 1;
-      else if (status === '미완료') counts.미완료 += 1;
-    });
-    return counts;
-  };
-  
-  const attendanceCounts = countAttendance();
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* ✅ Back button outside card */}
-            <BackButton onPress={() => router.push('/ProfileScreen')} />
+      <BackButton onPress={() => router.push('/ProfileScreen')} />
 
-
-
-      {/* 🧑‍🎓 Header Title */}
       <View style={styles.card}>
         <Text style={styles.headerTitle}>
-          {student.name ? `${student.name}님의 성적표` : '학생 성적 정보'}
+          {student.name
+            ? t('result.titleWithName', { name: student.name })
+            : t('result.title')}
         </Text>
       </View>
 
-      {/* 📚 과목별 성적 */}
+      {/* 📚 Subject Scores */}
       <View style={styles.card}>
         <View style={styles.sectionHeaderRow}>
           <Text style={styles.sectionIcon}>📚</Text>
-          <Text style={styles.sectionTitleText}>과목별 성적</Text>
+          <Text style={styles.sectionTitleText}>{t('result.subjectScores')}</Text>
         </View>
         {results?.subjects?.map((subject, index) => (
           <View key={index} style={styles.scoreBox}>
@@ -189,62 +112,54 @@ const getAttendanceStatus = (chapter) => {
                 { color: subject.score < 60 ? '#DC2626' : '#10B981' },
               ]}
             >
-              최종 점수: {subject.score}점
+              {t('result.finalScore')}: {subject.score}{t('result.points')}
             </Text>
           </View>
         ))}
       </View>
 
-      {/* 📅 출결 현황 */}
+      {/* 📅 Attendance */}
       <View style={styles.card}>
         <View style={styles.sectionHeaderRow}>
           <Text style={styles.sectionIcon}>📅</Text>
-          <Text style={styles.sectionTitleText}>출결 현황</Text>
+          <Text style={styles.sectionTitleText}>{t('result.attendanceStatus')}</Text>
         </View>
         <View style={styles.attendanceTagWrapper}>
           <Text style={[styles.tag, styles.tagPresent]}>
-            출석: {attendanceCounts.출석}개
+            {t('result.present')}: {results?.attendance?.present || 0}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagLate]}>
-            지각: {attendanceCounts.지각}개
+            {t('result.late')}: {results?.attendance?.late || 0}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            결석: {attendanceCounts.결석}개
-          </Text>
-          <Text style={[styles.tag, styles.tagAbsent]}>
-            미완료: {attendanceCounts.미완료}개
+            {t('result.absent')}: {results?.attendance?.absent || 0}{t('result.days')}
           </Text>
         </View>
       </View>
 
-
-      {/* 📝 과제 현황 */}
+      {/* 📝 Assignments */}
       <View style={styles.card}>
         <View style={styles.sectionHeaderRow}>
           <Text style={styles.sectionIcon}>📝</Text>
-          <Text style={styles.sectionTitleText}>과제 현황</Text>
+          <Text style={styles.sectionTitleText}>{t('result.assignmentStatus')}</Text>
         </View>
         {assignments.length === 0 && (
-          <Text style={styles.emptyText}>등록된 과제가 없습니다.</Text>
+          <Text style={styles.emptyText}>{t('result.noAssignments')}</Text>
         )}
         {assignments.map((assignment, index) => (
           <View key={assignment._id || index} style={styles.assignmentCard}>
             <View style={styles.assignmentInfo}>
               <Text style={styles.itemTitle}>
                 {assignment.title}
-                {assignment.description
-                  ? ` || ${assignment.description}`
-                  : ''}
-                {assignment.dueDate
-                  ? ` || ${formatDate(assignment.dueDate)}`
-                  : ''}
+                {assignment.description ? ` || ${assignment.description}` : ''}
+                {assignment.dueDate ? ` || ${formatDate(assignment.dueDate)}` : ''}
               </Text>
             </View>
             <TouchableOpacity
               style={styles.detailButtonWrapper}
               onPress={() => router.push(`/assignments/${assignment._id}`)}
             >
-              <Text style={styles.detailButtonText}>상세보기</Text>
+              <Text style={styles.detailButtonText}>{t('result.viewDetails')}</Text>
             </TouchableOpacity>
           </View>
         ))}
