@@ -1,8 +1,11 @@
 import React from "react";
 import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useTranslation } from 'react-i18next';
 
 const EditAccountModal = ({ visible, onClose, onConfirm, onText }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       transparent={true}
@@ -13,11 +16,11 @@ const EditAccountModal = ({ visible, onClose, onConfirm, onText }) => {
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           <Icon name="check-circle" size={48} color="#10B981" style={styles.icon} />
-          <Text style={styles.title}>완료되었습니다</Text>
-          <Text style={styles.message}>{onText} 확인되었습니다.</Text>
+          <Text style={styles.title}>{t('editModal.completed')}</Text>
+          <Text style={styles.message}>{t('editModal.message', { onText })}</Text>
 
           <Pressable style={styles.button} onPress={onConfirm}>
-            <Text style={styles.buttonText}>확인</Text>
+            <Text style={styles.buttonText}>{t('editModal.confirm')}</Text>
           </Pressable>
         </View>
       </View>
