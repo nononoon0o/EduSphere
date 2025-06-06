@@ -5,25 +5,29 @@ import { fetchUserInfoAll } from '../../services/userService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import styles from '../../style/profileStyles';
+import { useTranslation } from 'react-i18next';
 
 export default function ProfileScreen() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userName, setUserName] = useState(null);
-  const [role, setRole] = useState(null);
-  const router = useRouter();
-  const [mongoID, setMongoID] = useState("");
+  const { t } = useTranslation(); // 다국어 번역 훅
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+  const [userName, setUserName] = useState(null);   // 사용자 이름
+  const [role, setRole] = useState(null);           // 사용자 역할 (student/teacher)
+  const [mongoID, setMongoID] = useState("");       // MongoDB 사용자 ID
+  const router = useRouter();                       // 페이지 이동을 위한 라우터
 
+  // 역할을 번역된 이름으로 반환
   const getRoleName = (role) => {
     switch (role) {
       case "student":
-        return "학생";
+        return t('profile.student');
       case "teacher":
-        return "교사";
+        return t('profile.teacher');
       default:
         return "";
     }
   };
 
+  // 사용자 정보 불러오기
   const fetchUserInfo = async () => {
     setIsLoading(true);
     try {
@@ -40,10 +44,12 @@ export default function ProfileScreen() {
     }
   };
 
+  // 화면 진입 시 사용자 정보 가져오기
   useEffect(() => {
     fetchUserInfo();
   }, []);
 
+  // 로그아웃 처리
   const handleLogout = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -61,6 +67,7 @@ export default function ProfileScreen() {
     setMongoID(null);
   };
 
+  // 로딩 중 화면
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -69,12 +76,18 @@ export default function ProfileScreen() {
     );
   }
 
+  // 메인 프로필 화면
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileCard}>
+        {/* 인사 메시지 */}
         <Text style={styles.greetingText}>
-          {userName ? `${getRoleName(role)} ${userName}님 어서오세요` : '로그인 해주세요'}
+          {userName
+            ? `${getRoleName(role)} ${userName}${t('profile.welcome')}`
+            : t('profile.pleaseLogin')}
         </Text>
+
+        {/* 로그인 / 로그아웃 버튼 */}
         <TouchableOpacity
           style={[styles.authButton, userName ? styles.logoutButton : styles.loginButton]}
           onPress={() => {
@@ -86,11 +99,13 @@ export default function ProfileScreen() {
           }}
         >
           <Text style={styles.authButtonText}>
-            {userName ? '로그아웃' : '로그인'}
+            {userName ? t('profile.logout') : t('profile.login')}
           </Text>
         </TouchableOpacity>
 
+        {/* 기능 버튼 영역 */}
         <View style={styles.actionsContainer}>
+          {/* 계정 수정 버튼 */}
           <TouchableOpacity
             style={styles.actionButton}
             onPress={() => {
@@ -99,32 +114,28 @@ export default function ProfileScreen() {
               }
             }}
           >
-            <Text style={styles.actionButtonText}>계정 정보 수정</Text>
+            <Text style={styles.actionButtonText}>{t('profile.editAccount')}</Text>
           </TouchableOpacity>
 
+          {/* 교사용 기능 */}
           {role === "teacher" && (
             <>
-              <TouchableOpacity
-                style={styles.actionButton}
-                onPress={() => {}}
-              >
-                <Text style={styles.actionButtonText}>진도 설정</Text>
+              <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
+                <Text style={styles.actionButtonText}>{t('profile.setProgress')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.actionButton}
-                onPress={() => { router.push('/stuManage/stuManageScreen'); }}
+                onPress={() => router.push('/stuManage/stuManageScreen')}
               >
-                <Text style={styles.actionButtonText}>학생 관리</Text>
+                <Text style={styles.actionButtonText}>{t('profile.manageStudents')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.actionButton}
-                onPress={() => {}}
-              >
-                <Text style={styles.actionButtonText}>학습 결과 확인</Text>
+              <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
+                <Text style={styles.actionButtonText}>{t('profile.viewResults')}</Text>
               </TouchableOpacity>
             </>
           )}
 
+          {/* 학생용 기능 */}
           {role === "student" && (
             <>
               <TouchableOpacity
@@ -132,11 +143,11 @@ export default function ProfileScreen() {
                 onPress={() => {
                   router.push({
                     pathname: '/stuManage/stuResult/stuResultScreen',
-                    params: { studentId: mongoID }
+                    params: { studentId: mongoID },
                   });
                 }}
               >
-                <Text style={styles.actionButtonText}>학습 결과 확인</Text>
+                <Text style={styles.actionButtonText}>{t('profile.viewResults')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.actionButton}
@@ -144,11 +155,12 @@ export default function ProfileScreen() {
                   router.push('/assignments/submitAssignmentScreen');
                 }}
               >
-                <Text style={styles.actionButtonText}>과제 제출</Text>
+                <Text style={styles.actionButtonText}>{t('profile.submitAssignment')}</Text>
               </TouchableOpacity>
             </>
           )}
 
+          {/* 회원 탈퇴 버튼 */}
           <TouchableOpacity
             style={styles.actionButton}
             onPress={() => {
@@ -157,7 +169,7 @@ export default function ProfileScreen() {
               }
             }}
           >
-            <Text style={styles.actionButtonText}>회원 탈퇴</Text>
+            <Text style={styles.actionButtonText}>{t('profile.withdraw')}</Text>
           </TouchableOpacity>
         </View>
       </View>
