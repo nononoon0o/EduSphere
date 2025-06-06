@@ -14,19 +14,19 @@ import {
   Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import screenMap from "../routes/screenMap";
+import screenMap from "../routes/screenMap"; // 화면 경로 매핑
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from "react-i18next";
 import styles from "../../style/SearchStyle/searchStyles";
-import { getAllI18nTexts } from "../../utils/flattenI18n";
+import { getAllI18nTexts } from "../../utils/flattenI18n"; // 모든 번역 텍스트 가져오기
 
 export default function SearchScreen() {
-  const [query, setQuery] = useState("");
-  const [recent, setRecent] = useState([]);
-  const [results, setResults] = useState([]);
-  const [keywords, setKeywords] = useState([]);
-  const [selectedChapter, setSelectedChapter] = useState(null);
+  const [query, setQuery] = useState(""); // 검색어
+  const [recent, setRecent] = useState([]); // 최근 검색어
+  const [results, setResults] = useState([]); // 검색 결과
+  const [keywords, setKeywords] = useState([]); // i18n 키워드
+  const [selectedChapter, setSelectedChapter] = useState(null); // 선택된 챕터
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const inputRef = useRef(null);
@@ -35,14 +35,17 @@ export default function SearchScreen() {
 
   const focusAnim = useRef(new Animated.Value(0)).current;
 
+  // 챕터별로 screenMap 정리
   const groupedMap = groupScreenMapByChapter(screenMap);
   const chapterKeys = Object.keys(groupedMap);
 
+  // 번역된 모든 텍스트 키워드로 변환
   useEffect(() => {
     const allTexts = getAllI18nTexts(i18n, i18n.language);
     setKeywords(allTexts);
   }, [i18n.language]);
 
+  // 최근 검색 기록 불러오기
   useEffect(() => {
     (async () => {
       const stored = await AsyncStorage.getItem("recent_searches");
@@ -50,6 +53,7 @@ export default function SearchScreen() {
     })();
   }, []);
 
+  // query가 바뀔 때마다 결과 필터링
   useEffect(() => {
     if (!query.trim()) return setResults([]);
     const all = [...Object.keys(screenMap), ...keywords];
@@ -61,6 +65,7 @@ export default function SearchScreen() {
     setResults(filtered);
   }, [query, keywords]);
 
+  // 챕터별로 screenMap 그룹화
   function groupScreenMapByChapter(map) {
     const grouped = {};
     Object.entries(map).forEach(([label, path]) => {
@@ -74,6 +79,7 @@ export default function SearchScreen() {
     return grouped;
   }
 
+  // 검색어 선택 시 화면 이동
   const handleSearchSelect = async (label) => {
     const route = screenMap[label];
     if (route) {
@@ -86,12 +92,14 @@ export default function SearchScreen() {
     }
   };
 
+  // 최근 검색어 삭제
   const handleRemoveRecent = async (labelToRemove) => {
     const filtered = recent.filter((label) => label !== labelToRemove);
     setRecent(filtered);
     await AsyncStorage.setItem("recent_searches", JSON.stringify(filtered));
   };
 
+  // 포커스 애니메이션 트리거
   const animateFocus = (toValue) => {
     Animated.timing(focusAnim, {
       toValue,
@@ -100,6 +108,7 @@ export default function SearchScreen() {
     }).start();
   };
 
+  // 검색창 스타일 애니메이션
   const inputStyle = {
     borderColor: focusAnim.interpolate({
       inputRange: [0, 1],
@@ -119,6 +128,7 @@ export default function SearchScreen() {
     }),
   };
 
+  // 챕터 목록 렌더링
   const renderChapter = ({ item }) => (
     <TouchableOpacity
       onPress={() => setSelectedChapter(item)}
@@ -130,6 +140,7 @@ export default function SearchScreen() {
     </TouchableOpacity>
   );
 
+  // 챕터 하위 항목 렌더링
   const renderSection = ({ item }) => (
     <TouchableOpacity
       onPress={() => handleSearchSelect(item.label)}
@@ -139,6 +150,7 @@ export default function SearchScreen() {
     </TouchableOpacity>
   );
 
+  // 전체 렌더링
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -146,9 +158,9 @@ export default function SearchScreen() {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          {/* Main Layout */}
+          {/* 레이아웃 구성 */}
           <View style={[styles.mainWrapper, { flexDirection: isMobile ? "column" : "row" }]}>
-            {/* Sidebar */}
+            {/* 사이드바 */}
             <View style={[styles.sidebar, isMobile ? styles.sidebarMobile : styles.sidebarDesktop]}>
               <Text style={styles.header}>🔍 {t("SEARCH")}</Text>
               <FlatList
@@ -158,9 +170,9 @@ export default function SearchScreen() {
               />
             </View>
 
-            {/* Main Content */}
+            {/* 메인 콘텐츠 */}
             <View style={styles.mainContent}>
-              {/* Touchable Search Bar */}
+              {/* 검색창 */}
               <TouchableOpacity
                 activeOpacity={1}
                 onPress={() => inputRef.current?.focus()}
@@ -182,6 +194,7 @@ export default function SearchScreen() {
                 </Animated.View>
               </TouchableOpacity>
 
+              {/* 선택된 챕터의 항목 표시 */}
               {selectedChapter && (
                 <FlatList
                   data={groupedMap[selectedChapter]}
@@ -190,6 +203,7 @@ export default function SearchScreen() {
                 />
               )}
 
+              {/* 검색 결과 or 최근 검색어 */}
               <Text style={styles.sectionTitle}>
                 {query.trim() ? t("searchResults") : t("Recent-Searches")}
               </Text>
