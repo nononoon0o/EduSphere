@@ -61,4 +61,3 @@ export default function Chapter2Index() {
     </ImageBackground>
   );
 }
-
