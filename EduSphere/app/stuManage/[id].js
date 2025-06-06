@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -180,8 +180,8 @@ export default function StudentDetail() {
             assignments.map((item, idx) => (
               <Text key={idx} style={styles.assignmentText}>
                 {item.title}: 
-                <Text style={item.submitted ? styles.tagGreen : styles.tagRed}>
-                  {item.submitted ? t('studentDetail.submitted') : t('studentDetail.notSubmitted')}
+                <Text style={item.status === '제출' ? styles.tagGreen : styles.tagRed}>
+                  {item.status === '제출' ? t('studentDetail.submitted') : t('studentDetail.notSubmitted')}
                 </Text>
                 {item.score && <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>}
               </Text>
