@@ -4,11 +4,13 @@ import { useRouter } from 'expo-router';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../style/signinStyle/withdrawelStyle';
-import BackButton from '../../components/BackButton'; // ✅ Import du bouton
+import BackButton from '../../components/BackButton';
+import { useTranslation } from 'react-i18next';
 
 export default function WithdrawalScreen() {
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleWithdrawal = async () => {
     try {
@@ -25,29 +27,25 @@ export default function WithdrawalScreen() {
 
       if (response.status === 200) {
         await AsyncStorage.removeItem('token');
-        router.replace('../signin/loginScreen');
+        router.replace('/signin/loginScreen');
       }
     } catch (error) {
-      Alert.alert('오류', error.response?.data?.message || '탈퇴 처리 중 오류 발생');
+      Alert.alert(t('withdrawal.error'), error.response?.data?.message || t('withdrawal.genericError'));
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* ✅ Utilisation du composant BackButton */}
       <BackButton onPress={() => router.push('/ProfileScreen')} />
 
-      {/* Center Card */}
       <View style={styles.card}>
-        <Text style={styles.title}>회원 탈퇴</Text>
-        <Text style={styles.infoText}>
-          정말 탈퇴하시겠습니까?{'\n'}비밀번호를 입력해 주세요.
-        </Text>
+        <Text style={styles.title}>{t('withdrawal.title')}</Text>
+        <Text style={styles.infoText}>{t('withdrawal.description')}</Text>
 
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="비밀번호"
+            placeholder={t('withdrawal.placeholder')}
             placeholderTextColor="#888"
             secureTextEntry
             value={password}
@@ -56,7 +54,7 @@ export default function WithdrawalScreen() {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleWithdrawal}>
-          <Text style={styles.buttonText}>탈퇴하기</Text>
+          <Text style={styles.buttonText}>{t('withdrawal.submit')}</Text>
         </TouchableOpacity>
       </View>
     </View>
