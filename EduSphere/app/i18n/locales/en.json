@@ -1,0 +1,639 @@
+{
+  "title": "Discover the World of Science",
+  "subtitle": "Dive into atoms, reactions, and molecular mysteries",
+  "goToAccount": "Go to your account",
+  "chapterList": "3rd Year Middle School Science Curriculum",
+  "chapterTitles": {
+    "Chapter1": "CHAPTER I",
+    "Chapter2": "CHAPTER II",
+    "Chapter3": "CHAPTER III",
+    "Chapter4": "CHAPTER IV"
+  },
+  "legal": "All rights reserved.",
+  "profile": {
+    "student": "Student",
+    "teacher": "Teacher",
+    "welcome": ", welcome!",
+    "pleaseLogin": "Please log in",
+    "login": "Login",
+    "logout": "Logout",
+    "editAccount": "Edit Account",
+    "setProgress": "Set Progress",
+    "manageStudents": "Manage Students",
+    "viewResults": "View Results",
+    "submitAssignment": "Submit Assignment",
+    "withdraw": "Delete Account"
+  },
+  "SEARCH": "Search",
+  "search": "Enter a search term...",
+  "searchResults": "Search Results",
+  "Recent-Searches": "Recent Searches",
+  "noMatches": "No matching results found",
+  "noRouteTitle": "Page not found",
+  "noRouteMessage": "Cannot navigate to this route",
+  "chapter1": {
+    "title": "Ⅰ. Laws of Chemical Reactions and Energy Change",
+    "subtitles": {
+      "01": "Changes in Matter and Chemical Reactions",
+      "02": "Law of Conservation of Mass and Constant Proportions",
+      "03": "Gas Reaction Laws and Energy Exchange"
+    }
+  },
+  "chapter2": {
+    "title": "Ⅱ. Atomic Structure and Periodic Table",
+    "subtitles": {
+      "01": "Particles Composing Matter",
+      "02": "Evolution of Atomic Models",
+      "03": "Atomic Structure and Electron Configuration",
+      "04": "Periodic Table and Property Regularity"
+    }
+  },
+  "chapter3": {
+    "title": "Ⅲ. Chemical Reactions and Energy Change",
+    "subtitles": {
+      "01": "Regularities in Chemical Reactions",
+      "02": "Chemical Reactions and Energy"
+    }
+  },
+  "chapter4": {
+    "title": "Ⅳ. Chemistry in Everyday Life",
+    "subtitles": {
+      "01": "Properties of Acids and Bases",
+      "02": "Neutralization Reactions and Salts"
+    }
+  },
+  "chapter1_01": {
+    "subtitle": "Changes in Matter and Chemical Reactions",
+    "title": "01. Concept Exploration",
+    "sections": {
+      "concept": "Concept Summary",
+      "learn": "Learn",
+      "video": "Video Learning"
+    }
+  },
+  "chapter1_02": {
+    "subtitle": "States of Matter and Energy",
+    "title": "02. State Change",
+    "sections": {
+      "concept": "Concept Summary",
+      "learn": "Learn",
+      "video": "Video Learning"
+    }
+  },
+  "chapter1_03": {
+  "subtitle": "Heat Transfer and Matter",
+  "title": "03. Exploring Heat and Matter",
+  "sections": {
+    "concept": "Concept Summary",
+    "learn": "Learn",
+    "video": "Video Learning"
+  },
+  "chemicalReaction": {
+      "reset": "Try Again",
+      "explanation": "Explain Precipitate",
+      "back": "Previous",
+      "next": "Next",
+      "precipDescriptions": {
+        "CuSO4+Fe": "CuSO₄ + Fe → FeSO₄ + Cu↓ (Reddish copper precipitate)",
+        "AgNO3+Cu": "2AgNO₃ + Cu → Cu(NO₃)₂ + 2Ag↓ (Silver precipitate)"
+      },
+      "reagents": {
+        "CuSO4": "CuSO₄",
+        "Fe": "Fe",
+        "Zn": "Zn",
+        "AgNO3": "AgNO₃"
+      }
+    },
+    "videoLearning": {
+      "title": "🎬 This is the video learning page.",
+      "evaluate": "Take the Evaluation",
+      "back": "Previous",
+      "completionSuccess": "Learning complete! Attendance status: {{status}}",
+      "completionError": "Failed to record attendance.",
+      "unexpectedError": "An unexpected error occurred.",
+      "completed": "Completed"
+    },
+    "evaluation": {
+    "q1": {
+      "text": "1. Where is the reactant written in a chemical reaction?\n\n(1) Right of the arrow\n(2) Above the arrow\n(3) Below the arrow\n(4) Left of the arrow\n(5) Both sides",
+      "explanation": "Reactants are written to the left of the arrow in a chemical equation."
+    },
+    "q2": {
+      "text": "2. What is the number written in front of a chemical formula in a chemical reaction?\n\n(1) Atomic number\n(2) Mass number\n(3) Oxidation number\n(4) Coefficient\n(5) Stoichiometry",
+      "explanation": "In a chemical reaction, the number before the formula is the coefficient, indicating the number of particles involved."
+    },
+    "q3": {
+      "text": "3. What is the main role of a coefficient in a chemical equation?\n\n(1) Indicates type of reactants\n(2) Indicates type of products\n(3) Controls reaction speed\n(4) Balances atom count before and after reaction\n(5) Indicates required energy",
+      "explanation": "The coefficient ensures the number of atoms is equal before and after the reaction, maintaining the law of conservation of mass."
+    },
+    "q4": {
+      "text": "4. What is the coefficient of hydrogen (H₂) in the following reaction?\n\n? H₂ + O₂ → 2 H₂O\n\n(1) 1\n(2) 2\n(3) 3\n(4) 4\n(5) 5",
+      "explanation": "2 H₂O contains 4 hydrogen atoms, so 2 H₂ molecules are needed: the coefficient is 2."
+    },
+    "q5": {
+      "text": "5. Which of the following correctly shows a chemical reaction?\n\n(1) H + O → H₂O\n(2) H₂ + O → H₂O\n(3) 2H + O₂ → H₂O\n(4) 2H₂ + O₂ → 2H₂O\n(5) H₂ + 2O₂ → 2H₂O",
+      "explanation": "The correct balanced equation is 2H₂ + O₂ → 2H₂O, following conservation of atoms."
+    },
+    "correct": "✅ Correct.",
+    "incorrect": "❌ Incorrect.",
+    "showExplanation": "Show explanation",
+    "hideExplanation": "Hide explanation",
+    "submit": "Submit",
+    "retry": "Try Again",
+    "exit": "Exit",
+    "complete": "Complete Learning",
+    "completeTitle": "Done",
+    "completeMessage": "Learning complete! Attendance status: {{status}}",
+    "errorTitle": "Error",
+    "recordFail": "Failed to record attendance.",
+    "unexpected": "An unexpected error occurred.",
+    "totalResult": "You got {{correct}} out of {{total}} questions right."
+  },
+  "conceptSummary": {
+    "objective": "📘 Learning Objective: Able to express chemical reactions using chemical equations.",
+    "chemicalEquation": "⚗️ Chemical Equation",
+    "definition": "Definition:",
+    "definitionDesc": "A formula that simply shows the reacting substances and resulting substances using symbols and numbers.",
+    "components": "Components:",
+    "reactants": "- Reactants: Substances before reaction (left side of the equation)",
+    "products": "- Products: Substances formed after reaction (right side of the equation)",
+    "example": "Example:",
+    "reaction": "2H₂ + 1O₂ → 2H₂O",
+    "changeTitle": "🔢 Chemical Change",
+    "coefficientDesc": "The number in front of a substance in the equation indicating particle count.",
+    "role": "Role:",
+    "roleDesc": "Ensures the number of atoms before and after reaction is the same (Law of Conservation of Mass).",
+    "caution": "Caution:",
+    "cautionDesc": "Never change the chemical formula itself; only adjust the number in front (coefficient).",
+    "exampleDetails": [
+      "- 2 hydrogen molecules (H₂)",
+      "- 1 oxygen molecule (O₂)",
+      "- Produces 2 water molecules (H₂O)"
+    ],
+    "next": "Next"
+  }
+},
+
+  "chapter2_01": {
+    "title": "Atmosphere and Climate",
+    "menu": {
+      "item1": "1. Composition of the Atmosphere",
+      "item2": "2. Greenhouse Effect",
+      "item3": "3. Climate Chemistry",
+      "item4": "4. Energy Transfer Mechanisms",
+      "item5": "5. Human Impact on Climate",
+      "item6": "6. Effects of Climate Change"
+    }
+  },
+  "chapter2_02": {
+    "title": "Conservation Laws",
+    "description": "Learn about the basic laws of chemistry.",
+    "menu": {
+      "item1": "1. Law of Conservation of Mass",
+      "item2": "2. Law of Constant Proportions"
+    }
+  },
+  "chapter3_01": {
+    "title": "03. Law of Conservation of Mass and Law of Definite Proportions",
+    "description": "Learn the principle that mass is conserved during chemical reactions and how components combine in fixed ratios.",
+    "menu": {
+      "item1": "1. Law of Conservation of Mass",
+      "item2": "2. Law of Definite Proportions"
+    }
+  },
+  "chapter3_02": {
+    "title": "02. Chemical Reactions and Energy",
+    "description": "Learn how energy is absorbed or released during chemical reactions."
+  },
+  "chapter4_01": {
+    "title": "01. Properties of Acids and Bases",
+    "description": "Learn about the properties of acids and bases and how to distinguish them using indicators."
+  },
+  "chapter4_02": {
+    "title": "02. Neutralization and Salts",
+    "description": "Understand the neutralization reaction between acids and bases and the formation of salts."
+  },
+  "conceptSummary": {
+    "learningGoal": "📘 Learning Goal: Be able to explain the difference between physical and chemical changes.",
+    "features": "Features:",
+    "examples": "Examples:",
+    "physicalChange": {
+      "title": "🔷 Physical Change",
+      "features": [
+        "- No new substances are formed.",
+        "- Changes are usually reversible."
+      ],
+      "examples": [
+        "- Cutting paper",
+        "- Ice melting into water"
+      ]
+    },
+    "chemicalChange": {
+      "title": "🔶 Chemical Change",
+      "features": [
+        "- The original substance disappears and a new one is created.",
+        "- Changes are usually irreversible."
+      ],
+      "examples": [
+        "- Burning wood to ash",
+        "- Rusting iron into iron oxide"
+      ]
+    },
+    "objective": "📘 Learning Objective: Understand chemical reactions and describe them using particle arrangement.",
+    "mainConcept": "📚 Main Concept: Understand the differences between physical and chemical changes.",
+    "chemReactionTitle": "🧪 Chemical Reaction",
+    "chemReaction1": "- A phenomenon where two or more substances react to create a new substance.",
+    "chemReaction2": "- Particle arrangements change before and after the reaction, altering the properties.",
+    "featuresTitle": "🧪 Features of Chemical Reaction",
+    "colorChange": "🎨 Color Change",
+    "colorExample1": "- Iron rusts and turns brown (iron oxide).",
+    "colorExample2": "- Leaves turn yellow in autumn.",
+    "gasRelease": "💨 Gas Release",
+    "gasExample1": "- Vinegar and baking soda produce CO₂.",
+    "gasExample2": "- Iron reacts with hydrochloric acid to release hydrogen gas.",
+    "lightHeat": "🔥 Light/Heat Release",
+    "lightExample1": "- Fireworks emit light and heat.",
+    "lightExample2": "- Candles burn and emit light and heat.",
+    "precipitate": "🧱 Solid Formation (Precipitate)",
+    "precipitateExample1": "- CO₂ in limewater creates calcium carbonate.",
+    "precipitateExample2": "- Copper sulfate + iron produces copper precipitate.",
+    "smellChange": "👃 Smell Change",
+    "smellExample1": "- Spoiled food gives off a foul smell.",
+    "smellExample2": "- Chopped onion produces a pungent smell.",
+    "next": "Next"
+  },
+  
+  "learnScreen": {
+    "instruction": "Sort the images based on type of change",
+    "physical": "Physical Change",
+    "chemical": "Chemical Change",
+    "correct": "🎉 Correct! Check the explanations below.",
+    "wrong": "❌ Try again.",
+    "tryAgain": "Try Again",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "videoLearning": {
+    "title": "🎬 This is the video learning page.",
+    "complete": "Complete",
+    "completeMessage": "Learning completed! Attendance status: {{status}}",
+    "error": "Error",
+    "attendanceFail": "Failed to record attendance.",
+    "unexpectedError": "An unexpected error occurred.",
+    "evaluate": "Evaluate",
+    "prev": "Back"
+  },
+  "evaluation": {
+    "q1": {
+      "text": "1. Select all that correspond to physical changes:\n\nA. Wood turns into charcoal.\nB. Water evaporates into steam.\nC. Iron nail rusts over time.\nD. Glass cup breaks when dropped.\nE. Sugar dissolves in water.",
+      "explanation": "B) State change only, molecule unchanged (physical)\nD) Breaks shape only, no property change (physical)\nE) Dissolves but keeps sugar properties (physical)"
+    },
+    "q2": {
+      "text": "2. Which of the following pairs correctly matches physical and chemical changes?\n\nA. Tearing paper\nB. Spoiled milk turning sour\nC. Dry ice sublimation\nD. Boiling an egg",
+      "explanation": "A) Physical change\nB) Chemical change (lactic acid formed)\nC) Physical change (state change)\nD) Chemical change (protein denaturation)"
+    },
+    "q3": {
+      "text": "3. Which of the following is NOT a characteristic of chemical changes?\n\n(1) New substance is created\n(2) Substance’s inherent properties remain unchanged\n(3) Heat or light may be produced\n(4) Hard to reverse to original state\n(5) Atom arrangement changes",
+      "explanation": "Chemical changes alter inherent properties → (2) is false"
+    },
+    "q4": {
+      "text": "4. Which of the following are chemical changes?\n\n(A) Candle burning\n(B) Ink spreading in water\n(C) Apple browning\n(D) Metal chopstick bending",
+      "explanation": "A) Combustion → CO₂ & H₂O formed\nC) Oxidation → brown substance formed"
+    },
+    "q5": {
+      "text": "5. What is the best criterion to distinguish between physical and chemical changes?\n\n(1) Color change\n(2) State change\n(3) New substance creation\n(4) Speed of change\n(5) Energy absorption/release",
+      "explanation": "New substance creation is the key criterion for chemical change"
+    },
+    "correct": "✅ Correct!",
+    "incorrect": "❌ Incorrect!",
+    "showExplanation": "Show Explanation",
+    "hideExplanation": "Hide Explanation",
+    "grade": "Grade",
+    "retry": "Try Again",
+    "exit": "Exit",
+    "finalResult": "You got {{correct}} out of {{total}} correct.",
+    "completeLearning": "Complete Learning",
+    "complete": "Complete",
+    "attendanceSuccess": "Learning completed! Attendance status: {{status}}",
+    "attendanceFail": "Failed to record attendance.",
+    "unexpectedError": "An unexpected error occurred.",
+    "error": "Error"
+  },
+  "back": "Back",
+  "tryAgain": "Try Again",
+  "precipitationExplanation": "Precipitation Explanation",
+  "reset": "Reset",
+  "previous": "Previous",
+  "next": "Next",
+  "reagents": {
+    "AgNO3": "Silver Nitrate (AgNO₃)",
+    "NaCl": "Sodium Chloride (NaCl)",
+    "BaCl2": "Barium Chloride (BaCl₂)",
+    "Na2SO4": "Sodium Sulfate (Na₂SO₄)",
+    "CaCl2": "Calcium Chloride (CaCl₂)",
+    "Na2CO3": "Sodium Carbonate (Na₂CO₃)",
+    "Pb(NO3)2": "Lead Nitrate (Pb(NO₃)₂)",
+    "KI": "Potassium Iodide (KI)"
+  },
+  "precipitations": {
+    "AgNO3+NaCl": "AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (white precipitate)",
+    "BaCl2+Na2SO4": "BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (white precipitate)",
+    "CaCl2+Na2CO3": "CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (white precipitate)",
+    "KI+Pb(NO3)2": "Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (yellow precipitate)"
+  },
+  "evaluation2": {
+  "q1": {
+    "text": "1. Which of the following is NOT a chemical reaction?\n\n(1) Natural gas burns to produce CO₂ and water.\n(2) Water boils and turns into steam.\n(3) Heating an egg turns the white solid.\n(4) Kimchi ferments and turns sour.\n(5) A silver ring tarnishes in the air.",
+    "explanation": "(2) is a physical change involving only a change in state.\n(1), (3), (4), and (5) are all chemical reactions with new substances or property changes."
+  },
+  "q2": {
+    "text": "2. Which of the following is NOT evidence of a chemical reaction?\n\n(1) The container becomes hot.\n(2) A cloudy solution forms.\n(3) A substance breaks into pieces.\n(4) Bubbles form when mixing substances.\n(5) Color changes over time.",
+    "explanation": "(3) is a physical change in shape.\n(1), (2), (4), and (5) are indicators of chemical reactions."
+  },
+  "q3": {
+    "text": "3. Which of the following examples is incorrectly matched with the characteristic of a chemical reaction?\n\n(1) Iron rusts and turns brown - Color change\n(2) Vinegar and baking soda foam - Gas produced\n(3) Ice melts into water - State change\n(4) Fireworks emit light - Light emission\n(5) Limewater and CO₂ form white precipitate - Solid formation",
+    "explanation": "(3) is a physical change (state change). Others correctly represent chemical reactions."
+  },
+  "q4": {
+    "text": "4. What does NOT change before and after a chemical reaction?\n\n(1) Properties of the substance\n(2) Color of the substance\n(3) Smell of the substance\n(4) Type and number of atoms\n(5) Particle arrangement",
+    "explanation": "Law of conservation of mass: atom type and number remain unchanged. Others can change."
+  },
+  "q5": {
+    "text": "5. Which example best shows a new smell due to a chemical reaction?\n\n(1) Perfume spreads a floral scent.\n(2) Spoiled milk smells sour.\n(3) Sweat smells bad in summer.\n(4) Fresh paint smells strong.\n(5) BBQ meat smells good on fire.",
+    "explanation": "(2) shows spoilage, a chemical reaction with new substances. Others are physical or sensory."
+  }
+},
+"login": {
+  "successTitle": "Login Successful",
+  "successMessage": "Redirecting to home screen.",
+  "userIdPlaceholder": "User ID",
+  "passwordPlaceholder": "Password",
+  "loginButton": "Login",
+  "findId": "Find ID",
+  "findPassword": "Find Password",
+  "signup": "Sign Up",
+  "test": "Test Mode"
+},
+"edit": {
+  "title": "Edit Account Info",
+  "nicknamePlaceholder": "Nickname",
+  "schoolPlaceholder": "School Name",
+  "passwordPlaceholder": "New Password",
+  "saveButton": "Save",
+  "modalText": "Changes saved successfully!",
+  "errorTitle": "Input Error",
+  "errorInput": "Please fill all fields correctly.",
+  "failTitle": "Failed",
+  "failMessage": "Update failed.",
+  "serverError": "Server error occurred."
+},
+"verifyPassword": {
+  "title": "Verify Password",
+  "subtitle": "Please enter your password to edit your account.",
+  "placeholder": "Enter your password",
+  "confirmButton": "Confirm",
+  "errorEmpty": "Please enter your password.",
+  "errorMismatch": "The password does not match.",
+  "errorServer": "A server error has occurred."
+},
+"withdrawal": {
+  "title": "Account Withdrawal",
+  "description": "Are you sure you want to withdraw?\nPlease enter your password.",
+  "placeholder": "Password",
+  "submit": "Withdraw",
+  "error": "Error",
+  "genericError": "An error occurred during withdrawal"
+},
+"editModal": {
+  "completed": "Completed",
+  "message": "{{onText}} has been saved.",
+  "confirm": "Confirm"
+},
+"verification": {
+  "title": "Enter the",
+  "titleAccent": " verification code",
+  "checking": "Checking {{email}}...",
+  "verifying": "Verifying code...",
+  "verified": "✅ Verification successful.",
+  "wrongCode": "❌ Invalid verification code.",
+  "resendSuccess": "Verification code resent.",
+  "resendFail": "Failed to resend code.",
+  "expired": "Verification code has expired.",
+  "serverError": "Server error occurred.",
+  "resendCode": "Resend the verification code",
+  "continue": "Continue",
+  "code": "Verification Code",
+  "expiresIn": "Expires in"
+},
+"codeModal": {
+  "welcome": "Welcome!",
+  "code": "Verification Code",
+  "success": "has been confirmed.",
+  "ok": "OK"
+},
+"detailForm": {
+  "title": "👋 Please enter additional information",
+  "student": "Student",
+  "teacher": "Teacher",
+  "nickname": "Name (Nickname)",
+  "school": "School Name",
+  "classInput": "Class",
+  "studentNumber": "Student Number",
+  "subjects": "Subjects (comma separated)",
+  "classIdTeacher": "Class ID (e.g. 2025-111)",
+  "nextStep": "Next Step",
+  "errors": {
+    "nickname": "Please enter your name (nickname).",
+    "school": "Please enter your school name.",
+    "classIdTeacher": "Please enter your class ID.",
+    "studentNumber": "Please enter your student number.",
+    "subjects": "Please enter your subjects.",
+    "server": "Server error: ",
+    "noResponse": "Request sent but no response.",
+    "unknown": "An error occurred: "
+  }
+},
+"signupID": {
+  "title": "Enter your",
+  "highlight": "Username",
+  "placeholder": "Please enter your ID",
+  "shortID": "Please enter at least 6 characters.",
+  "invalidCharacters": "Only letters and numbers are allowed.",
+  "duplicateLocal": "This ID already exists (local check).",
+  "validFormat": "The ID format is valid.",
+  "checkingID": "Checking ID...",
+  "duplicateServer": "This ID already exists.",
+  "available": "The ID is available.",
+  "error": "An error occurred while checking ID.",
+  "continue": "Continue"
+},
+"nextScreen": {
+  "welcome": "Welcome!",
+  "signupComplete": "Your signup is complete.",
+  "goToLogin": "Go to Login"
+},
+"signupPassword": {
+    "title": "Enter your password",
+    "passwordPlaceholder": "Enter password",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "strength": {
+      "0": "Password strength: Very weak",
+      "1": "Password strength: Weak",
+      "2": "Password strength: Medium",
+      "3": "Password strength: Strong",
+      "4": "Password strength: Very strong"
+    },
+    "minLength": "Please enter at least 8 characters.",
+    "match": "Passwords match.",
+    "mismatch": "Passwords do not match.",
+    "continue": "Continue",
+    "serverError": "Server error occurred.",
+    "weakPasswordModal": "Your password is too weak. Do you still want to continue?"
+  },
+  "passwordModal": {
+  "title": "Alerte de sécurité",
+  "warning": "Ce mot de passe peut être vulnérable.",
+  "confirmQuestion": "Voulez-vous vraiment utiliser ce mot de passe ?",
+  "yes": "Oui",
+  "no": "Non"
+},
+"signupEmail": {
+  "email": "Email",
+  "enter": " please enter",
+  "placeholder": "Enter your email",
+  "getCode": "Get Verification Code",
+  "empty": "> Please enter your email.",
+  "invalid": "> Invalid email format.",
+  "checking": "> Checking email...",
+  "valid": "This email is available.",
+  "serverError": "> A server error occurred.",
+  "back": "Back",
+  "signup": "Signup"
+},
+"stuManage": {
+  "studentNumber": "Student Number",
+  "subjects": "Subjects",
+  "loading": "Loading...",
+  "noStudents": "No students registered.",
+  "goToDashboard": "Go to Dashboard"
+},
+"studentDetail": {
+    "loading": "Loading...",
+    "noStudent": "Unable to load student information.",
+    "studentNumber": "Student Number",
+    "class": "Class",
+    "school": "School",
+    "subjectsTitle": "📚 Enrolled Subjects & Scores",
+    "noSubjects": "No subject information available.",
+    "attendanceTitle": "🕘 Attendance",
+    "present": "Present",
+    "late": "Late",
+    "absent": "Absent",
+    "assignmentTitle": "📝 Assignment Submissions",
+    "noAssignments": "No assignment data available.",
+    "submitted": "Submitted",
+    "notSubmitted": "Not Submitted",
+    "score": "pts",
+    "feedbackTitle": "💬 Feedback",
+    "comment": "Teacher comment (to be linked later)"
+  },
+  "dashboard": {
+    "createAssignment": "Create New Assignment",
+    "assignmentTitle": "Assignment Title",
+    "assignmentDescription": "Description",
+    "selectDate": "Select a date",
+    "selectedFile": "Selected file",
+    "create": "Create Assignment",
+    "currentAssignments": "Current Assignments",
+    "delete": "Delete",
+    "setChapterDeadline": "Set Chapter Deadline",
+    "selectChapter": "Select a chapter",
+    "saveDeadline": "Save Deadline",
+    "errorLoadingAssignments": "Failed to load assignments.",
+    "errorCreateAssignment": "Failed to create assignment.",
+    "errorDeleteAssignment": "Failed to delete assignment.",
+    "fileTypeAlert": "Only .docx or .hwp files can be uploaded.",
+    "deadlineSaved": "Deadline saved successfully.",
+    "deadlineSaveError": "Failed to save deadline"
+  },
+  "result": {
+  "title": "Student Grade Report",
+  "titleWithName": "{{name}}'s Grade Report",
+  "subjectScores": "Scores by Subject",
+  "finalScore": "Final Score",
+  "points": " pts",
+  "attendanceStatus": "Attendance Record",
+  "present": "Present",
+  "late": "Late",
+  "absent": "Absent",
+  "days": " days",
+  "assignmentStatus": "Assignments",
+  "noAssignments": "No assignments available.",
+  "viewDetails": "View Details",
+  "errorFetchingAssignments": "Failed to load assignments."
+},
+"assignment": {
+  "description": "Description",
+  "dueDate": "Due Date",
+  "download": "Download Attachment",
+  "downloadFail": "Failed to download file.",
+  "downloadError": "An error occurred while downloading the file.",
+  "defaultFilename": "attachment.docx",
+  "errorFetch": "Failed to load assignment information.",
+  "notFound": "Assignment not found."
+},
+"submit": {
+  "title": "Submit Assignment",
+  "selectAssignment": "Select an assignment to submit",
+  "assignmentTitle": "Assignment Title",
+  "content": "Content",
+  "submit": "Submit",
+  "success": "Success",
+  "successMessage": "Your assignment has been submitted!",
+  "error": "Error",
+  "fetchError": "Failed to load assignment list.",
+  "submitError": "Failed to submit your assignment."
+},
+"find": {
+  "inputEmail": "Enter your email",
+  "emailGuide": "> Please enter your email.",
+  "codeGuide": "> Please enter the verification code.",
+  "codeExpired": "> The code has expired.",
+  "confirm": "Confirm",
+  "getCode": "Get Verification Code",
+  "resetPassword": "Reset Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "matchMessage": "> Please enter the same password above.",
+  "weakest": "Password strength: Very Weak",
+  "weak": "Password strength: Weak",
+  "medium": "Password strength: Medium",
+  "strong": "Password strength: Strong",
+  "strongest": "Password strength: Very Strong",
+  "success1": "Password has been",
+  "success2": "successfully changed.",
+  "goToLogin": "Go to Login Screen",
+  "tabFindId": "Find ID",
+  "tabFindPassword": "Find Password",
+
+  "findId": "Find ID",
+  "matchedMessage": " matches",
+  "userInfoMessage": "user information.",
+  "userId": "User ID",
+  "joinDate": "Join Date",
+
+   "modalSentTo": " will receive the verification code.",
+  "modalSentMessage": "The verification code has been sent."
+},
+"backModal": {
+  "quitPrefix": " will be canceled.",
+  "confirmSuffix": " Do you want to exit?",
+  "warningReset": "Your input will be lost.",
+  "yes": "Yes",
+  "no": "No",
+  "quit": "Exit"
+}
+
+
+
+}

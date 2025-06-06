@@ -1,0 +1,642 @@
+{
+  "title": "Découvrez le monde de la science",
+  "subtitle": "Explorez les atomes, les réactions et les mystères moléculaires",
+  "goToAccount": "Accéder à votre compte",
+  "chapterList": "Programme de sciences de 3e année du collège",
+  "chapterTitles": {
+    "Chapter1": "CHAPITRE I",
+    "Chapter2": "CHAPITRE II",
+    "Chapter3": "CHAPITRE III",
+    "Chapter4": "CHAPITRE IV"
+  },
+  "legal": "Tous droits réservés.",
+  "profile": {
+    "student": "Étudiant",
+    "teacher": "Enseignant",
+    "welcome": ", bienvenue !",
+    "pleaseLogin": "Veuillez vous connecter",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "editAccount": "Modifier le compte",
+    "setProgress": "Définir la progression",
+    "manageStudents": "Gérer les étudiants",
+    "viewResults": "Voir les résultats",
+    "submitAssignment": "Soumettre le devoir",
+    "withdraw": "Supprimer le compte"
+  },
+  "SEARCH": "Recherche",
+  "search": "Saisissez un mot-clé...",
+  "searchResults": "Résultats de recherche",
+  "Recent-Searches": "Recherches récentes",
+  "noMatches": "Aucun résultat trouvé",
+  "noRouteTitle": "Page introuvable",
+  "noRouteMessage": "Impossible d'accéder à ce lien",
+  "chapter1": {
+    "title": "Ⅰ. Lois des réactions chimiques et changements d'énergie",
+    "subtitles": {
+      "01": "Changements de matière et équations chimiques",
+      "02": "Loi de conservation de la masse et loi des proportions définies",
+      "03": "Loi des réactions gazeuses et échanges d'énergie"
+    }
+  },
+  "chapter2": {
+    "title": "Ⅱ. Structure atomique et tableau périodique",
+    "subtitles": {
+      "01": "Les particules qui composent la matière",
+      "02": "Évolution des modèles atomiques",
+      "03": "Structure atomique et configuration électronique",
+      "04": "Tableau périodique et propriétés périodiques"
+    }
+  },
+  "chapter3": {
+    "title": "Ⅲ. Réactions chimiques et énergie",
+    "subtitles": {
+      "01": "Régularités des réactions chimiques",
+      "02": "Réactions chimiques et énergie"
+    }
+  },
+  "chapter4": {
+    "title": "Ⅳ. La chimie au quotidien",
+    "subtitles": {
+      "01": "Propriétés des acides et des bases",
+      "02": "Réactions de neutralisation et sels"
+    }
+  },
+  "chapter1_01": {
+    "subtitle": "Changements de matière et équations chimiques",
+    "title": "01. Exploration du concept",
+    "sections": {
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
+    }
+  },
+  "chapter1_02": {
+    "subtitle": "États de la matière et énergie",
+    "title": "02. Changement d’état",
+    "sections": {
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
+    }
+  },
+  "chapter1_03": {
+    "subtitle": "Transfert de chaleur et matière",
+    "title": "03. Explorer la chaleur et la matière",
+    "sections": {
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
+    },
+    "chemicalReaction": {
+      "reset": "Réessayer",
+      "explanation": "Expliquer le précipité",
+      "back": "Précédent",
+      "next": "Suivant",
+      "precipDescriptions": {
+        "CuSO4+Fe": "CuSO₄ + Fe → FeSO₄ + Cu↓ (Précipité de cuivre rougeâtre)",
+        "AgNO3+Cu": "2AgNO₃ + Cu → Cu(NO₃)₂ + 2Ag↓ (Précipité argenté)"
+      },
+      "reagents": {
+        "CuSO4": "CuSO₄",
+        "Fe": "Fe",
+        "Zn": "Zn",
+        "AgNO3": "AgNO₃"
+      }
+    },
+    "videoLearning": {
+      "title": "🎬 Ceci est la page d'apprentissage vidéo.",
+      "evaluate": "Faire l'évaluation",
+      "back": "Précédent",
+      "completionSuccess": "Apprentissage terminé ! Statut de présence : {{status}}",
+      "completionError": "Échec de l'enregistrement de la présence.",
+      "unexpectedError": "Une erreur inattendue est survenue.",
+      "completed": "Terminé"
+    },
+    "evaluation": {
+    "q1": {
+      "text": "1. Où écrit-on le réactif dans une réaction chimique ?\n\n(1) À droite de la flèche\n(2) Au-dessus de la flèche\n(3) En dessous de la flèche\n(4) À gauche de la flèche\n(5) Des deux côtés",
+      "explanation": "Les réactifs sont placés à gauche de la flèche dans une équation chimique."
+    },
+    "q2": {
+      "text": "2. Quel est le nombre écrit devant une formule chimique dans une équation ?\n\n(1) Numéro atomique\n(2) Nombre de masse\n(3) Nombre d’oxydation\n(4) Coefficient\n(5) Stœchiométrie",
+      "explanation": "Ce nombre est appelé coefficient. Il indique le nombre de particules impliquées dans la réaction."
+    },
+    "q3": {
+      "text": "3. Quel est le rôle principal du coefficient dans une équation chimique ?\n\n(1) Indique le type de réactifs\n(2) Indique le type de produits\n(3) Contrôle la vitesse de réaction\n(4) Équilibre le nombre d'atomes avant et après la réaction\n(5) Indique l’énergie nécessaire",
+      "explanation": "Le coefficient permet d’équilibrer le nombre d’atomes avant et après la réaction pour respecter la loi de conservation de la masse."
+    },
+    "q4": {
+      "text": "4. Quel est le coefficient de H₂ dans la réaction suivante ?\n\n? H₂ + O₂ → 2 H₂O\n\n(1) 1\n(2) 2\n(3) 3\n(4) 4\n(5) 5",
+      "explanation": "2 H₂O contient 4 atomes d’hydrogène, donc il faut 2 molécules de H₂. Le coefficient est donc 2."
+    },
+    "q5": {
+      "text": "5. Laquelle des équations chimiques suivantes est correcte ?\n\n(1) H + O → H₂O\n(2) H₂ + O → H₂O\n(3) 2H + O₂ → H₂O\n(4) 2H₂ + O₂ → 2H₂O\n(5) H₂ + 2O₂ → 2H₂O",
+      "explanation": "L’équation équilibrée correcte est 2H₂ + O₂ → 2H₂O, conformément à la conservation des atomes."
+    },
+    "correct": "✅ Bonne réponse.",
+    "incorrect": "❌ Mauvaise réponse.",
+    "showExplanation": "Voir l’explication",
+    "hideExplanation": "Cacher l’explication",
+    "submit": "Soumettre",
+    "retry": "Réessayer",
+    "exit": "Quitter",
+    "complete": "Terminer l'apprentissage",
+    "completeTitle": "Terminé",
+    "completeMessage": "Apprentissage terminé ! Statut de présence : {{status}}",
+    "errorTitle": "Erreur",
+    "recordFail": "Échec de l'enregistrement de la présence.",
+    "unexpected": "Une erreur inattendue est survenue.",
+    "totalResult": "Vous avez réussi {{correct}} sur {{total}} questions."
+  },
+    "conceptSummary": {
+    "objective": "📘 Objectif d'apprentissage : Être capable d'exprimer les réactions chimiques à l'aide d'équations chimiques.",
+    "chemicalEquation": "⚗️ Équation chimique",
+    "definition": "Définition :",
+    "definitionDesc": "Une formule qui représente simplement les substances réactives et les produits à l'aide de symboles et de chiffres.",
+    "components": "Éléments :",
+    "reactants": "- Réactifs : Substances avant la réaction (côté gauche de l'équation)",
+    "products": "- Produits : Substances formées après la réaction (côté droit de l'équation)",
+    "example": "Exemple :",
+    "reaction": "2H₂ + 1O₂ → 2H₂O",
+    "changeTitle": "🔢 Changement chimique",
+    "coefficientDesc": "Le nombre devant une substance dans l'équation indiquant le nombre de particules.",
+    "role": "Rôle :",
+    "roleDesc": "Assure que le nombre d'atomes avant et après la réaction reste identique (loi de conservation de la masse).",
+    "caution": "Attention :",
+    "cautionDesc": "Ne jamais modifier la formule chimique elle-même ; ajuster uniquement le nombre devant (le coefficient).",
+    "exampleDetails": [
+      "- 2 molécules de dihydrogène (H₂)",
+      "- 1 molécule de dioxygène (O₂)",
+      "- Produit 2 molécules d’eau (H₂O)"
+    ],
+    "next": "Suivant"
+  }
+
+  },
+  "chapter2_01": {
+    "title": "Atmosphère et Climat",
+    "menu": {
+      "item1": "1. Composition de l’atmosphère",
+      "item2": "2. Effet de serre",
+      "item3": "3. Chimie du climat",
+      "item4": "4. Mécanismes de transfert d’énergie",
+      "item5": "5. Impact humain sur le climat",
+      "item6": "6. Effets du changement climatique"
+    }
+  },
+  "chapter2_02": {
+    "title": "Lois de conservation",
+    "description": "Découvrez les lois fondamentales de la chimie.",
+    "menu": {
+      "item1": "1. Loi de conservation de la masse",
+      "item2": "2. Loi des proportions définies"
+    }
+  },
+    "chapter3_01": {
+        "title": "03. Loi de conservation de la masse et loi des proportions définies",
+        "description": "Découvrez comment la masse se conserve lors des réactions chimiques et comment les composants se combinent dans des proportions fixes.",
+        "menu": {
+            "item1": "1. Loi de conservation de la masse",
+            "item2": "2. Loi des proportions définies"
+        }
+    },
+
+  "chapter3_02": {
+  "title": "02. Réactions chimiques et énergie",
+  "description": "Apprenez comment l’énergie est absorbée ou libérée lors des réactions chimiques."
+},
+"chapter4_01": {
+  "title": "01. Propriétés des acides et des bases",
+  "description": "Découvrez les propriétés des acides et des bases et comment les identifier à l’aide d’indicateurs."
+},
+"chapter4_02": {
+  "title": "02. Neutralisation et sels",
+  "description": "Comprenez la réaction de neutralisation entre un acide et une base et la formation de sels."
+},
+"conceptSummary": {
+  "learningGoal": "📘 Objectif d'apprentissage : Être capable d'expliquer la différence entre les changements physiques et chimiques.",
+  "features": "Caractéristiques :",
+  "examples": "Exemples :",
+  "physicalChange": {
+    "title": "🔷 Changement physique",
+    "features": [
+      "- Aucune nouvelle substance n’est formée.",
+      "- Les changements sont généralement réversibles."
+    ],
+    "examples": [
+      "- Découper du papier",
+      "- La glace fond en eau"
+    ]
+  },
+  "chemicalChange": {
+    "title": "🔶 Changement chimique",
+    "features": [
+      "- La substance originale disparaît et une nouvelle est créée.",
+      "- Les changements sont généralement irréversibles."
+    ],
+    "examples": [
+      "- Brûler du bois en cendres",
+      "- Le fer rouille pour former de l'oxyde de fer"
+    ]
+  },
+  "objective": "📘 Objectif : Comprendre les réactions chimiques et les décrire à l’aide de l’agencement des particules.",
+  "mainConcept": "📚 Concept principal : Comprendre les différences entre les changements physiques et chimiques.",
+  "chemReactionTitle": "🧪 Réaction chimique",
+  "chemReaction1": "- Phénomène où deux substances ou plus réagissent pour former une nouvelle substance.",
+  "chemReaction2": "- L'agencement des particules change avant et après la réaction, modifiant les propriétés.",
+  "featuresTitle": "🧪 Caractéristiques des réactions chimiques",
+  "colorChange": "🎨 Changement de couleur",
+  "colorExample1": "- Le fer rouille et devient brun (oxyde de fer).",
+  "colorExample2": "- Les feuilles deviennent jaunes en automne.",
+  "gasRelease": "💨 Dégagement de gaz",
+  "gasExample1": "- Le vinaigre et le bicarbonate produisent du CO₂.",
+  "gasExample2": "- Le fer réagit avec l'acide chlorhydrique pour libérer de l'hydrogène.",
+  "lightHeat": "🔥 Émission de lumière/chaleur",
+  "lightExample1": "- Les feux d'artifice émettent de la lumière et de la chaleur.",
+  "lightExample2": "- Les bougies brûlent et émettent de la lumière et de la chaleur.",
+  "precipitate": "🧱 Formation d’un précipité solide",
+  "precipitateExample1": "- Le CO₂ dans l’eau de chaux forme du carbonate de calcium.",
+  "precipitateExample2": "- Le sulfate de cuivre + fer produit un précipité de cuivre.",
+  "smellChange": "👃 Changement d’odeur",
+  "smellExample1": "- Les aliments avariés dégagent une mauvaise odeur.",
+  "smellExample2": "- Un oignon coupé dégage une odeur piquante.",
+  "next": "Suivant"
+}
+,
+"learnScreen": {
+  "instruction": "Classez les images selon le type de changement",
+  "physical": "Changement physique",
+  "chemical": "Changement chimique",
+  "correct": "🎉 Correct ! Consultez les explications ci-dessous.",
+  "wrong": "❌ Réessayez.",
+  "tryAgain": "Réessayer",
+  "prev": "Précédent",
+  "next": "Suivant"
+},
+"videoLearning": {
+    "title": "🎬 Ceci est la page d'apprentissage vidéo.",
+    "complete": "Terminé",
+    "completeMessage": "Apprentissage terminé ! Statut : {{status}}",
+    "error": "Erreur",
+    "attendanceFail": "Échec de l'enregistrement de présence.",
+    "unexpectedError": "Une erreur inattendue est survenue.",
+    "evaluate": "Évaluer",
+    "prev": "Retour"
+  },
+"evaluation": {
+  "q1": {
+    "text": "1. Sélectionnez tous les cas correspondant à un changement physique :\n\nA. Le bois devient du charbon.\nB. L'eau s'évapore en vapeur.\nC. Un clou rouille avec le temps.\nD. Un verre se casse en tombant.\nE. Le sucre se dissout dans l'eau.",
+    "explanation": "B) Changement d'état seulement (physique)\nD) Cassure de forme sans changement de propriété (physique)\nE) Dissolution, mais le sucre reste inchangé (physique)"
+  },
+  "q2": {
+    "text": "2. Quelle paire décrit correctement les changements physiques et chimiques ?\n\nA. Déchirer du papier\nB. Le lait tourné devient acide\nC. Sublimation de la glace carbonique\nD. Faire bouillir un œuf",
+    "explanation": "A) Changement physique\nB) Changement chimique (acide lactique)\nC) Changement physique\nD) Changement chimique (protéines modifiées)"
+  },
+  "q3": {
+    "text": "3. Lequel n'est PAS une caractéristique d'un changement chimique ?\n\n(1) Une nouvelle substance est créée\n(2) Les propriétés restent inchangées\n(3) Chaleur ou lumière peut être produite\n(4) Difficile à inverser\n(5) Réarrangement des atomes",
+    "explanation": "Les propriétés changent dans une réaction chimique → (2) est incorrect"
+  },
+  "q4": {
+    "text": "4. Lequel des phénomènes suivants est un changement chimique ?\n\n(A) Une bougie brûle\n(B) De l’encre se répand dans l’eau\n(C) Une pomme brunit\n(D) Une baguette métallique se plie",
+    "explanation": "A) Combustion → CO₂ & H₂O formés\nC) Oxydation → substance brune formée"
+  },
+  "q5": {
+    "text": "5. Quel est le meilleur critère pour distinguer les changements physiques et chimiques ?\n\n(1) Changement de couleur\n(2) Changement d'état\n(3) Création de nouvelle substance\n(4) Vitesse de changement\n(5) Absorption ou émission d'énergie",
+    "explanation": "La création d'une nouvelle substance est le critère principal"
+  },
+  "correct": "✅ Bonne réponse !",
+  "incorrect": "❌ Mauvaise réponse !",
+  "showExplanation": "Voir l'explication",
+  "hideExplanation": "Masquer l'explication",
+  "grade": "Évaluer",
+  "retry": "Réessayer",
+  "exit": "Quitter",
+  "finalResult": "Vous avez obtenu {{correct}} bonnes réponses sur {{total}}.",
+  "completeLearning": "Terminer l'apprentissage",
+  "complete": "Terminé",
+  "attendanceSuccess": "Apprentissage terminé ! Statut de présence : {{status}}",
+  "attendanceFail": "Échec de l'enregistrement de la présence.",
+  "unexpectedError": "Une erreur inattendue est survenue.",
+  "error": "Erreur"
+},
+"back": "Retour",
+  "tryAgain": "Réessayer",
+  "precipitationExplanation": "Explication de la Précipitation",
+  "reset": "Réinitialiser",
+  "previous": "Précédent",
+  "next": "Suivant",
+  "reagents": {
+    "AgNO3": "Nitrate d'argent (AgNO₃)",
+    "NaCl": "Chlorure de sodium (NaCl)",
+    "BaCl2": "Chlorure de baryum (BaCl₂)",
+    "Na2SO4": "Sulfate de sodium (Na₂SO₄)",
+    "CaCl2": "Chlorure de calcium (CaCl₂)",
+    "Na2CO3": "Carbonate de sodium (Na₂CO₃)",
+    "Pb(NO3)2": "Nitrate de plomb (Pb(NO₃)₂)",
+    "KI": "Iodure de potassium (KI)"
+  },
+  "precipitations": {
+    "AgNO3+NaCl": "AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (précipité blanc)",
+    "BaCl2+Na2SO4": "BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (précipité blanc)",
+    "CaCl2+Na2CO3": "CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (précipité blanc)",
+    "KI+Pb(NO3)2": "Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (précipité jaune)"
+  },
+  "evaluation2": {
+  "q1": {
+    "text": "1. Lequel des éléments suivants n’est PAS une réaction chimique ?\n\n(1) Le gaz naturel brûle pour produire du CO₂ et de l’eau.\n(2) L’eau bout et devient vapeur.\n(3) Le blanc d'œuf durcit à la cuisson.\n(4) Le kimchi fermente et devient acide.\n(5) Une bague en argent ternit à l’air.",
+    "explanation": "(2) est un changement d’état physique.\n(1), (3), (4) et (5) sont des réactions chimiques avec des substances nouvelles."
+  },
+  "q2": {
+    "text": "2. Lequel n’est PAS une preuve d’une réaction chimique ?\n\n(1) Le récipient devient chaud.\n(2) Une solution devient trouble.\n(3) Une substance se casse en morceaux.\n(4) Des bulles se forment en mélangeant.\n(5) La couleur change avec le temps.",
+    "explanation": "(3) est un changement physique (forme).\nLes autres indiquent une réaction chimique."
+  },
+  "q3": {
+    "text": "3. Lequel est incorrectement associé à une caractéristique de réaction chimique ?\n\n(1) La rouille du fer - Changement de couleur\n(2) Vinaigre et bicarbonate - Gaz produit\n(3) La glace fond en eau - Changement d’état\n(4) Feu d’artifice - Lumière émise\n(5) Chaux et CO₂ - Précipité solide",
+    "explanation": "(3) est un changement physique.\nLes autres sont correctement associés à des réactions chimiques."
+  },
+  "q4": {
+    "text": "4. Qu’est-ce qui NE change PAS avant et après une réaction chimique ?\n\n(1) Les propriétés de la substance\n(2) La couleur\n(3) L’odeur\n(4) Le type et le nombre d’atomes\n(5) L’arrangement des particules",
+    "explanation": "La loi de conservation de la masse : le type et le nombre d’atomes restent inchangés. Les autres peuvent changer."
+  },
+  "q5": {
+    "text": "5. Quel exemple montre le mieux une nouvelle odeur causée par une réaction chimique ?\n\n(1) Le parfum diffuse une odeur florale.\n(2) Le lait tourné sent mauvais.\n(3) La sueur sent mauvais l’été.\n(4) Peinture fraîche sent fort.\n(5) La viande grillée sent bon.",
+    "explanation": "(2) montre une décomposition chimique.\nLes autres sont des changements physiques ou de perception."
+  }
+},
+"login": {
+  "successTitle": "Connexion réussie",
+  "successMessage": "Redirection vers l'écran d'accueil.",
+  "userIdPlaceholder": "Identifiant",
+  "passwordPlaceholder": "Mot de passe",
+  "loginButton": "Connexion",
+  "findId": "Trouver l'identifiant",
+  "findPassword": "Trouver le mot de passe",
+  "signup": "S'inscrire",
+  "test": "Mode test"
+},
+"edit": {
+  "title": "Modifier les informations du compte",
+  "nicknamePlaceholder": "Pseudo",
+  "schoolPlaceholder": "Nom de l'école",
+  "passwordPlaceholder": "Nouveau mot de passe",
+  "saveButton": "Enregistrer",
+  "modalText": "Modifications enregistrées avec succès !",
+  "errorTitle": "Erreur de saisie",
+  "errorInput": "Veuillez remplir correctement tous les champs.",
+  "failTitle": "Échec",
+  "failMessage": "Échec de la mise à jour.",
+  "serverError": "Une erreur serveur est survenue."
+},
+"verifyPassword": {
+  "title": "Vérifier le mot de passe",
+  "subtitle": "Veuillez entrer votre mot de passe pour modifier votre compte.",
+  "placeholder": "Entrez votre mot de passe",
+  "confirmButton": "Confirmer",
+  "errorEmpty": "Veuillez entrer votre mot de passe.",
+  "errorMismatch": "Le mot de passe ne correspond pas.",
+  "errorServer": "Une erreur serveur est survenue."
+},
+"withdrawal": {
+  "title": "Suppression du compte",
+  "description": "Êtes-vous sûr de vouloir vous désinscrire ?\nVeuillez entrer votre mot de passe.",
+  "placeholder": "Mot de passe",
+  "submit": "Se désinscrire",
+  "error": "Erreur",
+  "genericError": "Une erreur s'est produite lors de la suppression"
+},
+"editModal": {
+  "completed": "Terminé",
+  "message": "{{onText}} a été enregistré.",
+  "confirm": "Confirmer"
+},
+"verification": {
+  "title": "Entrez le",
+  "titleAccent": " code de vérification",
+  "checking": "Vérification de {{email}} en cours...",
+  "verifying": "Vérification du code...",
+  "verified": "✅ Code vérifié avec succès.",
+  "wrongCode": "❌ Le code de vérification est incorrect.",
+  "resendSuccess": "Le code de vérification a été renvoyé.",
+  "resendFail": "Échec de l'envoi du code.",
+  "expired": "Le code de vérification a expiré.",
+  "serverError": "Une erreur serveur s'est produite.",
+  "resendCode": "Renvoyer le code de vérification",
+  "continue": "Continuer",
+  "code": "Code de vérification",
+  "expiresIn": "Expire dans"
+},
+"codeModal": {
+  "welcome": "Bienvenue !",
+  "code": "Code de vérification",
+  "success": "a été confirmé.",
+  "ok": "D'accord"
+},
+"detailForm": {
+  "title": "👋 Veuillez saisir des informations supplémentaires",
+  "student": "Élève",
+  "teacher": "Professeur",
+  "nickname": "Nom (pseudo)",
+  "school": "Nom de l'école",
+  "classInput": "Classe",
+  "studentNumber": "Numéro d'étudiant",
+  "subjects": "Matières (séparées par des virgules)",
+  "classIdTeacher": "Classe ID (ex : 2025-111)",
+  "nextStep": "Étape suivante",
+  "errors": {
+    "nickname": "Veuillez saisir votre nom (pseudo).",
+    "school": "Veuillez saisir le nom de votre école.",
+    "classIdTeacher": "Veuillez saisir l'ID de la classe.",
+    "studentNumber": "Veuillez saisir votre numéro d'étudiant.",
+    "subjects": "Veuillez saisir vos matières.",
+    "server": "Erreur du serveur : ",
+    "noResponse": "Requête envoyée, mais aucune réponse.",
+    "unknown": "Une erreur est survenue : "
+  }
+},
+"signupID": {
+  "title": "Entrez votre",
+  "highlight": "Identifiant",
+  "placeholder": "Veuillez saisir votre identifiant",
+  "shortID": "Veuillez entrer au moins 6 caractères.",
+  "invalidCharacters": "Seules les lettres et les chiffres sont autorisés.",
+  "duplicateLocal": "Cet identifiant existe déjà (vérification locale).",
+  "validFormat": "Le format de l'identifiant est valide.",
+  "checkingID": "Vérification de l'identifiant...",
+  "duplicateServer": "Cet identifiant existe déjà.",
+  "available": "L'identifiant est disponible.",
+  "error": "Une erreur est survenue lors de la vérification.",
+  "continue": "Continuer"
+},
+"nextScreen": {
+  "welcome": "Bienvenue !",
+  "signupComplete": "Votre inscription est terminée.",
+  "goToLogin": "Aller à la connexion"
+},
+"signupPassword": {
+    "title": "Entrez votre mot de passe",
+    "passwordPlaceholder": "Entrez le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez le mot de passe",
+    "strength": {
+      "0": "Solidité du mot de passe : Très faible",
+      "1": "Solidité du mot de passe : Faible",
+      "2": "Solidité du mot de passe : Moyenne",
+      "3": "Solidité du mot de passe : Forte",
+      "4": "Solidité du mot de passe : Très forte"
+    },
+    "minLength": "Veuillez entrer au moins 8 caractères.",
+    "match": "Les mots de passe correspondent.",
+    "mismatch": "Les mots de passe ne correspondent pas.",
+    "continue": "Continuer",
+    "serverError": "Une erreur serveur est survenue.",
+    "weakPasswordModal": "Votre mot de passe est trop faible. Voulez-vous continuer quand même ?"
+},
+"passwordModal": {
+  "title": "보안 경고",
+  "warning": "이 비밀번호는 보안에 취약할 수 있습니다.",
+  "confirmQuestion": "해당 비밀번호를 사용하시겠습니까?",
+  "yes": "예",
+  "no": "아니요"
+},
+"signupEmail": {
+  "email": "Email",
+  "enter": " veuillez entrer",
+  "placeholder": "Entrez votre adresse email",
+  "getCode": "Recevoir le code de vérification",
+  "empty": "> Veuillez entrer votre email.",
+  "invalid": "> Format d'email invalide.",
+  "checking": "> Vérification de l'email...",
+  "valid": "Cet email est disponible.",
+  "serverError": "> Une erreur serveur est survenue.",
+  "back": "Retour",
+  "signup": "Inscription"
+},
+"stuManage": {
+  "studentNumber": "Numéro d'étudiant",
+  "subjects": "Matières",
+  "loading": "Chargement...",
+  "noStudents": "Aucun étudiant enregistré.",
+  "goToDashboard": "Aller au tableau de bord"
+},
+"studentDetail": {
+    "loading": "Chargement...",
+    "noStudent": "Impossible de charger les informations de l'élève.",
+    "studentNumber": "Numéro d'étudiant",
+    "class": "Classe",
+    "school": "École",
+    "subjectsTitle": "📚 Matières suivies et notes",
+    "noSubjects": "Aucune information sur les matières.",
+    "attendanceTitle": "🕘 Présence",
+    "present": "Présent",
+    "late": "Retard",
+    "absent": "Absent",
+    "assignmentTitle": "📝 Devoirs",
+    "noAssignments": "Aucune donnée sur les devoirs.",
+    "submitted": "Soumis",
+    "notSubmitted": "Non soumis",
+    "score": "pts",
+    "feedbackTitle": "💬 Commentaires",
+    "comment": "Commentaire du professeur (à lier ultérieurement)"
+  },
+   "dashboard": {
+    "createAssignment": "Créer un nouveau devoir",
+    "assignmentTitle": "Titre du devoir",
+    "assignmentDescription": "Description",
+    "selectDate": "Sélectionnez une date",
+    "selectedFile": "Fichier sélectionné",
+    "create": "Créer le devoir",
+    "currentAssignments": "Devoirs actuels",
+    "delete": "Supprimer",
+    "setChapterDeadline": "Définir la date limite par chapitre",
+    "selectChapter": "Sélectionnez un chapitre",
+    "saveDeadline": "Enregistrer la date limite",
+    "errorLoadingAssignments": "Échec du chargement des devoirs.",
+    "errorCreateAssignment": "Échec de la création du devoir.",
+    "errorDeleteAssignment": "Échec de la suppression du devoir.",
+    "fileTypeAlert": "Seuls les fichiers .docx ou .hwp peuvent être téléversés.",
+    "deadlineSaved": "Date limite enregistrée avec succès.",
+    "deadlineSaveError": "Échec de l'enregistrement de la date limite"
+  },
+  "result": {
+    "title": "Bulletin de notes",
+    "titleWithName": "Bulletin de notes de {{name}}",
+    "subjectScores": "Notes par matière",
+    "finalScore": "Note finale",
+    "points": " pts",
+    "attendanceStatus": "Présence",
+    "present": "Présent",
+    "late": "Retard",
+    "absent": "Absent",
+    "days": " jours",
+    "assignmentStatus": "Devoirs",
+    "noAssignments": "Aucun devoir disponible.",
+    "viewDetails": "Voir les détails",
+    "errorFetchingAssignments": "Échec du chargement des devoirs."
+  },
+  "assignment": {
+  "description": "Description",
+  "dueDate": "Date limite",
+  "download": "Télécharger la pièce jointe",
+  "downloadFail": "Échec du téléchargement du fichier.",
+  "downloadError": "Une erreur s'est produite lors du téléchargement du fichier.",
+  "defaultFilename": "piece-jointe.docx",
+  "errorFetch": "Impossible de charger les informations du devoir.",
+  "notFound": "Devoir introuvable."
+},
+"submit": {
+  "title": "Soumettre un devoir",
+  "selectAssignment": "Sélectionnez un devoir à soumettre",
+  "assignmentTitle": "Titre du devoir",
+  "content": "Contenu",
+  "submit": "Soumettre",
+  "success": "Succès",
+  "successMessage": "Votre devoir a été soumis avec succès !",
+  "error": "Erreur",
+  "fetchError": "Échec du chargement de la liste des devoirs.",
+  "submitError": "Échec de la soumission du devoir."
+},
+"find": {
+  "inputEmail": "Entrez votre e-mail",
+  "emailGuide": "> Veuillez entrer votre e-mail.",
+  "codeGuide": "> Veuillez entrer le code de vérification.",
+  "codeExpired": "> Le code a expiré.",
+  "confirm": "Confirmer",
+  "getCode": "Recevoir le code",
+  "resetPassword": "Réinitialiser le mot de passe",
+  "newPassword": "Nouveau mot de passe",
+  "confirmPassword": "Confirmez le mot de passe",
+  "matchMessage": "> Veuillez entrer le même mot de passe ci-dessus.",
+  "weakest": "Solidité du mot de passe : Très faible",
+  "weak": "Solidité du mot de passe : Faible",
+  "medium": "Solidité du mot de passe : Moyenne",
+  "strong": "Solidité du mot de passe : Forte",
+  "strongest": "Solidité du mot de passe : Très forte",
+  "success1": "Le mot de passe a été",
+  "success2": "modifié avec succès.",
+  "goToLogin": "Aller à l'écran de connexion",
+  "tabFindId": "Trouver l'identifiant",
+  "tabFindPassword": "Réinitialiser le mot de passe",
+
+  "findId": "Trouver l'identifiant",
+  "matchedMessage": " correspond à",
+  "userInfoMessage": "les informations de l'utilisateur.",
+  "userId": "Identifiant",
+  "joinDate": "Date d'inscription",
+
+    "modalSentTo": " recevra le code de vérification.",
+  "modalSentMessage": "Le code de vérification a été envoyé."
+},
+"backModal": {
+  "quitPrefix": " sera annulé.",
+  "confirmSuffix": " Voulez-vous quitter ?",
+  "warningReset": "Les données saisies seront perdues.",
+  "yes": "Oui",
+  "no": "Non",
+  "quit": "Quitter"
+}
+
+
+
+
+
+}
