@@ -1,4 +1,3 @@
-// app/chapters/Chapter1/chp1/chp1_01/EvaluationScreen.js
 import React, { useState } from 'react';
 import {
   View,
@@ -13,83 +12,46 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import axios from 'axios';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EvaluationScreenStyle';
-
+import { useTranslation } from 'react-i18next';
 
 export default function EvaluationScreen() {
+  const { t } = useTranslation();
+
   const questions = [
     {
       id: 'q1',
-      text:
-        '1. 다음 중 물리 변화에 해당하는 현상을 모두 고르시오.\n\n' +
-        '가. 나무가 타서 숯이 되었다.\n' +
-        '나. 물이 증발하여 수증기가 되었다.\n' +
-        '다. 철 못이 시간이 지나 녹슬었다.\n' +
-        '라. 유리컵이 바닥에 떨어져 깨졌다.\n' +
-        '마. 설탕이 물에 녹아 설탕물이 되었다.',
+      text: t('evaluation.q1.text'),
       choices: ['가', '나', '다', '라', '마'],
       correct: ['나', '라', '마'],
-      explanation:
-        '나) 물 분자 자체는 그대로 → 상태 변화만 (물리)\n' +
-        '라) 형태만 부서짐 → 성질 변화 없음 (물리)\n' +
-        '마) 분자 확산만 → 원래 설탕 성질 유지 (물리)'
+      explanation: t('evaluation.q1.explanation')
     },
     {
       id: 'q2',
-      text:
-        '2. 다음 현상을 물리 변화와 화학 변화로 바르게 짝지은 것은 무엇입니까?\n\n' +
-        'A. 종이를 찢었다.\n' +
-        'B. 우유가 상해서 신맛이 난다.\n' +
-        'C. 드라이아이스가 승화했다.\n' +
-        'D. 달걀을 삶았다.',
+      text: t('evaluation.q2.text'),
       choices: ['A', 'B', 'C', 'D'],
       correct: ['A', 'B', 'C', 'D'],
-      explanation:
-        'A) 물리 변화\n' +
-        'B) 화학 변화 (젖산 생성)\n' +
-        'C) 물리 변화 (상태 변화)\n' +
-        'D) 화학 변화 (단백질 변성)'
+      explanation: t('evaluation.q2.explanation')
     },
     {
       id: 'q3',
-      text:
-        '3. 다음 중 화학 변화의 특징이 아닌 것은 무엇입니까?\n\n' +
-        '(1) 새로운 물질이 생성된다.\n' +
-        '(2) 물질의 고유한 성질이 변하지 않는다.\n' +
-        '(3) 변화 과정에서 열이나 빛이 발생할 수 있다.\n' +
-        '(4) 원래의 상태로 되돌리기가 어렵다.\n' +
-        '(5) 원자의 배열 방식이 변한다.',
+      text: t('evaluation.q3.text'),
       choices: ['1', '2', '3', '4', '5'],
       correct: ['2'],
-      explanation:
-        '화학 변화는 고유 성질이 변하며(답 2번은 틀린 설명) → 새로운 물질 생성'
+      explanation: t('evaluation.q3.explanation')
     },
     {
       id: 'q4',
-      text:
-        '4. 다음 중 화학 변화에 해당하는 현상은 무엇입니까?\n\n' +
-        '(가) 촛불이 타는 현상\n' +
-        '(나) 옷에 묻은 잉크가 물에 번지는 현상\n' +
-        '(다) 사과를 깎아 놓으니 갈색으로 변하는 현상\n' +
-        '(라) 쇠젓가락이 구부러지는 현상',
+      text: t('evaluation.q4.text'),
       choices: ['가', '나', '다', '라'],
       correct: ['가', '다'],
-      explanation:
-        '가) 연소 반응 → CO₂·H₂O 생성\n' +
-        '다) 산화 반응 → 갈색 물질 생성'
+      explanation: t('evaluation.q4.explanation')
     },
     {
       id: 'q5',
-      text:
-        '5. 다음 중 물리 변화와 화학 변화를 가장 잘 구분하는 기준은 무엇입니까?\n\n' +
-        '(1) 물질의 색깔 변화 여부\n' +
-        '(2) 물질의 상태 변화 여부\n' +
-        '(3) 새로운 물질 생성 여부\n' +
-        '(4) 변화의 속도 차이\n' +
-        '(5) 에너지 흡수 또는 방출 여부',
+      text: t('evaluation.q5.text'),
       choices: ['1', '2', '3', '4', '5'],
       correct: ['3'],
-      explanation:
-        '새로운 물질 생성 여부 → 화학 변화의 핵심 기준'
+      explanation: t('evaluation.q5.explanation')
     }
   ];
 
@@ -123,14 +85,14 @@ export default function EvaluationScreen() {
   }, 0);
 
   const fetchDeadlineForChapter = async (chapter) => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
-        return res.data.deadline?.deadline || null;
-      } catch (e) {
-        console.error('데드라인 조회 실패:', e);
-        return null;
-      }
-    };
+    try {
+      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
+      return res.data.deadline?.deadline || null;
+    } catch (e) {
+      console.error('Deadline fetch failed:', e);
+      return null;
+    }
+  };
 
   const handleCompleteLearning = async () => {
     try {
@@ -147,14 +109,14 @@ export default function EvaluationScreen() {
       });
 
       if (result.success) {
-        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
+        Alert.alert(t('evaluation.complete'), t('evaluation.attendanceSuccess', { status: result.status }));
         router.push('/chapters/Chapter1');
       } else {
-        Alert.alert('오류', '출석 기록에 실패했습니다.');
+        Alert.alert(t('evaluation.error'), t('evaluation.attendanceFail'));
       }
     } catch (err) {
-      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
-      console.log(err)
+      Alert.alert(t('evaluation.error'), t('evaluation.unexpectedError'));
+      console.log(err);
     }
   };
 
@@ -193,7 +155,7 @@ export default function EvaluationScreen() {
             {showResult && (
               <View style={styles.resultRow}>
                 <Text style={styles.resultText}>
-                  {isCorrect ? '✅ 정답입니다.' : '❌ 오답입니다.'}
+                  {isCorrect ? t('evaluation.correct') : t('evaluation.incorrect')}
                 </Text>
                 <TouchableOpacity
                   onPress={() =>
@@ -201,7 +163,9 @@ export default function EvaluationScreen() {
                   }
                 >
                   <Text style={styles.expButton}>
-                    {showExp[q.id] ? '해설 숨기기' : '해설 보기'}
+                    {showExp[q.id]
+                      ? t('evaluation.hideExplanation')
+                      : t('evaluation.showExplanation')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -216,30 +180,30 @@ export default function EvaluationScreen() {
       })}
       {!showResult ? (
         <TouchableOpacity style={styles.submitButton} onPress={grade}>
-          <Text style={styles.submitButtonText}>체점하기</Text>
+          <Text style={styles.submitButtonText}>{t('evaluation.grade')}</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.footer}>
           <Text style={styles.finalText}>
-            총 {questions.length}문제 중 {correctCount}문제 정답
+            {t('evaluation.finalResult', { total: questions.length, correct: correctCount })}
           </Text>
           <TouchableOpacity style={styles.resetButton} onPress={retry}>
-            <Text style={styles.resetButtonText}>다시 풀기</Text>
+            <Text style={styles.resetButtonText}>{t('evaluation.retry')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.exitButton} onPress={exit}>
-            <Text style={styles.exitButtonText}>나가기</Text>
+            <Text style={styles.exitButtonText}>{t('evaluation.exit')}</Text>
           </TouchableOpacity>
         </View>
       )}
 
-      {/* 학습 완료 버튼 */}
       <TouchableOpacity
         style={styles.completeButton}
         onPress={handleCompleteLearning}
       >
-        <Text style={styles.completeButtonText}>학습 완료</Text>
+        <Text style={styles.completeButtonText}>
+          {t('evaluation.completeLearning')}
+        </Text>
       </TouchableOpacity>
-      
     </ScrollView>
   );
 }
