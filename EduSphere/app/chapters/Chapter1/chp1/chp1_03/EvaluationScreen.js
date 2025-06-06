@@ -1,92 +1,56 @@
-// app/chapters/Chapter1/chp1/chp1_03/EvaluationScreen.js
 import React, { useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  StyleSheet,
   Alert
 } from 'react-native';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import axios from 'axios';
+import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EvaluationScreenStyle';
-
+import { useTranslation } from 'react-i18next';
 
 export default function EvaluationScreen() {
+  const { t } = useTranslation();
+
   const questions = [
     {
       id: 'q1',
-      text:
-        '1. 화학 반응식을 사용하여 화학 반응을 나타낼 때, 반응물을 쓰는 위치는 어디입니까?\n\n' +
-        '(1) 화살표의 오른쪽\n' +
-        '(2) 화살표의 위쪽\n' +
-        '(3) 화살표의 아래쪽\n' +
-        '(4) 화살표의 왼쪽\n' +
-        '(5) 화살표의 양쪽',
+      text: t('chapter1_03.evaluation.q1.text'),
       choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
       correct: ['(4)'],
-      explanation:
-        '화학 반응식에서 반응하기 전의 물질인 반응물은 화살표 (→)의 왼쪽에 위치합니다.'
+      explanation: t('chapter1_03.evaluation.q1.explanation')
     },
     {
       id: 'q2',
-      text:
-        '2. 화학 반응식에서 물질의 화학식 앞에 쓰이는 숫자를 무엇이라고 합니까?\n\n' +
-        '(1) 원자 번호\n' +
-        '(2) 질량수\n' +
-        '(3) 산화수\n' +
-        '(4) 계수\n' +
-        '(5) 화학량론',
+      text: t('chapter1_03.evaluation.q2.text'),
       choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
       correct: ['(4)'],
-      explanation:
-        '화학 반응식에서 물질의 화학식 앞에 쓰이는 숫자는 계수이며, 반응하거나 생성되는 입자의 수를 나타냅니다.'
+      explanation: t('chapter1_03.evaluation.q2.explanation')
     },
     {
       id: 'q3',
-      text:
-        '3. 화학 반응식의 계수의 역할로 가장 적절한 것은 무엇입니까?\n\n' +
-        '(1) 반응물의 종류를 나타낸다.\n' +
-        '(2) 생성물의 종류를 나타낸다.\n' +
-        '(3) 반응 속도를 조절한다.\n' +
-        '(4) 반응 전후의 원자 수를 같게 맞춰준다.\n' +
-        '(5) 반응에 필요한 에너지의 양을 나타낸다.',
+      text: t('chapter1_03.evaluation.q3.text'),
       choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
       correct: ['(4)'],
-      explanation:
-        '계수는 반응 전과 후의 각 원자의 수를 동일하게 맞춰 질량 보존의 법칙을 만족시키는 역할을 합니다.'
+      explanation: t('chapter1_03.evaluation.q3.explanation')
     },
     {
       id: 'q4',
-      text:
-        '4. 다음 화학 반응식에서 수소 분자(H₂)의 계수는 얼마입니까?\n\n' +
-        '? H₂ + O₂ → 2 H₂O\n\n' +
-        '(1) 1\n' +
-        '(2) 2\n' +
-        '(3) 3\n' +
-        '(4) 4\n' +
-        '(5) 5',
+      text: t('chapter1_03.evaluation.q4.text'),
       choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
       correct: ['(2)'],
-      explanation:
-        '물(H₂O) 2개에 수소 원자 4개가 들어 있으므로, 반응 전에도 수소 원자 4개가 필요하여 H₂ 앞에 2가 와야 합니다.'
+      explanation: t('chapter1_03.evaluation.q4.explanation')
     },
     {
       id: 'q5',
-      text:
-        '5. 다음 중 화학 반응식을 올바르게 나타낸 것은 무엇입니까? (단, 계수는 생략하지 않았습니다.)\n\n' +
-        '(1) H + O → H₂O\n' +
-        '(2) H₂ + O → H₂O\n' +
-        '(3) 2H + O₂ → H₂O\n' +
-        '(4) 2H₂ + O₂ → 2H₂O\n' +
-        '(5) H₂ + 2O₂ → 2H₂O',
+      text: t('chapter1_03.evaluation.q5.text'),
       choices: ['(1)', '(2)', '(3)', '(4)', '(5)'],
       correct: ['(4)'],
-      explanation:
-        '2H₂ + O₂ → 2H₂O 는 반응물과 생성물의 원자 수가 같아 질량 보존 법칙을 만족합니다.'
+      explanation: t('chapter1_03.evaluation.q5.explanation')
     }
   ];
 
@@ -105,8 +69,7 @@ export default function EvaluationScreen() {
     setShowResult(false);
     setShowExp({});
   };
-  const exit = () =>
-    router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen');
+  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen');
 
   const correctCount = questions.reduce((sum, q) => {
     const sel = (selected[q.id] || []).join();
@@ -114,15 +77,15 @@ export default function EvaluationScreen() {
   }, 0);
 
   const fetchDeadlineForChapter = async (chapter) => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
-        return res.data.deadline?.deadline || null;
-      } catch (e) {
-        console.error('데드라인 조회 실패:', e);
-        return null;
-      }
-    };
-    
+    try {
+      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
+      return res.data.deadline?.deadline || null;
+    } catch (e) {
+      console.error('Failed to fetch deadline:', e);
+      return null;
+    }
+  };
+
   const handleCompleteLearning = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -138,22 +101,30 @@ export default function EvaluationScreen() {
       });
 
       if (result.success) {
-        Alert.alert('완료', `학습 완료! 출결 상태: ${result.status}`);
+        Alert.alert(
+          t('chapter1_03.evaluation.completeTitle'),
+          t('chapter1_03.evaluation.completeMessage', { status: result.status })
+        );
         router.push('/chapters/Chapter1');
       } else {
-        Alert.alert('오류', '출석 기록에 실패했습니다.');
+        Alert.alert(
+          t('chapter1_03.evaluation.errorTitle'),
+          t('chapter1_03.evaluation.recordFail')
+        );
       }
     } catch (err) {
-      Alert.alert('오류', '예상치 못한 오류가 발생했습니다.');
-      console.log(err)
+      Alert.alert(
+        t('chapter1_03.evaluation.errorTitle'),
+        t('chapter1_03.evaluation.unexpected')
+      );
+      console.log(err);
     }
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {questions.map(q => {
-        const isCorrect =
-          showResult && (selected[q.id] || []).join() === q.correct.join();
+        const isCorrect = showResult && (selected[q.id] || []).join() === q.correct.join();
         return (
           <View key={q.id} style={styles.questionBox}>
             <Text style={styles.questionText}>{q.text}</Text>
@@ -166,10 +137,7 @@ export default function EvaluationScreen() {
                   style={[
                     styles.choice,
                     checked && styles.choiceSelected,
-                    showResult &&
-                      (checked
-                        ? styles.correct
-                        : styles.wrong)
+                    showResult && (checked ? styles.correct : styles.wrong)
                   ]}
                   onPress={() => toggleChoice(q.id, choice)}
                 >
@@ -183,15 +151,17 @@ export default function EvaluationScreen() {
             {showResult && (
               <View style={styles.resultRow}>
                 <Text style={styles.resultText}>
-                  {isCorrect ? '✅ 정답입니다.' : '❌ 오답입니다.'}
+                  {isCorrect
+                    ? t('chapter1_03.evaluation.correct')
+                    : t('chapter1_03.evaluation.incorrect')}
                 </Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))
-                  }
-                >
+                <TouchableOpacity onPress={() =>
+                  setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))
+                }>
                   <Text style={styles.expButton}>
-                    {showExp[q.id] ? '해설 숨기기' : '해설 보기'}
+                    {showExp[q.id]
+                      ? t('chapter1_03.evaluation.hideExplanation')
+                      : t('chapter1_03.evaluation.showExplanation')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -208,30 +178,28 @@ export default function EvaluationScreen() {
 
       {!showResult ? (
         <TouchableOpacity style={styles.submitButton} onPress={grade}>
-          <Text style={styles.submitButtonText}>체점하기</Text>
+          <Text style={styles.submitButtonText}>{t('chapter1_03.evaluation.submit')}</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.footer}>
           <Text style={styles.finalText}>
-            총 {questions.length}문제 중 {correctCount}문제 정답
+            {t('chapter1_03.evaluation.totalResult', {
+              correct: correctCount,
+              total: questions.length
+            })}
           </Text>
           <TouchableOpacity style={styles.resetButton} onPress={reset}>
-            <Text style={styles.resetButtonText}>다시 풀기</Text>
+            <Text style={styles.resetButtonText}>{t('chapter1_03.evaluation.retry')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.exitButton} onPress={exit}>
-            <Text style={styles.exitButtonText}>나가기</Text>
+            <Text style={styles.exitButtonText}>{t('chapter1_03.evaluation.exit')}</Text>
           </TouchableOpacity>
         </View>
       )}
 
-      {/* 학습 완료 버튼 */}
-      <TouchableOpacity
-        style={styles.completeButton}
-        onPress={handleCompleteLearning}
-      >
-        <Text style={styles.completeButtonText}>학습 완료</Text>
+      <TouchableOpacity style={styles.completeButton} onPress={handleCompleteLearning}>
+        <Text style={styles.completeButtonText}>{t('chapter1_03.evaluation.complete')}</Text>
       </TouchableOpacity>
-
     </ScrollView>
   );
 }
