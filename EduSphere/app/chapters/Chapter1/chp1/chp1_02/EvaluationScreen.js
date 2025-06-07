@@ -54,7 +54,8 @@ export default function EvaluationScreen() {
     setShowExp({});
   };
 
-  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_02/EvaluationScreen');
+const exit = () => router.push('/chapters/Chapter1/Chapter1_01');
+
 
   const correctCount = questions.reduce((sum, q) => {
     const a = (selected[q.id] || []).sort().join();
