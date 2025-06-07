@@ -12,6 +12,7 @@ import axios from 'axios';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EvaluationScreenStyle';
 import { useTranslation } from 'react-i18next';
+import BackButton from '../../../../../components/BackButton'; // ✅ Import
 
 export default function EvaluationScreen() {
   const { t } = useTranslation();
@@ -69,7 +70,8 @@ export default function EvaluationScreen() {
     setShowResult(false);
     setShowExp({});
   };
-  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen');
+
+  const exit = () => router.push('/chapters/Chapter1/chp1/chp1_03/EvaluationScreen');
 
   const correctCount = questions.reduce((sum, q) => {
     const sel = (selected[q.id] || []).join();
@@ -122,84 +124,89 @@ export default function EvaluationScreen() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {questions.map(q => {
-        const isCorrect = showResult && (selected[q.id] || []).join() === q.correct.join();
-        return (
-          <View key={q.id} style={styles.questionBox}>
-            <Text style={styles.questionText}>{q.text}</Text>
+    <View style={{ flex: 1, position: 'relative' }}>
+      {/* ✅ Floating Back Button */}
+      <BackButton onPress={() => router.back()} />
 
-            {q.choices.map(choice => {
-              const checked = (selected[q.id] || []).includes(choice);
-              return (
-                <TouchableOpacity
-                  key={choice}
-                  style={[
-                    styles.choice,
-                    checked && styles.choiceSelected,
-                    showResult && (checked ? styles.correct : styles.wrong)
-                  ]}
-                  onPress={() => toggleChoice(q.id, choice)}
-                >
-                  <Text style={styles.choiceText}>
-                    {checked ? '☑' : '☐'} {choice}
+      <ScrollView contentContainerStyle={[styles.container, { paddingTop: 100 }]}>
+        {questions.map(q => {
+          const isCorrect = showResult && (selected[q.id] || []).join() === q.correct.join();
+          return (
+            <View key={q.id} style={styles.questionBox}>
+              <Text style={styles.questionText}>{q.text}</Text>
+
+              {q.choices.map(choice => {
+                const checked = (selected[q.id] || []).includes(choice);
+                return (
+                  <TouchableOpacity
+                    key={choice}
+                    style={[
+                      styles.choice,
+                      checked && styles.choiceSelected,
+                      showResult && (checked ? styles.correct : styles.wrong)
+                    ]}
+                    onPress={() => toggleChoice(q.id, choice)}
+                  >
+                    <Text style={styles.choiceText}>
+                      {checked ? '☑' : '☐'} {choice}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+
+              {showResult && (
+                <View style={styles.resultRow}>
+                  <Text style={styles.resultText}>
+                    {isCorrect
+                      ? t('chapter1_03.evaluation.correct')
+                      : t('chapter1_03.evaluation.incorrect')}
                   </Text>
-                </TouchableOpacity>
-              );
-            })}
+                  <TouchableOpacity onPress={() =>
+                    setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))
+                  }>
+                    <Text style={styles.expButton}>
+                      {showExp[q.id]
+                        ? t('chapter1_03.evaluation.hideExplanation')
+                        : t('chapter1_03.evaluation.showExplanation')}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
 
-            {showResult && (
-              <View style={styles.resultRow}>
-                <Text style={styles.resultText}>
-                  {isCorrect
-                    ? t('chapter1_03.evaluation.correct')
-                    : t('chapter1_03.evaluation.incorrect')}
-                </Text>
-                <TouchableOpacity onPress={() =>
-                  setShowExp(prev => ({ ...prev, [q.id]: !prev[q.id] }))
-                }>
-                  <Text style={styles.expButton}>
-                    {showExp[q.id]
-                      ? t('chapter1_03.evaluation.hideExplanation')
-                      : t('chapter1_03.evaluation.showExplanation')}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
+              {showResult && showExp[q.id] && (
+                <View style={styles.explanationBox}>
+                  <Text style={styles.explanationText}>{q.explanation}</Text>
+                </View>
+              )}
+            </View>
+          );
+        })}
 
-            {showResult && showExp[q.id] && (
-              <View style={styles.explanationBox}>
-                <Text style={styles.explanationText}>{q.explanation}</Text>
-              </View>
-            )}
+        {!showResult ? (
+          <TouchableOpacity style={styles.submitButton} onPress={grade}>
+            <Text style={styles.submitButtonText}>{t('chapter1_03.evaluation.submit')}</Text>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.footer}>
+            <Text style={styles.finalText}>
+              {t('chapter1_03.evaluation.totalResult', {
+                correct: correctCount,
+                total: questions.length
+              })}
+            </Text>
+            <TouchableOpacity style={styles.resetButton} onPress={reset}>
+              <Text style={styles.resetButtonText}>{t('chapter1_03.evaluation.retry')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.exitButton} onPress={exit}>
+              <Text style={styles.exitButtonText}>{t('chapter1_03.evaluation.exit')}</Text>
+            </TouchableOpacity>
           </View>
-        );
-      })}
+        )}
 
-      {!showResult ? (
-        <TouchableOpacity style={styles.submitButton} onPress={grade}>
-          <Text style={styles.submitButtonText}>{t('chapter1_03.evaluation.submit')}</Text>
+        <TouchableOpacity style={styles.completeButton} onPress={handleCompleteLearning}>
+          <Text style={styles.completeButtonText}>{t('chapter1_03.evaluation.complete')}</Text>
         </TouchableOpacity>
-      ) : (
-        <View style={styles.footer}>
-          <Text style={styles.finalText}>
-            {t('chapter1_03.evaluation.totalResult', {
-              correct: correctCount,
-              total: questions.length
-            })}
-          </Text>
-          <TouchableOpacity style={styles.resetButton} onPress={reset}>
-            <Text style={styles.resetButtonText}>{t('chapter1_03.evaluation.retry')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.exitButton} onPress={exit}>
-            <Text style={styles.exitButtonText}>{t('chapter1_03.evaluation.exit')}</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
-      <TouchableOpacity style={styles.completeButton} onPress={handleCompleteLearning}>
-        <Text style={styles.completeButtonText}>{t('chapter1_03.evaluation.complete')}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
