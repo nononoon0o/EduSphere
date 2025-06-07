@@ -7,6 +7,7 @@ import { Asset } from 'expo-asset';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useRouter } from 'expo-router'; // 추가
 import { Ionicons } from '@expo/vector-icons'; // 아이콘 추가
+import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/GLBViewerStyles';
 
 const GLBViewer = () => {
   const router = useRouter(); // router 사용
@@ -110,30 +111,5 @@ const GLBViewer = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 10,
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
-  },
-  backText: {
-    fontSize: 16,
-    marginLeft: 6,
-    color: '#2c3e50',
-    fontWeight: '500',
-  },
-});
 
 export default GLBViewer;

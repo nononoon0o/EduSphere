@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BackButton from '../../../../../components/BackButton'; // Adjust the path if needed
+import styles from '../../../../../style/ChapterStyle/Chapter2/ch2Styles/ForecastingModelingStyles'; // Adjust the path as necessary
 
 const ForecastingModelingScreen = () => {
   return (
@@ -19,11 +20,5 @@ const ForecastingModelingScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', padding: 20 },
-  title: { fontSize: 18, fontWeight: 'bold', marginBottom: 15 },
-  text: { fontSize: 16 },
-});
 
 export default ForecastingModelingScreen;

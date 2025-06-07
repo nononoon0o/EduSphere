@@ -4,6 +4,8 @@ import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons'; // 아이콘 사용
 import { router } from 'expo-router'; // 뒤로가기 기능 사용
 
+import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLearningScreenStyles';
+
 export default function VideoLearningScreen() {
   const videoId = 'mUapW54ODMc'; // 원하는 유튜브 영상 ID
 
@@ -40,45 +42,3 @@ export default function VideoLearningScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 50,
-    alignItems: 'center',
-    backgroundColor: '#fff7f5',
-  },
-  text: {
-    fontSize: 20,
-    color: '#c0392b',
-    fontWeight: '600',
-    marginBottom: 20,
-  },
-  videoContainer: {
-    width: '90%',
-    height: Dimensions.get('window').width * 0.5625,
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
-  video: {
-    flex: 1,
-  },
-  iframe: {
-    borderWidth: 0,
-  },
-  backButton: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8,
-    backgroundColor: '#ecf0f1',
-    borderRadius: 8,
-  },
-  backText: {
-    marginLeft: 5,
-    fontSize: 16,
-    color: '#2c3e50',
-  },
-});
