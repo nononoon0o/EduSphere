@@ -92,7 +92,7 @@ const getStudentResults = async (req, res) => {
       else if (r.status === '결석') stats.absent++;
     });
 
-    const assignments = await Assignment.find({ 'submissions.studentId': req.params.id });
+    const assignments = await Assignment.find();
     const assignmentResults = assignments.map(ass => {
       const sub = ass.submissions.find(s => s.studentId.toString() === req.params.id);
       return {
