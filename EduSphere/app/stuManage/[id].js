@@ -22,6 +22,7 @@ export default function StudentDetail() {
   const [attendance, setAttendance] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [deadlines, setDeadlines] = useState([]);
+  const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { t } = useTranslation();
@@ -146,11 +147,11 @@ export default function StudentDetail() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>📚 {t('studentDetail.subjectScores')}</Text>
+          <Text style={styles.sectionTitle}>📚 {t('result.subjectScores')}</Text>
           {student.subjects?.length > 0 ? (
             student.subjects.map((s, idx) => (
               <Text key={idx} style={styles.subjectText}>
-                {s.name}: <Text style={styles.scoreTag}>{s.score}{t('studentDetail.scoreUnit')}</Text>
+                {s.name}: <Text style={styles.scoreTag}>{s.score}{t('result.scoreUnit')}</Text>
               </Text>
             ))
           ) : (
@@ -159,7 +160,7 @@ export default function StudentDetail() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>🕘 {t('studentDetail.attendanceStatus')}</Text>
+          <Text style={styles.sectionTitle}>🕘 {t('result.attendanceStatus')}</Text>
           <Text style={[styles.tag, styles.tagPresent]}>
             출석: {attendanceCounts.출석}개
           </Text>
@@ -175,7 +176,7 @@ export default function StudentDetail() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>📝 {t('studentDetail.assignmentStatus')}</Text>
+          <Text style={styles.sectionTitle}>📝 {t('result.assignmentStatus')}</Text>
           {assignments.length > 0 ? (
             assignments.map((item, idx) => (
               <Text key={idx} style={styles.assignmentText}>
@@ -192,7 +193,7 @@ export default function StudentDetail() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.sectionTitle}>💬 {t('studentDetail.feedback')}</Text>
+          <Text style={styles.sectionTitle}>{t('studentDetail.feedbackTitle')}</Text>
           <Text style={styles.feedbackText}>{t('studentDetail.teacherComment')}</Text>
         </View>
       </ScrollView>
