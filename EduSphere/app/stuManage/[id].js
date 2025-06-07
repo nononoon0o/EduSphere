@@ -151,7 +151,7 @@ export default function StudentDetail() {
           {student.subjects?.length > 0 ? (
             student.subjects.map((s, idx) => (
               <Text key={idx} style={styles.subjectText}>
-                {s.name}: <Text style={styles.scoreTag}>{s.score}{t('result.scoreUnit')}</Text>
+                {s.name}: <Text style={styles.scoreTag}>{s.score}{t('studentDetail.score')}</Text>
               </Text>
             ))
           ) : (
