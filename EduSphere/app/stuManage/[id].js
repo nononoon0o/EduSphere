@@ -22,7 +22,6 @@ export default function StudentDetail() {
   const [attendance, setAttendance] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [deadlines, setDeadlines] = useState([]);
-  const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { t } = useTranslation();
@@ -101,24 +100,13 @@ export default function StudentDetail() {
   }
 
   const getAttendanceStatus = (chapter) => {
-    // 출석/지각 기록에서 해당 챕터 찾기
-    const attendanceObj = Array.isArray(attendance)
-      ? attendance.find(a => a.chapter === chapter)
-      : null;
-    // 데드라인에서 해당 챕터 찾기
-    const deadlineObj = Array.isArray(deadlines)
-      ? deadlines.find(d => d.chapter === chapter)
-      : null;
+    const attendanceObj = attendance.find(a => a.chapter === chapter);
+    const deadlineObj = deadlines.find(d => d.chapter === chapter);
 
-    if (attendanceObj) {
-      return attendanceObj.status; // '출석' 또는 '지각'
-    } else if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) {
-      return "결석"; // 데드라인 지났고 기록 없으면 결석
-    } else if (deadlineObj) {
-      return "미완료"; // 데드라인 안 지났고 기록 없으면 미완료
-    } else {
-      return "정보 없음";
-    }
+    if (attendanceObj) return attendanceObj.status;
+    if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) return '결석';
+    if (deadlineObj) return '미완료';
+    return '정보 없음';
   };
 
   const countAttendance = () => {
@@ -139,6 +127,9 @@ export default function StudentDetail() {
     <View>
       <BackButton onPress={() => router.replace('/stuManage/stuManageScreen')} />
       <ScrollView style={styles.container}>
+        {/* ✅ TITLE INTERNATIONALIZED */}
+        <Text style={styles.title}>{t('result.titleWithName', { name: student.nickname })}</Text>
+
         <View style={styles.card}>
           <Text style={styles.name}>{student.nickname}</Text>
           <Text style={styles.infoText}>{t('studentDetail.studentNumber')}: {student.studentNumber}</Text>
@@ -162,16 +153,16 @@ export default function StudentDetail() {
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>🕘 {t('result.attendanceStatus')}</Text>
           <Text style={[styles.tag, styles.tagPresent]}>
-            출석: {attendanceCounts.출석}개
+            {t('result.present')}: {attendanceCounts.출석}{t('result.unit')}
           </Text>
           <Text style={[styles.tag, styles.tagLate]}>
-            지각: {attendanceCounts.지각}개
+            {t('result.late')}: {attendanceCounts.지각}{t('result.unit')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            결석: {attendanceCounts.결석}개
+            {t('result.absent')}: {attendanceCounts.결석}{t('result.unit')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            미완료: {attendanceCounts.미완료}개
+            {t('result.incomplete')}: {attendanceCounts.미완료}{t('result.unit')}
           </Text>
         </View>
 
@@ -180,11 +171,13 @@ export default function StudentDetail() {
           {assignments.length > 0 ? (
             assignments.map((item, idx) => (
               <Text key={idx} style={styles.assignmentText}>
-                {item.title}: 
+                {item.title}:{' '}
                 <Text style={item.status === '제출' ? styles.tagGreen : styles.tagRed}>
                   {item.status === '제출' ? t('studentDetail.submitted') : t('studentDetail.notSubmitted')}
                 </Text>
-                {item.score && <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>}
+                {item.score && (
+                  <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>
+                )}
               </Text>
             ))
           ) : (
