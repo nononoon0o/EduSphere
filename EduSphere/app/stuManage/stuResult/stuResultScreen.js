@@ -38,12 +38,9 @@ export default function StuResultScreen() {
   const fetchStudentInfo = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(
-        `http://localhost:5000/api/students/${studentId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await axios.get(`http://localhost:5000/api/students/${studentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setStudent(res.data);
     } catch (err) {
       console.error('학생 정보 불러오기 실패:', err);
@@ -65,18 +62,12 @@ export default function StuResultScreen() {
   const fetchAttendance = async (studentId) => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(
-        `http://localhost:5000/api/attendance/student/${studentId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (res.data.success && res.data.records) {
-        setAttendance(res.data.records);
-      } else {
-        setAttendance([]);
-      }
+      const res = await axios.get(`http://localhost:5000/api/attendance/student/${studentId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setAttendance(res.data.success ? res.data.records : []);
     } catch (err) {
-      setError('출석 기록 불러오기 실패')
-      console.error('출석 기록 불러오기 실패:', err);
+      setError('출석 기록 불러오기 실패');
     }
   };
 
@@ -88,20 +79,16 @@ export default function StuResultScreen() {
       });
       setDeadlines(res.data.deadlines || []);
     } catch (err) {
-      setError('데드라인 기록 불러오기 실패')
-      console.error('데드라인 정보 요청 실패:', err);
+      setError('데드라인 기록 불러오기 실패');
     }
   };
 
   const fetchResults = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(
-        `http://localhost:5000/api/students/${studentId}/results`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setResults(res.data);
     } catch (err) {
       console.error('학습 결과 불러오기 실패:', err);
@@ -129,39 +116,33 @@ export default function StuResultScreen() {
   }
 
   const getAttendanceStatus = (chapter) => {
-    // 출석/지각 기록에서 해당 챕터 찾기
     const attendanceObj = Array.isArray(attendance)
       ? attendance.find(a => a.chapter === chapter)
       : null;
-    // 데드라인에서 해당 챕터 찾기
     const deadlineObj = Array.isArray(deadlines)
       ? deadlines.find(d => d.chapter === chapter)
       : null;
 
-    if (attendanceObj) {
-      return attendanceObj.status; // '출석' 또는 '지각'
-    } else if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) {
-      return "결석"; // 데드라인 지났고 기록 없으면 결석
-    } else if (deadlineObj) {
-      return "미완료"; // 데드라인 안 지났고 기록 없으면 미완료
-    } else {
-      return "정보 없음";
-    }
+    if (attendanceObj) return attendanceObj.status;
+    else if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) return t('result.absent');
+    else if (deadlineObj) return t('result.incomplete');
+    else return t('result.unknown');
   };
 
-  // 챕터별 출결 상태 집계
   const countAttendance = () => {
-    const counts = { 출석: 0, 지각: 0, 결석: 0, 미완료: 0 };
+    const counts = {
+      [t('result.present')]: 0,
+      [t('result.late')]: 0,
+      [t('result.absent')]: 0,
+      [t('result.incomplete')]: 0,
+    };
     allChapters.forEach(ch => {
       const status = getAttendanceStatus(ch.chapter);
-      if (status === '출석') counts.출석 += 1;
-      else if (status === '지각') counts.지각 += 1;
-      else if (status === '결석') counts.결석 += 1;
-      else if (status === '미완료') counts.미완료 += 1;
+      if (counts[status] !== undefined) counts[status] += 1;
     });
     return counts;
   };
-  
+
   const attendanceCounts = countAttendance();
 
   return (
@@ -184,7 +165,9 @@ export default function StuResultScreen() {
         </View>
         {results?.subjects?.map((subject, index) => (
           <View key={index} style={styles.scoreBox}>
-            <Text style={styles.subject}>{subject.name}</Text>
+            <Text style={styles.subject}>
+              {t(`subject.${subject.name}`, subject.name)}
+            </Text>
             <Text
               style={[
                 styles.score,
@@ -205,16 +188,16 @@ export default function StuResultScreen() {
         </View>
         <View style={styles.attendanceTagWrapper}>
           <Text style={[styles.tag, styles.tagPresent]}>
-            {t('result.present')}: {attendanceCounts.출석}{t('result.days')}
+            {t('result.present')}: {attendanceCounts[t('result.present')]}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagLate]}>
-            {t('result.late')}: {attendanceCounts.지각}{t('result.days')}
+            {t('result.late')}: {attendanceCounts[t('result.late')]}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            {t('result.absent')}: {attendanceCounts.결석}{t('result.days')}
+            {t('result.absent')}: {attendanceCounts[t('result.absent')]}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            미완료: {attendanceCounts.미완료}개
+            {t('result.incomplete')}: {attendanceCounts[t('result.incomplete')]}
           </Text>
         </View>
       </View>
@@ -232,9 +215,12 @@ export default function StuResultScreen() {
           <View key={assignment._id || index} style={styles.assignmentCard}>
             <View style={styles.assignmentInfo}>
               <Text style={styles.itemTitle}>
-                {assignment.title}
-                {assignment.description ? ` || ${assignment.description}` : ''}
-                {assignment.dueDate ? ` || ${formatDate(assignment.dueDate)}` : ''}
+                {t('result.assignmentTitle')} {index + 1} ||{" "}
+                {assignment.description
+                  ? assignment.description
+                  : t('result.assignmentRequest', { chapter: index + 1 })}
+                {" || "}
+                {assignment.dueDate ? formatDate(assignment.dueDate) : ''}
               </Text>
             </View>
             <TouchableOpacity
