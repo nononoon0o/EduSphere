@@ -264,16 +264,89 @@
   "next": "Suivant"
 }
 ,
-"learnScreen": {
-  "instruction": "Classez les images selon le type de changement",
-  "physical": "Changement physique",
-  "chemical": "Changement chimique",
-  "correct": "🎉 Correct ! Consultez les explications ci-dessous.",
-  "wrong": "❌ Réessayez.",
-  "tryAgain": "Réessayer",
-  "prev": "Précédent",
-  "next": "Suivant"
-},
+ "learnScreen": {
+    "instruction": "Classe les images selon le type de changement",
+    "physical": "Changement physique",
+    "chemical": "Changement chimique",
+    "correct": "🎉 Correct ! Consulte les explications ci-dessous.",
+    "wrong": "❌ Essaie encore.",
+    "retry": "Réessayer",
+    "viewPhysical": "Voir l’explication du changement physique",
+    "viewChemical": "Voir l’explication du changement chimique",
+    "close": "Fermer",
+    "next": "Suivant",
+    "prev": "Précédent",
+    "explanations": {
+       "physical": {
+      "points": [
+        "🧪 Dissolution du sucre dans l'eau :",
+        "1. La nature de la substance ne change pas !",
+        "Le sucre se disperse dans l'eau sans se transformer.",
+        "2. C'est réversible !",
+        "En évaporant l'eau, on récupère des cristaux de sucre.",
+        "3. La structure des particules reste la même !",
+        "La structure du sucre reste inchangée même dispersée.",
+
+        "🧪 Ébullition de l'eau :",
+        "1. La substance reste de l'eau !",
+        "L'eau passe de liquide à gaz, mais reste H₂O.",
+        "2. C'est réversible !",
+        "La vapeur redevient eau par condensation.",
+        "3. Pas de changement moléculaire !",
+        "Les molécules ne changent pas, aucune nouvelle substance créée.",
+
+        "🧪 Couper des légumes :",
+        "1. Le matériau reste identique !",
+        "Couper un légume ne change pas sa composition chimique.",
+        "2. Seule la forme change !",
+        "C'est toujours le même légume, juste découpé.",
+        "3. Aucune nouvelle substance !",
+        "Même si on ne peut pas revenir en arrière, c’est un changement physique.",
+
+        "🧪 Le niveau d’eau baisse dans un aquarium :",
+        "1. L'eau reste de l'eau !",
+        "Elle s'évapore mais reste H₂O.",
+        "2. C'est réversible !",
+        "La vapeur peut se condenser et redevenir liquide.",
+        "3. Pas de réaction chimique !",
+        "C’est seulement un changement d'état."
+      ]
+    },
+      "chemical": {
+      "points": [
+        "🔥 Allumer une bougie :",
+        "1. De nouvelles substances se forment !",
+        "La paraffine réagit avec l’oxygène pour produire du CO₂ et de l’eau.",
+        "2. La combustion est une réaction chimique !",
+        "La bougie brûle par une réaction de combustion, produisant chaleur et lumière.",
+        "3. C’est irréversible !",
+        "Une bougie consumée ne peut pas redevenir une bougie entière.",
+
+        "🔥 Cuisson de la viande :",
+        "1. Les protéines changent de structure !",
+        "Les protéines se dénaturent, modifiant la texture et la couleur.",
+        "2. De nouvelles substances se forment !",
+        "Les acides aminés réagissent avec les sucres (réaction de Maillard).",
+        "3. C’est irréversible !",
+        "La viande cuite ne peut pas redevenir crue.",
+
+        "🔥 Feux d'artifice :",
+        "1. De nouvelles substances se forment !",
+        "Les composés chimiques explosent et forment des gaz, de la fumée et de la lumière.",
+        "2. Les couleurs viennent des réactions chimiques !",
+        "Strontium → rouge, Cuivre → bleu, Sodium → jaune.",
+        "3. C’est irréversible !",
+        "Un feu d’artifice ne peut pas être remis dans son état initial.",
+
+        "🔥 Cuisson d’un œuf :",
+        "1. Les protéines se dénaturent !",
+        "La chaleur modifie les protéines, changeant leur texture et apparence.",
+        "2. C’est irréversible !",
+        "Un œuf cuit ne peut pas redevenir cru."
+      ]
+    }
+    }
+  },
 "videoLearning": {
     "title": "🎬 Ceci est la page d'apprentissage vidéo.",
     "complete": "Terminé",
