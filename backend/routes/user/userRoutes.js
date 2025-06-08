@@ -4,8 +4,11 @@ const { loadName, loadRole, loadMongoDBID, deleteUser } = require("../../control
 const { authenticateToken } = require("../../middlewares/authenticate");
 
 router.get("/name", authenticateToken, loadName);
+
 router.get("/role", authenticateToken, loadRole);
+
 router.get("/mongodbid", authenticateToken, loadMongoDBID);
+
 router.delete("/delete", authenticateToken, deleteUser);
 
 module.exports = router;

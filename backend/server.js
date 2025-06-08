@@ -24,7 +24,7 @@ const editAccountRoutes = require("./routes/user/editAccountRoutes");
 const attendanceRoutes = require("./routes/participation/attendanceRoutes");
 const assignmentRoutes = require("./routes/participation/assignmentRoutes");
 const studentRoutes = require('./routes/participation/studentRoutes');
-
+const scoreRoutes = require('./routes/score/scoreRoutes')
 const deadlineRoutes = require('./routes/deadlineRoutes');
 
 // Express 애플리케이션 생성
@@ -84,6 +84,7 @@ app.use("/user", editAccountRoutes);
 // 학생 관리 시스템
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/scores', scoreRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/deadlines', deadlineRoutes);
 
