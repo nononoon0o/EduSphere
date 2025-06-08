@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { saveScore, getTotalScore, getScoreDetails, updateWeights } = require('../../controllers/scoreController');
+const { getTotalScore, getScoreDetails, updateWeights } = require('../../controllers/score/scoreController');
 const { authenticateToken } = require('../../middlewares/authenticate');
+const { autoScore } = require('../../controllers/score/calculateScoreController')
 
-router.post('/', authenticateToken, saveScore);
+router.post('/', authenticateToken, autoScore);
 
 router.put('/weight/:school/:classId', authenticateToken, updateWeights);
 
