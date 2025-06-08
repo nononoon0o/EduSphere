@@ -173,7 +173,7 @@ const TeacherDashboard = () => {
   if (loading) return <ActivityIndicator size="large" />;
 
   return (
-    <View>
+    <ScrollView>
       <TouchableOpacity style={styles.floatingBackButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={20} color="#fff" />
       </TouchableOpacity>
@@ -274,7 +274,10 @@ const TeacherDashboard = () => {
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
       </ScrollView>
-    </View>
+      <TouchableOpacity onPress={() => router.push('./teacherDashboard/weight')}>
+        <Text>weight</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 };
 
