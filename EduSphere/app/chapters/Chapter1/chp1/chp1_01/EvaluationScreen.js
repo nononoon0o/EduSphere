@@ -73,15 +73,22 @@ export default function EvaluationScreen() {
   };
 
   const grade = async () => {
+    handleCompleteLearning();
     setShowResult(true);
     if (!isSaved) {
       await handleSaveQuizScore();
     }
   }
+
   const retry = () => {
     setSelected({});
     setShowResult(false);
     setShowExp({});
+  };
+
+  const exit = async () => {
+    if (!isSaved) await handleSaveQuizScore();
+    router.push('/chapters/Chapter1');
   };
 
   const correctCount = questions.reduce((sum, q) => {
@@ -137,7 +144,6 @@ export default function EvaluationScreen() {
 
       if (result.success) {
         Alert.alert(t('evaluation.complete'), t('evaluation.attendanceSuccess', { status: result.status }));
-        router.push('/chapters/Chapter1');
       } else {
         Alert.alert(t('evaluation.error'), t('evaluation.attendanceFail'));
       }
@@ -147,18 +153,11 @@ export default function EvaluationScreen() {
     }
   };
 
-  const exit = async () => {
-    if (!isSaved) await handleSaveQuizScore();
-    router.push('/chapters/Chapter1/Chapter1_01');
-  };
-
   return (
     <View style={{ flex: 1, position: 'relative' }}>
       <BackButton onPress={() => router.back()} />
-      <ScrollView contentContainerStyle={[styles.container, { paddingTop: 120 }]}>
-        {/* rest of the content */}
-
-        {questions.map(q => {
+      <ScrollView contentContainerStyle={[styles.container, { paddingTop: 100 }]}>
+       {questions.map(q => {
           const isCorrect =
             showResult &&
             (selected[q.id] || []).sort().join() === q.correct.sort().join();
