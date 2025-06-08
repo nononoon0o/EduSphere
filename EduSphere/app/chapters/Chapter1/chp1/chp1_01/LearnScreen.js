@@ -21,17 +21,6 @@ import { useTranslation } from 'react-i18next';
 
 const { width } = Dimensions.get('window');
 
-const EXAMPLES = [
-  { id: 'p3', type: 'physical', src: require('../../../../../assets/images/sugar.jpg'), label: 'Dissolving sugar in water' },
-  { id: 'p2', type: 'physical', src: require('../../../../../assets/images/water.jpg'), label: 'Boiling water' },
-  { id: 'p4', type: 'physical', src: require('../../../../../assets/images/vat.jpg'), label: 'Cutting vegetables' },
-  { id: 'p1', type: 'physical', src: require('../../../../../assets/images/fish.jpg'), label: 'Water level drops in a fish tank' },
-  { id: 'c2', type: 'chemical', src: require('../../../../../assets/images/candle.jpg'), label: 'Burning a candle' },
-  { id: 'c4', type: 'chemical', src: require('../../../../../assets/images/meet.jpg'), label: 'Cooking meat' },
-  { id: 'c3', type: 'chemical', src: require('../../../../../assets/images/fire.jpg'), label: 'Fireworks' },
-  { id: 'c1', type: 'chemical', src: require('../../../../../assets/images/egg.jpg'), label: 'Boiling an egg' }
-];
-
 const DraggableImage = ({ image, dropZones, droppedImages, onDrop, resetTrigger }) => {
   const offsetX = useSharedValue(0);
   const offsetY = useSharedValue(0);
@@ -85,7 +74,18 @@ const DraggableImage = ({ image, dropZones, droppedImages, onDrop, resetTrigger 
 
 function LearnScreen() {
   const router = useRouter();
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+
+  const EXAMPLES = [
+    { id: 'p3', type: 'physical', src: require('../../../../../assets/images/sugar.jpg'), label: t('learnScreen.examples.p3') },
+    { id: 'p2', type: 'physical', src: require('../../../../../assets/images/water.jpg'), label: t('learnScreen.examples.p2') },
+    { id: 'p4', type: 'physical', src: require('../../../../../assets/images/vat.jpg'), label: t('learnScreen.examples.p4') },
+    { id: 'p1', type: 'physical', src: require('../../../../../assets/images/fish.jpg'), label: t('learnScreen.examples.p1') },
+    { id: 'c2', type: 'chemical', src: require('../../../../../assets/images/candle.jpg'), label: t('learnScreen.examples.c2') },
+    { id: 'c4', type: 'chemical', src: require('../../../../../assets/images/meet.jpg'), label: t('learnScreen.examples.c4') },
+    { id: 'c3', type: 'chemical', src: require('../../../../../assets/images/fire.jpg'), label: t('learnScreen.examples.c3') },
+    { id: 'c1', type: 'chemical', src: require('../../../../../assets/images/egg.jpg'), label: t('learnScreen.examples.c1') }
+  ];
   const [dropZones, setDropZones] = useState([]);
   const [droppedImages, setDroppedImages] = useState([]);
   const [resultMessage, setResultMessage] = useState('');
@@ -133,7 +133,7 @@ function LearnScreen() {
   }, [droppedImages]);
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+     <GestureHandlerRootView style={styles.container}>
       <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
       <Text style={styles.header}>{t('learnScreen.instruction')}</Text>
 
@@ -141,7 +141,7 @@ function LearnScreen() {
         <View style={styles.dropZone} onLayout={(e) => onLayoutZone(e, 'physical')}>
           <Text style={styles.dropZoneTitle}>{t('learnScreen.physical')}</Text>
           <View style={styles.innerDropZone}>
-            {droppedImages.filter((img) => img.droppedZone === 'physical').map((img) => (
+            {droppedImages.filter(img => img.droppedZone === 'physical').map(img => (
               <Pressable key={img.id} onPress={() => handleRemoveImage(img.id)}>
                 <Image source={img.src} style={styles.image} resizeMode="contain" />
               </Pressable>
@@ -152,7 +152,7 @@ function LearnScreen() {
         <View style={styles.dropZone} onLayout={(e) => onLayoutZone(e, 'chemical')}>
           <Text style={styles.dropZoneTitle}>{t('learnScreen.chemical')}</Text>
           <View style={styles.innerDropZone}>
-            {droppedImages.filter((img) => img.droppedZone === 'chemical').map((img) => (
+            {droppedImages.filter(img => img.droppedZone === 'chemical').map(img => (
               <Pressable key={img.id} onPress={() => handleRemoveImage(img.id)}>
                 <Image source={img.src} style={styles.image} resizeMode="contain" />
               </Pressable>
@@ -161,9 +161,9 @@ function LearnScreen() {
         </View>
       </View>
 
-      {resultMessage ? (
+      {resultMessage && (
         <Text style={styles.resultMessage}>{t(`learnScreen.${resultMessage}`)}</Text>
-      ) : null}
+      )}
 
       {resultMessage === 'correct' && (
         <View style={{ alignItems: 'center', marginBottom: 10 }}>
@@ -179,28 +179,66 @@ function LearnScreen() {
         </View>
       )}
 
-      <Modal visible={!!selectedExplanationKey} transparent animationType="slide" onRequestClose={handleCloseExplanation}>
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              {t(`learnScreen.explanations.${selectedExplanationKey}.title`)}
-            </Text>
-            <ScrollView>
-              {
-                (() => {
-                  const points = t(`learnScreen.explanations.${selectedExplanationKey}.points`, { returnObjects: true });
-                  return Array.isArray(points)
-                    ? points.map((point, i) => (
-                        <Text key={i} style={styles.modalText}>{point}</Text>
-                      ))
-                    : <Text style={styles.modalText}>{points}</Text>;
-                })()
-              }
-            </ScrollView>
-            <Button title={t('learnScreen.close')} onPress={handleCloseExplanation} />
-          </View>
-        </View>
-      </Modal>
+     <Modal visible={!!selectedExplanationKey} transparent animationType="slide" onRequestClose={handleCloseExplanation}>
+  <View style={styles.modalOverlay}>
+    <View style={styles.modalContent}>
+      <ScrollView>
+        {selectedExplanationKey === 'physical' && (
+  <>
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.physical.sugar.title')}</Text>
+    {t('learnScreen.explanations.physical.sugar.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`sugar-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.physical.boilWater.title')}</Text>
+    {t('learnScreen.explanations.physical.boilWater.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`boil-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.physical.cutVegetables.title')}</Text>
+    {t('learnScreen.explanations.physical.cutVegetables.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`cut-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.physical.evaporation.title')}</Text>
+    {t('learnScreen.explanations.physical.evaporation.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`evap-${index}`}>{point}</Text>
+    ))}
+  </>
+)}
+
+{selectedExplanationKey === 'chemical' && (
+  <>
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.chemical.candle.title')}</Text>
+    {t('learnScreen.explanations.chemical.candle.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`candle-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.chemical.cookMeat.title')}</Text>
+    {t('learnScreen.explanations.chemical.cookMeat.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`meat-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.chemical.fireworks.title')}</Text>
+    {t('learnScreen.explanations.chemical.fireworks.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`fireworks-${index}`}>{point}</Text>
+    ))}
+
+    <Text style={styles.explanationTitle}>{t('learnScreen.explanations.chemical.boilEgg.title')}</Text>
+    {t('learnScreen.explanations.chemical.boilEgg.points', { returnObjects: true }).map((point, index) => (
+      <Text key={`egg-${index}`}>{point}</Text>
+    ))}
+  </>
+)}
+
+
+      </ScrollView>
+      <Button title={t('learnScreen.close')} onPress={handleCloseExplanation} />
+    </View>
+  </View>
+</Modal>
+
+
 
       <View style={styles.examplesContainer}>
         {EXAMPLES.map(example => (
