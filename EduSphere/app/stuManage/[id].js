@@ -22,6 +22,7 @@ export default function StudentDetail() {
   const [attendance, setAttendance] = useState([]);
   const [assignments, setAssignments] = useState([]);
   const [deadlines, setDeadlines] = useState([]);
+  const [chapterScores, setChapterScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { t } = useTranslation();
@@ -78,12 +79,36 @@ export default function StudentDetail() {
     }
   };
 
+  const fetchTotalScore = async (studentId, chapter) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get(`http://localhost:5000/api/scores/${studentId}/${chapter}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return { chapter, ...res.data };
+    } catch (err) {
+      return { chapter, totalScore: null };
+      console.error('점수 정보 요청 실패:', err)
+    }
+  };
+
+  const fetchAllChapterScores = async (studentId) => {
+    const scoreResults = [];
+    for (const ch of allChapters) {
+      const result = await fetchTotalScore(studentId, ch.chapter);
+      scoreResults.push(result);
+    }
+    setChapterScores(scoreResults);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       await fetchStudent();
       await fetchAttendance(id);
       await fetchAssignments(id);
       await fetchDeadlines();
+      await fetchTotalScore(id); 
+      await fetchAllChapterScores(id);
       setLoading(false);
     };
     fetchData();
@@ -139,7 +164,7 @@ export default function StudentDetail() {
 
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>📚 {t('result.subjectScores')}</Text>
-          {student.subjects?.length > 0 ? (
+          {/* {student.subjects?.length > 0 ? (
             student.subjects.map((s, idx) => (
               <Text key={idx} style={styles.subjectText}>
                 {s.name}: <Text style={styles.scoreTag}>{s.score}{t('studentDetail.score')}</Text>
@@ -147,7 +172,19 @@ export default function StudentDetail() {
             ))
           ) : (
             <Text style={styles.subjectText}>{t('studentDetail.noSubjectInfo')}</Text>
-          )}
+          )} */}
+          {allChapters.map((ch, idx) => {
+            const scoreObj = chapterScores.find(s => s.chapter === ch.chapter);
+            const total = (scoreObj?.totalScore ?? 0);
+            const quiz = (scoreObj?.quizScore ?? 0);
+            const attendance = (scoreObj?.attendanceScore ?? 0);
+            const assignment = (scoreObj?.assignmentScore ?? 0);
+            return (
+              <Text key={ch.chapter} style={styles.subjectText}>
+                {ch.title}: {`${total}점 (평가:${quiz} 출결:${attendance} 과제:${assignment})`}
+              </Text>
+            );
+          })}
         </View>
 
         <View style={styles.card}>
