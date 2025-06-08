@@ -163,9 +163,10 @@ const TeacherDashboard = () => {
           headers: { Authorization: `Bearer ${token}` }
         }
       );
-      console.log(t('dashboard.deadlineSaved'));
+      Alert.alert(t('dashboard.deadlineSaved'));
     } catch (e) {
-      console.log(t('dashboard.deadlineSaveError'), e);
+      Alert.alert(t('dashboard.deadlineSaveError'));
+      console.log(e);
     }
   };
 
@@ -178,7 +179,6 @@ const TeacherDashboard = () => {
       </TouchableOpacity>
 
       <ScrollView style={styles.container}>
-
         {/* Assignment Creation */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.createAssignment')}</Text>
@@ -205,10 +205,8 @@ const TeacherDashboard = () => {
             timeFormat="HH:mm"
             dateFormat="yyyy-MM-dd HH:mm"
             placeholderText={t('dashboard.selectDate')}
-            popperPlacement="bottom-start"
             className="react-datepicker__input"
             portalId="root-portal"
-            style={{ width: '100%', height: 40, fontSize: 16 }}
           />
           <input
             type="file"
@@ -233,7 +231,7 @@ const TeacherDashboard = () => {
               <View style={styles.assignmentRow}>
                 <View style={styles.assignmentInfo}>
                   <Text style={styles.itemTitle}>
-                    {item.title} || {item.description} || {formatDate(item.dueDate)}
+                    {item.title} | {item.description} | {formatDate(item.dueDate)}
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -267,9 +265,7 @@ const TeacherDashboard = () => {
             timeFormat="HH:mm"
             dateFormat="yyyy-MM-dd HH:mm"
             placeholderText={t('dashboard.selectDate')}
-            popperPlacement="bottom-start"
             className="react-datepicker__input"
-            style={{ width: '100%', height: 40, fontSize: 16 }}
           />
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveDeadline}>
             <Text style={{ fontWeight: 'bold' }}>{t('dashboard.saveDeadline')}</Text>
