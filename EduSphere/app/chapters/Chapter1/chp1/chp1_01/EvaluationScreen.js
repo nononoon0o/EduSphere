@@ -10,6 +10,7 @@ import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { recordAttendanceOnComplete } from '../../../../../services/attendanceService';
 import axios from 'axios';
+import { saveQuizScore } from '../../../../../utils/saveQuizScore';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/EvaluationScreenStyle';
 import { useTranslation } from 'react-i18next';
 import BackButton from '../../../../../components/BackButton';
@@ -58,6 +59,7 @@ export default function EvaluationScreen() {
   const [selected, setSelected] = useState({});
   const [showResult, setShowResult] = useState(false);
   const [showExp, setShowExp] = useState({});
+  const [isSaved, setIsSaved] = useState(false); 
 
   const toggleChoice = (qId, choice) => {
     if (showResult) return;
@@ -70,21 +72,44 @@ export default function EvaluationScreen() {
     });
   };
 
-  const grade = () => setShowResult(true);
+  const grade = async () => {
+    setShowResult(true);
+    if (!isSaved) {
+      await handleSaveQuizScore();
+    }
+  }
   const retry = () => {
     setSelected({});
     setShowResult(false);
     setShowExp({});
   };
 
-const exit = () => router.push('/chapters/Chapter1/Chapter1_01');
-
-
   const correctCount = questions.reduce((sum, q) => {
     const a = (selected[q.id] || []).sort().join();
     const b = q.correct.sort().join();
     return sum + (a === b ? 1 : 0);
   }, 0);
+
+  const handleSaveQuizScore = async () => {
+    try {
+      const studentId = await AsyncStorage.getItem('mongoId');
+      const chapter = 'Chapter1_01';
+      const quizScore = Math.round((correctCount / questions.length) * 100);
+      const result = await saveQuizScore({ studentId, chapter, quizScore });
+      if (result.success) {
+        setIsSaved(true);
+        Alert.alert('평가 점수가 저장되었습니다!');
+      } else if (result.error?.response?.status === 409) {
+        setIsSaved(true);
+        Alert.alert('이미 평가 점수가 저장되어 있습니다.');
+      } else {
+        Alert.alert('점수 저장 실패', '다시 시도해 주세요.');
+      }
+    } catch (e) {
+      Alert.alert('점수 저장 실패', '다시 시도해 주세요.');
+      console.log(e);
+    }
+  };
 
   const fetchDeadlineForChapter = async (chapter) => {
     try {
@@ -120,6 +145,11 @@ const exit = () => router.push('/chapters/Chapter1/Chapter1_01');
       Alert.alert(t('evaluation.error'), t('evaluation.unexpectedError'));
       console.log(err);
     }
+  };
+
+  const exit = async () => {
+    if (!isSaved) await handleSaveQuizScore();
+    router.push('/chapters/Chapter1/Chapter1_01');
   };
 
   return (
@@ -194,6 +224,11 @@ const exit = () => router.push('/chapters/Chapter1/Chapter1_01');
             <Text style={styles.finalText}>
               {t('evaluation.finalResult', { total: questions.length, correct: correctCount })}
             </Text>
+
+            {isSaved && (
+              <Text style={{ color: 'green', marginTop: 8 }}>저장 완료! 이제 자유롭게 다시 풀 수 있습니다.(저장은 최초 한번만 저장됩니다)</Text>
+            )}
+
             <TouchableOpacity style={styles.resetButton} onPress={retry}>
               <Text style={styles.resetButtonText}>{t('evaluation.retry')}</Text>
             </TouchableOpacity>
@@ -202,15 +237,6 @@ const exit = () => router.push('/chapters/Chapter1/Chapter1_01');
             </TouchableOpacity>
           </View>
         )}
-
-        <TouchableOpacity
-          style={styles.completeButton}
-          onPress={handleCompleteLearning}
-        >
-          <Text style={styles.completeButtonText}>
-            {t('evaluation.completeLearning')}
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );
