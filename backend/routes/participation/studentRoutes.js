@@ -9,9 +9,9 @@ router.get('/', authenticateToken, teacherOnly, getAllStudents);
 
 router.post('/', authenticateToken, teacherOnly, createStudent);
 
-router.put('/:id', authenticateToken, teacherOnly, updateStudent);
-
 router.delete('/:id', authenticateToken, teacherOnly, deleteStudent);
+
+router.put('/:id', authenticateToken, teacherOnly, updateStudent);
 
 router.get('/:id', authenticateToken, getStudentById);
 
