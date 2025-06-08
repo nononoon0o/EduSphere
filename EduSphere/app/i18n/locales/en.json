@@ -269,9 +269,82 @@
     "chemical": "Chemical Change",
     "correct": "🎉 Correct! Check the explanations below.",
     "wrong": "❌ Try again.",
-    "tryAgain": "Try Again",
+    "retry": "Try Again",
+    "viewPhysical": "View Physical Change Explanation",
+    "viewChemical": "View Chemical Change Explanation",
+    "close": "Close",
+    "next": "Next",
     "prev": "Previous",
-    "next": "Next"
+    "explanations": {
+      "physical": {
+      "points": [
+        "🧪 Dissolving sugar in water:",
+        "1. The nature of the substance does not change!",
+        "The sugar simply disperses in water without changing into a different substance.",
+        "2. It's reversible!",
+        "Evaporating the water will recreate sugar crystals.",
+        "3. Particle structure remains the same!",
+        "The internal structure of the sugar stays unchanged even when dispersed.",
+
+        "🧪 Boiling water:",
+        "1. The substance remains water!",
+        "Water changes state from liquid to gas, but it’s still H₂O.",
+        "2. It's reversible!",
+        "Condensing steam turns it back into water.",
+        "3. No change in molecular structure!",
+        "The molecules stay the same — no new substances are formed.",
+
+        "🧪 Cutting vegetables:",
+        "1. The material stays the same!",
+        "Chopping a vegetable doesn’t change its chemical makeup.",
+        "2. Only the shape changes!",
+        "It’s still the same vegetable — just in smaller pieces.",
+        "3. No new substances are formed!",
+        "Despite being hard to undo, it's still a physical change.",
+
+        "🧪 Water level drops in a fish tank:",
+        "1. The water remains water!",
+        "It evaporates into vapor but is still H₂O.",
+        "2. It's reversible!",
+        "Evaporated water can condense and return as liquid.",
+        "3. No chemical reaction!",
+        "Only the state changes — not the substance itself."
+      ]
+    },
+      "chemical": {
+      "points": [
+        "🔥 Burning a candle:",
+        "1. New substances are formed!",
+        "Paraffin reacts with oxygen to produce carbon dioxide (CO₂) and water (H₂O).",
+        "2. Combustion is a chemical reaction!",
+        "The candle burns in a combustion reaction, producing heat and light.",
+        "3. It’s irreversible!",
+        "Once burned, the candle can’t return to its original state.",
+
+        "🔥 Cooking meat:",
+        "1. Proteins change structure!",
+        "Proteins denature and change shape, affecting color and texture.",
+        "2. New substances are formed!",
+        "Amino acids and sugars react to form new compounds (Maillard reaction).",
+        "3. It’s irreversible!",
+        "Cooked meat cannot be turned back into raw meat.",
+
+        "🔥 Fireworks:",
+        "1. New substances are formed!",
+        "Chemical compounds react with oxygen to create gas, smoke, and light.",
+        "2. Flame colors result from chemical reactions!",
+        "Strontium → red, Copper → blue, Sodium → yellow.",
+        "3. It’s irreversible!",
+        "You can’t undo an exploded firework.",
+
+        "🔥 Boiling an egg:",
+        "1. Protein denaturation occurs!",
+        "Heat alters egg proteins, changing their structure and appearance.",
+        "2. It’s irreversible!",
+        "A boiled egg can’t return to a raw state."
+      ]
+    }
+    }
   },
   "videoLearning": {
     "title": "🎬 This is the video learning page.",
