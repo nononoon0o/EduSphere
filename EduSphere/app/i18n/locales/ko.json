@@ -22,7 +22,8 @@
     "manageStudents": "학생 관리",
     "viewResults": "학습 결과 확인",
     "submitAssignment": "과제 제출",
-    "withdraw": "회원 탈퇴"
+    "withdraw": "회원 탈퇴",
+    "assignmentScore": "학생 제출물"
   },
   "SEARCH": "검색",
   "search": "검색어를 입력하세요...",
@@ -660,56 +661,57 @@
 },
 
   "dashboard": {
-  "createAssignment": "새 과제 생성",
-  "assignmentTitle": "과제 제목",
-  "assignmentDescription": "과제 설명",
-  "selectDate": "마감일 선택",
-  "selectedFile": "선택된 파일",
-  "create": "생성",
-  "currentAssignments": "현재 과제 목록",
-  "delete": "삭제",
-  "setChapterDeadline": "챕터 마감일 설정",
-  "selectChapter": "챕터 선택",
-  "saveDeadline": "마감일 저장",
-  "errorLoadingAssignments": "과제를 불러오는 데 실패했습니다.",
-  "errorCreateAssignment": "과제 생성에 실패했습니다.",
-  "errorDeleteAssignment": "과제 삭제에 실패했습니다.",
-  "deadlineSaved": "마감일이 성공적으로 저장되었습니다.",
-  "deadlineSaveError": "마감일 저장에 실패했습니다.",
-  "fileTypeAlert": ".docx 또는 .hwp 파일만 업로드 가능합니다.",
-  "weightSetting": "점수 비율 조정"
+    "createAssignment": "새 과제 생성",
+    "assignmentTitle": "과제 제목",
+    "assignmentDescription": "과제 설명",
+    "selectDate": "마감일 선택",
+    "selectedFile": "선택된 파일",
+    "create": "생성",
+    "currentAssignments": "현재 과제 목록",
+    "delete": "삭제",
+    "setChapterDeadline": "챕터 마감일 설정",
+    "selectChapter": "챕터 선택",
+    "saveDeadline": "마감일 저장",
+    "errorLoadingAssignments": "과제를 불러오는 데 실패했습니다.",
+    "errorCreateAssignment": "과제 생성에 실패했습니다.",
+    "errorDeleteAssignment": "과제 삭제에 실패했습니다.",
+    "deadlineSaved": "마감일이 성공적으로 저장되었습니다.",
+    "deadlineSaveError": "마감일 저장에 실패했습니다.",
+    "fileTypeAlert": ".docx 또는 .hwp 파일만 업로드 가능합니다.",
+    "weightSetting": "점수 비율 조정"
 }
 ,
   "result": {
-    "titleWithName": "{{name}}님의 학업 성과",
-    "title": "학업 성과",
-    "subjectScores": "과목별 점수",
-    "finalScore": "최종 점수",
-    "points": "점",
-    "attendanceStatus": "출결 현황",
-    "present": "출석",
-    "late": "지각",
-    "absent": "결석",
-    "incomplete": "미완료",
-    "unknown": "정보 없음",
-    "days": "일",
-    "assignmentStatus": "과제 제출 현황",
-    "assignmentTitle": "과제",
-    "assignmentRequest": "첨부 파일에 챕터 {{chapter}} 내용을 정리해서 제출해주세요.",
-    "noAssignments": "제출된 과제가 없습니다.",
-    "viewDetails": "자세히 보기",
-    "errorFetchingAssignments": "과제 정보를 불러오는 데 실패했습니다."
-  },
+  "titleWithName": "{{name}}의 성과 요약",
+  "title": "성과 요약",
+  "subjectScores": "과목별 점수",
+  "finalScore": "최종 점수",
+  "points": "점",
+  "attendanceStatus": "출결 현황",
+  "present": "출석",
+  "late": "지각",
+  "absent": "결석",
+  "incomplete": "미완료",
+  "unknown": "알 수 없음",
+  "days": "일",
+  "assignmentStatus": "과제 제출 현황",
+  "assignmentTitle": "과제",
+  "assignmentRequest": "첨부된 파일에 {{chapter}}장의 내용을 정리하여 제출해주세요.",
+  "noAssignments": "제출된 과제가 없습니다.",
+  "viewDetails": "자세히 보기",
+  "errorFetchingAssignments": "과제 정보를 불러오지 못했습니다."
+},
 
  "assignment": {
-    "errorFetch": "과제 정보를 불러오는 데 실패했습니다.",
-    "downloadFail": "파일 다운로드를 시작하지 못했습니다.",
-    "downloadError": "다운로드 중 오류가 발생했습니다.",
-    "defaultFilename": "과제_파일",
-    "notFound": "과제를 찾을 수 없습니다.",
+    "titlePattern": "과학 과제 {{number}}",
     "description": "설명",
-    "dueDate": "제출 기한",
-    "download": "첨부 파일 다운로드"
+    "dueDate": "제출 마감일",
+    "download": "파일 다운로드",
+    "downloadFail": "파일 다운로드에 실패했습니다.",
+    "downloadError": "다운로드 중 오류가 발생했습니다.",
+    "defaultFilename": "과제.docx",
+    "errorFetch": "과제 불러오기에 실패했습니다.",
+    "notFound": "과제를 찾을 수 없습니다."
   },
   "assignmentTexts": {
   "scienceTitle1": "과학 과제 1",
@@ -792,7 +794,22 @@
       "title": "저장 실패",
       "message": "저장에 실패했습니다."
     }
-  }
+  },
+  "scoreStudent": {
+  "title": "{{name}}의 제출물 목록",
+  "selectAssignment": "과제를 선택하세요",
+  "submissionTitle": "제출 제목",
+  "submissionContent": "내용",
+  "fileLink": "파일 링크",
+  "score": "점수: {{score}}",
+  "notScored": "채점되지 않음",
+  "submittedAt": "제출일: {{date}}",
+  "noSubmission": "제출물이 없습니다."
+},
+"assignmentScoreIndex": {
+  "title": "담당 학생 목록"
+}
+
 
 
 
