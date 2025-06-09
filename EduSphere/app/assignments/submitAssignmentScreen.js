@@ -20,7 +20,7 @@ export default function SubmitAssignmentScreen() {
   const fileInputRef = useRef(null);
   const { t } = useTranslation();
 
-  const [assignments, setAssignments] = useState([]);;
+  const [assignments, setAssignments] = useState([]);
   const [assignmentFile, setAssignmentFile] = useState(null);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [title, setTitle] = useState('');
@@ -85,7 +85,7 @@ export default function SubmitAssignmentScreen() {
       }
     } catch (e) {
       Alert.alert(t('submit.error'), t('submit.submitError'));
-      console.log(e)
+      console.log(e);
     }
   };
 
