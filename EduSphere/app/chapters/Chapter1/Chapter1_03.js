@@ -25,7 +25,6 @@ export default function Chapter1_03() {
         <Text style={styles.subtitle}>{t('chapter1_03.subtitle')}</Text>
       </View>
 
-      <Text style={styles.sectionHeader}>{t('chapter1_03.sections.concept')}</Text>
 
       <View style={styles.sectionsContainer}>
         <TouchableOpacity
