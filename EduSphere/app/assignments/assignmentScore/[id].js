@@ -116,9 +116,8 @@ export default function AssignmentScoreStudent() {
         return;
       }
 
-      // 파일 이름 가져오기 (서버가 Content-Disposition 헤더에 filename을 넣어줘야 함)
       const contentDisposition = res.headers.get('Content-Disposition');
-      let filename = originalName;
+      let filename = t('assignment.defaultFilename');;
       if (contentDisposition) {
         const match = contentDisposition.match(/filename="(.+)"/);
         if (match && match[1]) {
@@ -163,15 +162,14 @@ export default function AssignmentScoreStudent() {
                 <View key={idx} style={styles.submissionRow}>
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submissionTitle')}: {sub.stuTitle}</Text>
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submissionContent')}: {sub.stuContent}</Text>
-                  {sub.stufileUrl && (
-                    <Text
-                      style={[styles.assignmentContent, { color: '#2563EB', textDecorationLine: 'underline' }]}
-                      onPress={() => {
-                        window.open(sub.stufileUrl, '_blank');
-                      }}
-                    >
-                      {t('scoreStudent.fileLink')}
-                    </Text>
+                  {sub.stufileUrl ? (
+                    <TouchableOpacity onPress={() => handleDownloadSubmission(sub.stufileUrl)}>
+                      <Text style={styles.downloadLink}>
+                        📎 {t('scoreStudent.fileLink')}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <Text style={styles.attachmentText}>{t('scoreStudent.noSubmission')}</Text>
                   )}
                   <Text style={styles.assignmentContent}>{t('scoreStudent.score', { score: sub.score ?? t('scoreStudent.notScored') })}</Text>
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submittedAt', { date: sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : t('scoreStudent.noSubmission') })}</Text>
