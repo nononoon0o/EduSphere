@@ -53,7 +53,8 @@ export default function AssignmentScoreIndex() {
   return (
     <View style={styles.container}>
       <BackButton onPress={() => router.push('/ProfileScreen')} />
-      <Text style={styles.title}>담당 학생 목록</Text>
+      <Text style={styles.title}>{t('assignmentScoreIndex.title')}</Text>
+
       <FlatList
         data={students}
         renderItem={renderStudentItem}
