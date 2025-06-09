@@ -4,6 +4,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+   ScrollView,
   ActivityIndicator,
 } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -70,6 +71,7 @@ export default function StudentManagementScreen() {
   }
 
   return (
+    
     <View style={styles.container}>
       <BackButton onPress={() => router.push('/ProfileScreen')} />
       <Text style={styles.title}>담당 학생 목록</Text>
