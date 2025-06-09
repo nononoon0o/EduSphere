@@ -4,13 +4,15 @@ import {
   Text,
   ActivityIndicator,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  TextInput
 } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import styles from '../../../style/assignments/assignmentsScoreStyle';
+import BackButton from '../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
 
 export default function AssignmentScoreStudent() {
@@ -22,37 +24,52 @@ export default function AssignmentScoreStudent() {
   const [assignments, setAssignments] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [submissions, setSubmissions] = useState([]);
+  const [inputScores, setInputScores] = useState({});
+  const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchStudentAndAssignments = async () => {
-    const token = await AsyncStorage.getItem('token');
-    const stuRes = await axios.get(`http://localhost:5000/api/students/${id}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    setStudent(stuRes.data);
+    try {
+      const token = await AsyncStorage.getItem('token');
+      // 학생 정보
+      const stuRes = await axios.get(`http://localhost:5000/api/students/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setStudent(stuRes.data);
 
-    const asnRes = await axios.get('http://localhost:5000/api/assignments', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const assignmentList = asnRes.data.map((a) => ({
-      label: a.title,
-      value: a._id,
-    }));
-    setAssignments(assignmentList);
-    setLoading(false);
+      // 전체 과제 목록
+      const asnRes = await axios.get('http://localhost:5000/api/assignments', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const assignmentList = asnRes.data.map((a) => ({
+        label: a.title,
+        value: a._id,
+      }));
+      setAssignments(assignmentList);
+    } catch (err) {
+      setAssignments([]);
+      console.log(err);
+    }
   };
 
   const fetchSubmissions = async () => {
-    if (!selectedAssignment) {
+    try {
+      if (!selectedAssignment) {
+        setSubmissions([]);
+        return;
+      }
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get(
+        `http://localhost:5000/api/assignments/${selectedAssignment}/submission/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setSubmissions(res.data.submissions || []);
+    } catch (err) {
       setSubmissions([]);
-      return;
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-    const token = await AsyncStorage.getItem('token');
-    const res = await axios.get(
-      `http://localhost:5000/api/assignments/${selectedAssignment}/submission/${id}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    setSubmissions(res.data.submissions || []);
   };
 
   useEffect(() => {
@@ -62,49 +79,128 @@ export default function AssignmentScoreStudent() {
 
   if (loading) return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
 
+  const handleScoreChange = (idx, value) => {
+    setInputScores(prev => ({ ...prev, [idx]: value }));
+  };
+
+  const saveScore = async (submission) => {
+    setSaving(true);
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const score = Number(inputScores[submission._id]);
+      await axios.patch(
+        `http://localhost:5000/api/assignments/${selectedAssignment}/grade/${id}`,
+        { score },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert('점수 저장 완료!');
+      // 점수 저장 후 제출물 새로고침
+      await fetchSubmissions();
+    } catch (e) {
+      alert('점수 저장 실패!');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDownloadSubmission = async (stufileId) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const url = `http://localhost:5000/api/assignments/files/${stufileId}`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        alert(t('assignment.downloadFail'));
+        return;
+      }
+
+      // 파일 이름 가져오기 (서버가 Content-Disposition 헤더에 filename을 넣어줘야 함)
+      const contentDisposition = res.headers.get('Content-Disposition');
+      let filename = originalName;
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="(.+)"/);
+        if (match && match[1]) {
+          filename = decodeURIComponent(match[1]);
+        }
+      }
+
+      const blob = await res.blob();
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    } catch (err) {
+      alert(t('assignment.downloadError'));
+      console.error(err);
+    }
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>
-        {student ? t('scoreStudent.title', { name: student.nickname || student.name }) : ''}
-      </Text>
+    <View style={styles.container}>
+      <BackButton onPress={() => router.back()} />
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>
+          {student ? t('scoreStudent.title', { name: student.nickname || student.name }) : ''}
+        </Text>
 
-      <Dropdown
-        style={styles.dropdown}
-        data={assignments}
-        labelField="label"
-        valueField="value"
-        placeholder={t('scoreStudent.selectAssignment')}
-        value={selectedAssignment}
-        onChange={(item) => setSelectedAssignment(item.value)}
-        maxHeight={300}
-      />
+        <Dropdown
+          style={styles.dropdown}
+          data={assignments}
+          labelField="label"
+          valueField="value"
+          placeholder={t('scoreStudent.selectAssignment')}
+          value={selectedAssignment}
+          onChange={(item) => setSelectedAssignment(item.value)}
+          maxHeight={300}
+        />
 
-      {selectedAssignment && (
-        <View style={styles.card}>
-          {submissions.length > 0 ? (
-            submissions.map((sub, idx) => (
-              <View key={idx} style={styles.submissionRow}>
-                <Text style={styles.assignmentContent}>{t('scoreStudent.submissionTitle')}: {sub.stuTitle}</Text>
-                <Text style={styles.assignmentContent}>{t('scoreStudent.submissionContent')}: {sub.stuContent}</Text>
-                {sub.stufileUrl && (
-                  <Text
-                    style={[styles.assignmentContent, { color: '#2563EB', textDecorationLine: 'underline' }]}
-                    onPress={() => {
-                      window.open(sub.stufileUrl, '_blank');
-                    }}
-                  >
-                    {t('scoreStudent.fileLink')}
-                  </Text>
-                )}
-                <Text style={styles.assignmentContent}>{t('scoreStudent.score', { score: sub.score ?? t('scoreStudent.notScored') })}</Text>
-                <Text style={styles.assignmentContent}>{t('scoreStudent.submittedAt', { date: sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : t('scoreStudent.noSubmission') })}</Text>
-              </View>
-            ))
-          ) : (
-            <Text style={styles.emptyText}>{t('scoreStudent.noSubmission')}</Text>
-          )}
-        </View>
-      )}
-    </ScrollView>
+        {selectedAssignment && (
+          <View style={styles.card}>
+            {submissions.length > 0 ? (
+              submissions.map((sub, idx) => (
+                <View key={idx} style={styles.submissionRow}>
+                  <Text style={styles.assignmentContent}>{t('scoreStudent.submissionTitle')}: {sub.stuTitle}</Text>
+                  <Text style={styles.assignmentContent}>{t('scoreStudent.submissionContent')}: {sub.stuContent}</Text>
+                  {sub.stufileUrl && (
+                    <Text
+                      style={[styles.assignmentContent, { color: '#2563EB', textDecorationLine: 'underline' }]}
+                      onPress={() => {
+                        window.open(sub.stufileUrl, '_blank');
+                      }}
+                    >
+                      {t('scoreStudent.fileLink')}
+                    </Text>
+                  )}
+                  <Text style={styles.assignmentContent}>{t('scoreStudent.score', { score: sub.score ?? t('scoreStudent.notScored') })}</Text>
+                  <Text style={styles.assignmentContent}>{t('scoreStudent.submittedAt', { date: sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : t('scoreStudent.noSubmission') })}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                    <TextInput
+                      style={[styles.input, { width: 80, marginRight: 8 }]}
+                      placeholder="과제 점수"
+                      value={inputScores[sub._id] ?? ""}
+                      onChangeText={val => handleScoreChange(sub._id, val)}
+                      keyboardType="numeric"
+                    />
+                    <TouchableOpacity
+                      style={styles.saveButton}
+                      onPress={() => saveScore(sub)}
+                      disabled={saving}
+                    >
+                      <Text style={styles.saveButtonText}>
+                        {saving ? '저장중...' : '저장'}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ))
+            ) : (
+              <Text style={styles.emptyText}>{t('scoreStudent.noSubmission')}</Text>
+            )}
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }

@@ -141,4 +141,15 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#6B7280',
   },
+
+  dropdown: {
+    height: 52,
+    borderColor: '#D1D5DB',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    marginBottom: 20,
+    backgroundColor: '#F9FAFB',
+  },
+  
 });

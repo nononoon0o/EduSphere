@@ -89,22 +89,18 @@ export default function AssignmentDetailScreen() {
   if (!assignment) return <Text style={styles.error}>{t('assignment.notFound')}</Text>;
 
   return (
-  <View style={{ flex: 1, backgroundColor: '#F1F5F9' }}>
+  <View style={styles.container}>
     <BackButton onPress={() => navigation.goBack()} />
 
-    <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
+    <ScrollView>
       <View style={styles.card}>
         <Text style={styles.title}>
-          {assignment.title === '과학 과제 1'
-            ? t('assignmentTexts.scienceTitle1')
-            : assignment.title}
+          {assignment.title}
         </Text>
 
         <Text style={styles.label}>{t('assignment.description')}</Text>
         <Text style={styles.text}>
-          {assignment.description === '첨부 파일에 챕터 1 내용을 정리해서 제출해주세요'
-            ? t('assignmentTexts.scienceDesc1')
-            : assignment.description}
+          {assignment.description}
         </Text>
 
         <Text style={styles.label}>{t('assignment.dueDate')}</Text>
