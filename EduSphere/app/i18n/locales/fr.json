@@ -64,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Ⅰ. Changements physiques et chimiques",
+    "subtitle": " Changements physiques et chimiques",
     "title": "01. Exploration du concept",
     "sections": {
       "concept": "Résumé du concept",
@@ -657,24 +657,26 @@
 },
 
    "dashboard": {
-    "createAssignment": "Créer un nouveau devoir",
-    "assignmentTitle": "Titre du devoir",
-    "assignmentDescription": "Description du devoir",
-    "selectDate": "Sélectionner une date limite",
-    "selectedFile": "Fichier sélectionné",
-    "create": "Créer",
-    "currentAssignments": "Devoirs actuels",
-    "delete": "Supprimer",
-    "setChapterDeadline": "Définir la date limite pour le chapitre",
-    "selectChapter": "Sélectionner un chapitre",
-    "saveDeadline": "Enregistrer la date limite",
-    "errorLoadingAssignments": "Échec du chargement des devoirs.",
-    "errorCreateAssignment": "Échec de la création du devoir.",
-    "errorDeleteAssignment": "Échec de la suppression du devoir.",
-    "deadlineSaved": "Date limite enregistrée avec succès.",
-    "deadlineSaveError": "Échec de l'enregistrement de la date limite.",
-    "fileTypeAlert": "Seuls les fichiers .docx et .hwp sont autorisés."
-  },
+  "createAssignment": "Créer un nouveau devoir",
+  "assignmentTitle": "Titre du devoir",
+  "assignmentDescription": "Description du devoir",
+  "selectDate": "Sélectionner une date limite",
+  "selectedFile": "Fichier sélectionné",
+  "create": "Créer",
+  "currentAssignments": "Devoirs actuels",
+  "delete": "Supprimer",
+  "setChapterDeadline": "Définir la date limite pour le chapitre",
+  "selectChapter": "Sélectionner un chapitre",
+  "saveDeadline": "Enregistrer la date limite",
+  "errorLoadingAssignments": "Échec du chargement des devoirs.",
+  "errorCreateAssignment": "Échec de la création du devoir.",
+  "errorDeleteAssignment": "Échec de la suppression du devoir.",
+  "deadlineSaved": "Date limite enregistrée avec succès.",
+  "deadlineSaveError": "Échec de l'enregistrement de la date limite.",
+  "fileTypeAlert": "Seuls les fichiers .docx et .hwp sont autorisés.",
+  "weightSetting": "Ajuster la pondération"
+}
+,
   "result": {
     "titleWithName": "Résumé des performances de {{name}}",
     "title": "Résumé des performances",
@@ -762,10 +764,30 @@
   "yes": "Oui",
   "no": "Non",
   "quit": "Quitter"
-}
-
-
-
-
+},
+"weight": {
+    "title": "Définir la pondération des notes",
+    "school": "École",
+    "class": "Classe",
+    "classPlaceholder": "Classe (ex : 1-2)",
+    "quiz": "Évaluation (%)",
+    "attendance": "Présence (%)",
+    "assignment": "Devoirs (%)",
+    "save": "Enregistrer",
+    "saving": "Enregistrement en cours...",
+    "error": {
+      "input": "Erreur de saisie",
+      "invalidNumber": "Toutes les valeurs doivent être des nombres supérieurs ou égaux à 0.",
+      "sumNot100": "La somme des pourcentages doit être égale à 100."
+    },
+    "success": {
+      "title": "Enregistrement réussi",
+      "message": "Les pourcentages de notation ont été enregistrés !"
+    },
+    "fail": {
+      "title": "Échec de l'enregistrement",
+      "message": "L’enregistrement a échoué."
+    }
+  }
 
 }
