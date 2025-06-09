@@ -26,12 +26,12 @@ export default function WeightScreen() {
       isNaN(quizNum) || isNaN(attendanceNum) || isNaN(assignmentNum) ||
       quizNum < 0 || attendanceNum < 0 || assignmentNum < 0
     ) {
-      Alert.alert('입력 오류', '모든 입력값은 0 이상의 숫자여야 합니다.');
+      Alert.alert(t('weight.error.input'), t('weight.error.invalidNumber'));
       return;
     }
 
     if (quizNum + attendanceNum + assignmentNum !== 100) {
-      Alert.alert('입력 오류', '비율의 합이 100이 되어야 합니다.');
+      Alert.alert(t('weight.error.input'), t('weight.error.sumNot100'));
       return;
     }
 
@@ -43,9 +43,9 @@ export default function WeightScreen() {
         { quiz: quizNum, attendance: attendanceNum, assignment: assignmentNum },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      Alert.alert('저장 완료', '점수 비율이 저장되었습니다!');
+      Alert.alert(t('weight.success.title'), t('weight.success.message'));
     } catch (e) {
-      Alert.alert('저장 실패', '저장에 실패했습니다.');
+      Alert.alert(t('weight.fail.title'), t('weight.fail.message'));
     } finally {
       setSaving(false);
     }
@@ -55,34 +55,66 @@ export default function WeightScreen() {
     <View>
       <BackButton onPress={() => router.replace('/stuManage/teacherDashboard')} />
       <ScrollView style={styles.container}>
-        <Text style={styles.sectionTitle}>{t('weight.title') || '점수 비율 설정'}</Text>
-        
+        <Text style={styles.sectionTitle}>{t('weight.title')}</Text>
+
         <View style={styles.inputRow}>
-          <Text style={styles.itemTitle}>학교</Text>
-          <TextInput style={styles.input} value={school} onChangeText={setSchool} placeholder="학교명" />
+          <Text style={styles.itemTitle}>{t('weight.school')}</Text>
+          <TextInput
+            style={styles.input}
+            value={school}
+            onChangeText={setSchool}
+            placeholder={t('weight.school')}
+          />
         </View>
+
         <View style={styles.inputRow}>
-          <Text style={styles.itemTitle}>반</Text>
-          <TextInput style={styles.input} value={classId} onChangeText={setClassId} placeholder="반 (예: 1-2)" />
+          <Text style={styles.itemTitle}>{t('weight.class')}</Text>
+          <TextInput
+            style={styles.input}
+            value={classId}
+            onChangeText={setClassId}
+            placeholder={t('weight.classPlaceholder')}
+          />
         </View>
+
         <View style={styles.inputRow}>
-          <Text style={styles.itemTitle}>평가 (%)</Text>
-          <TextInput style={styles.input} value={quiz} onChangeText={setQuiz} keyboardType="numeric" />
+          <Text style={styles.itemTitle}>{t('weight.quiz')}</Text>
+          <TextInput
+            style={styles.input}
+            value={quiz}
+            onChangeText={setQuiz}
+            keyboardType="numeric"
+          />
         </View>
+
         <View style={styles.inputRow}>
-          <Text style={styles.itemTitle}>출결 (%)</Text>
-          <TextInput style={styles.input} value={attendance} onChangeText={setAttendance} keyboardType="numeric" />
+          <Text style={styles.itemTitle}>{t('weight.attendance')}</Text>
+          <TextInput
+            style={styles.input}
+            value={attendance}
+            onChangeText={setAttendance}
+            keyboardType="numeric"
+          />
         </View>
+
         <View style={styles.inputRow}>
-          <Text style={styles.itemTitle}>과제 (%)</Text>
-          <TextInput style={styles.input} value={assignment} onChangeText={setAssignment} keyboardType="numeric" />
+          <Text style={styles.itemTitle}>{t('weight.assignment')}</Text>
+          <TextInput
+            style={styles.input}
+            value={assignment}
+            onChangeText={setAssignment}
+            keyboardType="numeric"
+          />
         </View>
+
         <TouchableOpacity
           style={styles.appButtonContainer}
           onPress={handleSave}
           disabled={saving}
         >
-          <Text style={styles.appButtonText}>{saving ? '저장중...' : '저장'}</Text>
+          <Text style={styles.appButtonText}>
+            {saving ? t('weight.saving') : t('weight.save')}
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
