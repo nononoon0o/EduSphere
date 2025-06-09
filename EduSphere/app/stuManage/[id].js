@@ -151,11 +151,7 @@ export default function StudentDetail() {
   return (
     <View>
       <BackButton onPress={() => router.replace('/stuManage/stuManageScreen')} />
-      <ScrollView
-        style={styles.container}
-        scrollEnabled={true}
-        contentContainerStyle={{ paddingBottom: 60 }}
-      >
+      <ScrollView style={styles.container}>
         <Text style={styles.title}>{t('result.titleWithName', { name: student.nickname })}</Text>
 
         <View style={styles.card}>
@@ -175,13 +171,7 @@ export default function StudentDetail() {
             const assignment = (scoreObj?.assignmentScore ?? 0);
             return (
               <Text key={ch.chapter} style={styles.subjectText}>
-                {t('result.subjectLine', {
-                  chapter: ch.title,
-                  score: total,
-                  quiz,
-                  attendance,
-                  assignment
-                })}
+                {ch.title}: {`${total}점 (평가:${quiz} 출결:${attendance} 과제:${assignment})`}
               </Text>
             );
           })}
@@ -208,12 +198,10 @@ export default function StudentDetail() {
           {assignments.length > 0 ? (
             assignments.map((item, idx) => (
               <Text key={idx} style={styles.assignmentText}>
-                {t('result.submissionLine', {
-                  title: item.title,
-                  status: item.status === '제출'
-                    ? t('result.submitted')
-                    : t('result.notSubmitted')
-                })}
+                {item.title}:{' '}
+                <Text style={item.status === '제출' ? styles.tagGreen : styles.tagRed}>
+                  {item.status === '제출' ? t('studentDetail.submitted') : t('studentDetail.notSubmitted')}
+                </Text>
                 {item.score && (
                   <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>
                 )}
