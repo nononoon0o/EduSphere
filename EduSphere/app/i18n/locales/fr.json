@@ -31,14 +31,15 @@
   "noMatches": "Aucun résultat trouvé",
   "noRouteTitle": "Page introuvable",
   "noRouteMessage": "Impossible d'accéder à ce lien",
+
   "chapter1": {
-    "title": "Ⅰ. Lois des réactions chimiques et changements d'énergie",
-    "subtitles": {
-      "01": "Changements de matière et équations chimiques",
-      "02": "Loi de conservation de la masse et loi des proportions définies",
-      "03": "Loi des réactions gazeuses et échanges d'énergie"
-    }
-  },
+  "title": "Ⅰ. Les transformations de la matière",
+  "subtitles": {
+    "01": "Changements physiques et chimiques",
+    "02": "Réactions chimiques",
+    "03": "Équations de réactions chimiques"
+  }
+},
   "chapter2": {
     "title": "Ⅱ. Structure atomique et tableau périodique",
     "subtitles": {
@@ -63,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Changements de matière et équations chimiques",
+    "subtitle": "Ⅰ. Les transformations de la matière",
     "title": "01. Exploration du concept",
     "sections": {
       "concept": "Résumé du concept",
