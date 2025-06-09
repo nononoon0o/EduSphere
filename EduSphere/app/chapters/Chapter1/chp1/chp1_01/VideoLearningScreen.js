@@ -16,6 +16,8 @@ import { recordAttendanceOnComplete } from '../../../../../services/attendanceSe
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLearningStyle';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import NavigationButtons from '../../../../../components/NavigationButtons';
+
 
 export default function VideoLearningScreen() {
   const { t } = useTranslation();
@@ -103,16 +105,11 @@ export default function VideoLearningScreen() {
         </Text>
       </TouchableOpacity>
 
-      {/* ✅ Previous Button */}
-      <TouchableOpacity
-        style={styles.prevNavButton}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
-      >
-        <View style={styles.prevNavCircle}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
-        </View>
-        <Text style={styles.prevNavText}>{t('videoLearning.prev')}</Text>
-      </TouchableOpacity>
+       {/* ✅ Navigation Buttons */}
+      <NavigationButtons
+        onPressPrev={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')}
+        onPressNext={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
+      />
     </View>
   );
 }
