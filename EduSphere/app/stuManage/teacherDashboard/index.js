@@ -174,7 +174,7 @@ const TeacherDashboard = () => {
 
   return (
     <ScrollView>
-      <TouchableOpacity style={styles.floatingBackButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.floatingBackButton} onPress={() => router.replace('/stuManage/stuManageScreen')}>
         <Ionicons name="arrow-back" size={20} color="#fff" />
       </TouchableOpacity>
 
@@ -285,7 +285,7 @@ const TeacherDashboard = () => {
             style={styles.weightButtonContainer}
             onPress={() => router.push('./teacherDashboard/weight')}
           >
-            <Text style={styles.appButtonText}>점수 비율 조정</Text>
+            <Text style={styles.appButtonText}>{t('dashboard.weightSetting')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
