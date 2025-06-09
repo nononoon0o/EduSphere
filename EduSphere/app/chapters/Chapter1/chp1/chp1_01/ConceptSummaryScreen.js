@@ -11,60 +11,49 @@ export default function ConceptSummaryScreen() {
   const router = useRouter();
   const { t } = useTranslation();
 
+  const physical = t('conceptSummary.physicalChange', { returnObjects: true });
+  const chemical = t('conceptSummary.chemicalChange', { returnObjects: true });
+
   return (
     <View style={styles.container}>
-      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_02')} />
+      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        {/* 📘 Learning Objective */}
         <View style={styles.card}>
-          <Text style={styles.text}>{t('conceptSummary.objective')}</Text>
+          <Text style={styles.text}>{t('conceptSummary.learningGoal')}</Text>
         </View>
 
-        {/* 📚 Main Concept */}
         <View style={styles.card}>
-          <Text style={styles.text}>{t('conceptSummary.mainConcept')}</Text>
+          <Text style={styles.conceptTitle}>{physical.title}</Text>
+          <Text style={styles.itemTitle}>{t('conceptSummary.features')}</Text>
+          {physical.features.map((f, i) => (
+            <Text key={`p-f-${i}`} style={styles.description}>{f}</Text>
+          ))}
+          <Text style={styles.itemTitle}>{t('conceptSummary.examples')}</Text>
+          {physical.examples.map((e, i) => (
+            <Text key={`p-e-${i}`} style={styles.description}>{e}</Text>
+          ))}
         </View>
 
-        {/* 🧪 Chemical Reaction */}
         <View style={styles.card}>
-          <Text style={styles.conceptTitle}>{t('conceptSummary.chemReactionTitle')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.chemReaction1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.chemReaction2')}</Text>
+          <Text style={styles.conceptTitle}>{chemical.title}</Text>
+          <Text style={styles.itemTitle}>{t('conceptSummary.features')}</Text>
+          {chemical.features.map((f, i) => (
+            <Text key={`c-f-${i}`} style={styles.description}>{f}</Text>
+          ))}
+          <Text style={styles.itemTitle}>{t('conceptSummary.examples')}</Text>
+          {chemical.examples.map((e, i) => (
+            <Text key={`c-e-${i}`} style={styles.description}>{e}</Text>
+          ))}
         </View>
 
-        {/* 🧪 Features of Chemical Reaction */}
-        <View style={styles.card}>
-          <Text style={styles.conceptTitle}>{t('conceptSummary.featuresTitle')}</Text>
-
-          <Text style={styles.featureTitle}>{t('conceptSummary.colorChange')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.colorExample1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.colorExample2')}</Text>
-
-          <Text style={styles.featureTitle}>{t('conceptSummary.gasRelease')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.gasExample1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.gasExample2')}</Text>
-
-          <Text style={styles.featureTitle}>{t('conceptSummary.lightHeat')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.lightExample1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.lightExample2')}</Text>
-
-          <Text style={styles.featureTitle}>{t('conceptSummary.precipitate')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.precipitateExample1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.precipitateExample2')}</Text>
-
-          <Text style={styles.featureTitle}>{t('conceptSummary.smellChange')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.smellExample1')}</Text>
-          <Text style={styles.description}>{t('conceptSummary.smellExample2')}</Text>
-        </View>
-
-        {/* 👉 Next */}
-        
         {/* ✅ Juste le bouton Next */}
         <View style={{ alignItems: 'flex-end', marginTop: 20, marginBottom: 40 }}>
-          <NextButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')} />
+          <NextButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')} />
         </View>
       </ScrollView>
     </View>
+
+
   );
 }
