@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions, Platform, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Dimensions, Platform, TouchableOpacity, Alert,  ScrollView } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -9,6 +9,7 @@ import { recordAttendanceOnComplete } from '../../../../../services/attendanceSe
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/VideoLearningStyle';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import PreviousButton from '../../../../../components/PreviousButton';
 
 export default function VideoLearningScreen() {
   const { t } = useTranslation();
@@ -42,6 +43,7 @@ export default function VideoLearningScreen() {
   };
 
   return (
+     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={styles.container}>
       <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_02')} />
 
@@ -82,15 +84,11 @@ export default function VideoLearningScreen() {
         <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{t('videoLearning.evaluate')}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.prevNavButton}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
-      >
-        <View style={styles.prevNavCircle}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
-        </View>
-        <Text style={styles.prevNavText}>{t('videoLearning.prev')}</Text>
-      </TouchableOpacity>
+      {/* ✅ Only Previous Button */}
+      <View style={{ alignItems: 'flex-start', width: '90%', alignSelf: 'center' }}>
+        <PreviousButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')} />
+      </View>
     </View>
+    </ScrollView>
   );
 }
