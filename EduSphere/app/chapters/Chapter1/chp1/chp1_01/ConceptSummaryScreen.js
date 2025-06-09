@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
-import NavigationButtons from '../../../../../components/NavigationButtons';
+import NextButton from '../../../../../components/NextButton';
 
 export default function ConceptSummaryScreen() {
   const router = useRouter();
@@ -47,10 +47,10 @@ export default function ConceptSummaryScreen() {
           ))}
         </View>
 
-        {/* ✅ Reusable Navigation Buttons */}
-        <NavigationButtons
-         onPressPrev={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
-          onPressNext={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')} />
+        {/* ✅ Juste le bouton Next */}
+        <View style={{ alignItems: 'flex-end', marginTop: 20, marginBottom: 40 }}>
+          <NextButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')} />
+        </View>
       </ScrollView>
     </View>
 
