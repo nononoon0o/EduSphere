@@ -1,103 +1,103 @@
 {
-  "title": "과학의 세계를 발견하세요",
-  "subtitle": "원자, 반응, 분자의 신비를 탐험해보세요",
-  "goToAccount": "내 계정으로 이동",
-  "chapterList": "중학교 3학년 과학 목차",
+  "title": "Découvrez le monde de la science",
+  "subtitle": "Explorez les atomes, les réactions et les mystères moléculaires",
+  "goToAccount": "Accéder à votre compte",
+  "chapterList": "Programme de sciences de 3e année du collège",
   "chapterTitles": {
-    "Chapter1": "제 Ⅰ 장",
-    "Chapter2": "제 Ⅱ 장",
-    "Chapter3": "제 Ⅲ 장",
-    "Chapter4": "제 Ⅳ 장"
+    "Chapter1": "CHAPITRE I",
+    "Chapter2": "CHAPITRE II",
+    "Chapter3": "CHAPITRE III",
+    "Chapter4": "CHAPITRE IV"
   },
-  "legal": "모든 권리 보유.",
+  "legal": "Tous droits réservés.",
   "profile": {
-    "student": "학생",
-    "teacher": "교사",
-    "welcome": "님 어서오세요",
-    "pleaseLogin": "로그인 해주세요",
-    "login": "로그인",
-    "logout": "로그아웃",
-    "editAccount": "계정 정보 수정",
-    "setProgress": "진도 설정",
-    "manageStudents": "학생 관리",
-    "viewResults": "학습 결과 확인",
-    "submitAssignment": "과제 제출",
-    "withdraw": "회원 탈퇴",
-    "assignmentScore": "학생 제출물"
+    "student": "Étudiant",
+    "teacher": "Enseignant",
+    "welcome": ", bienvenue !",
+    "pleaseLogin": "Veuillez vous connecter",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "editAccount": "Modifier le compte",
+    "setProgress": "Définir la progression",
+    "manageStudents": "Gérer les étudiants",
+    "viewResults": "Voir les résultats",
+    "submitAssignment": "Soumettre le devoir",
+    "withdraw": "Supprimer le compte",
+    "assignmentScore": "Soumissions des élèves"
   },
-  "SEARCH": "검색",
-  "search": "검색어를 입력하세요...",
-  "searchResults": "검색 결과",
-  "Recent-Searches": "최근 검색어",
-  "noMatches": "일치하는 결과가 없습니다",
-  "noRouteTitle": "페이지를 찾을 수 없습니다",
-  "noRouteMessage": "다음 경로로 이동할 수 없습니다",
+  "SEARCH": "Recherche",
+  "search": "Saisissez un mot-clé...",
+  "searchResults": "Résultats de recherche",
+  "Recent-Searches": "Recherches récentes",
+  "noMatches": "Aucun résultat trouvé",
+  "noRouteTitle": "Page introuvable",
+  "noRouteMessage": "Impossible d'accéder à ce lien",
 
   "chapter1": {
-  "title": "Ⅰ. 물질의 변화",
+  "title": "Ⅰ. Les transformations de la matière",
   "subtitles": {
-    "01": "물리 변화와 화학 변화",
-    "02": "화학 반응",
-    "03": "화학반응식"
+    "01": "Changements physiques et chimiques",
+    "02": "Réactions chimiques",
+    "03": "Équations de réactions chimiques"
   }
 },
   "chapter2": {
-    "title": "Ⅱ. 원자의 구조와 주기율표",
+    "title": "Ⅱ. Structure atomique et tableau périodique",
     "subtitles": {
-      "01": "물질을 구성하는 입자",
-      "02": "원자 모형의 변천",
-      "03": "원자의 구조와 전자 배치",
-      "04": "주기율표와 성질의 규칙성"
+      "01": "Les particules qui composent la matière",
+      "02": "Évolution des modèles atomiques",
+      "03": "Structure atomique et configuration électronique",
+      "04": "Tableau périodique et propriétés périodiques"
     }
   },
   "chapter3": {
-    "title": "Ⅲ. 화학 반응과 에너지 변화",
+    "title": "Ⅲ. Réactions chimiques et énergie",
     "subtitles": {
-      "01": "화학 반응의 규칙성",
-      "02": "화학 반응과 에너지"
+      "01": "Régularités des réactions chimiques",
+      "02": "Réactions chimiques et énergie"
     }
   },
   "chapter4": {
-    "title": "Ⅳ. 생활 속의 화학",
+    "title": "Ⅳ. La chimie au quotidien",
     "subtitles": {
-      "01": "산과 염기의 성질",
-      "02": "중화 반응과 염"
+      "01": "Propriétés des acides et des bases",
+      "02": "Réactions de neutralisation et sels"
     }
   },
   "chapter1_01": {
-    "subtitle": " 물리 변화와 화학 변화",
-    "title": "01. 개념 탐색",
+    "subtitle": " Changements physiques et chimiques",
+    "title": "01. Exploration du concept",
     "sections": {
-      "concept": "개념 요약",
-      "learn": "학습하기",
-      "video": "영상 학습"
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
     }
   },
   "chapter1_02": {
-    "subtitle": " 화학 반응",
-    "title": "02. 상태 변화",
+    "subtitle": "Réactions chimiques",
+    "title": "02. Changement d’état",
     "sections": {
-      "concept": "개념 요약",
-      "learn": "학습하기",
-      "video": "영상 학습"
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
     }
   },
   "chapter1_03": {
-    "subtitle": " 화학반응식",
-    "title": "03. 열과 물질 탐구",
+    "subtitle": "Équations de réactions chimiques",
+    "title": "03. Explorer la chaleur et la matière",
     "sections": {
-      "concept": "개념 요약",
-      "learn": "학습하기",
-      "video": "영상 학습"
+      "concept": "Résumé du concept",
+      "learn": "Apprendre",
+      "video": "Apprentissage vidéo"
     },
     "chemicalReaction": {
-      "reset": "다시 해보기",
-      "explanation": "앙금 생성 풀이",
-      "back": "이전으로",
-      "next": "다음으로",
+      "reset": "Réessayer",
+      "explanation": "Expliquer le précipité",
+      "back": "Précédent",
+      "next": "Suivant",
       "precipDescriptions": {
-        "CuSO4+Fe": "CuSO₄ + Fe → FeSO₄ + Cu↓ (붉은색 구리 석출)",
-        "AgNO3+Cu": "2AgNO₃ + Cu → Cu(NO₃)₂ + 2Ag↓ (은색 석출)"
+        "CuSO4+Fe": "CuSO₄ + Fe → FeSO₄ + Cu↓ (Précipité de cuivre rougeâtre)",
+        "AgNO3+Cu": "2AgNO₃ + Cu → Cu(NO₃)₂ + 2Ag↓ (Précipité argenté)"
       },
       "reagents": {
         "CuSO4": "CuSO₄",
@@ -107,505 +107,503 @@
       }
     },
     "videoLearning": {
-      "title": "🎬 영상 학습 페이지입니다.",
-      "evaluate": "평가하기",
-      "back": "이전으로",
-      "completionSuccess": "학습 완료! 출결 상태: {{status}}",
-      "completionError": "출석 기록에 실패했습니다.",
-      "unexpectedError": "예상치 못한 오류가 발생했습니다.",
-      "completed": "완료"
+      "title": "🎬 Ceci est la page d'apprentissage vidéo.",
+      "evaluate": "Faire l'évaluation",
+      "back": "Précédent",
+      "completionSuccess": "Apprentissage terminé ! Statut de présence : {{status}}",
+      "completionError": "Échec de l'enregistrement de la présence.",
+      "unexpectedError": "Une erreur inattendue est survenue.",
+      "completed": "Terminé"
     },
     "evaluation": {
     "q1": {
-      "text": "1. 화학 반응식에서 반응물은 어디에 위치합니까?\n\n(1) 화살표 오른쪽\n(2) 화살표 위쪽\n(3) 화살표 아래쪽\n(4) 화살표 왼쪽\n(5) 양쪽 모두",
-      "explanation": "화학 반응식에서 반응물은 화살표(→)의 왼쪽에 위치합니다."
+      "text": "1. Où écrit-on le réactif dans une réaction chimique ?\n\n(1) À droite de la flèche\n(2) Au-dessus de la flèche\n(3) En dessous de la flèche\n(4) À gauche de la flèche\n(5) Des deux côtés",
+      "explanation": "Les réactifs sont placés à gauche de la flèche dans une équation chimique."
     },
     "q2": {
-      "text": "2. 화학 반응식에서 화학식 앞에 쓰이는 숫자는 무엇입니까?\n\n(1) 원자 번호\n(2) 질량수\n(3) 산화수\n(4) 계수\n(5) 화학량론",
-      "explanation": "이 숫자는 계수이며, 반응에 참여하는 입자의 수를 나타냅니다."
+      "text": "2. Quel est le nombre écrit devant une formule chimique dans une équation ?\n\n(1) Numéro atomique\n(2) Nombre de masse\n(3) Nombre d’oxydation\n(4) Coefficient\n(5) Stœchiométrie",
+      "explanation": "Ce nombre est appelé coefficient. Il indique le nombre de particules impliquées dans la réaction."
     },
     "q3": {
-      "text": "3. 화학 반응식에서 계수의 역할은 무엇입니까?\n\n(1) 반응물의 종류 표시\n(2) 생성물의 종류 표시\n(3) 반응 속도 조절\n(4) 반응 전후 원자 수 일치\n(5) 필요한 에너지 양 표시",
-      "explanation": "계수는 반응 전후의 원자 수를 같게 하여 질량 보존 법칙을 만족시킵니다."
+      "text": "3. Quel est le rôle principal du coefficient dans une équation chimique ?\n\n(1) Indique le type de réactifs\n(2) Indique le type de produits\n(3) Contrôle la vitesse de réaction\n(4) Équilibre le nombre d'atomes avant et après la réaction\n(5) Indique l’énergie nécessaire",
+      "explanation": "Le coefficient permet d’équilibrer le nombre d’atomes avant et après la réaction pour respecter la loi de conservation de la masse."
     },
     "q4": {
-      "text": "4. 다음 반응식에서 수소(H₂)의 계수는 얼마입니까?\n\n? H₂ + O₂ → 2 H₂O\n\n(1) 1\n(2) 2\n(3) 3\n(4) 4\n(5) 5",
-      "explanation": "물 2분자에는 수소 원자 4개가 필요하므로, H₂ 앞에는 2가 와야 합니다."
+      "text": "4. Quel est le coefficient de H₂ dans la réaction suivante ?\n\n? H₂ + O₂ → 2 H₂O\n\n(1) 1\n(2) 2\n(3) 3\n(4) 4\n(5) 5",
+      "explanation": "2 H₂O contient 4 atomes d’hydrogène, donc il faut 2 molécules de H₂. Le coefficient est donc 2."
     },
     "q5": {
-      "text": "5. 다음 중 올바르게 나타낸 화학 반응식은?\n\n(1) H + O → H₂O\n(2) H₂ + O → H₂O\n(3) 2H + O₂ → H₂O\n(4) 2H₂ + O₂ → 2H₂O\n(5) H₂ + 2O₂ → 2H₂O",
-      "explanation": "2H₂ + O₂ → 2H₂O 는 원자 수가 같아 질량 보존 법칙을 만족합니다."
+      "text": "5. Laquelle des équations chimiques suivantes est correcte ?\n\n(1) H + O → H₂O\n(2) H₂ + O → H₂O\n(3) 2H + O₂ → H₂O\n(4) 2H₂ + O₂ → 2H₂O\n(5) H₂ + 2O₂ → 2H₂O",
+      "explanation": "L’équation équilibrée correcte est 2H₂ + O₂ → 2H₂O, conformément à la conservation des atomes."
     },
-    "correct": "✅ 정답입니다.",
-    "incorrect": "❌ 오답입니다.",
-    "showExplanation": "해설 보기",
-    "hideExplanation": "해설 숨기기",
-    "submit": "제출하기",
-    "retry": "다시 풀기",
-    "exit": "나가기",
-    "complete": "학습 완료",
-    "completeTitle": "완료",
-    "completeMessage": "학습 완료! 출결 상태: {{status}}",
-    "errorTitle": "오류",
-    "recordFail": "출석 기록에 실패했습니다.",
-    "unexpected": "예상치 못한 오류가 발생했습니다.",
-    "totalResult": "총 {{total}}문제 중 {{correct}}문제 정답"
+    "correct": "✅ Bonne réponse.",
+    "incorrect": "❌ Mauvaise réponse.",
+    "showExplanation": "Voir l’explication",
+    "hideExplanation": "Cacher l’explication",
+    "submit": "Soumettre",
+    "retry": "Réessayer",
+    "exit": "Quitter",
+    "complete": "Terminer l'apprentissage",
+    "completeTitle": "Terminé",
+    "completeMessage": "Apprentissage terminé ! Statut de présence : {{status}}",
+    "errorTitle": "Erreur",
+    "recordFail": "Échec de l'enregistrement de la présence.",
+    "unexpected": "Une erreur inattendue est survenue.",
+    "totalResult": "Vous avez réussi {{correct}} sur {{total}} questions."
   },
     "conceptSummary": {
-    "objective": "📘 학습 목표: 화학 반응을 화학 반응식으로 표현할 수 있다.",
-    "chemicalEquation": "⚗️ 화학 반응식",
-    "definition": "정의:",
-    "definitionDesc": "반응하는 물질과 생성되는 물질을 기호와 수식으로 간단히 나타낸 식입니다.",
-    "components": "구성 요소:",
-    "reactants": "- 반응물: 반응 전에 존재하는 물질 (반응식의 왼쪽)",
-    "products": "- 생성물: 반응 후 생성된 물질 (반응식의 오른쪽)",
-    "example": "예시:",
+    "objective": "📘 Objectif d'apprentissage : Être capable d'exprimer les réactions chimiques à l'aide d'équations chimiques.",
+    "chemicalEquation": "⚗️ Équation chimique",
+    "definition": "Définition :",
+    "definitionDesc": "Une formule qui représente simplement les substances réactives et les produits à l'aide de symboles et de chiffres.",
+    "components": "Éléments :",
+    "reactants": "- Réactifs : Substances avant la réaction (côté gauche de l'équation)",
+    "products": "- Produits : Substances formées après la réaction (côté droit de l'équation)",
+    "example": "Exemple :",
     "reaction": "2H₂ + 1O₂ → 2H₂O",
-    "changeTitle": "🔢 화학 변화",
-    "coefficientDesc": "화학식 앞에 붙는 숫자로 입자의 수를 나타냅니다.",
-    "role": "역할:",
-    "roleDesc": "화학 반응 전후의 원자 수를 동일하게 유지시킵니다 (질량 보존의 법칙).",
-    "caution": "주의사항:",
-    "cautionDesc": "화학식 자체를 변경하지 말고, 앞에 붙는 숫자(계수)만 조절해야 합니다.",
+    "changeTitle": "🔢 Changement chimique",
+    "coefficientDesc": "Le nombre devant une substance dans l'équation indiquant le nombre de particules.",
+    "role": "Rôle :",
+    "roleDesc": "Assure que le nombre d'atomes avant et après la réaction reste identique (loi de conservation de la masse).",
+    "caution": "Attention :",
+    "cautionDesc": "Ne jamais modifier la formule chimique elle-même ; ajuster uniquement le nombre devant (le coefficient).",
     "exampleDetails": [
-      "- 수소 분자(H₂) 2개",
-      "- 산소 분자(O₂) 1개",
-      "- 물 분자(H₂O) 2개 생성"
+      "- 2 molécules de dihydrogène (H₂)",
+      "- 1 molécule de dioxygène (O₂)",
+      "- Produit 2 molécules d’eau (H₂O)"
     ],
-    "next": "다음"
+    "next": "Suivant"
   }
+
   },
   "chapter2_01": {
-    "title": "대기와 기후",
+    "title": "Atmosphère et Climat",
     "menu": {
-      "item1": "1. 대기의 구성",
-      "item2": "2. 온실 효과",
-      "item3": "3. 기후의 화학",
-      "item4": "4. 에너지 전달 메커니즘",
-      "item5": "5. 기후에 대한 인간의 영향",
-      "item6": "6. 기후 변화의 영향"
+      "item1": "1. Composition de l’atmosphère",
+      "item2": "2. Effet de serre",
+      "item3": "3. Chimie du climat",
+      "item4": "4. Mécanismes de transfert d’énergie",
+      "item5": "5. Impact humain sur le climat",
+      "item6": "6. Effets du changement climatique"
     }
   },
   "chapter2_02": {
-    "title": "보존 법칙",
-    "description": "화학의 기본 법칙에 대해 배워보세요.",
+    "title": "Lois de conservation",
+    "description": "Découvrez les lois fondamentales de la chimie.",
     "menu": {
-      "item1": "1. 질량 보존의 법칙",
-      "item2": "2. 일정 성분비의 법칙"
+      "item1": "1. Loi de conservation de la masse",
+      "item2": "2. Loi des proportions définies"
     }
   },
-  "chapter3_01": {
-  "title": "03 질량 보존 법칙, 일정 성분비 법칙",
-  "description": "화학 반응에서 질량이 보존되는 원리와, 일정한 비율로 성분이 결합하는 법칙을 배웁니다.",
-  "menu": {
-    "item1": "1. 질량 보존 법칙",
-    "item2": "2. 일정 성분비 법칙"
-  }
-},
+    "chapter3_01": {
+        "title": "03. Loi de conservation de la masse et loi des proportions définies",
+        "description": "Découvrez comment la masse se conserve lors des réactions chimiques et comment les composants se combinent dans des proportions fixes.",
+        "menu": {
+            "item1": "1. Loi de conservation de la masse",
+            "item2": "2. Loi des proportions définies"
+        }
+    },
 
-  "chapter4_01": {
-  "title": "01. 산과 염기의 성질",
-  "description": "산과 염기의 성질과 지시약을 사용한 구분 방법에 대해 학습합니다."
+  "chapter3_02": {
+  "title": "02. Réactions chimiques et énergie",
+  "description": "Apprenez comment l’énergie est absorbée ou libérée lors des réactions chimiques."
+},
+"chapter4_01": {
+  "title": "01. Propriétés des acides et des bases",
+  "description": "Découvrez les propriétés des acides et des bases et comment les identifier à l’aide d’indicateurs."
 },
 "chapter4_02": {
-  "title": "02. 중화 반응과 염",
-  "description": "산과 염기의 중화 반응과 그 결과 생성되는 염에 대해 알아봅니다."
+  "title": "02. Neutralisation et sels",
+  "description": "Comprenez la réaction de neutralisation entre un acide et une base et la formation de sels."
 },
 "conceptSummary": {
-  "learningGoal": "📘 학습 목표: 물리 변화와 화학 변화의 차이를 설명할 수 있다.",
-  "features": "특징:",
-  "examples": "예시:",
+  "learningGoal": "📘 Objectif d'apprentissage : Être capable d'expliquer la différence entre les changements physiques et chimiques.",
+  "features": "Caractéristiques :",
+  "examples": "Exemples :",
   "physicalChange": {
-    "title": "🔷 물리 변화",
+    "title": "🔷 Changement physique",
     "features": [
-      "- 새로운 물질이 생성되지 않는다.",
-      "- 일반적으로 변화는 되돌릴 수 있다."
+      "- Aucune nouvelle substance n’est formée.",
+      "- Les changements sont généralement réversibles."
     ],
     "examples": [
-      "- 종이를 자르기",
-      "- 얼음이 물로 녹는 것"
+      "- Découper du papier",
+      "- La glace fond en eau"
     ]
   },
   "chemicalChange": {
-    "title": "🔶 화학 변화",
+    "title": "🔶 Changement chimique",
     "features": [
-      "- 원래의 물질이 사라지고 새로운 물질이 생성된다.",
-      "- 일반적으로 변화는 되돌릴 수 없다."
+      "- La substance originale disparaît et une nouvelle est créée.",
+      "- Les changements sont généralement irréversibles."
     ],
     "examples": [
-      "- 나무를 태워 재로 만들기",
-      "- 철이 녹슬어 산화철이 되는 것"
+      "- Brûler du bois en cendres",
+      "- Le fer rouille pour former de l'oxyde de fer"
     ]
   },
-  "objective": "📘 학습 목표: 화학 반응을 이해하고 입자의 배열을 통해 설명할 수 있다.",
-  "mainConcept": "📚 주요 개념: 물리 변화와 화학 변화의 차이를 이해한다.",
-  "chemReactionTitle": "🧪 화학 반응",
-  "chemReaction1": "- 두 개 이상의 물질이 반응하여 새로운 물질을 생성하는 현상이다.",
-  "chemReaction2": "- 반응 전후의 입자 배열이 바뀌어 성질이 변화한다.",
-  "featuresTitle": "🧪 화학 반응의 특징",
-  "colorChange": "🎨 색 변화",
-  "colorExample1": "- 철이 녹슬며 갈색이 된다 (산화철).",
-  "colorExample2": "- 가을에 나뭇잎이 노랗게 변한다.",
-  "gasRelease": "💨 기체 발생",
-  "gasExample1": "- 식초와 베이킹소다는 CO₂를 발생시킨다.",
-  "gasExample2": "- 철이 염산과 반응하여 수소 기체를 방출한다.",
-  "lightHeat": "🔥 빛/열 발생",
-  "lightExample1": "- 불꽃놀이에서 빛과 열이 방출된다.",
-  "lightExample2": "- 촛불이 타며 빛과 열이 나온다.",
-  "precipitate": "🧱 앙금 형성",
-  "precipitateExample1": "- 석회수에 CO₂를 넣으면 탄산칼슘이 생성된다.",
-  "precipitateExample2": "- 황산구리 + 철 → 구리 앙금 생성",
-  "smellChange": "👃 냄새 변화",
-  "smellExample1": "- 상한 음식에서 악취가 난다.",
-  "smellExample2": "- 양파를 자르면 자극적인 냄새가 난다.",
-  "next": "다음"
-},
-  "learnScreen": {
-     "examples": {
-    "p3": "설탕을 물에 녹인다",
-    "p2": "물을 끓인다",
-    "p4": "채소를 썬다",
-    "p1": "어항 속 물의 수위가 줄어든다",
-    "c2": "향초를 피운다",
-    "c4": "고기가 익는다",
-    "c3": "불꽃놀이",
-    "c1": "계란을 삶는다"
+  "objective": "📘 Objectif : Comprendre les réactions chimiques et les décrire à l’aide de l’agencement des particules.",
+  "mainConcept": "📚 Concept principal : Comprendre les différences entre les changements physiques et chimiques.",
+  "chemReactionTitle": "🧪 Réaction chimique",
+  "chemReaction1": "- Phénomène où deux substances ou plus réagissent pour former une nouvelle substance.",
+  "chemReaction2": "- L'agencement des particules change avant et après la réaction, modifiant les propriétés.",
+  "featuresTitle": "🧪 Caractéristiques des réactions chimiques",
+  "colorChange": "🎨 Changement de couleur",
+  "colorExample1": "- Le fer rouille et devient brun (oxyde de fer).",
+  "colorExample2": "- Les feuilles deviennent jaunes en automne.",
+  "gasRelease": "💨 Dégagement de gaz",
+  "gasExample1": "- Le vinaigre et le bicarbonate produisent du CO₂.",
+  "gasExample2": "- Le fer réagit avec l'acide chlorhydrique pour libérer de l'hydrogène.",
+  "lightHeat": "🔥 Émission de lumière/chaleur",
+  "lightExample1": "- Les feux d'artifice émettent de la lumière et de la chaleur.",
+  "lightExample2": "- Les bougies brûlent et émettent de la lumière et de la chaleur.",
+  "precipitate": "🧱 Formation d’un précipité solide",
+  "precipitateExample1": "- Le CO₂ dans l’eau de chaux forme du carbonate de calcium.",
+  "precipitateExample2": "- Le sulfate de cuivre + fer produit un précipité de cuivre.",
+  "smellChange": "👃 Changement d’odeur",
+  "smellExample1": "- Les aliments avariés dégagent une mauvaise odeur.",
+  "smellExample2": "- Un oignon coupé dégage une odeur piquante.",
+  "next": "Suivant"
+}
+,
+ "learnScreen": {
+  "examples": {
+    "p3": "Dissoudre du sucre dans l'eau",
+    "p2": "Faire bouillir de l'eau",
+    "p4": "Couper des légumes",
+    "p1": "Le niveau d'eau baisse dans un aquarium",
+    "c2": "Allumer une bougie",
+    "c4": "Cuire de la viande",
+    "c3": "Feux d'artifice",
+    "c1": "Cuire un œuf"
   },
-    "instruction": "변화의 유형에 따라 이미지를 분류하세요",
-    "physical": "물리 변화",
-    "chemical": "화학 변화",
-    "correct": "🎉 정답입니다! 아래 설명을 확인하세요.",
-    "wrong": "❌ 다시 시도해 보세요.",
-    "retry": "다시 시도",
-    "viewPhysical": "물리 변화 설명 보기",
-    "viewChemical": "화학 변화 설명 보기",
-    "close": "닫기",
-    "next": "다음",
-    "prev": "이전",
+    "instruction": "Classe les images selon le type de changement",
+    "physical": "Changement physique",
+    "chemical": "Changement chimique",
+    "correct": "🎉 Correct ! Consulte les explications ci-dessous.",
+    "wrong": "❌ Essaie encore.",
+    "retry": "Réessayer",
+    "viewPhysical": "Voir l’explication du changement physique",
+    "viewChemical": "Voir l’explication du changement chimique",
+    "close": "Fermer",
+    "next": "Suivant",
+    "prev": "Précédent",
     "explanations": {
-       "physical": {
-      "sugar": {
-        "title": "🧪 설탕을 물에 녹인다 :",
-        "points": [
-          "1. 물질의 성질이 변하지 않아요!",
-          "설탕을 물에 넣으면 설탕이 물속에 골고루 퍼질 뿐, 설탕 자체가 다른 물질로 바뀌는 건 아니에요.",
-          " → 화학 반응이 일어나지 않고, 설탕은 여전히 설탕이에요!",
-          "2. 되돌릴 수 있어요!",
-          "물을 증발시키면 다시 설탕 결정이 생겨요. → 즉, 설탕을 다시 원래 상태로 되돌릴 수 있기 때문에, 이건 물리 변화입니다.",
-          "3. 입자 구조가 그대로예요!",
-          "물에 녹은 설탕은 입자 단위로 나뉘어 퍼지지만, 그 입자 자체의 구조는 변하지 않아요. → 원자나 분자의 배열이 바뀌는 화학 반응이 일어나지 않기 때문이에요."
-        ]
-      },
-      "boilWater": {
-        "title": "🧪 물을 끓인다 :",
-        "points": [
-          "1. 물 자체는 변하지 않아요!",
-          "물을 끓이면 액체 상태의 물이 기체(수증기)로 변하지만, 그 본질은 여전히 물(H₂O)이에요. → 물이 다른 물질로 바뀌지 않기 때문에 화학 변화가 아니라 물리 변화예요.",
-          "2. 되돌릴 수 있어요!",
-          "채소를 써는 것은 단순히 형태나 크기만 달라지는 거예요. → 이런 변화를 물리 변화라고 해요.",
-          "3. 입자 구조가 변하지 않아요!",
-          "끓는 동안 물 입자들이 더 빠르게 움직일 뿐, 그 입자(분자) 자체가 바뀌거나 새로운 물질이 생기지는 않아요."
-        ]
-      },
-      "cutVegetables": {
-        "title": "🧪 채소를 썬다 :",
-        "points": [
-          "1. 물질의 성질이 그대로예요!",
-          "채소를 아무리 잘게 썰어도, 그것은 여전히 채소예요. → 색깔, 맛, 냄새, 성분 모두 변하지 않기 때문에 화학 반응이 일어난 게 아니에요.",
-          "2. 단지 모양만 바뀌어요",
-          "채소를 써는 것은 단순히 형태나 크기만 달라지는 거예요. → 이런 변화를 물리 변화라고 해요.",
-          "3. 새로운 물질은 안 생겨요",
-          "되돌리기 어렵긴 하지만, 중요한 건 새로운 물질이 생기지 않았다는 것!"
-        ]
-      },
-      "evaporation": {
-        "title": "🧪 어항 속 물의 수위가 줄어든다 :",
-        "points": [
-          "1. 물의 성분이 변하지 않아요!",
-          "어항의 물이 줄어드는 이유는 물이 기체(수증기)로 증발하기 때문이에요. → 이때 물(H₂O)은 그대로 물입니다.",
-          "2. 되돌릴 수 있어요!",
-          "공기 중으로 증발한 물은 다시 응결하면 물방울이 되어 돌아올 수 있어요. → 되돌릴 수 있는 변화는 물리 변화의 특징입니다.",
-          "3. 입자 구조가 바뀌지 않아요!",
-          "물은 단지 상태(액체 → 기체)만 바뀌었을 뿐, 입자 구조는 그대로입니다. → 화학 반응처럼 새로운 물질이 생성되지는 않아요."
-        ]
-      }
-    },
-    "chemical": {
-      "candle": {
-        "title": "🔥 향초를 피운다 :",
-        "points": [
-          "1. 새로운 물질이 생겨요!",
-          "향초가 타면 원래 있던 파라핀(초의 주성분)",
-          "이 공기 중의 산소와 반응해 이산화탄소(CO₂)와 물(H₂O)이라는 전혀 다른 물질로 바뀌어요.",
-          " 이처럼 원래 있던 물질이 다른 물질로 바뀌는 것이 바로 화학 변화입니다.",
-          "2. 연소(탈 때)는 화학 반응이에요!",
-          "향초가 타는 건", "연소","라는 과정인데, 이건 물질이 산소와 빠르게 반응하면서 열과 빛을 내는 화학 반응이에요.",
-          " → 단순히 모양이 바뀌는 물리 변화와는 달라요."
-        ]
-      },
-      "cookMeat": {
-        "title": "🔥 고기가 익는다 :",
-        "points": [
-          "1. 단백질이 구조를 바꿔요!",
-          "고기를 가열하면 단백질이 열에 의해 변성돼요.",
-          " → 단백질 분자가 원래의 구조를 잃고 새로운 구조로 바뀌며, 고기의 색과 질감", 
-          "도 달라져요. 이는 단순히 모양이 변하는 게 아니라 분자의 구조 자체가 바뀌는 화학 반응이에요",
-          "2. 새로운 물질이 생겨요!",
-          "열을 가할 때 고기 속의 아미노산과 당이 반응해서 갈색 물질이 생기고, 맛있는 향기와 맛도 함께 만들어져요.",
-          " → 이 반응을 마이야르 반응(Maillard Reaction)이라고 해요.",
-          "3. 되돌릴 수 없어요!",
-          "익은 고기를 다시 생고기로 되돌릴 수 없죠? ",
-          "→ 이처럼 되돌릴 수 없는 변화는 화학 반응의 대표적 특징이에요."
-        ]
-      },
-      "fireworks": {
-        "title": "🔥 불꽃놀이 :",
-        "points": [
-          "1. 새로운 물질이 생겨요!",
-          "불꽃놀이 속에는 다양한 화학 물질(금속 화합물)이 들어 있어요. 이 물질들이 산소와 반응하면 폭발하면서 새로운 기체, 연기, 빛 등을 만들어냅니다.",
-          " → 이 과정에서 원래의 물질이 완전히 다른 물질로 변하기 때문에 화학 변화입니다.",
-          "2. 불꽃 색깔도 화학 반응 덕분이에요!",
-          "스트론튬 → 빨간 불꽃    구리 → 파란 불꽃    나트륨 → 노란 불꽃",
-          "이처럼 각 원소가 타면서 특정한 색의 불꽃을 내는 것도 화학 반응의 결과예요. ",
-          "→ 빛의 색이 다르게 나오는 건, 원소의 전자가 열에너지로 들떴다가 다시 돌아오면서 생기는 에너지 변화 때문이에요.",
-          "3. 되돌릴 수 없어요!",
-          "한 번 터진 폭죽은 다시 원래의 상태로 되돌릴 수 없죠. → 되돌릴 수 없는 변화 = 화학 변화의 특징이에요."
-        ]
-      },
-      "boilEgg": {
-        "title": "🔥 계란을 삶는다 :",
-        "points": [
-          "1. 단백질이 구조를 바꿔요 (변성 반응)",
-          "달걀 흰자와 노른자에는 단백질이 많이 들어 있어요. ",
-          "→ 이 단백질은 열을 받으면 원래의 복잡한 구조가 풀리고, 다시 엉켜서 새로운 구조로 바뀌어요.",
-          " 이 과정이 바로 단백질 변성이라는 화학 반응입니다.",
-          "예시: 익기 전엔 투명한 흰자가, 익으면 하얗고 단단하게 변하죠? → 이것이 단백질 구조가 바뀐 증거예요!",
-          "예: 흰자가 하얗게 굳어요.",
-          "2. 되돌릴 수 없어요!",
-          "한 번 삶은 달걀은 다시 생달걀로 되돌릴 수 없죠? → 되돌릴 수 없는 변화는 물리 변화가 아닌 화학 변화의 중요한 특징이에요."
-        ]
-      }
+      "physical": {
+          "sugar": {
+            "title": "🧪 Dissolution du sucre dans l’eau :",
+            "points": [
+              "1. La nature de la substance ne change pas !",
+              "Quand on met du sucre dans l’eau, il se disperse mais ne se transforme pas en une autre substance.",
+              "→ Aucune réaction chimique ne se produit, le sucre reste du sucre !",
+              "2. C’est réversible !",
+              "En évaporant l’eau, les cristaux de sucre réapparaissent. → C’est un changement physique.",
+              "3. La structure des particules reste intacte !",
+              "Les particules se dispersent mais leur structure ne change pas. → Pas de réarrangement atomique."
+            ]
+          },
+          "boilWater": {
+            "title": "🧪 Faire bouillir de l’eau :",
+            "points": [
+              "1. L’eau ne change pas de nature !",
+              "Elle passe de liquide à vapeur (gaz), mais reste H₂O. → C’est un changement physique.",
+              "2. C’est réversible !",
+              "La vapeur peut redevenir liquide. → C’est caractéristique d’un changement physique.",
+              "3. La structure des molécules ne change pas !",
+              "Les molécules bougent plus vite mais ne changent pas de forme ni de composition."
+            ]
+          },
+          "cutVegetables": {
+            "title": "🧪 Couper des légumes :",
+            "points": [
+              "1. La nature de la substance est la même !",
+              "Même coupés, ce sont toujours les mêmes légumes. → Pas de changement chimique.",
+              "2. Seule la forme change !",
+              "La taille ou la forme change, mais pas la composition. → Changement physique.",
+              "3. Pas de nouvelle substance !",
+              "Même si on ne peut pas revenir en arrière, aucune nouvelle substance n’apparaît."
+            ]
+          },
+          "evaporation": {
+            "title": "🧪 Le niveau d’eau baisse dans un aquarium :",
+            "points": [
+              "1. La composition de l’eau ne change pas !",
+              "L’eau s’évapore (devient vapeur) mais reste H₂O. → Aucun changement chimique.",
+              "2. C’est réversible !",
+              "La vapeur peut redevenir liquide. → Réversibilité = changement physique.",
+              "3. La structure des particules reste la même !",
+              "Seul l’état change (liquide → gaz), pas la structure. → Pas de nouvelle substance."
+            ]
+          }
+        },
+        "chemical": {
+          "candle": {
+            "title": "🔥 Allumer une bougie :",
+            "points": [
+              "1. De nouvelles substances apparaissent !",
+              "La paraffine réagit avec l’oxygène pour former du CO₂ et de l’eau.",
+              "→ C’est une transformation chimique.",
+              "2. La combustion est une réaction chimique !",
+              "La flamme est due à une réaction rapide avec l’oxygène produisant chaleur et lumière.",
+              "→ Différent d’un changement physique."
+            ]
+          },
+          "cookMeat": {
+            "title": "🔥 Cuire de la viande :",
+            "points": [
+              "1. Les protéines changent de structure !",
+              "Sous l’effet de la chaleur, elles se dénaturent.",
+              "→ La couleur et la texture changent : c’est une réaction chimique.",
+              "2. De nouvelles substances apparaissent !",
+              "Les acides aminés réagissent avec le sucre → réaction de Maillard.",
+              "3. C’est irréversible !",
+              "Une viande cuite ne redevient pas crue. → Irréversibilité = changement chimique."
+            ]
+          },
+          "fireworks": {
+            "title": "🔥 Feux d’artifice :",
+            "points": [
+              "1. De nouvelles substances se forment !",
+              "Les composés chimiques explosent et produisent gaz, fumée, lumière.",
+              "→ Les matières changent complètement.",
+              "2. Les couleurs viennent de réactions chimiques !",
+              "Strontium → rouge    Cuivre → bleu    Sodium → jaune",
+              "→ Les électrons excités produisent différentes couleurs selon l’élément.",
+              "3. C’est irréversible !",
+              "Un feu d’artifice ne peut pas être annulé. → Changement chimique."
+            ]
+          },
+          "boilEgg": {
+            "title": "🔥 Cuire un œuf :",
+            "points": [
+              "1. Les protéines changent de structure (dénaturation) !",
+              "Les protéines du blanc et du jaune se modifient sous la chaleur.",
+              "→ Exemple : le blanc devient blanc opaque et solide.",
+              "2. C’est irréversible !",
+              "Un œuf cuit ne peut redevenir cru. → C’est une transformation chimique."
+            ]
+          }
+        }
     }
-  }
 },
 "videoLearning": {
-    "title": "🎬 영상 학습 페이지입니다.",
-    "complete": "완료",
-    "completeMessage": "학습 완료! 출결 상태: {{status}}",
-    "error": "오류",
-    "attendanceFail": "출석 기록에 실패했습니다.",
-    "unexpectedError": "예상치 못한 오류가 발생했습니다.",
-    "evaluate": "평가하기",
-    "prev": "이전으로"
+    "title": "🎬 Ceci est la page d'apprentissage vidéo.",
+    "complete": "Terminé",
+    "completeMessage": "Apprentissage terminé ! Statut : {{status}}",
+    "error": "Erreur",
+    "attendanceFail": "Échec de l'enregistrement de présence.",
+    "unexpectedError": "Une erreur inattendue est survenue.",
+    "evaluate": "Évaluer",
+    "prev": "Retour"
   },
 "evaluation": {
   "q1": {
-    "text": "1. 다음 중 물리 변화에 해당하는 현상을 모두 고르시오.\n\n가. 나무가 타서 숯이 되었다.\n나. 물이 증발하여 수증기가 되었다.\n다. 철 못이 시간이 지나 녹슬었다.\n라. 유리컵이 바닥에 떨어져 깨졌다.\n마. 설탕이 물에 녹아 설탕물이 되었다.",
-    "explanation": "나) 물 분자 자체는 그대로 → 상태 변화만 (물리)\n라) 형태만 부서짐 → 성질 변화 없음 (물리)\n마) 분자 확산만 → 원래 설탕 성질 유지 (물리)"
+    "text": "1. Sélectionnez tous les cas correspondant à un changement physique :\n\nA. Le bois devient du charbon.\nB. L'eau s'évapore en vapeur.\nC. Un clou rouille avec le temps.\nD. Un verre se casse en tombant.\nE. Le sucre se dissout dans l'eau.",
+    "explanation": "B) Changement d'état seulement (physique)\nD) Cassure de forme sans changement de propriété (physique)\nE) Dissolution, mais le sucre reste inchangé (physique)"
   },
   "q2": {
-    "text": "2. 다음 현상을 물리 변화와 화학 변화로 바르게 짝지은 것은 무엇입니까?\n\nA. 종이를 찢었다.\nB. 우유가 상해서 신맛이 난다.\nC. 드라이아이스가 승화했다.\nD. 달걀을 삶았다.",
-    "explanation": "A) 물리 변화\nB) 화학 변화 (젖산 생성)\nC) 물리 변화 (상태 변화)\nD) 화학 변화 (단백질 변성)"
+    "text": "2. Quelle paire décrit correctement les changements physiques et chimiques ?\n\nA. Déchirer du papier\nB. Le lait tourné devient acide\nC. Sublimation de la glace carbonique\nD. Faire bouillir un œuf",
+    "explanation": "A) Changement physique\nB) Changement chimique (acide lactique)\nC) Changement physique\nD) Changement chimique (protéines modifiées)"
   },
   "q3": {
-    "text": "3. 다음 중 화학 변화의 특징이 아닌 것은 무엇입니까?\n\n(1) 새로운 물질이 생성된다.\n(2) 물질의 고유한 성질이 변하지 않는다.\n(3) 변화 과정에서 열이나 빛이 발생할 수 있다.\n(4) 원래의 상태로 되돌리기가 어렵다.\n(5) 원자의 배열 방식이 변한다.",
-    "explanation": "화학 변화는 고유 성질이 변하며(답 2번은 틀린 설명) → 새로운 물질 생성"
+    "text": "3. Lequel n'est PAS une caractéristique d'un changement chimique ?\n\n(1) Une nouvelle substance est créée\n(2) Les propriétés restent inchangées\n(3) Chaleur ou lumière peut être produite\n(4) Difficile à inverser\n(5) Réarrangement des atomes",
+    "explanation": "Les propriétés changent dans une réaction chimique → (2) est incorrect"
   },
   "q4": {
-    "text": "4. 다음 중 화학 변화에 해당하는 현상은 무엇입니까?\n\n(가) 촛불이 타는 현상\n(나) 옷에 묻은 잉크가 물에 번지는 현상\n(다) 사과를 깎아 놓으니 갈색으로 변하는 현상\n(라) 쇠젓가락이 구부러지는 현상",
-    "explanation": "가) 연소 반응 → CO₂·H₂O 생성\n다) 산화 반응 → 갈색 물질 생성"
+    "text": "4. Lequel des phénomènes suivants est un changement chimique ?\n\n(A) Une bougie brûle\n(B) De l’encre se répand dans l’eau\n(C) Une pomme brunit\n(D) Une baguette métallique se plie",
+    "explanation": "A) Combustion → CO₂ & H₂O formés\nC) Oxydation → substance brune formée"
   },
   "q5": {
-    "text": "5. 다음 중 물리 변화와 화학 변화를 가장 잘 구분하는 기준은 무엇입니까?\n\n(1) 물질의 색깔 변화 여부\n(2) 물질의 상태 변화 여부\n(3) 새로운 물질 생성 여부\n(4) 변화의 속도 차이\n(5) 에너지 흡수 또는 방출 여부",
-    "explanation": "새로운 물질 생성 여부 → 화학 변화의 핵심 기준"
+    "text": "5. Quel est le meilleur critère pour distinguer les changements physiques et chimiques ?\n\n(1) Changement de couleur\n(2) Changement d'état\n(3) Création de nouvelle substance\n(4) Vitesse de changement\n(5) Absorption ou émission d'énergie",
+    "explanation": "La création d'une nouvelle substance est le critère principal"
   },
-  "correct": "✅ 정답입니다.",
-  "incorrect": "❌ 오답입니다.",
-  "showExplanation": "해설 보기",
-  "hideExplanation": "해설 숨기기",
-  "grade": "체점하기",
-  "retry": "다시 풀기",
-  "exit": "나가기",
-  "finalResult": "총 {{total}}문제 중 {{correct}}문제 정답",
-  "completeLearning": "학습 완료",
-  "complete": "완료",
-  "attendanceSuccess": "학습 완료! 출결 상태: {{status}}",
-  "attendanceFail": "출석 기록에 실패했습니다.",
-  "unexpectedError": "예상치 못한 오류가 발생했습니다.",
-  "error": "오류"
+  "correct": "✅ Bonne réponse !",
+  "incorrect": "❌ Mauvaise réponse !",
+  "showExplanation": "Voir l'explication",
+  "hideExplanation": "Masquer l'explication",
+  "grade": "Évaluer",
+  "retry": "Réessayer",
+  "exit": "Quitter",
+  "finalResult": "Vous avez obtenu {{correct}} bonnes réponses sur {{total}}.",
+  "completeLearning": "Terminer l'apprentissage",
+  "complete": "Terminé",
+  "attendanceSuccess": "Apprentissage terminé ! Statut de présence : {{status}}",
+  "attendanceFail": "Échec de l'enregistrement de la présence.",
+  "unexpectedError": "Une erreur inattendue est survenue.",
+  "error": "Erreur"
 },
-"back": "뒤로가기",
-  "tryAgain": "다시 해보기",
-  "precipitationExplanation": "앙금 생성 풀이",
-  "reset": "초기화",
-  "previous": "이전",
-  "next": "다음",
+"back": "Retour",
+  "tryAgain": "Réessayer",
+  "precipitationExplanation": "Explication de la Précipitation",
+  "reset": "Réinitialiser",
+  "previous": "Précédent",
+  "next": "Suivant",
   "reagents": {
-    "AgNO3": "질산은 (AgNO₃)",
-    "NaCl": "염화나트륨 (NaCl)",
-    "BaCl2": "염화바륨 (BaCl₂)",
-    "Na2SO4": "황산나트륨 (Na₂SO₄)",
-    "CaCl2": "염화칼슘 (CaCl₂)",
-    "Na2CO3": "탄산나트륨 (Na₂CO₃)",
-    "Pb(NO3)2": "질산납 (Pb(NO₃)₂)",
-    "KI": "아이오딘화칼륨 (KI)"
+    "AgNO3": "Nitrate d'argent (AgNO₃)",
+    "NaCl": "Chlorure de sodium (NaCl)",
+    "BaCl2": "Chlorure de baryum (BaCl₂)",
+    "Na2SO4": "Sulfate de sodium (Na₂SO₄)",
+    "CaCl2": "Chlorure de calcium (CaCl₂)",
+    "Na2CO3": "Carbonate de sodium (Na₂CO₃)",
+    "Pb(NO3)2": "Nitrate de plomb (Pb(NO₃)₂)",
+    "KI": "Iodure de potassium (KI)"
   },
   "precipitations": {
-    "AgNO3+NaCl": "AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (흰색 앙금)",
-    "BaCl2+Na2SO4": "BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (흰색 앙금)",
-    "CaCl2+Na2CO3": "CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (흰색 앙금)",
-    "KI+Pb(NO3)2": "Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (노란색 앙금)"
+    "AgNO3+NaCl": "AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (précipité blanc)",
+    "BaCl2+Na2SO4": "BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (précipité blanc)",
+    "CaCl2+Na2CO3": "CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (précipité blanc)",
+    "KI+Pb(NO3)2": "Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (précipité jaune)"
   },
   "evaluation2": {
   "q1": {
-    "text": "1. 다음 중 화학 반응에 해당하지 않는 것은 무엇입니까?\n\n(1) 천연가스가 연소하여 이산화탄소와 물이 생성된다.\n(2) 물이 끓어 수증기로 변한다.\n(3) 달걀을 가열하니 흰자가 하얗게 굳어진다.\n(4) 김치가 발효되어 신맛이 난다.\n(5) 은반지가 공기 중에서 검게 변색된다.",
-    "explanation": "(2)는 물리적 상태 변화입니다.\n(1), (3), (4), (5)는 화학 반응으로 새로운 물질이 생성되거나 성질이 변합니다."
+    "text": "1. Lequel des éléments suivants n’est PAS une réaction chimique ?\n\n(1) Le gaz naturel brûle pour produire du CO₂ et de l’eau.\n(2) L’eau bout et devient vapeur.\n(3) Le blanc d'œuf durcit à la cuisson.\n(4) Le kimchi fermente et devient acide.\n(5) Une bague en argent ternit à l’air.",
+    "explanation": "(2) est un changement d’état physique.\n(1), (3), (4) et (5) sont des réactions chimiques avec des substances nouvelles."
   },
   "q2": {
-    "text": "2. 다음 중 화학 반응의 증거로 볼 수 없는 것은 무엇입니까?\n\n(1) 반응 용기 주변이 뜨거워졌다.\n(2) 용액에 다른 용액을 넣으니 뿌옇게 흐려졌다.\n(3) 물질의 덩어리가 잘게 부서졌다.\n(4) 두 물질을 섞으니 기포가 발생했다.\n(5) 시간이 지나면서 색깔이 변했다.",
-    "explanation": "(3)은 형태만 변하는 물리 변화입니다.\n(1), (2), (4), (5)는 화학 반응의 증거입니다."
+    "text": "2. Lequel n’est PAS une preuve d’une réaction chimique ?\n\n(1) Le récipient devient chaud.\n(2) Une solution devient trouble.\n(3) Une substance se casse en morceaux.\n(4) Des bulles se forment en mélangeant.\n(5) La couleur change avec le temps.",
+    "explanation": "(3) est un changement physique (forme).\nLes autres indiquent une réaction chimique."
   },
   "q3": {
-    "text": "3. 다음 화학 반응의 예시와 특징이 올바르게 연결되지 않은 것은?\n\n(1) 철이 녹슬어 갈색으로 변함 - 색 변화\n(2) 식초+베이킹소다 - 기체 발생\n(3) 얼음이 녹아 물이 됨 - 상태 변화\n(4) 폭죽 터짐 - 빛 발생\n(5) 석회수에 CO₂ - 앙금 생성",
-    "explanation": "(3)은 물리적 상태 변화입니다. 나머지는 화학 반응 예입니다."
+    "text": "3. Lequel est incorrectement associé à une caractéristique de réaction chimique ?\n\n(1) La rouille du fer - Changement de couleur\n(2) Vinaigre et bicarbonate - Gaz produit\n(3) La glace fond en eau - Changement d’état\n(4) Feu d’artifice - Lumière émise\n(5) Chaux et CO₂ - Précipité solide",
+    "explanation": "(3) est un changement physique.\nLes autres sont correctement associés à des réactions chimiques."
   },
   "q4": {
-    "text": "4. 화학 반응 전후에 변하지 않는 것은 무엇입니까?\n\n(1) 물질의 성질\n(2) 색깔\n(3) 냄새\n(4) 원자의 종류와 수\n(5) 입자 배열",
-    "explanation": "질량 보존 법칙에 따라 원자의 종류와 수는 변하지 않습니다. 나머지는 변할 수 있습니다."
+    "text": "4. Qu’est-ce qui NE change PAS avant et après une réaction chimique ?\n\n(1) Les propriétés de la substance\n(2) La couleur\n(3) L’odeur\n(4) Le type et le nombre d’atomes\n(5) L’arrangement des particules",
+    "explanation": "La loi de conservation de la masse : le type et le nombre d’atomes restent inchangés. Les autres peuvent changer."
   },
   "q5": {
-    "text": "5. 화학 반응으로 인해 새로운 냄새가 나는 예는?\n\n(1) 향수에서 꽃 향기\n(2) 상한 우유에서 신 냄새\n(3) 여름 땀 냄새\n(4) 페인트 냄새\n(5) 고기 굽는 냄새",
-    "explanation": "(2)는 화학 반응(부패)로 인해 새로운 물질이 생기며 냄새가 납니다."
+    "text": "5. Quel exemple montre le mieux une nouvelle odeur causée par une réaction chimique ?\n\n(1) Le parfum diffuse une odeur florale.\n(2) Le lait tourné sent mauvais.\n(3) La sueur sent mauvais l’été.\n(4) Peinture fraîche sent fort.\n(5) La viande grillée sent bon.",
+    "explanation": "(2) montre une décomposition chimique.\nLes autres sont des changements physiques ou de perception."
   }
 },
 "login": {
-  "successTitle": "로그인 성공",
-  "successMessage": "홈 화면으로 이동합니다.",
-  "userIdPlaceholder": "아이디",
-  "passwordPlaceholder": "비밀번호",
-  "loginButton": "로그인",
-  "findId": "아이디찾기",
-  "findPassword": "비밀번호찾기",
-  "signup": "회원가입",
-  "test": "테스트용"
+  "successTitle": "Connexion réussie",
+  "successMessage": "Redirection vers l'écran d'accueil.",
+  "userIdPlaceholder": "Identifiant",
+  "passwordPlaceholder": "Mot de passe",
+  "loginButton": "Connexion",
+  "findId": "Trouver l'identifiant",
+  "findPassword": "Trouver le mot de passe",
+  "signup": "S'inscrire",
+  "test": "Mode test"
 },
 "edit": {
-  "title": "계정 정보 수정",
-  "nicknamePlaceholder": "닉네임",
-  "schoolPlaceholder": "학교명",
-  "passwordPlaceholder": "새 비밀번호",
-  "saveButton": "저장",
-  "modalText": "수정이 완료되었습니다!",
-  "errorTitle": "입력 오류",
-  "errorInput": "모든 필드를 올바르게 입력해주세요.",
-  "failTitle": "실패",
-  "failMessage": "수정에 실패했습니다.",
-  "serverError": "서버 오류가 발생했습니다."
+  "title": "Modifier les informations du compte",
+  "nicknamePlaceholder": "Pseudo",
+  "schoolPlaceholder": "Nom de l'école",
+  "passwordPlaceholder": "Nouveau mot de passe",
+  "saveButton": "Enregistrer",
+  "modalText": "Modifications enregistrées avec succès !",
+  "errorTitle": "Erreur de saisie",
+  "errorInput": "Veuillez remplir correctement tous les champs.",
+  "failTitle": "Échec",
+  "failMessage": "Échec de la mise à jour.",
+  "serverError": "Une erreur serveur est survenue."
 },
 "verifyPassword": {
-  "title": "비밀번호 확인",
-  "subtitle": "계정 수정을 위해 비밀번호를 입력해주세요.",
-  "placeholder": "비밀번호 입력",
-  "confirmButton": "확인",
-  "errorEmpty": "비밀번호를 입력해주세요.",
-  "errorMismatch": "비밀번호가 일치하지 않습니다.",
-  "errorServer": "서버 오류가 발생했습니다."
+  "title": "Vérifier le mot de passe",
+  "subtitle": "Veuillez entrer votre mot de passe pour modifier votre compte.",
+  "placeholder": "Entrez votre mot de passe",
+  "confirmButton": "Confirmer",
+  "errorEmpty": "Veuillez entrer votre mot de passe.",
+  "errorMismatch": "Le mot de passe ne correspond pas.",
+  "errorServer": "Une erreur serveur est survenue."
 },
 "withdrawal": {
-  "title": "회원 탈퇴",
-  "description": "정말 탈퇴하시겠습니까?\n비밀번호를 입력해 주세요.",
-  "placeholder": "비밀번호",
-  "submit": "탈퇴하기",
-  "error": "오류",
-  "genericError": "탈퇴 처리 중 오류 발생"
+  "title": "Suppression du compte",
+  "description": "Êtes-vous sûr de vouloir vous désinscrire ?\nVeuillez entrer votre mot de passe.",
+  "placeholder": "Mot de passe",
+  "submit": "Se désinscrire",
+  "error": "Erreur",
+  "genericError": "Une erreur s'est produite lors de la suppression"
 },
 "editModal": {
-  "completed": "완료되었습니다",
-  "message": "{{onText}} 확인되었습니다.",
-  "confirm": "확인"
+  "completed": "Terminé",
+  "message": "{{onText}} a été enregistré.",
+  "confirm": "Confirmer"
 },
 "verification": {
-  "title": "",
-  "titleAccent": "인증코드를 입력해주세요",
-  "checking": "{{email}} 확인 진행중...",
-  "verifying": "인증번호 확인중...",
-  "verified": "✅ 인증번호가 확인되었습니다.",
-  "wrongCode": "❌ 인증번호가 틀립니다.",
-  "resendSuccess": "인증번호가 재전송되었습니다.",
-  "resendFail": "인증번호 재전송에 실패했습니다.",
-  "expired": "인증번호가 만료되었습니다.",
-  "serverError": "서버 오류가 발생했습니다.",
-  "resendCode": "인증번호를 재전송해주세요",
-  "continue": "계속하기",
-  "code": "인증번호",
-  "expiresIn": "인증번호 만료까지"
+  "title": "Entrez le",
+  "titleAccent": " code de vérification",
+  "checking": "Vérification de {{email}} en cours...",
+  "verifying": "Vérification du code...",
+  "verified": "✅ Code vérifié avec succès.",
+  "wrongCode": "❌ Le code de vérification est incorrect.",
+  "resendSuccess": "Le code de vérification a été renvoyé.",
+  "resendFail": "Échec de l'envoi du code.",
+  "expired": "Le code de vérification a expiré.",
+  "serverError": "Une erreur serveur s'est produite.",
+  "resendCode": "Renvoyer le code de vérification",
+  "continue": "Continuer",
+  "code": "Code de vérification",
+  "expiresIn": "Expire dans"
 },
 "codeModal": {
-  "welcome": "환영합니다!",
-  "code": "인증번호",
-  "success": "완료되었습니다.",
-  "ok": "확인"
+  "welcome": "Bienvenue !",
+  "code": "Code de vérification",
+  "success": "a été confirmé.",
+  "ok": "D'accord"
 },
 "detailForm": {
-  "title": "👋 추가 정보를 입력해주세요",
-  "student": "학생",
-  "teacher": "교사",
-  "nickname": "이름(닉네임)",
-  "school": "학교명",
-  "classInput": "반 입력",
-  "studentNumber": "학번",
-  "subjects": "수강 과목 (콤마로 구분)",
-  "classIdTeacher": "담당 반 (예: 2025-111)",
-  "nextStep": "다음 단계로",
+  "title": "👋 Veuillez saisir des informations supplémentaires",
+  "student": "Élève",
+  "teacher": "Professeur",
+  "nickname": "Nom (pseudo)",
+  "school": "Nom de l'école",
+  "classInput": "Classe",
+  "studentNumber": "Numéro d'étudiant",
+  "subjects": "Matières (séparées par des virgules)",
+  "classIdTeacher": "Classe ID (ex : 2025-111)",
+  "nextStep": "Étape suivante",
   "errors": {
-    "nickname": "이름(닉네임)을 입력해주세요.",
-    "school": "학교명을 입력해주세요.",
-    "classIdTeacher": "담당 반을 입력해주세요.",
-    "studentNumber": "학번을 입력해주세요.",
-    "subjects": "수강 과목을 입력해주세요.",
-    "server": "서버 응답 에러: ",
-    "noResponse": "요청은 갔지만 응답이 없어요.",
-    "unknown": "에러 발생: "
+    "nickname": "Veuillez saisir votre nom (pseudo).",
+    "school": "Veuillez saisir le nom de votre école.",
+    "classIdTeacher": "Veuillez saisir l'ID de la classe.",
+    "studentNumber": "Veuillez saisir votre numéro d'étudiant.",
+    "subjects": "Veuillez saisir vos matières.",
+    "server": "Erreur du serveur : ",
+    "noResponse": "Requête envoyée, mais aucune réponse.",
+    "unknown": "Une erreur est survenue : "
   }
 },
 "signupID": {
-  "title": "아이디",
-  "highlight": "를 입력해주세요",
-  "placeholder": "아이디를 입력해주세요",
-  "shortID": "아이디를 6자 이상으로 적어주세요.",
-  "invalidCharacters": "대소문자와 숫자만 사용해주세요.",
-  "duplicateLocal": "이미 존재하는 아이디입니다. (로컬 검증)",
-  "validFormat": "아이디 형식이 올바릅니다.",
-  "checkingID": "아이디 확인중...",
-  "duplicateServer": "이미 존재하는 아이디입니다.",
-  "available": "사용 가능한 아이디입니다.",
-  "error": "아이디 확인 중 오류가 발생했습니다.",
-  "continue": "계속하기"
+  "title": "Entrez votre",
+  "highlight": "Identifiant",
+  "placeholder": "Veuillez saisir votre identifiant",
+  "shortID": "Veuillez entrer au moins 6 caractères.",
+  "invalidCharacters": "Seules les lettres et les chiffres sont autorisés.",
+  "duplicateLocal": "Cet identifiant existe déjà (vérification locale).",
+  "validFormat": "Le format de l'identifiant est valide.",
+  "checkingID": "Vérification de l'identifiant...",
+  "duplicateServer": "Cet identifiant existe déjà.",
+  "available": "L'identifiant est disponible.",
+  "error": "Une erreur est survenue lors de la vérification.",
+  "continue": "Continuer"
 },
 "nextScreen": {
-  "welcome": "환영합니다!",
-  "signupComplete": "회원가입이 완료되었습니다.",
-  "goToLogin": "로그인으로 이동"
+  "welcome": "Bienvenue !",
+  "signupComplete": "Votre inscription est terminée.",
+  "goToLogin": "Aller à la connexion"
 },
 "signupPassword": {
-    "title": "비밀번호를 입력해주세요",
-    "passwordPlaceholder": "비밀번호 입력",
-    "confirmPasswordPlaceholder": "비밀번호 확인",
+    "title": "Entrez votre mot de passe",
+    "passwordPlaceholder": "Entrez le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez le mot de passe",
     "strength": {
-      "0": "비밀번호 강도: 매우 약함",
-      "1": "비밀번호 강도: 약함",
-      "2": "비밀번호 강도: 보통",
-      "3": "비밀번호 강도: 강함",
-      "4": "비밀번호 강도: 매우 강함"
+      "0": "Solidité du mot de passe : Très faible",
+      "1": "Solidité du mot de passe : Faible",
+      "2": "Solidité du mot de passe : Moyenne",
+      "3": "Solidité du mot de passe : Forte",
+      "4": "Solidité du mot de passe : Très forte"
     },
-    "minLength": "최소 8글자 이상 입력해주세요.",
-    "match": "비밀번호가 일치합니다.",
-    "mismatch": "비밀번호가 일치하지 않습니다.",
-    "continue": "계속하기",
-    "serverError": "서버 오류 발생.",
-    "weakPasswordModal": "비밀번호가 너무 약합니다. 그래도 계속하시겠습니까?"
-  },
-  "passwordModal": {
+    "minLength": "Veuillez entrer au moins 8 caractères.",
+    "match": "Les mots de passe correspondent.",
+    "mismatch": "Les mots de passe ne correspondent pas.",
+    "continue": "Continuer",
+    "serverError": "Une erreur serveur est survenue.",
+    "weakPasswordModal": "Votre mot de passe est trop faible. Voulez-vous continuer quand même ?"
+},
+"passwordModal": {
   "title": "보안 경고",
   "warning": "이 비밀번호는 보안에 취약할 수 있습니다.",
   "confirmQuestion": "해당 비밀번호를 사용하시겠습니까?",
@@ -613,203 +611,200 @@
   "no": "아니요"
 },
 "signupEmail": {
-  "email": "이메일",
-  "enter": "을 입력해주세요",
-  "placeholder": "이메일을 입력해주세요",
-  "getCode": "인증코드 받기",
-  "empty": "> 이메일을 입력해주세요.",
-  "invalid": "> 이메일 형식이 올바르지 않습니다.",
-  "checking": "> 이메일 확인중...",
-  "valid": "사용 가능한 이메일입니다.",
-  "serverError": "> 서버 오류가 발생했습니다.",
-  "back": "뒤로가기",
-  "signup": "회원가입"
+  "email": "Email",
+  "enter": " veuillez entrer",
+  "placeholder": "Entrez votre adresse email",
+  "getCode": "Recevoir le code de vérification",
+  "empty": "> Veuillez entrer votre email.",
+  "invalid": "> Format d'email invalide.",
+  "checking": "> Vérification de l'email...",
+  "valid": "Cet email est disponible.",
+  "serverError": "> Une erreur serveur est survenue.",
+  "back": "Retour",
+  "signup": "Inscription"
 },
 "stuManage": {
-  "studentNumber": "학번",
-  "subjects": "수강과목",
-  "loading": "불러오는 중...",
-  "noStudents": "등록된 학생이 없습니다.",
-  "goToDashboard": "대시보드로 이동"
+  "studentNumber": "Numéro d'étudiant",
+  "subjects": "Matières",
+  "loading": "Chargement...",
+  "noStudents": "Aucun étudiant enregistré.",
+  "goToDashboard": "Aller au tableau de bord"
 },
 "studentDetail": {
-  "loading": "불러오는 중...",
-  "noStudent": "학생 정보를 불러올 수 없습니다.",
-  "noStudentInfo": "학생 정보를 찾을 수 없습니다.",
-  "studentNumber": "학번",
-  "class": "반",
-  "school": "학교",
-  "subjectsTitle": "📚 수강 과목 및 성적",
-  "noSubjects": "수강 과목 정보 없음",
-  "noSubjectInfo": "과목 정보가 없습니다.",
-  "attendanceTitle": "🕘 출결 현황",
-  "present": "출석",
-  "late": "지각",
-  "absent": "결석",
-  "incomplete": "미완료",
-  "assignmentTitle": "📝 과제 제출 현황",
-  "assignmentStatus": "과제",
-  "noAssignments": "과제 정보 없음",
-  "noAssignmentInfo": "등록된 과제가 없습니다.",
-  "submitted": "제출",
-  "notSubmitted": "미제출",
-  "score": "점",
-  "scoreUnit": "점",
-  "feedbackTitle": "💬 피드백",
-  "comment": "교사 코멘트 (추후 연동)",
-  "teacherComment": "작성된 코멘트가 없습니다."
+  "loading": "Chargement...",
+  "noStudent": "Impossible de charger les informations de l'élève.",
+  "noStudentInfo": "Aucune information sur l’étudiant.",
+  "studentNumber": "Numéro d'étudiant",
+  "class": "Classe",
+  "school": "École",
+  "subjectsTitle": "📚 Matières suivies et notes",
+  "noSubjectInfo": "Aucune information sur les matières.",
+  "attendanceTitle": "🕘 Présence",
+  "present": "Présent",
+  "late": "Retard",
+  "absent": "Absent",
+  "incomplete": "Incomplet",
+  "assignmentTitle": "📝 Devoirs",
+  "assignmentStatus": "Devoirs",
+  "noAssignments": "Aucune donnée sur les devoirs.",
+  "noAssignmentInfo": "Aucun devoir trouvé.",
+  "submitted": "Soumis",
+  "notSubmitted": "Non soumis",
+  "score": "pts",
+  "scoreUnit": " pts",
+  "feedbackTitle": "💬 Commentaires",
+  "comment": "Commentaire du professeur (à lier ultérieurement)",
+  "teacherComment": "Aucun commentaire disponible."
 },
 
-  "dashboard": {
-    "createAssignment": "새 과제 생성",
-    "assignmentTitle": "과제 제목",
-    "assignmentDescription": "과제 설명",
-    "selectDate": "마감일 선택",
-    "selectedFile": "선택된 파일",
-    "create": "생성",
-    "currentAssignments": "현재 과제 목록",
-    "delete": "삭제",
-    "setChapterDeadline": "챕터 마감일 설정",
-    "selectChapter": "챕터 선택",
-    "saveDeadline": "마감일 저장",
-    "errorLoadingAssignments": "과제를 불러오는 데 실패했습니다.",
-    "errorCreateAssignment": "과제 생성에 실패했습니다.",
-    "errorDeleteAssignment": "과제 삭제에 실패했습니다.",
-    "deadlineSaved": "마감일이 성공적으로 저장되었습니다.",
-    "deadlineSaveError": "마감일 저장에 실패했습니다.",
-    "fileTypeAlert": ".docx 또는 .hwp 파일만 업로드 가능합니다.",
-    "weightSetting": "점수 비율 조정"
+   "dashboard": {
+    "createAssignment": "Créer un nouveau devoir",
+    "assignmentTitle": "Titre du devoir",
+    "assignmentDescription": "Description du devoir",
+    "selectDate": "Sélectionner une date limite",
+    "selectedFile": "Fichier sélectionné",
+    "create": "Créer",
+    "currentAssignments": "Devoirs actuels",
+    "delete": "Supprimer",
+    "setChapterDeadline": "Définir la date limite pour le chapitre",
+    "selectChapter": "Sélectionner un chapitre",
+    "saveDeadline": "Enregistrer la date limite",
+    "errorLoadingAssignments": "Échec du chargement des devoirs.",
+    "errorCreateAssignment": "Échec de la création du devoir.",
+    "errorDeleteAssignment": "Échec de la suppression du devoir.",
+    "deadlineSaved": "Date limite enregistrée avec succès.",
+    "deadlineSaveError": "Échec de l'enregistrement de la date limite.",
+    "fileTypeAlert": "Seuls les fichiers .docx et .hwp sont autorisés.",
+    "weightSetting": "Ajuster la pondération"
 }
 ,
   "result": {
-  "titleWithName": "{{name}}의 성과 요약",
-  "title": "성과 요약",
-  "subjectScores": "과목별 점수",
-  "finalScore": "최종 점수",
-  "points": "점",
-  "attendanceStatus": "출결 현황",
-  "present": "출석",
-  "late": "지각",
-  "absent": "결석",
-  "incomplete": "미완료",
-  "unknown": "알 수 없음",
-  "days": "일",
-  "assignmentStatus": "과제 제출 현황",
-  "assignmentTitle": "과제",
-  "assignmentRequest": "첨부된 파일에 {{chapter}}장의 내용을 정리하여 제출해주세요.",
-  "noAssignments": "제출된 과제가 없습니다.",
-  "viewDetails": "자세히 보기",
-  "errorFetchingAssignments": "과제 정보를 불러오지 못했습니다."
-},
+  "titleWithName": "Résumé des performances de {{name}}",
+  "title": "Résumé des performances",
+  "subjectScores": "Résultats par matière",
+  "finalScore": "Score final",
+  "points": "pts",
+  "attendanceStatus": "Présence",
+  "present": "Présent",
+  "late": "En retard",
+  "absent": "Absent",
+  "incomplete": "Non terminé",
+  "unknown": "Inconnu",
+  "days": " jours",
+  "assignmentStatus": "Soumissions de devoirs",
+  "assignmentTitle": "Devoir",
+  "assignmentRequest": "Veuillez résumer le contenu du chapitre {{chapter}} dans le fichier joint et le soumettre.",
+  "noAssignments": "Aucun devoir trouvé.",
+  "viewDetails": "Voir les détails",
+  "errorFetchingAssignments": "Échec du chargement des devoirs."
+}
+,
 
- "assignment": {
-    "titlePattern": "과학 과제 {{number}}",
-    "description": "설명",
-    "dueDate": "제출 마감일",
-    "download": "파일 다운로드",
-    "downloadFail": "파일 다운로드에 실패했습니다.",
-    "downloadError": "다운로드 중 오류가 발생했습니다.",
-    "defaultFilename": "과제.docx",
-    "errorFetch": "과제 불러오기에 실패했습니다.",
-    "notFound": "과제를 찾을 수 없습니다."
+   "assignment": {
+    "titlePattern": "Devoir de science {{number}}",
+    "description": "Description",
+    "dueDate": "Date limite",
+    "download": "Télécharger le fichier",
+    "downloadFail": "Échec du téléchargement du fichier.",
+    "downloadError": "Une erreur est survenue lors du téléchargement.",
+    "defaultFilename": "devoir.docx",
+    "errorFetch": "Échec du chargement du devoir.",
+    "notFound": "Devoir introuvable."
   },
   "assignmentTexts": {
-  "scienceTitle1": "과학 과제 1",
-  "scienceDesc1": "첨부 파일에 챕터 1 내용을 정리해서 제출해주세요"
+  "scienceTitle1": "Devoir de science 1",
+  "scienceDesc1": "Veuillez résumer le chapitre 1 dans le fichier joint et le soumettre."
 },
-
 "submit": {
-    "title": "과제 제출",
-    "selectAssignment": "과제를 선택하세요",
-    "assignmentTitle": "제출 제목",
-    "content": "여기에 내용을 작성하세요...",
-    "submit": "제출하기",
-    "success": "제출 완료",
-    "successMessage": "과제가 성공적으로 제출되었습니다.",
-    "error": "오류",
-    "submitError": "과제 제출에 실패했습니다.",
-    "fetchError": "과제 목록을 불러오는 데 실패했습니다.",
-    "fillAllFields": "모든 항목을 입력한 후 제출해주세요.",
-     "downloadSuccess": "파일이 성공적으로 다운로드되었습니다."
+    "title": "Soumettre un devoir",
+    "selectAssignment": "Sélectionnez un devoir",
+    "assignmentTitle": "Titre de votre soumission",
+    "content": "Écrivez votre contenu ici...",
+    "submit": "Soumettre",
+    "success": "Soumission réussie",
+    "successMessage": "Votre devoir a été soumis.",
+    "error": "Erreur",
+    "submitError": "Échec de la soumission du devoir.",
+    "fetchError": "Échec du chargement des devoirs.",
+    "fillAllFields": "Veuillez remplir tous les champs avant de soumettre."
   },
 "find": {
-  "inputEmail": "이메일을 입력해 주세요",
-  "emailGuide": "> 이메일을 입력해주세요.",
-  "codeGuide": "> 인증번호를 입력해주세요.",
-  "codeExpired": "> 인증번호가 만료되었습니다.",
-  "confirm": "확인",
-  "getCode": "인증번호 받기",
-  "resetPassword": "비밀번호 재설정하기",
-  "newPassword": "새로운 비밀번호",
-  "confirmPassword": "비밀번호 확인",
-  "matchMessage": "> 위에 비밀번호와 동일하게 입력해주세요",
-  "weakest": "비밀번호 강도: 매우 약함",
-  "weak": "비밀번호 강도: 약함",
-  "medium": "비밀번호 강도: 보통",
-  "strong": "비밀번호 강도: 강함",
-  "strongest": "비밀번호 강도: 매우 강함",
-  "success1": "비밀번호가 성공적으로",
-  "success2": "변경되었습니다.",
-  "goToLogin": "로그인 화면으로 이동",
-  "tabFindId": "아이디 찾기",
-  "tabFindPassword": "비밀번호 찾기",
+  "inputEmail": "Entrez votre e-mail",
+  "emailGuide": "> Veuillez entrer votre e-mail.",
+  "codeGuide": "> Veuillez entrer le code de vérification.",
+  "codeExpired": "> Le code a expiré.",
+  "confirm": "Confirmer",
+  "getCode": "Recevoir le code",
+  "resetPassword": "Réinitialiser le mot de passe",
+  "newPassword": "Nouveau mot de passe",
+  "confirmPassword": "Confirmez le mot de passe",
+  "matchMessage": "> Veuillez entrer le même mot de passe ci-dessus.",
+  "weakest": "Solidité du mot de passe : Très faible",
+  "weak": "Solidité du mot de passe : Faible",
+  "medium": "Solidité du mot de passe : Moyenne",
+  "strong": "Solidité du mot de passe : Forte",
+  "strongest": "Solidité du mot de passe : Très forte",
+  "success1": "Le mot de passe a été",
+  "success2": "modifié avec succès.",
+  "goToLogin": "Aller à l'écran de connexion",
+  "tabFindId": "Trouver l'identifiant",
+  "tabFindPassword": "Réinitialiser le mot de passe",
 
-  "findId": "아이디 찾기",
-  "matchedMessage": "와 일치하는",
-  "userInfoMessage": "사용자 정보입니다.",
-  "userId": "아이디",
-  "joinDate": "가입일",
+  "findId": "Trouver l'identifiant",
+  "matchedMessage": " correspond à",
+  "userInfoMessage": "les informations de l'utilisateur.",
+  "userId": "Identifiant",
+  "joinDate": "Date d'inscription",
 
-  "modalSentTo": "으로",
-  "modalSentMessage": "인증번호가 전송되었습니다."
+    "modalSentTo": " recevra le code de vérification.",
+  "modalSentMessage": "Le code de vérification a été envoyé."
 },
 "backModal": {
-  "quitPrefix": "를 중단하고",
-  "confirmSuffix": " 하시겠습니까?",
-  "warningReset": "입력된 내용은 초기화됩니다.",
-  "yes": "예",
-  "no": "아니오",
-  "quit": "종료"
+  "quitPrefix": " sera annulé.",
+  "confirmSuffix": " Voulez-vous quitter ?",
+  "warningReset": "Les données saisies seront perdues.",
+  "yes": "Oui",
+  "no": "Non",
+  "quit": "Quitter"
 },
- "weight": {
-    "title": "점수 비율 설정",
-    "school": "학교",
-    "class": "반",
-    "classPlaceholder": "반 (예: 1-2)",
-    "quiz": "평가 (%)",
-    "attendance": "출결 (%)",
-    "assignment": "과제 (%)",
-    "save": "저장",
-    "saving": "저장중...",
+"weight": {
+    "title": "Définir la pondération des notes",
+    "school": "École",
+    "class": "Classe",
+    "classPlaceholder": "Classe (ex : 1-2)",
+    "quiz": "Évaluation (%)",
+    "attendance": "Présence (%)",
+    "assignment": "Devoirs (%)",
+    "save": "Enregistrer",
+    "saving": "Enregistrement en cours...",
     "error": {
-      "input": "입력 오류",
-      "invalidNumber": "모든 입력값은 0 이상의 숫자여야 합니다.",
-      "sumNot100": "비율의 합이 100이 되어야 합니다."
+      "input": "Erreur de saisie",
+      "invalidNumber": "Toutes les valeurs doivent être des nombres supérieurs ou égaux à 0.",
+      "sumNot100": "La somme des pourcentages doit être égale à 100."
     },
     "success": {
-      "title": "저장 완료",
-      "message": "점수 비율이 저장되었습니다!"
+      "title": "Enregistrement réussi",
+      "message": "Les pourcentages de notation ont été enregistrés !"
     },
     "fail": {
-      "title": "저장 실패",
-      "message": "저장에 실패했습니다."
+      "title": "Échec de l'enregistrement",
+      "message": "L’enregistrement a échoué."
     }
   },
   "scoreStudent": {
-  "title": "{{name}}의 제출물 목록",
-  "selectAssignment": "과제를 선택하세요",
-  "submissionTitle": "제출 제목",
-  "submissionContent": "내용",
-  "fileLink": "파일 링크",
-  "score": "점수: {{score}}",
-  "notScored": "채점되지 않음",
-  "submittedAt": "제출일: {{date}}",
-  "noSubmission": "제출물이 없습니다."
+  "title": "Soumissions de {{name}}",
+  "selectAssignment": "Sélectionnez un devoir",
+  "submissionTitle": "Titre de la soumission",
+  "submissionContent": "Contenu",
+  "fileLink": "Lien du fichier",
+  "score": "Note : {{score}}",
+  "notScored": "Non noté",
+  "submittedAt": "Soumis le : {{date}}",
+  "noSubmission": "Aucune soumission trouvée."
 },
 "assignmentScoreIndex": {
-  "title": "담당 학생 목록"
+  "title": "Liste des élèves assignés"
 }
-
 
 
 
