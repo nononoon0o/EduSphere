@@ -22,7 +22,8 @@
     "manageStudents": "Gérer les étudiants",
     "viewResults": "Voir les résultats",
     "submitAssignment": "Soumettre le devoir",
-    "withdraw": "Supprimer le compte"
+    "withdraw": "Supprimer le compte",
+    "assignmentScore": "Soumissions des élèves"
   },
   "SEARCH": "Recherche",
   "search": "Saisissez un mot-clé...",
@@ -657,61 +658,62 @@
 },
 
    "dashboard": {
-  "createAssignment": "Créer un nouveau devoir",
-  "assignmentTitle": "Titre du devoir",
-  "assignmentDescription": "Description du devoir",
-  "selectDate": "Sélectionner une date limite",
-  "selectedFile": "Fichier sélectionné",
-  "create": "Créer",
-  "currentAssignments": "Devoirs actuels",
-  "delete": "Supprimer",
-  "setChapterDeadline": "Définir la date limite pour le chapitre",
-  "selectChapter": "Sélectionner un chapitre",
-  "saveDeadline": "Enregistrer la date limite",
-  "errorLoadingAssignments": "Échec du chargement des devoirs.",
-  "errorCreateAssignment": "Échec de la création du devoir.",
-  "errorDeleteAssignment": "Échec de la suppression du devoir.",
-  "deadlineSaved": "Date limite enregistrée avec succès.",
-  "deadlineSaveError": "Échec de l'enregistrement de la date limite.",
-  "fileTypeAlert": "Seuls les fichiers .docx et .hwp sont autorisés.",
-  "weightSetting": "Ajuster la pondération"
+    "createAssignment": "Créer un nouveau devoir",
+    "assignmentTitle": "Titre du devoir",
+    "assignmentDescription": "Description du devoir",
+    "selectDate": "Sélectionner une date limite",
+    "selectedFile": "Fichier sélectionné",
+    "create": "Créer",
+    "currentAssignments": "Devoirs actuels",
+    "delete": "Supprimer",
+    "setChapterDeadline": "Définir la date limite pour le chapitre",
+    "selectChapter": "Sélectionner un chapitre",
+    "saveDeadline": "Enregistrer la date limite",
+    "errorLoadingAssignments": "Échec du chargement des devoirs.",
+    "errorCreateAssignment": "Échec de la création du devoir.",
+    "errorDeleteAssignment": "Échec de la suppression du devoir.",
+    "deadlineSaved": "Date limite enregistrée avec succès.",
+    "deadlineSaveError": "Échec de l'enregistrement de la date limite.",
+    "fileTypeAlert": "Seuls les fichiers .docx et .hwp sont autorisés.",
+    "weightSetting": "Ajuster la pondération"
 }
 ,
   "result": {
-    "titleWithName": "Résumé des performances de {{name}}",
-    "title": "Résumé des performances",
-    "subjectScores": "Résultats par matière",
-    "finalScore": "Note finale",
-    "points": "pts",
-    "attendanceStatus": "Présence",
-    "present": "Présent",
-    "late": "En retard",
-    "absent": "Absent",
-    "incomplete": "Non terminé",
-    "unknown": "Inconnu",
-    "days": " jours",
-    "assignmentStatus": "Soumissions de devoirs",
-    "assignmentTitle": "Devoir",
-    "assignmentRequest": "Veuillez organiser le contenu du chapitre {{chapter}} dans le fichier joint et le soumettre.",
-    "noAssignments": "Aucun devoir trouvé.",
-    "viewDetails": "Voir les détails",
-    "errorFetchingAssignments": "Échec du chargement des devoirs."
-  },
+  "titleWithName": "Résumé des performances de {{name}}",
+  "title": "Résumé des performances",
+  "subjectScores": "Résultats par matière",
+  "finalScore": "Score final",
+  "points": "pts",
+  "attendanceStatus": "Présence",
+  "present": "Présent",
+  "late": "En retard",
+  "absent": "Absent",
+  "incomplete": "Non terminé",
+  "unknown": "Inconnu",
+  "days": " jours",
+  "assignmentStatus": "Soumissions de devoirs",
+  "assignmentTitle": "Devoir",
+  "assignmentRequest": "Veuillez résumer le contenu du chapitre {{chapter}} dans le fichier joint et le soumettre.",
+  "noAssignments": "Aucun devoir trouvé.",
+  "viewDetails": "Voir les détails",
+  "errorFetchingAssignments": "Échec du chargement des devoirs."
+}
+,
 
    "assignment": {
-    "errorFetch": "Échec du chargement des détails du devoir.",
-    "downloadFail": "Échec du démarrage du téléchargement.",
-    "downloadError": "Une erreur est survenue lors du téléchargement.",
-    "defaultFilename": "fichier_devoir",
-    "notFound": "Devoir introuvable.",
+    "titlePattern": "Devoir de science {{number}}",
     "description": "Description",
     "dueDate": "Date limite",
-    "download": "Télécharger le fichier joint",
-     "downloadSuccess": "Fichier téléchargé avec succès."
+    "download": "Télécharger le fichier",
+    "downloadFail": "Échec du téléchargement du fichier.",
+    "downloadError": "Une erreur est survenue lors du téléchargement.",
+    "defaultFilename": "devoir.docx",
+    "errorFetch": "Échec du chargement du devoir.",
+    "notFound": "Devoir introuvable."
   },
   "assignmentTexts": {
-  "scienceTitle1": "Devoir de sciences 1",
-  "scienceDesc1": "Veuillez organiser le contenu du chapitre 1 dans le fichier joint et le soumettre."
+  "scienceTitle1": "Devoir de science 1",
+  "scienceDesc1": "Veuillez résumer le chapitre 1 dans le fichier joint et le soumettre."
 },
 "submit": {
     "title": "Soumettre un devoir",
@@ -788,6 +790,22 @@
       "title": "Échec de l'enregistrement",
       "message": "L’enregistrement a échoué."
     }
-  }
+  },
+  "scoreStudent": {
+  "title": "Soumissions de {{name}}",
+  "selectAssignment": "Sélectionnez un devoir",
+  "submissionTitle": "Titre de la soumission",
+  "submissionContent": "Contenu",
+  "fileLink": "Lien du fichier",
+  "score": "Note : {{score}}",
+  "notScored": "Non noté",
+  "submittedAt": "Soumis le : {{date}}",
+  "noSubmission": "Aucune soumission trouvée."
+},
+"assignmentScoreIndex": {
+  "title": "Liste des élèves assignés"
+}
+
+
 
 }
