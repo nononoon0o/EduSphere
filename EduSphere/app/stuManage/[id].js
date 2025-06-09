@@ -163,15 +163,6 @@ export default function StudentDetail() {
 
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>📚 {t('result.subjectScores')}</Text>
-          {/* {student.subjects?.length > 0 ? (
-            student.subjects.map((s, idx) => (
-              <Text key={idx} style={styles.subjectText}>
-                {s.name}: <Text style={styles.scoreTag}>{s.score}{t('studentDetail.score')}</Text>
-              </Text>
-            ))
-          ) : (
-            <Text style={styles.subjectText}>{t('studentDetail.noSubjectInfo')}</Text>
-          )} */}
           {allChapters.map((ch, idx) => {
             const scoreObj = chapterScores.find(s => s.chapter === ch.chapter);
             const total = (scoreObj?.totalScore ?? 0);
