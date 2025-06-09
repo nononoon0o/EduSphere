@@ -152,7 +152,6 @@ export default function StudentDetail() {
     <View>
       <BackButton onPress={() => router.replace('/stuManage/stuManageScreen')} />
       <ScrollView style={styles.container}>
-        {/* ✅ TITLE INTERNATIONALIZED */}
         <Text style={styles.title}>{t('result.titleWithName', { name: student.nickname })}</Text>
 
         <View style={styles.card}>

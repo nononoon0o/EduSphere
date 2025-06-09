@@ -226,7 +226,7 @@ export default function StuResultScreen() {
                 {assignment.description
                   ? assignment.description
                   : t('result.assignmentRequest', { chapter: index + 1 })}
-                {" || "}
+                {" | "}
                 {assignment.dueDate ? formatDate(assignment.dueDate) : ''}
               </Text>
             </View>

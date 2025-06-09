@@ -159,6 +159,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 12,
   },
+  
+  detailButtonWrapper: {
+    backgroundColor: '#2563EB',
+    borderRadius: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
 });
 
 export default styles;

@@ -235,6 +235,12 @@ const TeacherDashboard = () => {
                   </Text>
                 </View>
                 <TouchableOpacity
+                  style={styles.detailButtonWrapper}
+                  onPress={() => router.push(`/assignments/${item._id}`)}
+                >
+                  <Text style={styles.deleteButtonText}>{t('result.viewDetails')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                   style={styles.deleteButtonWrapper}
                   onPress={() => handleDeleteAssignment(item._id)}
                 >
