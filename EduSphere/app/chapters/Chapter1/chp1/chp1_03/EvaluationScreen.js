@@ -227,9 +227,7 @@ export default function EvaluationScreen() {
               {t('evaluation.finalResult', { total: questions.length, correct: correctCount })}
             </Text>
 
-            {isSaved && (
-              <Text style={{ color: 'green', marginTop: 8 }}>저장 완료! 이제 자유롭게 다시 풀 수 있습니다.(저장은 최초 한번만 저장됩니다)</Text>
-            )}
+            <Text style={{ color: 'green', marginTop: 8 }}>저장 완료! 이제 자유롭게 다시 풀 수 있습니다.(저장은 최초 한번만 저장됩니다)</Text>
 
             <TouchableOpacity style={styles.resetButton} onPress={retry}>
               <Text style={styles.resetButtonText}>{t('evaluation.retry')}</Text>

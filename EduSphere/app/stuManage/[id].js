@@ -203,7 +203,7 @@ export default function StudentDetail() {
                   {item.status === '제출' ? t('studentDetail.submitted') : t('studentDetail.notSubmitted')}
                 </Text>
                 {item.score && (
-                  <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>
+                  <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.totalScore')})</Text>
                 )}
               </Text>
             ))
