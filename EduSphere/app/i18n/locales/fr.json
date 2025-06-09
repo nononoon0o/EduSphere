@@ -64,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Ⅰ. Les transformations de la matière",
+    "subtitle": "Ⅰ. Changements physiques et chimiques",
     "title": "01. Exploration du concept",
     "sections": {
       "concept": "Résumé du concept",
@@ -73,7 +73,7 @@
     }
   },
   "chapter1_02": {
-    "subtitle": "États de la matière et énergie",
+    "subtitle": "Réactions chimiques",
     "title": "02. Changement d’état",
     "sections": {
       "concept": "Résumé du concept",
@@ -82,7 +82,7 @@
     }
   },
   "chapter1_03": {
-    "subtitle": "Transfert de chaleur et matière",
+    "subtitle": "Équations de réactions chimiques",
     "title": "03. Explorer la chaleur et la matière",
     "sections": {
       "concept": "Résumé du concept",
