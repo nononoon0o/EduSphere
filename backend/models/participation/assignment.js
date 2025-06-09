@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const assignmentSchema = new mongoose.Schema({
   title: { type: String, required: true },
+  chapter: { type: String, required: true },
   description: String,
   dueDate: Date,
   teafileId: mongoose.Schema.Types.ObjectId,

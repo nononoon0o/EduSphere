@@ -89,12 +89,11 @@ export default function AssignmentScoreStudent() {
       const token = await AsyncStorage.getItem('token');
       const score = Number(inputScores[submission._id]);
       await axios.patch(
-        `http://localhost:5000/api/assignments/${selectedAssignment}/grade/${id}`,
+        `http://localhost:5000/api/scores/`,
         { score },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('점수 저장 완료!');
-      // 점수 저장 후 제출물 새로고침
       await fetchSubmissions();
     } catch (e) {
       alert('점수 저장 실패!');
@@ -175,7 +174,7 @@ export default function AssignmentScoreStudent() {
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submittedAt', { date: sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : t('scoreStudent.noSubmission') })}</Text>
                   <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
                     <TextInput
-                      style={[styles.input, { width: 80, marginRight: 8 }]}
+                      style={[styles.input, { width: 120, marginRight: 8 }]}
                       placeholder="과제 점수"
                       value={inputScores[sub._id] ?? ""}
                       onChangeText={val => handleScoreChange(sub._id, val)}

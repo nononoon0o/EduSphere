@@ -46,13 +46,15 @@ const TeacherDashboard = () => {
   const [assignments, setAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
     title: '',
+    chapter: '',
     description: '',
     dueDate: '',
     teafileUrl: '',
   });
   const [newAssignmentDate, setNewAssignmentDate] = useState(null);
   const [assignmentFile, setAssignmentFile] = useState(null);
-  const [selectedChapter, setSelectedChapter] = useState(null);
+  const [selectedDeadlineChapter, setSelectedDeadlineChapter] = useState(null);
+  const [selectedAssignmentChapter, setSelectedAssignmentChapter] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [deadlines, setDeadlines] = useState({});
   const [loading, setLoading] = useState(false);
@@ -78,7 +80,7 @@ const TeacherDashboard = () => {
 
   const fetchDeadline = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/deadlines');
+      const res = await axios.get('http://localhost:5000/api/deadlines/all');
       const deadlineObj = {};
       res.data.deadlines.forEach(d => {
         deadlineObj[d.chapter] = d.deadline;
@@ -115,6 +117,7 @@ const TeacherDashboard = () => {
       const token = await AsyncStorage.getItem('token');
       const formData = new FormData();
       formData.append('title', newAssignment.title);
+      formData.append('chapter', newAssignment.chapter);
       formData.append('description', newAssignment.description);
       formData.append('dueDate', new Date(newAssignment.dueDate).toISOString());
       if (assignmentFile) {
@@ -125,7 +128,7 @@ const TeacherDashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments([...assignments, res.data.assignment]);
-      setNewAssignment({ title: '', description: '', dueDate: '' });
+      setNewAssignment({ title: '', chapter: '', description: '', dueDate: '' });
       setNewAssignmentDate(null);
       setAssignmentFile(null);
       if (fileInputRef.current) {
@@ -179,9 +182,20 @@ const TeacherDashboard = () => {
       </TouchableOpacity>
 
       <ScrollView style={styles.container}>
-        {/* Assignment Creation */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.createAssignment')}</Text>
+          <Dropdown
+            style={styles.dropdown}
+            data={chapterList}
+            labelField="label"
+            valueField="value"
+            placeholder={t('dashboard.selectChapter')}
+            value={selectedAssignmentChapter}
+            onChange={item => {
+              setSelectedAssignmentChapter(item.value);
+              setNewAssignment({ ...newAssignment, chapter: item.value });
+            }}
+          />
           <TextInput
             style={styles.input}
             placeholder={t('dashboard.assignmentTitle')}
@@ -260,8 +274,8 @@ const TeacherDashboard = () => {
             labelField="label"
             valueField="value"
             placeholder={t('dashboard.selectChapter')}
-            value={selectedChapter}
-            onChange={item => setSelectedChapter(item.value)}
+            value={selectedDeadlineChapter}
+            onChange={item => setSelectedDeadlineChapter(item.value)}
           />
           <WebDatePicker
             selected={selectedDate}

@@ -106,10 +106,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
     marginBottom: 8,
+    width: 50,
   },
   saveButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: '700',
   },
 
