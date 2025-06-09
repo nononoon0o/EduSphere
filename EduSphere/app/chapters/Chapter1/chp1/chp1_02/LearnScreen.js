@@ -11,6 +11,7 @@ import Draggable from 'react-draggable';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch2Style/GLBViewerStyle';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import NavigationButtons from '../../../../../components/NavigationButtons';
 
 const REAGENTS = [
   { id: 'AgNO3', label: 'AgNO₃' },
@@ -24,10 +25,10 @@ const REAGENTS = [
 ];
 
 const PRECIPITATES = {
-  'AgNO3+NaCl': { color: 0xffffff, description: 'AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (흰색 앙금)' },
-  'BaCl2+Na2SO4': { color: 0xffffff, description: 'BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (흰색 앙금)' },
-  'CaCl2+Na2CO3': { color: 0xffffff, description: 'CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (흰색 앙금)' },
-  'KI+Pb(NO3)2': { color: 0xffff00, description: 'Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (노란색 앙금)' },
+  'AgNO3+NaCl': { color: 0xffffff, description: 'AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ (흑색 앙글)' },
+  'BaCl2+Na2SO4': { color: 0xffffff, description: 'BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ (흑색 앙글)' },
+  'CaCl2+Na2CO3': { color: 0xffffff, description: 'CaCl₂(aq) + Na₂CO₃(aq) → CaCO₃(s)↓ (흑색 앙글)' },
+  'KI+Pb(NO3)2': { color: 0xffff00, description: 'Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s)↓ (노란색 앙글)' },
 };
 
 export default function GLBViewer() {
@@ -129,91 +130,98 @@ export default function GLBViewer() {
     }
   }, [precipData]);
 
+  const scrollRef = useRef();
+  const scrollBy = (offset) => scrollRef.current?.scrollTo({ x: offset, animated: true });
+
   return (
-    <View style={{ flex: 1 }} {...panResponder.panHandlers}>
-      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_02')} />
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ flex: 1 }} {...panResponder.panHandlers}>
+        <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_02')} />
 
-      <GLView
-        style={{ flex: 1 }}
-        onContextCreate={async gl => {
-          glContext.current = gl;
-          const scene = new THREE.Scene();
-          scene.background = new THREE.Color(0xffffff);
-          sceneRef.current = scene;
-          const camera = new THREE.PerspectiveCamera(75, gl.drawingBufferWidth / gl.drawingBufferHeight, 0.1, 1000);
-          camera.position.set(0, 1, 7);
-          cameraRef.current = camera;
-          const renderer = new Renderer({ gl });
-          renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
-          rendererRef.current = renderer;
-          scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2));
-          const dlight = new THREE.DirectionalLight(0xffffff, 1);
-          dlight.position.set(3, 10, 10);
-          scene.add(dlight);
-          const asset = Asset.fromModule(require('../../../../../assets/beaker/graduated-beaker.glb'));
-          await asset.downloadAsync();
-          new GLTFLoader().load(asset.localUri, gltf => {
-            const m = gltf.scene;
-            m.scale.set(0.5, 0.5, 0.5);
-            m.position.set(0, -0.5, 0);
-            scene.add(m);
-            modelRef.current = m;
-          });
-          const liquid = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.3, 2.4, 64), new THREE.MeshStandardMaterial({ color: 0x0089ff, transparent: true, opacity: 0.3 }));
-          liquid.position.set(0, 0.8, 0);
-          scene.add(liquid);
-          liquidRef.current = liquid;
-        }}
-      />
+        <GLView
+          style={{ flex: 1 }}
+          onContextCreate={async gl => {
+            glContext.current = gl;
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xffffff);
+            sceneRef.current = scene;
+            const camera = new THREE.PerspectiveCamera(75, gl.drawingBufferWidth / gl.drawingBufferHeight, 0.1, 1000);
+            camera.position.set(0, 1, 7);
+            cameraRef.current = camera;
+            const renderer = new Renderer({ gl });
+            renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+            rendererRef.current = renderer;
+            scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2));
+            const dlight = new THREE.DirectionalLight(0xffffff, 1);
+            dlight.position.set(3, 10, 10);
+            scene.add(dlight);
+            const asset = Asset.fromModule(require('../../../../../assets/beaker/graduated-beaker.glb'));
+            await asset.downloadAsync();
+            new GLTFLoader().load(asset.localUri, gltf => {
+              const m = gltf.scene;
+              m.scale.set(0.5, 0.5, 0.5);
+              m.position.set(0, -0.5, 0);
+              scene.add(m);
+              modelRef.current = m;
+            });
+            const liquid = new THREE.Mesh(
+              new THREE.CylinderGeometry(1.5, 1.3, 2.4, 64),
+              new THREE.MeshStandardMaterial({ color: 0x0089ff, transparent: true, opacity: 0.3 })
+            );
+            liquid.position.set(0, 0.8, 0);
+            scene.add(liquid);
+            liquidRef.current = liquid;
+          }}
+        />
 
-      {hasPrecip && beakerLayout && (
-        <>
-          <TouchableOpacity style={[styles.resetButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y }]} onPress={reset}>
-            <Text style={styles.resetText}>{t('tryAgain')}</Text>
+        {hasPrecip && beakerLayout && (
+          <>
+            <TouchableOpacity style={[styles.resetButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y }]} onPress={reset}>
+              <Text style={styles.resetText}>{t('tryAgain')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.explainButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y + 50 }]} onPress={() => setShowExplanation(true)}>
+              <Text style={styles.resetText}>{t('precipitationExplanation')}</Text>
+            </TouchableOpacity>
+          </>
+        )}
+
+        {showExplanation && beakerLayout && (
+          <View style={[styles.explanationBox, { left: beakerLayout.x + beakerLayout.width + 300, top: beakerLayout.y, width: 350, maxHeight: 500 }]}>        
+            <ScrollView>
+              <Text style={styles.explanationText}>{t(`precipitations.${precipKey}`)}</Text>
+            </ScrollView>
+          </View>
+        )}
+
+        <View style={[styles.buttonRow, { flexDirection: 'row', alignItems: 'center' }]}>
+          <TouchableOpacity onPress={() => scrollBy(0)} style={styles.scrollArrow}>
+            <Ionicons name="chevron-back-circle" size={32} color="#2563eb" />
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.explainButton, { left: beakerLayout.x + beakerLayout.width + 150, top: beakerLayout.y + 50 }]} onPress={() => setShowExplanation(true)}>
-            <Text style={styles.resetText}>{t('precipitationExplanation')}</Text>
-          </TouchableOpacity>
-        </>
-      )}
-
-      {showExplanation && beakerLayout && (
-        <View style={[styles.explanationBox, { left: beakerLayout.x + beakerLayout.width + 300, top: beakerLayout.y, width: 350, maxHeight: 500 }]}>        
-          <ScrollView>
-            <Text style={styles.explanationText}>{t(`precipitations.${precipKey}`)}</Text>
+          <ScrollView ref={scrollRef} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 10, flexGrow: 1 }} style={{ flex: 1 }}>
+            {REAGENTS.map(r => (
+              <TouchableOpacity key={r.id} style={styles.chemButton} onPress={() => setReagents(prev => [...prev, r.id])}>
+                <Text style={styles.chemText}>{t(`reagents.${r.id}`)}</Text>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
-        </View>
-      )}
-
-      <View style={styles.buttonRow}>
-        {REAGENTS.map(r => (
-          <TouchableOpacity key={r.id} style={styles.chemButton} onPress={() => setReagents(prev => [...prev, r.id])}>
-            <Text style={styles.chemText}>{t(`reagents.${r.id}`)}</Text>
+          <TouchableOpacity onPress={() => scrollBy(500)} style={styles.scrollArrow}>
+            <Ionicons name="chevron-forward-circle" size={32} color="#2563eb" />
           </TouchableOpacity>
+        </View>
+
+        {reagents.map((id, idx) => (
+          <Draggable key={`${id}-${idx}`} defaultPosition={{ x: 20, y: 150 + idx * 60 }} onStop={e => handleDrop(id, idx, e)}>
+            <View style={styles.molecule}><Text style={styles.chemText}>{t(`reagents.${id}`)}</Text></View>
+          </Draggable>
         ))}
+
       </View>
-
-      {reagents.map((id, idx) => (
-        <Draggable key={`${id}-${idx}`} defaultPosition={{ x: 20, y: 150 + idx * 60 }} onStop={e => handleDrop(id, idx, e)}>
-          <View style={styles.molecule}><Text style={styles.chemText}>{t(`reagents.${id}`)}</Text></View>
-        </Draggable>
-      ))}
-
-      <View style={[styles.navigation, { bottom: 100 }]}>
-        <TouchableOpacity style={styles.prevButton} onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}>
-          <View style={styles.prevButtonCircle}>
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </View>
-          <Text style={styles.prevButtonText}>{t('prev')}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.nextButton} onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}>
-          <Text style={styles.nextButtonText}>{t('next')}</Text>
-          <View style={styles.nextButtonCircle}>
-            <Ionicons name="arrow-forward" size={24} color="#3498db" />
-          </View>
-        </TouchableOpacity>
+      <View>
+        <NavigationButtons
+          onPressPrev={() => router.push('/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen')}
+          onPressNext={() => router.push('/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen')}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 }
