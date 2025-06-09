@@ -1,26 +1,26 @@
 const screenMap = {
   // 🌐 Main Chapters
-  "📘 물질 변화와 화학 반응식": "/chapters/Chapter1",
+  "📘 물질의 변화": "/chapters/Chapter1",
   "📗 원자의 구조와 주기율표": "/chapters/Chapter2",
   "📙 화학 반응과 에너지 변화": "/chapters/Chapter3",
   "📒 생활 속의 화학": "/chapters/Chapter4", // ✅ Updated
 
   // 📖 Chapter 1 - 01
-  "01. 개념 탐색": "/chapters/Chapter1/Chapter1_01",
+  "01. 물리 변화와 화학 변화": "/chapters/Chapter1/Chapter1_01",
   "📘 개념 요약 (1-1)": "/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen",
   "📦 학습하기 (1-1)": "/chapters/Chapter1/chp1/chp1_01/LearnScreen",
   "🎬 영상 학습 (1-1)": "/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen",
   "📝 평가하기 (1-1)": "/chapters/Chapter1/chp1/chp1_01/EvaluationScreen",
 
   // 📖 Chapter 1 - 02
-  "02. 반응 속도": "/chapters/Chapter1/Chapter1_02",
+  "02. 화학 반응": "/chapters/Chapter1/Chapter1_02",
   "📘 개념 요약 (1-2)": "/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen",
   "📦 학습하기 (1-2)": "/chapters/Chapter1/chp1/chp1_02/LearnScreen",
   "🎬 영상 학습 (1-2)": "/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen",
   "📝 평가하기 (1-2)": "/chapters/Chapter1/chp1/chp1_02/EvaluationScreen",
 
   // 📖 Chapter 1 - 03
-  "03. 화학 반응 속 물질 변화": "/chapters/Chapter1/Chapter1_03",
+  "03. 화학반응식": "/chapters/Chapter1/Chapter1_03",
   "📘 개념 요약 (1-3)": "/chapters/Chapter1/chp1/chp1_03/ConceptSummaryScreen",
   "📦 학습하기 (1-3)": "/chapters/Chapter1/chp1/chp1_03/LearnScreen",
   "🎬 영상 학습 (1-3)": "/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen",
