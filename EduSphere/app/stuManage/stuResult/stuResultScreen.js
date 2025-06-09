@@ -31,11 +31,11 @@ export default function StuResultScreen() {
   const [assignments, setAssignments] = useState([]);
   const [attendance, setAttendance] = useState([]);
   const [deadlines, setDeadlines] = useState([]);
-  const [results, setResults] = useState(null);
+  const [chapterScores, setChapterScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchStudentInfo = async () => {
+  const fetchStudent = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
       const res = await axios.get(`http://localhost:5000/api/students/${studentId}`, {
@@ -83,18 +83,27 @@ export default function StuResultScreen() {
     }
   };
 
-  const fetchResults = async () => {
+  const fetchTotalScore = async (studentId, chapter) => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const res = await axios.get(`http://localhost:5000/api/scores/${studentId}/${chapter}`, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-      setResults(res.data);
+      return { chapter, ...res.data };
     } catch (err) {
-      console.error('학습 결과 불러오기 실패:', err);
-    } finally {
-      setLoading(false);
+      return { chapter, totalScore: null };
+      console.error('점수 정보 요청 실패:', err)
     }
+  };
+
+  const fetchAllChapterScores = async (studentId) => {
+    const scoreResults = [];
+    for (const ch of allChapters) {
+      const result = await fetchTotalScore(studentId, ch.chapter);
+      scoreResults.push(result);
+    }
+    setChapterScores(scoreResults);
+    setLoading(false);
   };
 
   const formatDate = (dateStr) => {
@@ -104,11 +113,12 @@ export default function StuResultScreen() {
   };
 
   useEffect(() => {
-    fetchStudentInfo();
+    fetchStudent();
     fetchAssignments();
     fetchAttendance(studentId);
+    fetchTotalScore(studentId); 
+    fetchAllChapterScores(studentId);
     fetchDeadlines();
-    fetchResults();
   }, [studentId]);
 
   if (loading) {
@@ -163,21 +173,18 @@ export default function StuResultScreen() {
           <Text style={styles.sectionIcon}>📚</Text>
           <Text style={styles.sectionTitleText}>{t('result.subjectScores')}</Text>
         </View>
-        {results?.subjects?.map((subject, index) => (
-          <View key={index} style={styles.scoreBox}>
-            <Text style={styles.subject}>
-              {t(`subject.${subject.name}`, subject.name)}
+        {allChapters.map((ch, idx) => {
+          const scoreObj = chapterScores.find(s => s.chapter === ch.chapter);
+          const total = (scoreObj?.totalScore ?? 0);
+          const quiz = (scoreObj?.quizScore ?? 0);
+          const attendance = (scoreObj?.attendanceScore ?? 0);
+          const assignment = (scoreObj?.assignmentScore ?? 0);
+          return (
+            <Text key={ch.chapter} style={styles.subjectText}>
+              {ch.title}: {`${total}점 (평가:${quiz} 출결:${attendance} 과제:${assignment})`}
             </Text>
-            <Text
-              style={[
-                styles.score,
-                { color: subject.score < 60 ? '#DC2626' : '#10B981' },
-              ]}
-            >
-              {t('result.finalScore')}: {subject.score}{t('result.points')}
-            </Text>
-          </View>
-        ))}
+          );
+        })}
       </View>
 
       {/* 📅 Attendance */}

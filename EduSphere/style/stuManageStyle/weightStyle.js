@@ -81,22 +81,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
 
-  assignmentInfo: {
-    flex: 1,
-    marginRight: 10,
-  },
-
   itemTitle: {
     fontSize: 16,
     fontWeight: '500',
     color: '#111827',
-  },
-
-  attendanceBtn: {
-    borderRadius: 6,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    minWidth: 64,
   },
 
   dropdown: {
