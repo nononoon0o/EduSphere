@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/interactiveStyles';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import NextButton from '../../../../../components/NextButton';
 
 export default function ConceptSummaryScreen() {
   const router = useRouter();
@@ -58,16 +59,10 @@ export default function ConceptSummaryScreen() {
         </View>
 
         {/* 👉 Next */}
-        <View style={styles.card}>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')}
-          >
-            <Ionicons name="arrow-forward" size={24} color="#fff" />
-            <View style={styles.nextButtonCircle}>
-              <Text style={styles.nextButtonText}>{t('conceptSummary.next')}</Text>
-            </View>
-          </TouchableOpacity>
+        
+        {/* ✅ Juste le bouton Next */}
+        <View style={{ alignItems: 'flex-end', marginTop: 20, marginBottom: 40 }}>
+          <NextButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')} />
         </View>
       </ScrollView>
     </View>
