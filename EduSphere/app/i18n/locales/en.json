@@ -22,7 +22,8 @@
     "manageStudents": "Manage Students",
     "viewResults": "View Results",
     "submitAssignment": "Submit Assignment",
-    "withdraw": "Delete Account"
+    "withdraw": "Delete Account",
+    "assignmentScore": "Student Submissions"
   },
   "SEARCH": "Search",
   "search": "Enter a search term...",
@@ -657,63 +658,63 @@
   "teacherComment": "No comment available."
 },
 
-  "dashboard": {
-  "createAssignment": "Create a new assignment",
-  "assignmentTitle": "Assignment title",
-  "assignmentDescription": "Assignment description",
-  "selectDate": "Select due date",
-  "selectedFile": "Selected file",
-  "create": "Create",
-  "currentAssignments": "Current assignments",
-  "delete": "Delete",
-  "setChapterDeadline": "Set deadline for chapter",
-  "selectChapter": "Select a chapter",
-  "saveDeadline": "Save deadline",
-  "errorLoadingAssignments": "Failed to load assignments.",
-  "errorCreateAssignment": "Failed to create assignment.",
-  "errorDeleteAssignment": "Failed to delete assignment.",
-  "deadlineSaved": "Deadline saved successfully.",
-  "deadlineSaveError": "Failed to save deadline.",
-  "fileTypeAlert": "Only .docx and .hwp files are allowed.",
-  "weightSetting": "Adjust Score Weight"
-}
-,
-  "result": {
-    "titleWithName": "{{name}}'s Performance Overview",
-    "title": "Performance Overview",
-    "subjectScores": "Subject Scores",
-    "finalScore": "Final Score",
-    "points": "pts",
-    "attendanceStatus": "Attendance Record",
-    "present": "Present",
-    "late": "Late",
-    "absent": "Absent",
-    "incomplete": "Incomplete",
-    "unknown": "Unknown",
-    "days": " days",
-    "assignmentStatus": "Assignment Submissions",
-    "assignmentTitle": "Assignment",
-    "assignmentRequest": "Please organize the contents of Chapter {{chapter}} in the attached file and submit it.",
-    "noAssignments": "No assignments found.",
-    "viewDetails": "View Details",
-    "errorFetchingAssignments": "Failed to fetch assignments."
+ "dashboard": {
+    "createAssignment": "Create a new assignment",
+    "assignmentTitle": "Assignment title",
+    "assignmentDescription": "Assignment description",
+    "selectDate": "Select due date",
+    "selectedFile": "Selected file",
+    "create": "Create",
+    "currentAssignments": "Current assignments",
+    "delete": "Delete",
+    "setChapterDeadline": "Set deadline for chapter",
+    "selectChapter": "Select a chapter",
+    "saveDeadline": "Save deadline",
+    "errorLoadingAssignments": "Failed to load assignments.",
+    "errorCreateAssignment": "Failed to create assignment.",
+    "errorDeleteAssignment": "Failed to delete assignment.",
+    "deadlineSaved": "Deadline saved successfully.",
+    "deadlineSaveError": "Failed to save deadline.",
+    "fileTypeAlert": "Only .docx and .hwp files are allowed.",
+    "weightSetting": "Adjust Score Weight"
   },
 
-"assignment": {
-    "errorFetch": "Failed to fetch assignment details.",
-    "downloadFail": "Failed to start file download.",
-    "downloadError": "An error occurred during download.",
-    "defaultFilename": "assignment_file",
-    "notFound": "Assignment not found.",
+  "result": {
+  "titleWithName": "{{name}}'s Performance Overview",
+  "title": "Performance Overview",
+  "subjectScores": "Subject Scores",
+  "finalScore": "Final Score",
+  "points": "pts",
+  "attendanceStatus": "Attendance",
+  "present": "Present",
+  "late": "Late",
+  "absent": "Absent",
+  "incomplete": "Incomplete",
+  "unknown": "Unknown",
+  "days": " days",
+  "assignmentStatus": "Assignment Submissions",
+  "assignmentTitle": "Assignment",
+  "assignmentRequest": "Please summarize Chapter {{chapter}} in the attached file and submit it.",
+  "noAssignments": "No assignments found.",
+  "viewDetails": "View Details",
+  "errorFetchingAssignments": "Failed to fetch assignments."
+},
+
+
+    "assignment": {
+    "titlePattern": "Science Assignment {{number}}",
     "description": "Description",
     "dueDate": "Due Date",
-    "download": "Download attached file",
-    "downloadSuccess": "File downloaded successfully."
-    
+    "download": "Download File",
+    "downloadFail": "Failed to download the file.",
+    "downloadError": "An error occurred during download.",
+    "defaultFilename": "assignment.docx",
+    "errorFetch": "Failed to load the assignment.",
+    "notFound": "Assignment not found."
   },
   "assignmentTexts": {
   "scienceTitle1": "Science Assignment 1",
-  "scienceDesc1": "Please organize the contents of Chapter 1 in the attached file and submit it."
+  "scienceDesc1": "Please summarize Chapter 1 in the attached file and submit it."
 },
 
  "submit": {
@@ -790,5 +791,22 @@
       "title": "Save Failed",
       "message": "Failed to save the score weights."
     }
-  }
+  },
+  "scoreStudent": {
+  "title": "{{name}}'s submissions",
+  "selectAssignment": "Select an assignment",
+  "submissionTitle": "Submission Title",
+  "submissionContent": "Content",
+  "fileLink": "File Link",
+  "score": "Score: {{score}}",
+  "notScored": "Not graded",
+  "submittedAt": "Submitted at: {{date}}",
+  "noSubmission": "No submissions found."
+},
+"assignmentScoreIndex": {
+  "title": "List of Assigned Students"
+}
+
+
+
 }
