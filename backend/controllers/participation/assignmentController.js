@@ -163,4 +163,30 @@ const getSubmissionByStudent = async (req, res) => {
   }
 };
 
-module.exports = { createAssignments, getAllAssignment, submitAssignment, getAssignmentById, deleteAssignment, downloadFile, gradeAssignment, getSubmissionByStudent };
+const createAssignmentScore = async (req, res) => {
+  try {
+    const { id: assignmentId, studentId } = req.params;
+    const { score } = req.body
+
+    const assignment = await Assignment.findById(assignmentId);
+    if (!assignment) {
+      return res.status(404).json({ message: '과제를 찾을 수 없습니다.' });
+    }
+
+    const submission = assignment.submissions.find(
+      sub => sub.studentId && sub.studentId.toString() === studentId
+    );
+    if (!submission) {
+      return res.status(404).json({ message: '해당 학생의 제출물이 없습니다.' });
+    }
+
+    submission.score = score;
+    await assignment.save();
+
+    res.json({ success: true, score: submission.score });
+  } catch (e) {
+    return res.status(500).json({ message: '과제 점수 전송 중 오류', error: e.message });
+  }
+}
+
+module.exports = { createAssignments, getAllAssignment, submitAssignment, getAssignmentById, deleteAssignment, downloadFile, gradeAssignment, getSubmissionByStudent, createAssignmentScore };

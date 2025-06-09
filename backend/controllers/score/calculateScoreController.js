@@ -30,12 +30,21 @@ function calculateAssignmentScore(assignment, studentId) {
 // 통합 점수 저장 컨트롤러
 const autoScore = async (req, res) => {
   try {
-    const { studentId, chapter, quizScore = 0 } = req.body;
+    const { studentId, chapter, quizScore = 0, assignmentScore } = req.body;
 
     const existingScore = await Score.findOne({ student: studentId, chapter });
-    if (existingScore && typeof existingScore.quizScore === 'number') {
-      return res.status(409).json({ message: '이미 평가 점수가 저장되어 있습니다.' });
-    }
+    
+    // 평가 점수(quizScore)는 최초 1회만 저장, 이후엔 무시
+    const nextQuizScore =
+      existingScore && typeof existingScore.quizScore === 'number'
+        ? existingScore.quizScore
+        : (quizScore !== undefined ? quizScore : 0);
+
+    // 과제 점수(assignmentScore)는 최신 값으로 덮어써도 됨
+    const nextAssignmentScore =
+      assignmentScore !== undefined
+        ? assignmentScore
+        : (existingScore ? existingScore.assignmentScore : 0);
 
     // 1. 학생 정보 및 가중치 불러오기
     const student = await Student.findById(studentId);
@@ -48,20 +57,16 @@ const autoScore = async (req, res) => {
     const attendanceRecords = await Attendance.find({ studentId, chapter });
     const attendanceScore = calculateAttendanceScore(attendanceRecords);
 
-    // 3. 과제 기록 가져오기
-    const assignment = await Assignment.findOne({ chapter });
-    const assignmentScore = calculateAssignmentScore(assignment, studentId);
-
-    // 4. totalScore 계산 (가중치 적용)
+    // 3. totalScore 계산 (가중치 적용)
     const totalScore =
       quizScore * (weights.quiz / 100) +
       attendanceScore * (weights.attendance / 100) +
       assignmentScore * (weights.assignment / 100);
 
-    // 5. Score 저장 (upsert)
+    // 4. Score 저장 (upsert)
     const score = await Score.findOneAndUpdate(
       { student: studentId, chapter },
-      { quizScore, attendanceScore, assignmentScore, totalScore, weights, updatedAt: new Date() },
+      { quizScore: nextQuizScore, attendanceScore, assignmentScore: nextAssignmentScore, totalScore, weights, updatedAt: new Date() },
       { upsert: true, new: true }
     );
 

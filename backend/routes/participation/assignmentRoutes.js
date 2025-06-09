@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { upload } = require('../../middlewares/upload');
 const { authenticateToken } = require("../../middlewares/authenticate");
-const { createAssignments, getAllAssignment, getAssignmentById, submitAssignment, deleteAssignment, downloadFile, gradeAssignment, getSubmissionByStudent } = require("../../controllers/participation/assignmentController")
+const { createAssignments, getAllAssignment, getAssignmentById, submitAssignment, deleteAssignment, downloadFile, gradeAssignment, getSubmissionByStudent, createAssignmentScore } = require("../../controllers/participation/assignmentController")
 
 // 과제 생성 (교사용)
 router.post('/', upload.single('teafileUrl'), authenticateToken, createAssignments);
+
+// 과제 점수 부여
+router.post('/:id/submission/:studentId', authenticateToken, createAssignmentScore)
 
 // 전체 과제 조회
 router.get('/', authenticateToken, getAllAssignment);
