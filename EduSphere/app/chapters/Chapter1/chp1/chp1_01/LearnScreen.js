@@ -18,6 +18,8 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../../../../../style/ChapterStyle/Chapter1/ch1Style/LearnScreenStyles';
 import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
+import NavigationButtons from '../../../../../components/NavigationButtons';
+
 
 const { width } = Dimensions.get('window');
 
@@ -253,17 +255,12 @@ function LearnScreen() {
         ))}
       </View>
 
-      <View style={styles.navigation}>
-        <TouchableOpacity style={styles.prevButton} onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}>
-          <View style={styles.prevButtonCircle}><Ionicons name="arrow-back" size={24} color="#fff" /></View>
-          <Text style={styles.prevButtonText}>{t('learnScreen.prev')}</Text>
-        </TouchableOpacity>
+      <NavigationButtons
+  onPressPrev={() => router.push('/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen')}
+  onPressNext={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}
+/>
 
-        <TouchableOpacity style={styles.nextButton} onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen')}>
-          <Ionicons name="arrow-forward" size={24} color="#fff" />
-          <View style={styles.nextButtonCircle}><Text style={styles.nextButtonText}>{t('learnScreen.next')}</Text></View>
-        </TouchableOpacity>
-      </View>
+
     </GestureHandlerRootView>
   );
 }
