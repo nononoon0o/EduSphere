@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BackButton from '../../../components/BackButton';
-import styles from '../../../style/stuManageStyle/weightStyle'; // 원하는 대로 스타일 파일 지정
+import styles from '../../../style/stuManageStyle/weightStyle';
 import { useTranslation } from 'react-i18next';
 
 export default function WeightScreen() {
@@ -55,34 +55,34 @@ export default function WeightScreen() {
     <View>
       <BackButton onPress={() => router.replace('/stuManage/teacherDashboard')} />
       <ScrollView style={styles.container}>
-        <Text style={styles.title}>{t('weight.title') || '점수 비율 설정'}</Text>
+        <Text style={styles.sectionTitle}>{t('weight.title') || '점수 비율 설정'}</Text>
         
         <View style={styles.inputRow}>
-          <Text style={styles.label}>학교</Text>
+          <Text style={styles.itemTitle}>학교</Text>
           <TextInput style={styles.input} value={school} onChangeText={setSchool} placeholder="학교명" />
         </View>
         <View style={styles.inputRow}>
-          <Text style={styles.label}>반</Text>
+          <Text style={styles.itemTitle}>반</Text>
           <TextInput style={styles.input} value={classId} onChangeText={setClassId} placeholder="반 (예: 1-2)" />
         </View>
         <View style={styles.inputRow}>
-          <Text style={styles.label}>평가 (%)</Text>
+          <Text style={styles.itemTitle}>평가 (%)</Text>
           <TextInput style={styles.input} value={quiz} onChangeText={setQuiz} keyboardType="numeric" />
         </View>
         <View style={styles.inputRow}>
-          <Text style={styles.label}>출결 (%)</Text>
+          <Text style={styles.itemTitle}>출결 (%)</Text>
           <TextInput style={styles.input} value={attendance} onChangeText={setAttendance} keyboardType="numeric" />
         </View>
         <View style={styles.inputRow}>
-          <Text style={styles.label}>과제 (%)</Text>
+          <Text style={styles.itemTitle}>과제 (%)</Text>
           <TextInput style={styles.input} value={assignment} onChangeText={setAssignment} keyboardType="numeric" />
         </View>
         <TouchableOpacity
-          style={styles.saveButton}
+          style={styles.appButtonContainer}
           onPress={handleSave}
           disabled={saving}
         >
-          <Text style={styles.saveButtonText}>{saving ? '저장중...' : '저장'}</Text>
+          <Text style={styles.appButtonText}>{saving ? '저장중...' : '저장'}</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

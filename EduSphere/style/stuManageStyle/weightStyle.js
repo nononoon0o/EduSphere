@@ -92,33 +92,6 @@ const styles = StyleSheet.create({
     color: '#111827',
   },
 
-  deleteButtonWrapper: {
-    backgroundColor: '#EF4444',
-    borderRadius: 6,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-
-  deleteButtonText: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-    fontSize: 14,
-  },
-
-  attendanceItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomColor: '#E5E7EB',
-    borderBottomWidth: 1,
-    paddingVertical: 10,
-  },
-
-  attendanceButtons: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-
   attendanceBtn: {
     borderRadius: 6,
     paddingVertical: 8,

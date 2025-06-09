@@ -159,12 +159,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 12,
   },
-
-  weightButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  }
 });
 
 export default styles;
