@@ -1,62 +1,81 @@
 const screenMap = {
-  // 🌐 CHAPITRE PRINCIPAL – Accès global
-  "chapterTitles.Chapter1": "/chapters/Chapter1",
-  "chapterTitles.Chapter2": "/chapters/Chapter2",
-  "chapterTitles.Chapter3": "/chapters/Chapter3",
-  "chapterTitles.Chapter4": "/chapters/Chapter4",
+  // 🌐 Main Chapters
+  "📘 물질 변화와 화학 반응식": "/chapters/Chapter1",
+  "📗 원자의 구조와 주기율표": "/chapters/Chapter2",
+  "📙 화학 반응과 에너지 변화": "/chapters/Chapter3",
+  "📒 생활 속의 화학": "/chapters/Chapter4", // ✅ Updated
 
-  // 📘 CHAPITRE 1
-  "chapter1.subtitles.01": "/chapters/Chapter1/Chapter1_01",
-  "chapter1_01.concept": "/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen",
-  "chapter1_01.learn": "/chapters/Chapter1/chp1/chp1_01/LearnScreen",
-  "chapter1_01.video": "/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen",
-  "chapter1_01.eval": "/chapters/Chapter1/chp1/chp1_01/EvaluationScreen",
+  // 📖 Chapter 1 - 01
+  "01. 개념 탐색": "/chapters/Chapter1/Chapter1_01",
+  "📘 개념 요약 (1-1)": "/chapters/Chapter1/chp1/chp1_01/ConceptSummaryScreen",
+  "📦 학습하기 (1-1)": "/chapters/Chapter1/chp1/chp1_01/LearnScreen",
+  "🎬 영상 학습 (1-1)": "/chapters/Chapter1/chp1/chp1_01/VideoLearningScreen",
+  "📝 평가하기 (1-1)": "/chapters/Chapter1/chp1/chp1_01/EvaluationScreen",
 
-  "chapter1.subtitles.02": "/chapters/Chapter1/Chapter1_02",
-  "chapter1_02.concept": "/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen",
-  "chapter1_02.learn": "/chapters/Chapter1/chp1/chp1_02/LearnScreen",
-  "chapter1_02.video": "/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen",
-  "chapter1_02.eval": "/chapters/Chapter1/chp1/chp1_02/EvaluationScreen",
+  // 📖 Chapter 1 - 02
+  "02. 반응 속도": "/chapters/Chapter1/Chapter1_02",
+  "📘 개념 요약 (1-2)": "/chapters/Chapter1/chp1/chp1_02/ConceptSummaryScreen",
+  "📦 학습하기 (1-2)": "/chapters/Chapter1/chp1/chp1_02/LearnScreen",
+  "🎬 영상 학습 (1-2)": "/chapters/Chapter1/chp1/chp1_02/VideoLearningScreen",
+  "📝 평가하기 (1-2)": "/chapters/Chapter1/chp1/chp1_02/EvaluationScreen",
 
-  "chapter1.subtitles.03": "/chapters/Chapter1/Chapter1_03",
-  "chapter1_03.concept": "/chapters/Chapter1/chp1/chp1_03/ConceptSummaryScreen",
-  "chapter1_03.learn": "/chapters/Chapter1/chp1/chp1_03/LearnScreen",
-  "chapter1_03.video": "/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen",
-  "chapter1_03.eval": "/chapters/Chapter1/chp1/chp1_03/EvaluationScreen",
+  // 📖 Chapter 1 - 03
+  "03. 화학 반응 속 물질 변화": "/chapters/Chapter1/Chapter1_03",
+  "📘 개념 요약 (1-3)": "/chapters/Chapter1/chp1/chp1_03/ConceptSummaryScreen",
+  "📦 학습하기 (1-3)": "/chapters/Chapter1/chp1/chp1_03/LearnScreen",
+  "🎬 영상 학습 (1-3)": "/chapters/Chapter1/chp1/chp1_03/VideoLearningScreen",
+  "📝 평가하기 (1-3)": "/chapters/Chapter1/chp1/chp1_03/EvaluationScreen",
 
-  // 📗 CHAPITRE 2
-  "chapter2.subtitles.01": "/chapters/Chapter2/Chapter2_01",
-  "chapter2_01.item1": "/chapters/Chapter2/chp2/chp2_01/AtmosphereComposition",
-  "chapter2_01.item2": "/chapters/Chapter2/chp2/chp2_01/ClimateChangeEffects",
-  "chapter2_01.item3": "/chapters/Chapter2/chp2/chp2_01/ClimateChemistry",
-  "chapter2_01.item4": "/chapters/Chapter2/chp2/chp2_01/EnergyTransferMechanisms",
-  "chapter2_01.item5": "/chapters/Chapter2/chp2/chp2_01/GreenhouseEffect",
-  "chapter2_01.item6": "/chapters/Chapter2/chp2/chp2_01/HumanImpactClimate",
+  // 📖 Chapter 2 – 원자의 구조와 주기율표
+  "01. 물질을 구성하는 입자": "/chapters/Chapter2/Chapter2_01",
+  "📘 개념 요약 (2-1)": "/chapters/Chapter2/chp2/chp2_01/ConceptSummaryScreen",
+  "📦 학습하기 (2-1)": "/chapters/Chapter2/chp2/chp2_01/LearnScreen",
+  "🎬 영상 학습 (2-1)": "/chapters/Chapter2/chp2/chp2_01/VideoLearningScreen",
+  "📝 평가하기 (2-1)": "/chapters/Chapter2/chp2/chp2_01/EvaluationScreen",
 
-  "chapter2.subtitles.02": "/chapters/Chapter2/Chapter2_02",
-  "chapter2_02.item1": "/chapters/Chapter2/chp2/chp2_02/ConservationOfMass",
-  "chapter2_02.item2": "/chapters/Chapter2/chp2/chp2_02/DefiniteProportions",
+  "02. 원자 모형의 변천": "/chapters/Chapter2/Chapter2_02",
+  "📘 개념 요약 (2-2)": "/chapters/Chapter2/chp2/chp2_02/ConceptSummaryScreen",
+  "📦 학습하기 (2-2)": "/chapters/Chapter2/chp2/chp2_02/LearnScreen",
+  "🎬 영상 학습 (2-2)": "/chapters/Chapter2/chp2/chp2_02/VideoLearningScreen",
+  "📝 평가하기 (2-2)": "/chapters/Chapter2/chp2/chp2_02/EvaluationScreen",
 
-  "chapter2.subtitles.03": "/chapters/Chapter2/Chapter2_03",
-  "chapter2_03.item1": "/chapters/Chapter2/chp2/chp2_03/GasEnergyExchange",
-  "chapter2_03.item2": "/chapters/Chapter2/chp2/chp2_03/PressureDetail",
-  "chapter2_03.item3": "/chapters/Chapter2/chp2/chp2_03/WindDetail",
+  "03. 원자의 구조와 전자 배치": "/chapters/Chapter2/Chapter2_03",
+  "📘 개념 요약 (2-3)": "/chapters/Chapter2/chp2/chp2_03/ConceptSummaryScreen",
+  "📦 학습하기 (2-3)": "/chapters/Chapter2/chp2/chp2_03/LearnScreen",
+  "🎬 영상 학습 (2-3)": "/chapters/Chapter2/chp2/chp2_03/VideoLearningScreen",
+  "📝 평가하기 (2-3)": "/chapters/Chapter2/chp2/chp2_03/EvaluationScreen",
 
-  "chapter2.subtitles.04": "/chapters/Chapter2/Chapter2_04",
-  "chapter2_04.item1": "/chapters/Chapter2/chp2/chp2_04/ForecastingModeling",
-  "chapter2_04.item2": "/chapters/Chapter2/chp2/chp2_04/ScientificPrinciples",
-  "chapter2_04.item3": "/chapters/Chapter2/chp2/chp2_04/WeatherImpact",
+  "04. 주기율표와 성질의 규칙성": "/chapters/Chapter2/Chapter2_04",
+  "📘 개념 요약 (2-4)": "/chapters/Chapter2/chp2/chp2_04/ConceptSummaryScreen",
+  "📦 학습하기 (2-4)": "/chapters/Chapter2/chp2/chp2_04/LearnScreen",
+  "🎬 영상 학습 (2-4)": "/chapters/Chapter2/chp2/chp2_04/VideoLearningScreen",
+  "📝 평가하기 (2-4)": "/chapters/Chapter2/chp2/chp2_04/EvaluationScreen",
 
-  // 📙 CHAPITRE 3
-  "chapter3.subtitles.01": "/chapters/Chapter3/Chapter3_01",
-  "chapter3_01.screen": "/chapters/Chapter3/chp3/chp3_01/ChangesInMatterScreen",
+  // 📖 Chapter 3 – 화학 반응과 에너지 변화
+  "01. 화학 반응의 규칙성": "/chapters/Chapter3/Chapter3_01",
+  "📘 개념 요약 (3-1)": "/chapters/Chapter3/chp3/chp3_01/ConceptSummaryScreen",
+  "📦 학습하기 (3-1)": "/chapters/Chapter3/chp3/chp3_01/LearnScreen",
+  "🎬 영상 학습 (3-1)": "/chapters/Chapter3/chp3/chp3_01/VideoLearningScreen",
+  "📝 평가하기 (3-1)": "/chapters/Chapter3/chp3/chp3_01/EvaluationScreen",
 
-  "chapter3.subtitles.02": "/chapters/Chapter3/Chapter3_02",
-  "chapter3_02.screen": "/chapters/Chapter3/chp3/chp3_02/ChemicalEquationsScreen",
+  "02. 화학 반응과 에너지": "/chapters/Chapter3/Chapter3_02",
+  "📘 개념 요약 (3-2)": "/chapters/Chapter3/chp3/chp3_02/ConceptSummaryScreen",
+  "📦 학습하기 (3-2)": "/chapters/Chapter3/chp3/chp3_02/LearnScreen",
+  "🎬 영상 학습 (3-2)": "/chapters/Chapter3/chp3/chp3_02/VideoLearningScreen",
+  "📝 평가하기 (3-2)": "/chapters/Chapter3/chp3/chp3_02/EvaluationScreen",
 
-  // 📒 CHAPITRE 4
-  "chapter4.subtitles.01": "/chapters/Chapter4/Chapter4_01",
-  "chapter4.subtitles.02": "/chapters/Chapter4/Chapter4_02",
+  // 📖 Chapter 4 – 생활 속의 화학
+  "01. 산과 염기의 성질": "/chapters/Chapter4/Chapter4_01",
+  "📘 개념 요약 (4-1)": "/chapters/Chapter4/chp4/chp4_01/ConceptSummaryScreen",
+  "📦 학습하기 (4-1)": "/chapters/Chapter4/chp4/chp4_01/LearnScreen",
+  "🎬 영상 학습 (4-1)": "/chapters/Chapter4/chp4/chp4_01/VideoLearningScreen",
+  "📝 평가하기 (4-1)": "/chapters/Chapter4/chp4/chp4_01/EvaluationScreen",
+
+  "02. 중화 반응과 염": "/chapters/Chapter4/Chapter4_02",
+  "📘 개념 요약 (4-2)": "/chapters/Chapter4/chp4/chp4_02/ConceptSummaryScreen",
+  "📦 학습하기 (4-2)": "/chapters/Chapter4/chp4/chp4_02/LearnScreen",
+  "🎬 영상 학습 (4-2)": "/chapters/Chapter4/chp4/chp4_02/VideoLearningScreen",
+  "📝 평가하기 (4-2)": "/chapters/Chapter4/chp4/chp4_02/EvaluationScreen",
 };
 
 export default screenMap;
