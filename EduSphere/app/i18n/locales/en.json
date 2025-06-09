@@ -31,14 +31,15 @@
   "noMatches": "No matching results found",
   "noRouteTitle": "Page not found",
   "noRouteMessage": "Cannot navigate to this route",
-  "chapter1": {
-    "title": "Ⅰ. Laws of Chemical Reactions and Energy Change",
-    "subtitles": {
-      "01": "Changes in Matter and Chemical Reactions",
-      "02": "Law of Conservation of Mass and Constant Proportions",
-      "03": "Gas Reaction Laws and Energy Exchange"
-    }
-  },
+
+"chapter1": {
+  "title": "Ⅰ. Changes in Matter",
+  "subtitles": {
+    "01": "Physical and Chemical Changes",
+    "02": "Chemical Reactions",
+    "03": "Chemical Reaction Equations"
+  }
+},
   "chapter2": {
     "title": "Ⅱ. Atomic Structure and Periodic Table",
     "subtitles": {
@@ -63,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Changes in Matter and Chemical Reactions",
+    "subtitle": "Ⅰ. Changes in Matter",
     "title": "01. Concept Exploration",
     "sections": {
       "concept": "Concept Summary",
