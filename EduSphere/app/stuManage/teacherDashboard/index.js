@@ -279,8 +279,9 @@ const TeacherDashboard = () => {
         </View>
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
+
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('dashboard.weightSetting') || '점수 비율 조정'}</Text>
+          <Text style={styles.sectionTitle}>{t('dashboard.weightSetting')}</Text>
           <TouchableOpacity
             style={styles.weightButtonContainer}
             onPress={() => router.push('./teacherDashboard/weight')}
