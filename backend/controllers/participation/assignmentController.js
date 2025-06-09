@@ -119,4 +119,48 @@ const downloadFile = async (req, res) => {
   }
 };
 
-module.exports = { createAssignments, getAllAssignment, submitAssignment, getAssignmentById, deleteAssignment, downloadFile };
+const gradeAssignment = async (req, res) => {
+  try {
+    const { assignmentId, studentId } = req.params;
+    const { score } = req.body;
+
+    if (typeof score !== 'number') {
+      return res.status(400).json({ success: false, message: 'score는 숫자여야 합니다.' });
+    }
+
+    const assignment = await Assignment.findById(assignmentId);
+    if (!assignment) return res.status(404).json({ success: false, message: '과제를 찾을 수 없습니다.' });
+
+    const submission = assignment.submissions.find(
+      sub => sub.studentId.toString() === studentId
+    );
+    if (!submission) return res.status(404).json({ success: false, message: '제출물을 찾을 수 없습니다.' });
+
+    submission.score = score;
+    await assignment.save();
+
+    res.json({ success: true, score: submission.score });
+  } catch (e) {
+    res.status(500).json({ success: false, message: e.message });
+  }
+};
+
+const getSubmissionByStudent = async (req, res) => {
+  try {
+    const { assignmentId, studentId } = req.params;
+    const assignment = await Assignment.findById(assignmentId);
+    if (!assignment) {
+      return res.status(404).json({ message: '과제를 찾을 수 없습니다.' });
+    }
+    // submissions 배열에서 해당 학생의 제출만 필터
+    const submissions = assignment.submissions.filter(
+      sub => sub.studentId && sub.studentId.toString() === studentId
+    );
+    // submissions가 없으면 빈 배열 응답
+    return res.json({ submissions });
+  } catch (e) {
+    return res.status(500).json({ message: '서버 오류', error: e.message });
+  }
+};
+
+module.exports = { createAssignments, getAllAssignment, submitAssignment, getAssignmentById, deleteAssignment, downloadFile, gradeAssignment, getSubmissionByStudent };
