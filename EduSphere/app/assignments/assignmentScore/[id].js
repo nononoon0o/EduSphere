@@ -26,13 +26,11 @@ export default function AssignmentScoreStudent() {
 
   const fetchStudentAndAssignments = async () => {
     const token = await AsyncStorage.getItem('token');
-    // 학생 정보
     const stuRes = await axios.get(`http://localhost:5000/api/students/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setStudent(stuRes.data);
 
-    // 전체 과제 목록
     const asnRes = await axios.get('http://localhost:5000/api/assignments', {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -57,7 +55,6 @@ export default function AssignmentScoreStudent() {
     setSubmissions(res.data.submissions || []);
   };
 
-  // 특정 과제 선택 시 제출물 목록 fetch
   useEffect(() => {
     fetchStudentAndAssignments();
     fetchSubmissions();
@@ -67,49 +64,44 @@ export default function AssignmentScoreStudent() {
 
   return (
     <ScrollView style={styles.container}>
-      {/* 학생 이름 */}
       <Text style={styles.title}>
-        {student ? `${student.nickname || student.name}의 제출물 목록` : ''}
+        {student ? t('scoreStudent.title', { name: student.nickname || student.name }) : ''}
       </Text>
 
-      {/* 드롭박스: 과제 선택 */}
       <Dropdown
         style={styles.dropdown}
         data={assignments}
         labelField="label"
         valueField="value"
-        placeholder={t('submit.selectAssignment')}
+        placeholder={t('scoreStudent.selectAssignment')}
         value={selectedAssignment}
         onChange={(item) => setSelectedAssignment(item.value)}
         maxHeight={300}
       />
 
-      {/* 제출물 목록 보여주기 */}
       {selectedAssignment && (
         <View style={styles.card}>
           {submissions.length > 0 ? (
             submissions.map((sub, idx) => (
               <View key={idx} style={styles.submissionRow}>
-                <Text style={styles.assignmentContent}>제출 제목: {sub.stuTitle}</Text>
-                <Text style={styles.assignmentContent}>내용: {sub.stuContent}</Text>
+                <Text style={styles.assignmentContent}>{t('scoreStudent.submissionTitle')}: {sub.stuTitle}</Text>
+                <Text style={styles.assignmentContent}>{t('scoreStudent.submissionContent')}: {sub.stuContent}</Text>
                 {sub.stufileUrl && (
                   <Text
                     style={[styles.assignmentContent, { color: '#2563EB', textDecorationLine: 'underline' }]}
                     onPress={() => {
-                      // 파일 확인용. 실제 앱에서는 Linking 사용
                       window.open(sub.stufileUrl, '_blank');
                     }}
                   >
-                    파일 링크
+                    {t('scoreStudent.fileLink')}
                   </Text>
                 )}
-                {/* 점수 및 기타 정보 */}
-                <Text style={styles.assignmentContent}>점수: {sub.score !== undefined && sub.score !== null ? `${sub.score}점` : '미채점'}</Text>
-                <Text style={styles.assignmentContent}>제출일: {sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : "제출 정보 없음"}</Text>
+                <Text style={styles.assignmentContent}>{t('scoreStudent.score', { score: sub.score ?? t('scoreStudent.notScored') })}</Text>
+                <Text style={styles.assignmentContent}>{t('scoreStudent.submittedAt', { date: sub.submittedAt ? new Date(sub.submittedAt).toLocaleString() : t('scoreStudent.noSubmission') })}</Text>
               </View>
             ))
           ) : (
-            <Text style={styles.emptyText}>제출물이 없습니다.</Text>
+            <Text style={styles.emptyText}>{t('scoreStudent.noSubmission')}</Text>
           )}
         </View>
       )}
