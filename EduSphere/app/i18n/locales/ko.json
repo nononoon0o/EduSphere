@@ -703,19 +703,15 @@
 },
 
 "assignment": {
-    "titlePattern": "과학 과제 {{number}}",
-    "description": "설명",
-    "dueDate": "제출 마감일",
-    "download": "파일 다운로드",
-    "downloadFail": "파일 다운로드에 실패했습니다.",
-    "downloadError": "다운로드 중 오류가 발생했습니다.",
-    "defaultFilename": "과제.docx",
-    "errorFetch": "과제 불러오기에 실패했습니다.",
-    "notFound": "과제를 찾을 수 없습니다."
-  },
-  "assignmentTexts": {
-  "scienceTitle1": "과학 과제 1",
-  "scienceDesc1": "첨부 파일에 챕터 1 내용을 정리해서 제출해주세요"
+  "chapter": "과제 챕터",
+  "description": "설명",
+  "dueDate": "제출 마감일",
+  "download": "파일 다운로드",
+  "downloadFail": "파일 다운로드에 실패했습니다.",
+  "downloadError": "다운로드 중 오류가 발생했습니다.",
+  "defaultFilename": "과제.docx",
+  "errorFetch": "과제 불러오기에 실패했습니다.",
+  "notFound": "과제를 찾을 수 없습니다."
 },
 
 "submit": {
@@ -795,9 +791,10 @@
       "message": "저장에 실패했습니다."
     }
   },
-  "scoreStudent": {
+"scoreStudent": {
   "title": "{{name}}의 제출물 목록",
   "selectAssignment": "과제를 선택하세요",
+  "chapter": "과제 챕터",
   "submissionTitle": "제출 제목",
   "submissionContent": "내용",
   "fileLink": "파일 링크",

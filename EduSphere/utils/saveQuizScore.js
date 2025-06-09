@@ -2,8 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function saveQuizScore({ studentId, chapter, quizScore }) {
-  const token = await AsyncStorage.getItem('token');
   try {
+    const token = await AsyncStorage.getItem('token');
     await axios.post(
       'http://localhost:5000/api/scores/',
       { studentId, chapter, quizScore },

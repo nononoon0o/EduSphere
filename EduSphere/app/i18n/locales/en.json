@@ -702,21 +702,16 @@
   "errorFetchingAssignments": "Failed to fetch assignments."
 },
 
-
-    "assignment": {
-    "titlePattern": "Science Assignment {{number}}",
-    "description": "Description",
-    "dueDate": "Due Date",
-    "download": "Download File",
-    "downloadFail": "Failed to download the file.",
-    "downloadError": "An error occurred during download.",
-    "defaultFilename": "assignment.docx",
-    "errorFetch": "Failed to load the assignment.",
-    "notFound": "Assignment not found."
-  },
-  "assignmentTexts": {
-  "scienceTitle1": "Science Assignment 1",
-  "scienceDesc1": "Please summarize Chapter 1 in the attached file and submit it."
+"assignment": {
+  "chapter": "Assignment chapter",
+  "description": "Description",
+  "dueDate": "Due Date",
+  "download": "Download File",
+  "downloadFail": "Failed to download the file.",
+  "downloadError": "An error occurred during download.",
+  "defaultFilename": "assignment.docx",
+  "errorFetch": "Failed to load the assignment.",
+  "notFound": "Assignment not found."
 },
 
  "submit": {
@@ -797,6 +792,7 @@
   "scoreStudent": {
   "title": "{{name}}'s submissions",
   "selectAssignment": "Select an assignment",
+  "chapter": "Assignment chapter",
   "submissionTitle": "Submission Title",
   "submissionContent": "Content",
   "fileLink": "File Link",

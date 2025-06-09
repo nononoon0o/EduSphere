@@ -42,6 +42,7 @@ export default function AssignmentScoreStudent() {
         headers: { Authorization: `Bearer ${token}` },
       });
       const assignmentList = asnRes.data.map((a) => ({
+        chapter: a.chapter,
         label: a.title,
         value: a._id,
       }));
@@ -83,18 +84,24 @@ export default function AssignmentScoreStudent() {
     setInputScores(prev => ({ ...prev, [idx]: value }));
   };
 
-  const saveScore = async (submission) => {
+  const handleSaveScore = async (submission) => {
     setSaving(true);
     try {
       const token = await AsyncStorage.getItem('token');
-      const score = Number(inputScores[submission._id]);
-      await axios.patch(
+      const assignmentScore = Number(inputScores[submission._id]);
+      await axios.post(
         `http://localhost:5000/api/scores/`,
-        { score },
+        { studentId: student._id, chapter: selectedAssignmentObj.chapter, assignmentScore  },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      await axios.post(
+        `http://localhost:5000/api/assignments/${selectedAssignment}/submission/${id}`,
+        { score: assignmentScore, chapter: selectedAssignmentObj.chapter },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('점수 저장 완료!');
       await fetchSubmissions();
+      return { success: true };
     } catch (e) {
       alert('점수 저장 실패!');
     } finally {
@@ -135,6 +142,8 @@ export default function AssignmentScoreStudent() {
     }
   };
 
+  const selectedAssignmentObj = assignments.find(a => a.value === selectedAssignment);
+
   return (
     <View style={styles.container}>
       <BackButton onPress={() => router.back()} />
@@ -159,6 +168,7 @@ export default function AssignmentScoreStudent() {
             {submissions.length > 0 ? (
               submissions.map((sub, idx) => (
                 <View key={idx} style={styles.submissionRow}>
+                  <Text style={styles.assignmentContent}>{t('scoreStudent.chapter')}: {selectedAssignmentObj ? selectedAssignmentObj.chapter : ''}</Text>
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submissionTitle')}: {sub.stuTitle}</Text>
                   <Text style={styles.assignmentContent}>{t('scoreStudent.submissionContent')}: {sub.stuContent}</Text>
                   {sub.stufileUrl ? (
@@ -182,7 +192,7 @@ export default function AssignmentScoreStudent() {
                     />
                     <TouchableOpacity
                       style={styles.saveButton}
-                      onPress={() => saveScore(sub)}
+                      onPress={() => handleSaveScore(sub)}
                       disabled={saving}
                     >
                       <Text style={styles.saveButtonText}>

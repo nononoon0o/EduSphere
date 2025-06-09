@@ -702,21 +702,18 @@
 }
 ,
 
-   "assignment": {
-    "titlePattern": "Devoir de science {{number}}",
-    "description": "Description",
-    "dueDate": "Date limite",
-    "download": "Télécharger le fichier",
-    "downloadFail": "Échec du téléchargement du fichier.",
-    "downloadError": "Une erreur est survenue lors du téléchargement.",
-    "defaultFilename": "devoir.docx",
-    "errorFetch": "Échec du chargement du devoir.",
-    "notFound": "Devoir introuvable."
-  },
-  "assignmentTexts": {
-  "scienceTitle1": "Devoir de science 1",
-  "scienceDesc1": "Veuillez résumer le chapitre 1 dans le fichier joint et le soumettre."
+"assignment": {
+  "chapter": "chapitre de devoir",
+  "description": "Description",
+  "dueDate": "Date limite",
+  "download": "Télécharger le fichier",
+  "downloadFail": "Échec du téléchargement du fichier.",
+  "downloadError": "Une erreur est survenue lors du téléchargement.",
+  "defaultFilename": "devoir.docx",
+  "errorFetch": "Échec du chargement du devoir.",
+  "notFound": "Devoir introuvable."
 },
+
 "submit": {
     "title": "Soumettre un devoir",
     "selectAssignment": "Sélectionnez un devoir",
@@ -796,6 +793,7 @@
   "scoreStudent": {
   "title": "Soumissions de {{name}}",
   "selectAssignment": "Sélectionnez un devoir",
+  "chapter": "Chapitre de devoir",
   "submissionTitle": "Titre de la soumission",
   "submissionContent": "Contenu",
   "fileLink": "Lien du fichier",

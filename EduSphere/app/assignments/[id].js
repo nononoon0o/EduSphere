@@ -98,6 +98,11 @@ export default function AssignmentDetailScreen() {
           {assignment.title}
         </Text>
 
+        <Text style={styles.label}>{t('assignment.chapter')}</Text>
+        <Text style={styles.text}>
+          {assignment.chapter}
+        </Text>
+
         <Text style={styles.label}>{t('assignment.description')}</Text>
         <Text style={styles.text}>
           {assignment.description}
