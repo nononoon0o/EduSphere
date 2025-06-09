@@ -97,7 +97,7 @@ export default function VideoLearningScreen() {
 
       {/* ✅ Only Previous Button */}
       <View style={{ alignItems: 'flex-start', width: '90%', alignSelf: 'center' }}>
-        <PreviousButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')} />
+        <PreviousButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_03/LearnScreen')} />
       </View>
     </View>
   );
