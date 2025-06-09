@@ -1,9 +1,10 @@
+// ✅ Nouveau fichier de styles modernisés pour SearchScreen
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f4f9',
+    backgroundColor: '#e6f0ff', // dégradé simulé par fond doux
   },
 
   // Layout
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   },
 
   sidebar: {
-    backgroundColor: '#e3efff',
+    backgroundColor: '#dceeff',
     paddingVertical: 20,
     paddingHorizontal: 12,
   },
@@ -24,15 +25,15 @@ const styles = StyleSheet.create({
   },
 
   sidebarDesktop: {
-    width: 200,
+    width: 220,
     borderRightWidth: 1,
     borderColor: '#c2d1e0',
   },
 
   mainContent: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 24,
+    paddingHorizontal: 24,
+    paddingTop: 30,
   },
 
   // Header
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 14,
     paddingHorizontal: 20,
-    backgroundColor: '#d1e9ff',
+    backgroundColor: '#cce4ff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -49,9 +50,10 @@ const styles = StyleSheet.create({
   },
 
   customHeaderText: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '700',
-    color: '#113c5a',
+    color: '#002b45',
+    fontFamily: 'Poppins',
   },
 
   iconGroup: {
@@ -81,25 +83,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 10,
-    marginTop: 20,
-    color: '#2f3640',
+    marginTop: 24,
+    color: '#364f6b',
   },
 
   // Search box
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: 14,
     borderWidth: 1.5,
-    borderColor: '#d0d7e2',
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
+    borderColor: '#b3cde0',
+    shadowColor: '#3b82f6',
+    shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
-    elevation: 3,
+    elevation: 4,
   },
 
   textInput: {
@@ -110,22 +112,22 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    marginRight: 6,
+    marginRight: 8,
     color: '#7f8c8d',
   },
 
   // Chapter + Section
   filterItem: {
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 8,
-    marginBottom: 6,
-    backgroundColor: '#fff',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    marginBottom: 8,
+    backgroundColor: '#ffffff',
     shadowColor: '#000',
-    shadowOpacity: 0.02,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 2,
-    elevation: 1,
+    shadowOpacity: 0.06,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3,
+    elevation: 2,
   },
 
   itemText: {
@@ -141,22 +143,22 @@ const styles = StyleSheet.create({
 
   // Recent list
   listContainer: {
-    paddingBottom: 100,
+    paddingBottom: 120,
   },
 
   recentRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingHorizontal: 18,
     backgroundColor: '#ffffff',
-    marginBottom: 8,
-    borderRadius: 10,
+    marginBottom: 10,
+    borderRadius: 12,
     shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    elevation: 2,
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
   },
 
   recentText: {
@@ -173,7 +175,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
 
-  // Optional: Button (if used)
   searchButton: {
     backgroundColor: '#3b82f6',
     paddingHorizontal: 16,
@@ -190,7 +191,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  // Not used but kept for compatibility
   returnButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -219,15 +219,15 @@ const styles = StyleSheet.create({
   titleWrapper: {
     marginBottom: 16,
   },
-  inputFocused: {
-  borderColor: '#3b82f6',
-  shadowColor: '#3b82f6',
-  shadowOpacity: 0.15,
-  shadowOffset: { width: 0, height: 2 },
-  shadowRadius: 6,
-  elevation: 4,
-},
 
+  inputFocused: {
+    borderColor: '#3b82f6',
+    shadowColor: '#3b82f6',
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 4,
+  },
 });
 
 export default styles;
