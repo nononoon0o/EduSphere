@@ -1,129 +1,234 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from '../../style/assignments/assignmentDetailStyle';
+import axios from 'axios';
+import styles from '../../style/stuManageStyle/studentDetailStyle';
 import BackButton from '../../components/BackButton';
 import { useTranslation } from 'react-i18next';
 
-export default function AssignmentDetailScreen() {
+const allChapters = [
+  { chapter: "Chapter1_01", title: "Chapter1_01" },
+  { chapter: "Chapter1_02", title: "Chapter1_02" },
+  { chapter: "Chapter1_03", title: "Chapter1_03" },
+  { chapter: "Chapter2_01", title: "Chapter2_01" },
+  { chapter: "Chapter2_02", title: "Chapter2_02" },
+  { chapter: "Chapter2_03", title: "Chapter2_03" },
+];
+
+export default function StudentDetail() {
   const { id } = useLocalSearchParams();
-  const navigation = useNavigation();
+  const [student, setStudent] = useState(null);
+  const [attendance, setAttendance] = useState([]);
+  const [assignments, setAssignments] = useState([]);
+  const [deadlines, setDeadlines] = useState([]);
+  const [chapterScores, setChapterScores] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
   const { t } = useTranslation();
 
-  const [assignment, setAssignment] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  const fetchAssignment = async () => {
+  const fetchStudent = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const res = await axios.get(`http://localhost:5000/api/assignments/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const res = await axios.get(`http://localhost:5000/api/students/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-
-      if (!res.data || !res.data.assignment) {
-        setError(t('assignment.errorFetch'));
-        setAssignment(null);
-        return;
-      }
-
-      setAssignment(res.data.assignment);
+      setStudent(res.data);
     } catch (err) {
-      setError(t('assignment.errorFetch'));
-      setAssignment(null);
-      console.log(err);
-    } finally {
-      setLoading(false);
+      console.error(t('studentDetail.noStudentInfo'), err.response?.data || err.message);
     }
+  };
+
+  const fetchAttendance = async (studentId) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get(`http://localhost:5000/api/attendance/student/${studentId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.data.success && res.data.records) {
+        setAttendance(res.data.records);
+      } else {
+        setAttendance([]);
+      }
+    } catch (err) {
+      console.error(t('studentDetail.attendanceStatus'), err.response?.data || err.message);
+    }
+  };
+
+  const fetchAssignments = async (studentId) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get(`http://localhost:5000/api/students/${studentId}/results`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setAssignments(res.data.assignments || []);
+    } catch (err) {
+      console.error(t('studentDetail.assignmentStatus'), err.response?.data || err.message);
+    }
+  };
+
+  const fetchDeadlines = async () => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/api/deadlines/all', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setDeadlines(res.data.deadlines || []);
+    } catch (err) {
+      console.error('데드라인 정보 요청 실패:', err);
+    }
+  };
+
+  const fetchTotalScore = async (studentId, chapter) => {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const res = await axios.get(`http://localhost:5000/api/scores/${studentId}/${chapter}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      return { chapter, ...res.data };
+    } catch (err) {
+      return { chapter, totalScore: null };
+      console.error('점수 정보 요청 실패:', err)
+    }
+  };
+
+  const fetchAllChapterScores = async (studentId) => {
+    const scoreResults = [];
+    for (const ch of allChapters) {
+      const result = await fetchTotalScore(studentId, ch.chapter);
+      scoreResults.push(result);
+    }
+    setChapterScores(scoreResults);
   };
 
   useEffect(() => {
-    fetchAssignment();
+    const fetchData = async () => {
+      await fetchStudent();
+      await fetchAttendance(id);
+      await fetchAssignments(id);
+      await fetchDeadlines();
+      await fetchTotalScore(id); 
+      await fetchAllChapterScores(id);
+      setLoading(false);
+    };
+    fetchData();
   }, [id]);
 
-  const handleDownload = async () => {
-    try {
-      const token = await AsyncStorage.getItem('token');
-      const fileId = assignment.teafileId;
-      const url = `http://localhost:5000/api/assignments/files/${fileId}`;
-      const res = await fetch(url, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  if (loading) return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
 
-      if (!res.ok) {
-        alert(t('assignment.downloadFail'));
-        return;
-      }
+  if (!student) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.infoText}>{t('studentDetail.noStudentInfo')}</Text>
+      </View>
+    );
+  }
 
-      const contentDisposition = res.headers.get('Content-Disposition');
-      let filename = t('assignment.defaultFilename');
-      if (contentDisposition) {
-        const match = contentDisposition.match(/filename="(.+)"/);
-        if (match && match[1]) {
-          filename = decodeURIComponent(match[1]);
-        }
-      }
+  const getAttendanceStatus = (chapter) => {
+    const attendanceObj = attendance.find(a => a.chapter === chapter);
+    const deadlineObj = deadlines.find(d => d.chapter === chapter);
 
-      const blob = await res.blob();
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = filename;
-      link.click();
-    } catch (err) {
-      alert(t('assignment.downloadError'));
-      console.log(err);
-    }
+    if (attendanceObj) return attendanceObj.status;
+    if (deadlineObj && new Date(deadlineObj.deadline) < new Date()) return '결석';
+    if (deadlineObj) return '미완료';
+    return '정보 없음';
   };
 
-  if (loading) return <ActivityIndicator size="large" style={{ marginTop: 50 }} />;
-  if (error) return <Text style={styles.error}>{error}</Text>;
-  if (!assignment) return <Text style={styles.error}>{t('assignment.notFound')}</Text>;
+  const countAttendance = () => {
+    const counts = { 출석: 0, 지각: 0, 결석: 0, 미완료: 0 };
+    allChapters.forEach(ch => {
+      const status = getAttendanceStatus(ch.chapter);
+      if (status === '출석') counts.출석 += 1;
+      else if (status === '지각') counts.지각 += 1;
+      else if (status === '결석') counts.결석 += 1;
+      else if (status === '미완료') counts.미완료 += 1;
+    });
+    return counts;
+  };
+
+  const attendanceCounts = countAttendance();
 
   return (
-  <View style={{ flex: 1, backgroundColor: '#F1F5F9' }}>
-    <BackButton onPress={() => navigation.goBack()} />
+    <View>
+      <BackButton onPress={() => router.replace('/stuManage/stuManageScreen')} />
+      <ScrollView
+        style={styles.container}
+        scrollEnabled={true}
+        contentContainerStyle={{ paddingBottom: 60 }}
+      >
+        <Text style={styles.title}>{t('result.titleWithName', { name: student.nickname })}</Text>
 
-    <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
-      <View style={styles.card}>
-        <Text style={styles.title}>
-          {assignment.title === '과학 과제 1'
-            ? t('assignmentTexts.scienceTitle1')
-            : assignment.title}
-        </Text>
+        <View style={styles.card}>
+          <Text style={styles.name}>{student.nickname}</Text>
+          <Text style={styles.infoText}>{t('studentDetail.studentNumber')}: {student.studentNumber}</Text>
+          <Text style={styles.infoText}>{t('studentDetail.class')}: {student.classId}</Text>
+          <Text style={styles.infoText}>{t('studentDetail.school')}: {student.school}</Text>
+        </View>
 
-        <Text style={styles.label}>{t('assignment.description')}</Text>
-        <Text style={styles.text}>
-          {assignment.description === '첨부 파일에 챕터 1 내용을 정리해서 제출해주세요'
-            ? t('assignmentTexts.scienceDesc1')
-            : assignment.description}
-        </Text>
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>📚 {t('result.subjectScores')}</Text>
+          {allChapters.map((ch, idx) => {
+            const scoreObj = chapterScores.find(s => s.chapter === ch.chapter);
+            const total = (scoreObj?.totalScore ?? 0);
+            const quiz = (scoreObj?.quizScore ?? 0);
+            const attendance = (scoreObj?.attendanceScore ?? 0);
+            const assignment = (scoreObj?.assignmentScore ?? 0);
+            return (
+              <Text key={ch.chapter} style={styles.subjectText}>
+                {t('result.subjectLine', {
+                  chapter: ch.title,
+                  score: total,
+                  quiz,
+                  attendance,
+                  assignment
+                })}
+              </Text>
+            );
+          })}
+        </View>
 
-        <Text style={styles.label}>{t('assignment.dueDate')}</Text>
-        <View style={styles.dueDateBadge}>
-          <Text style={styles.dueDateText}>
-            {assignment.dueDate
-              ? new Date(assignment.dueDate).toLocaleDateString()
-              : '-'}
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>🕘 {t('result.attendanceStatus')}</Text>
+          <Text style={[styles.tag, styles.tagPresent]}>
+            {t('result.present')}: {attendanceCounts.출석}{t('result.unit')}
+          </Text>
+          <Text style={[styles.tag, styles.tagLate]}>
+            {t('result.late')}: {attendanceCounts.지각}{t('result.unit')}
+          </Text>
+          <Text style={[styles.tag, styles.tagAbsent]}>
+            {t('result.absent')}: {attendanceCounts.결석}{t('result.unit')}
+          </Text>
+          <Text style={[styles.tag, styles.tagAbsent]}>
+            {t('result.incomplete')}: {attendanceCounts.미완료}{t('result.unit')}
           </Text>
         </View>
 
-        {assignment.teafileId && (
-          <TouchableOpacity onPress={handleDownload}>
-            <Text style={styles.downloadLink}>📎 {t('assignment.download')}</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-    </ScrollView>
-  </View>
-);
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>📝 {t('result.assignmentStatus')}</Text>
+          {assignments.length > 0 ? (
+            assignments.map((item, idx) => (
+              <Text key={idx} style={styles.assignmentText}>
+                {t('result.submissionLine', {
+                  title: item.title,
+                  status: item.status === '제출'
+                    ? t('result.submitted')
+                    : t('result.notSubmitted')
+                })}
+                {item.score && (
+                  <Text style={styles.scoreTag}> ({item.score}{t('studentDetail.scoreUnit')})</Text>
+                )}
+              </Text>
+            ))
+          ) : (
+            <Text style={styles.assignmentText}>{t('studentDetail.noAssignmentInfo')}</Text>
+          )}
+        </View>
 
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>{t('studentDetail.feedbackTitle')}</Text>
+          <Text style={styles.feedbackText}>{t('studentDetail.teacherComment')}</Text>
+        </View>
+      </ScrollView>
+    </View>
+  );
 }
