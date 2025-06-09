@@ -64,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Ⅰ. Changes in Matter",
+    "subtitle": "Ⅰ. Physical and Chemical Changes",
     "title": "01. Concept Exploration",
     "sections": {
       "concept": "Concept Summary",
@@ -73,7 +73,7 @@
     }
   },
   "chapter1_02": {
-    "subtitle": "States of Matter and Energy",
+    "subtitle": "Chemical Reactions",
     "title": "02. State Change",
     "sections": {
       "concept": "Concept Summary",
@@ -82,7 +82,7 @@
     }
   },
   "chapter1_03": {
-  "subtitle": "Heat Transfer and Matter",
+  "subtitle": "Chemical Reaction Equations",
   "title": "03. Exploring Heat and Matter",
   "sections": {
     "concept": "Concept Summary",
