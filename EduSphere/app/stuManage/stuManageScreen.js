@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'expo-router';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTranslation } from 'react-i18next'; // ✅ Added
+import { useTranslation } from 'react-i18next';
 import styles from '../../style/stuManageStyle/stuManageScreenStyle';
 import BackButton from '../../components/BackButton';
 
@@ -17,7 +17,7 @@ export default function StudentManagementScreen() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const { t } = useTranslation(); // ✅ Added
+  const { t } = useTranslation();
 
   const fetchData = async () => {
     try {
@@ -72,7 +72,7 @@ export default function StudentManagementScreen() {
   return (
     <View style={styles.container}>
       <BackButton onPress={() => router.push('/ProfileScreen')} />
-
+      <Text style={styles.title}>담당 학생 목록</Text>
       <FlatList
         data={students}
         renderItem={renderStudentItem}

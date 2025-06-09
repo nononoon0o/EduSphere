@@ -9,7 +9,7 @@ export default StyleSheet.create({
 
   // ✅ Back Button Wrapper
   backWrapper: {
-    marginBottom: 16, // Spacing between back button and cards
+    marginBottom: 16,
     alignSelf: 'flex-start',
   },
 
@@ -30,6 +30,14 @@ export default StyleSheet.create({
     elevation: 3,
     borderLeftWidth: 4,
     borderLeftColor: '#3B82F6', // blue-500
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1F2937',
+    textAlign: 'center',
+    marginBottom: 16,
   },
 
   studentName: {

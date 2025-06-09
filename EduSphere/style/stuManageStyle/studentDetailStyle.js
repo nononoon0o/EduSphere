@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
 
   backWrapper: {
-    marginBottom: 24, // ✅ espace ajouté
+    marginBottom: 24,
     alignSelf: 'flex-start',
   },
 

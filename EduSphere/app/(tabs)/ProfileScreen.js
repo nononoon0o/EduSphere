@@ -120,17 +120,23 @@ export default function ProfileScreen() {
           {/* 교사용 기능 */}
           {role === "teacher" && (
             <>
-              <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
+              {/* <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
                 <Text style={styles.actionButtonText}>{t('profile.setProgress')}</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.actionButton}
                 onPress={() => router.push('/stuManage/stuManageScreen')}
               >
                 <Text style={styles.actionButtonText}>{t('profile.manageStudents')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
+              {/* <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
                 <Text style={styles.actionButtonText}>{t('profile.viewResults')}</Text>
+              </TouchableOpacity> */}
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => router.push('/assignments/assignmentScore')}
+              >
+                <Text style={styles.actionButtonText}>{t('profile.assignmentScore')}</Text>
               </TouchableOpacity>
             </>
           )}
