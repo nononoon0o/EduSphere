@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import axios from 'axios';
+import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BackButton from '../../../components/BackButton';
 import styles from '../../../style/stuManageStyle/weightStyle'; // 원하는 대로 스타일 파일 지정
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +15,7 @@ export default function WeightScreen() {
   const [attendance, setAttendance] = useState('30');
   const [assignment, setAssignment] = useState('30');
   const [saving, setSaving] = useState(false);
+  const router = useRouter();
 
   const handleSave = async () => {
     const quizNum = Number(quiz);
@@ -49,36 +52,39 @@ export default function WeightScreen() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>{t('weight.title') || '점수 비율 설정'}</Text>
-      
-      <View style={styles.inputRow}>
-        <Text style={styles.label}>학교</Text>
-        <TextInput style={styles.input} value={school} onChangeText={setSchool} placeholder="학교명" />
-      </View>
-      <View style={styles.inputRow}>
-        <Text style={styles.label}>반</Text>
-        <TextInput style={styles.input} value={classId} onChangeText={setClassId} placeholder="반 (예: 1-2)" />
-      </View>
-      <View style={styles.inputRow}>
-        <Text style={styles.label}>평가 (%)</Text>
-        <TextInput style={styles.input} value={quiz} onChangeText={setQuiz} keyboardType="numeric" />
-      </View>
-      <View style={styles.inputRow}>
-        <Text style={styles.label}>출결 (%)</Text>
-        <TextInput style={styles.input} value={attendance} onChangeText={setAttendance} keyboardType="numeric" />
-      </View>
-      <View style={styles.inputRow}>
-        <Text style={styles.label}>과제 (%)</Text>
-        <TextInput style={styles.input} value={assignment} onChangeText={setAssignment} keyboardType="numeric" />
-      </View>
-      <TouchableOpacity
-        style={styles.saveButton}
-        onPress={handleSave}
-        disabled={saving}
-      >
-        <Text style={styles.saveButtonText}>{saving ? '저장중...' : '저장'}</Text>
-      </TouchableOpacity>
-    </ScrollView>
+    <View>
+      <BackButton onPress={() => router.replace('/stuManage/teacherDashboard')} />
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>{t('weight.title') || '점수 비율 설정'}</Text>
+        
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>학교</Text>
+          <TextInput style={styles.input} value={school} onChangeText={setSchool} placeholder="학교명" />
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>반</Text>
+          <TextInput style={styles.input} value={classId} onChangeText={setClassId} placeholder="반 (예: 1-2)" />
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>평가 (%)</Text>
+          <TextInput style={styles.input} value={quiz} onChangeText={setQuiz} keyboardType="numeric" />
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>출결 (%)</Text>
+          <TextInput style={styles.input} value={attendance} onChangeText={setAttendance} keyboardType="numeric" />
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>과제 (%)</Text>
+          <TextInput style={styles.input} value={assignment} onChangeText={setAssignment} keyboardType="numeric" />
+        </View>
+        <TouchableOpacity
+          style={styles.saveButton}
+          onPress={handleSave}
+          disabled={saving}
+        >
+          <Text style={styles.saveButtonText}>{saving ? '저장중...' : '저장'}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
   );
 }

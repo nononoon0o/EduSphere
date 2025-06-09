@@ -268,15 +268,21 @@ const TeacherDashboard = () => {
             className="react-datepicker__input"
           />
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveDeadline}>
-            <Text style={{ fontWeight: 'bold' }}>{t('dashboard.saveDeadline')}</Text>
+            <Text style={styles.weightButtonText}>{t('dashboard.saveDeadline')}</Text>
           </TouchableOpacity>
         </View>
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('dashboard.weightSetting') || '점수 비율 조정'}</Text>
+          <TouchableOpacity
+            style={styles.weightButtonContainer}
+            onPress={() => router.push('./teacherDashboard/weight')}
+          >
+            <Text style={styles.weightButtonText}>점수 비율 조정</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-      <TouchableOpacity onPress={() => router.push('./teacherDashboard/weight')}>
-        <Text>weight</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 };

@@ -151,6 +151,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
   },
+
+  weightButtonContainer: {
+    backgroundColor: '#F59E42',
+    borderRadius: 8,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+
+  weightButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  }
 });
 
 export default styles;
