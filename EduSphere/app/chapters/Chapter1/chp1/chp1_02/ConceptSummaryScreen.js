@@ -21,11 +21,6 @@ export default function ConceptSummaryScreen() {
           <Text style={styles.text}>{t('conceptSummary.objective')}</Text>
         </View>
 
-        {/* 📚 Main Concept */}
-        <View style={styles.card}>
-          <Text style={styles.text}>{t('conceptSummary.mainConcept')}</Text>
-        </View>
-
         {/* 🧪 Chemical Reaction */}
         <View style={styles.card}>
           <Text style={styles.conceptTitle}>{t('conceptSummary.chemReactionTitle')}</Text>
