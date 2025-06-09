@@ -181,16 +181,16 @@ export default function StuResultScreen() {
           const assignment = (scoreObj?.assignmentScore ?? 0);
           return (
             <Text key={ch.chapter} style={styles.subjectText}>
-              {ch.title}: {`${total}점 (평가:${quiz} 출결:${attendance} 과제:${assignment})`}
+              {ch.title}: {`${total}점 (평가:${quiz} 출가:${attendance} 과제:${assignment})`}
             </Text>
           );
         })}
       </View>
 
-      {/* 📅 Attendance */}
+      {/* 🗕 Attendance */}
       <View style={styles.card}>
         <View style={styles.sectionHeaderRow}>
-          <Text style={styles.sectionIcon}>📅</Text>
+          <Text style={styles.sectionIcon}>🗕</Text>
           <Text style={styles.sectionTitleText}>{t('result.attendanceStatus')}</Text>
         </View>
         <View style={styles.attendanceTagWrapper}>
