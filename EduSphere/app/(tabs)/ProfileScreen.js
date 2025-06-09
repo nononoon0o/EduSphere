@@ -129,9 +129,6 @@ export default function ProfileScreen() {
               >
                 <Text style={styles.actionButtonText}>{t('profile.manageStudents')}</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity style={styles.actionButton} onPress={() => {}}>
-                <Text style={styles.actionButtonText}>{t('profile.viewResults')}</Text>
-              </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.actionButton}
                 onPress={() => router.push('/assignments/assignmentScore')}
