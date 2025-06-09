@@ -64,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Ⅰ. 물리 변화와 화학 변화",
+    "subtitle": " 물리 변화와 화학 변화",
     "title": "01. 개념 탐색",
     "sections": {
       "concept": "개념 요약",
@@ -73,7 +73,7 @@
     }
   },
   "chapter1_02": {
-    "subtitle": "Ⅱ 화학 반응",
+    "subtitle": " 화학 반응",
     "title": "02. 상태 변화",
     "sections": {
       "concept": "개념 요약",
@@ -82,7 +82,7 @@
     }
   },
   "chapter1_03": {
-    "subtitle": "Ⅲ 화학반응식",
+    "subtitle": " 화학반응식",
     "title": "03. 열과 물질 탐구",
     "sections": {
       "concept": "개념 요약",
@@ -660,24 +660,26 @@
 },
 
   "dashboard": {
-    "createAssignment": "새 과제 생성",
-    "assignmentTitle": "과제 제목",
-    "assignmentDescription": "과제 설명",
-    "selectDate": "마감일 선택",
-    "selectedFile": "선택된 파일",
-    "create": "생성",
-    "currentAssignments": "현재 과제 목록",
-    "delete": "삭제",
-    "setChapterDeadline": "챕터별 마감일 설정",
-    "selectChapter": "챕터 선택",
-    "saveDeadline": "마감일 저장",
-    "errorLoadingAssignments": "과제 불러오기 실패.",
-    "errorCreateAssignment": "과제 생성 실패.",
-    "errorDeleteAssignment": "과제 삭제 실패.",
-    "deadlineSaved": "마감일이 성공적으로 저장되었습니다.",
-    "deadlineSaveError": "마감일 저장에 실패했습니다.",
-    "fileTypeAlert": ".docx 및 .hwp 파일만 업로드 가능합니다."
-  },
+  "createAssignment": "새 과제 생성",
+  "assignmentTitle": "과제 제목",
+  "assignmentDescription": "과제 설명",
+  "selectDate": "마감일 선택",
+  "selectedFile": "선택된 파일",
+  "create": "생성",
+  "currentAssignments": "현재 과제 목록",
+  "delete": "삭제",
+  "setChapterDeadline": "챕터 마감일 설정",
+  "selectChapter": "챕터 선택",
+  "saveDeadline": "마감일 저장",
+  "errorLoadingAssignments": "과제를 불러오는 데 실패했습니다.",
+  "errorCreateAssignment": "과제 생성에 실패했습니다.",
+  "errorDeleteAssignment": "과제 삭제에 실패했습니다.",
+  "deadlineSaved": "마감일이 성공적으로 저장되었습니다.",
+  "deadlineSaveError": "마감일 저장에 실패했습니다.",
+  "fileTypeAlert": ".docx 또는 .hwp 파일만 업로드 가능합니다.",
+  "weightSetting": "점수 비율 조정"
+}
+,
   "result": {
     "titleWithName": "{{name}}님의 학업 성과",
     "title": "학업 성과",
@@ -766,7 +768,31 @@
   "yes": "예",
   "no": "아니오",
   "quit": "종료"
-}
+},
+ "weight": {
+    "title": "점수 비율 설정",
+    "school": "학교",
+    "class": "반",
+    "classPlaceholder": "반 (예: 1-2)",
+    "quiz": "평가 (%)",
+    "attendance": "출결 (%)",
+    "assignment": "과제 (%)",
+    "save": "저장",
+    "saving": "저장중...",
+    "error": {
+      "input": "입력 오류",
+      "invalidNumber": "모든 입력값은 0 이상의 숫자여야 합니다.",
+      "sumNot100": "비율의 합이 100이 되어야 합니다."
+    },
+    "success": {
+      "title": "저장 완료",
+      "message": "점수 비율이 저장되었습니다!"
+    },
+    "fail": {
+      "title": "저장 실패",
+      "message": "저장에 실패했습니다."
+    }
+  }
 
 
 
