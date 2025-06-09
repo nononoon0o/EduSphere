@@ -171,7 +171,7 @@ export default function StudentDetail() {
             const assignment = (scoreObj?.assignmentScore ?? 0);
             return (
               <Text key={ch.chapter} style={styles.subjectText}>
-                {ch.title}: {`${total}점 (평가:${quiz} 출결:${attendance} 과제:${assignment})`}
+                {ch.title}: {`${total}`}{t('studentDetail.totalScore')} ({t('studentDetail.quizScore')}:{`${quiz}`} {t('studentDetail.attendScore')}:{`${attendance}`} {t('studentDetail.assignScore')}:{`${assignment}`})
               </Text>
             );
           })}
@@ -180,16 +180,16 @@ export default function StudentDetail() {
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>🕘 {t('result.attendanceStatus')}</Text>
           <Text style={[styles.tag, styles.tagPresent]}>
-            {t('result.present')}: {attendanceCounts.출석}{t('result.unit')}
+            {t('result.present')}: {attendanceCounts.출석}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagLate]}>
-            {t('result.late')}: {attendanceCounts.지각}{t('result.unit')}
+            {t('result.late')}: {attendanceCounts.지각}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            {t('result.absent')}: {attendanceCounts.결석}{t('result.unit')}
+            {t('result.absent')}: {attendanceCounts.결석}{t('result.days')}
           </Text>
           <Text style={[styles.tag, styles.tagAbsent]}>
-            {t('result.incomplete')}: {attendanceCounts.미완료}{t('result.unit')}
+            {t('result.incomplete')}: {attendanceCounts.미완료}{t('result.days')}
           </Text>
         </View>
 
@@ -210,11 +210,6 @@ export default function StudentDetail() {
           ) : (
             <Text style={styles.assignmentText}>{t('studentDetail.noAssignmentInfo')}</Text>
           )}
-        </View>
-
-        <View style={styles.card}>
-          <Text style={styles.sectionTitle}>{t('studentDetail.feedbackTitle')}</Text>
-          <Text style={styles.feedbackText}>{t('studentDetail.teacherComment')}</Text>
         </View>
       </ScrollView>
     </View>

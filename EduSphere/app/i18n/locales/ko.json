@@ -640,7 +640,10 @@
   "class": "반",
   "school": "학교",
   "subjectsTitle": "📚 수강 과목 및 성적",
-  "noSubjects": "수강 과목 정보 없음",
+  "totalScore": "점",
+  "quizScore": "평가",
+  "attendScore": "출결",
+  "assignScore": "과제",
   "noSubjectInfo": "과목 정보가 없습니다.",
   "attendanceTitle": "🕘 출결 현황",
   "present": "출석",
@@ -653,8 +656,6 @@
   "noAssignmentInfo": "등록된 과제가 없습니다.",
   "submitted": "제출",
   "notSubmitted": "미제출",
-  "score": "점",
-  "scoreUnit": "점",
   "feedbackTitle": "💬 피드백",
   "comment": "교사 코멘트 (추후 연동)",
   "teacherComment": "작성된 코멘트가 없습니다."
@@ -679,9 +680,8 @@
     "deadlineSaveError": "마감일 저장에 실패했습니다.",
     "fileTypeAlert": ".docx 또는 .hwp 파일만 업로드 가능합니다.",
     "weightSetting": "점수 비율 조정"
-}
-,
-  "result": {
+},
+"result": {
   "titleWithName": "{{name}}의 성과 요약",
   "title": "성과 요약",
   "subjectScores": "과목별 점수",
@@ -693,7 +693,7 @@
   "absent": "결석",
   "incomplete": "미완료",
   "unknown": "알 수 없음",
-  "days": "일",
+  "days": " 일",
   "assignmentStatus": "과제 제출 현황",
   "assignmentTitle": "과제",
   "assignmentRequest": "첨부된 파일에 {{chapter}}장의 내용을 정리하여 제출해주세요.",
@@ -702,7 +702,7 @@
   "errorFetchingAssignments": "과제 정보를 불러오지 못했습니다."
 },
 
- "assignment": {
+"assignment": {
     "titlePattern": "과학 과제 {{number}}",
     "description": "설명",
     "dueDate": "제출 마감일",
@@ -771,7 +771,7 @@
   "no": "아니오",
   "quit": "종료"
 },
- "weight": {
+"weight": {
     "title": "점수 비율 설정",
     "school": "학교",
     "class": "반",
@@ -809,8 +809,4 @@
 "assignmentScoreIndex": {
   "title": "담당 학생 목록"
 }
-
-
-
-
 }
