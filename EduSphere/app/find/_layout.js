@@ -10,16 +10,13 @@ export default function Layout() {
   const [isModalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
-  // ⬅️ Show modal when back button is pressed
   const showBackModal = () => setModalVisible(true);
 
-  // ❌ Hide modal
   const hideModal = () => setModalVisible(false);
 
-  // ✅ Confirm back navigation
   const confirmNavigation = () => {
     setModalVisible(false);
-    router.replace("/ProfileScreen");
+    router.replace("/signin/loginScreen");
   };
 
   return (
@@ -40,7 +37,6 @@ export default function Layout() {
         />
       </Stack>
 
-      {/* 🔒 Modal on back press */}
       <BackPressModal
         visible={isModalVisible}
         onClose={hideModal}

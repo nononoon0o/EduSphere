@@ -8,7 +8,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Platform,
-  Alert
 } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import axios from 'axios';
@@ -58,7 +57,9 @@ const TeacherDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [deadlines, setDeadlines] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errorFetchAssignment, setErrorFetchAssignment] = useState('');
+  const [errorCreateAssignment, setErrorCreateAssignment] = useState('');
+  const [errorCreateDeadline, setErrorCreateDeadline] = useState('');
 
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
@@ -74,7 +75,7 @@ const TeacherDashboard = () => {
       });
       setAssignments(res.data);
     } catch (err) {
-      setError(t('dashboard.errorLoadingAssignments'));
+      setErrorFetchAssignment(t('dashboard.errorLoadingAssignments'));
     }
   };
 
@@ -106,7 +107,7 @@ const TeacherDashboard = () => {
     if (file && (file.name.endsWith('.docx') || file.name.endsWith('.hwp'))) {
       setAssignmentFile(file);
     } else {
-      Alert.alert(t('dashboard.fileTypeAlert'));
+      setErrorCreateAssignment(t('dashboard.fileTypeAlert'));
       e.target.value = '';
       setAssignmentFile(null);
     }
@@ -134,10 +135,10 @@ const TeacherDashboard = () => {
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
-      setError('');
+      setErrorCreateAssignment('');
     } catch (err) {
       console.log(err);
-      setError(t('dashboard.errorCreateAssignment'));
+      setErrorCreateAssignment(t('dashboard.errorCreateAssignment'));
     }
   };
 
@@ -149,7 +150,7 @@ const TeacherDashboard = () => {
       });
       setAssignments(assignments.filter(assignment => assignment._id !== id));
     } catch (err) {
-      setError(t('dashboard.errorDeleteAssignment'));
+      setErrorFetchAssignment(t('dashboard.errorDeleteAssignment'));
     }
   };
 
@@ -166,9 +167,8 @@ const TeacherDashboard = () => {
           headers: { Authorization: `Bearer ${token}` }
         }
       );
-      Alert.alert(t('dashboard.deadlineSaved'));
     } catch (e) {
-      Alert.alert(t('dashboard.deadlineSaveError'));
+      setErrorCreateDeadline(t('dashboard.deadlineSaveError'));
       console.log(e);
     }
   };
@@ -184,6 +184,11 @@ const TeacherDashboard = () => {
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.createAssignment')}</Text>
+          {errorCreateAssignment !== "" && (
+            <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+              {errorCreateAssignment}
+            </Text>
+          )}
           <Dropdown
             style={styles.dropdown}
             data={chapterList}
@@ -238,6 +243,11 @@ const TeacherDashboard = () => {
         {/* Assignment List */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.currentAssignments')}</Text>
+          {errorFetchAssignment !== "" && (
+            <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+              {errorFetchAssignment}
+            </Text>
+          )}
           <FlatList
             data={assignments}
             keyExtractor={item => item._id}
@@ -268,6 +278,11 @@ const TeacherDashboard = () => {
         {/* Deadline Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.setChapterDeadline')}</Text>
+          {errorCreateDeadline !== "" && (
+            <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+              {errorCreateDeadline}
+            </Text>
+          )}
           <Dropdown
             style={styles.dropdown}
             data={chapterList}
@@ -291,8 +306,6 @@ const TeacherDashboard = () => {
             <Text style={styles.appButtonText}>{t('dashboard.saveDeadline')}</Text>
           </TouchableOpacity>
         </View>
-
-        {error ? <Text style={styles.error}>{error}</Text> : null}
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('dashboard.weightSetting')}</Text>

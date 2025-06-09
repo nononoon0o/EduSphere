@@ -25,6 +25,7 @@ export default function AssignmentScoreStudent() {
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [submissions, setSubmissions] = useState([]);
   const [inputScores, setInputScores] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -99,11 +100,11 @@ export default function AssignmentScoreStudent() {
         { score: assignmentScore, chapter: selectedAssignmentObj.chapter },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert('점수 저장 완료!');
+      setErrorMessage(t(assignment.saveScore));
       await fetchSubmissions();
       return { success: true };
     } catch (e) {
-      alert('점수 저장 실패!');
+      setErrorMessage(t(assignment.saveScoreFail));
     } finally {
       setSaving(false);
     }
@@ -118,7 +119,7 @@ export default function AssignmentScoreStudent() {
       });
 
       if (!res.ok) {
-        alert(t('assignment.downloadFail'));
+        setErrorMessage(t('assignment.downloadFail'));
         return;
       }
 
@@ -137,7 +138,7 @@ export default function AssignmentScoreStudent() {
       link.download = filename;
       link.click();
     } catch (err) {
-      alert(t('assignment.downloadError'));
+      setErrorMessage(t('assignment.downloadError'));
       console.error(err);
     }
   };
@@ -151,6 +152,12 @@ export default function AssignmentScoreStudent() {
         <Text style={styles.title}>
           {student ? t('scoreStudent.title', { name: student.nickname || student.name }) : ''}
         </Text>
+
+        {errorMessage !== "" && (
+          <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+            {errorMessage}
+          </Text>
+        )}
 
         <Dropdown
           style={styles.dropdown}

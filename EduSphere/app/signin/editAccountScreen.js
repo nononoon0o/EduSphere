@@ -4,7 +4,6 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
-  Alert,
   View
 } from 'react-native';
 import { useRouter } from "expo-router";
@@ -21,6 +20,7 @@ export default function EditAccountScreen() {
   const [nickname, setNickname] = useState('');
   const [school, setSchool] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -30,9 +30,10 @@ export default function EditAccountScreen() {
 
   const handleSave = async () => {
     if (!isValidNickname || !isValidSchool || !isValidPassword) {
-      Alert.alert(t('edit.errorTitle'), t('edit.errorInput'));
+      setErrorMessage(t('edit.errorInput'));
       return;
     }
+    setErrorMessage("");
 
     try {
       const token = await AsyncStorage.getItem('token');
@@ -51,11 +52,11 @@ export default function EditAccountScreen() {
       if (response.data.success) {
         setModalVisible(true);
       } else {
-        Alert.alert(t('edit.failTitle'), response.data.message || t('edit.failMessage'));
+        setErrorMessage(response.data.message || t('edit.failMessage'));
       }
     } catch (err) {
       console.error(err);
-      Alert.alert(t('edit.errorTitle'), t('edit.serverError'));
+      setErrorMessage(t('edit.serverError'));
     }
   };
 
@@ -72,6 +73,12 @@ export default function EditAccountScreen() {
       <View style={styles.card}>
         <Text style={styles.title}>{t('edit.title')}</Text>
 
+        {errorMessage !== "" && (
+          <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+            {errorMessage}
+          </Text>
+        )}
+
         {/* Nickname */}
         <View style={styles.inputWrapper}>
           <Icon name="user" size={18} color="#9CA3AF" style={styles.inputIcon} />
@@ -82,14 +89,6 @@ export default function EditAccountScreen() {
             value={nickname}
             onChangeText={setNickname}
           />
-          {nickname.length > 0 && (
-            <Icon
-              name={isValidNickname ? "check-circle" : "times-circle"}
-              size={18}
-              color={isValidNickname ? "#10B981" : "#EF4444"}
-              style={styles.validationIcon}
-            />
-          )}
         </View>
 
         {/* School */}
@@ -102,14 +101,6 @@ export default function EditAccountScreen() {
             value={school}
             onChangeText={setSchool}
           />
-          {school.length > 0 && (
-            <Icon
-              name={isValidSchool ? "check-circle" : "times-circle"}
-              size={18}
-              color={isValidSchool ? "#10B981" : "#EF4444"}
-              style={styles.validationIcon}
-            />
-          )}
         </View>
 
         {/* Password */}
@@ -123,14 +114,6 @@ export default function EditAccountScreen() {
             value={password}
             onChangeText={setPassword}
           />
-          {password.length > 0 && (
-            <Icon
-              name={isValidPassword ? "check-circle" : "times-circle"}
-              size={18}
-              color={isValidPassword ? "#10B981" : "#EF4444"}
-              style={styles.validationIcon}
-            />
-          )}
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleSave}>

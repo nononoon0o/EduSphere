@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -21,6 +20,7 @@ export default function VerifyPasswordScreen() {
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const handleBack = () => {
@@ -29,12 +29,10 @@ export default function VerifyPasswordScreen() {
 
   const handleVerify = async () => {
     if (!password) {
-      Alert.alert(t('verifyPassword.errorEmpty'));
+      setErrorMessage(t('verifyPassword.errorEmpty'));
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       const token = await AsyncStorage.getItem('token');
       const response = await axios.post(
@@ -51,11 +49,14 @@ export default function VerifyPasswordScreen() {
 
       if (response.data.success) {
         router.push('/signin/editAccountScreen');
-      } else {
-        Alert.alert(t('verifyPassword.errorMismatch'));
       }
     } catch (err) {
-      Alert.alert(t('verifyPassword.errorServer'));
+      console.log(err)
+      if (err.response.status === 401) {
+        setErrorMessage(t('verifyPassword.errorMismatch'));
+      } else {
+        setErrorMessage(t('verifyPassword.errorServer'));
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -68,6 +69,11 @@ export default function VerifyPasswordScreen() {
       <View style={styles.card}>
         <Text style={styles.title}>{t('verifyPassword.title')}</Text>
         <Text style={styles.subtitle}>{t('verifyPassword.subtitle')}</Text>
+        {errorMessage !== "" && (
+          <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+            {errorMessage}
+          </Text>
+        )}
 
         <View style={styles.inputContainer}>
           <TextInput

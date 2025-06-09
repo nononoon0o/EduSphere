@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -21,10 +20,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const handleBack = () => {
-    router.push("/HomeScreen");
-  };
 
   const handleLogin = async () => {
     try {
@@ -50,20 +45,20 @@ const LoginScreen = () => {
         }
 
         setErrorMessage("");
-        Alert.alert(t("login.successTitle"), t("login.successMessage"));
         router.push("/HomeScreen");
       } else {
-        const msg = response.data.message;
-        if (msg === "비밀번호가 일치하지 않습니다.") {
-          setErrorMessage(t("login.errorWrongPassword"));
-        } else if (msg === "존재하지 않는 사용자입니다.") {
-          setErrorMessage(t("login.errorNoUser"));
-        } else {
-          setErrorMessage(t("login.errorDefault"));
-        }
+        setErrorMessage(t("login.errorWrongIDPassword"));
       }
     } catch (error) {
-      Alert.alert(t("login.errorTitle"), t("login.errorServer"));
+      if (
+        error.response &&
+        (error.response.data.message === "비밀번호가 일치하지 않습니다." ||
+          error.response.data.message === "존재하지 않는 사용자입니다.")
+      ) {
+        setErrorMessage(t("login.errorWrongIDPassword"));
+      } else {
+        setErrorMessage(t("login.errorDefault"));
+      }
       console.error(error);
     }
   };
@@ -77,7 +72,7 @@ const LoginScreen = () => {
       <Text style={styles.title}>EduSphere</Text>
 
       {errorMessage !== "" && (
-        <Text style={{ color: "red", marginBottom: 10, fontWeight: "bold" }}>
+        <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
           {errorMessage}
         </Text>
       )}

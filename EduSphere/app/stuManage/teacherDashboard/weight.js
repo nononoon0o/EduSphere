@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,6 +14,7 @@ export default function WeightScreen() {
   const [quiz, setQuiz] = useState('40');
   const [attendance, setAttendance] = useState('30');
   const [assignment, setAssignment] = useState('30');
+  const [errorMessage, setErrorMessage] = useState("");
   const [saving, setSaving] = useState(false);
   const router = useRouter();
 
@@ -26,12 +27,12 @@ export default function WeightScreen() {
       isNaN(quizNum) || isNaN(attendanceNum) || isNaN(assignmentNum) ||
       quizNum < 0 || attendanceNum < 0 || assignmentNum < 0
     ) {
-      Alert.alert(t('weight.error.input'), t('weight.error.invalidNumber'));
+      setErrorMessage(t('weight.error.invalidNumber'));
       return;
     }
 
     if (quizNum + attendanceNum + assignmentNum !== 100) {
-      Alert.alert(t('weight.error.input'), t('weight.error.sumNot100'));
+      setErrorMessage(t('weight.error.sumNot100'));
       return;
     }
 
@@ -43,9 +44,9 @@ export default function WeightScreen() {
         { quiz: quizNum, attendance: attendanceNum, assignment: assignmentNum },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      Alert.alert(t('weight.success.title'), t('weight.success.message'));
+      setErrorMessage(t('weight.success.message'));
     } catch (e) {
-      Alert.alert(t('weight.fail.title'), t('weight.fail.message'));
+      setErrorMessage(t('weight.fail.message'));
     } finally {
       setSaving(false);
     }
@@ -56,6 +57,12 @@ export default function WeightScreen() {
       <BackButton onPress={() => router.replace('/stuManage/teacherDashboard')} />
       <ScrollView style={styles.container}>
         <Text style={styles.sectionTitle}>{t('weight.title')}</Text>
+
+        {errorMessage !== "" && (
+          <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+            {errorMessage}
+          </Text>
+        )}
 
         <View style={styles.inputRow}>
           <Text style={styles.itemTitle}>{t('weight.school')}</Text>

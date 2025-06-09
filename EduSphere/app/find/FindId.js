@@ -18,6 +18,7 @@ function FindId() {
   const [numberholder, setNumberholder] = useState(t("find.codeGuide"));
   const [end, setEnd] = useState(false);
   const [emailCenter, setEmailCenter] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const today = new Date();
   const formattedDate = today.toISOString().slice(0, 10).replace(/-/g, ".");
 

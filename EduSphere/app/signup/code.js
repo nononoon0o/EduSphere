@@ -9,6 +9,7 @@ import {
 import { useLocalSearchParams, useRouter } from "expo-router";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import BackButton from '../../components/BackButton';
 import CodeModal from "./codemodal";
 import CountdownTimer from "../find/CountdownTimer";
 import styles from "../../style/signupStyle/CodeStyle";
@@ -104,6 +105,7 @@ const VerificationScreen = () => {
 
   return (
     <View style={styles.container}>
+      <BackButton onPress={() => router.back()} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>
           {t("verification.title")}

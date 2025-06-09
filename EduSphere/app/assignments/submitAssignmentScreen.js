@@ -12,6 +12,7 @@ import axios from 'axios';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../../style/assignments/submitAssignmentScreenStyle';
+import BackButton from '../../components/BackButton';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
@@ -25,6 +26,7 @@ export default function SubmitAssignmentScreen() {
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const fetchAssignments = async () => {
     try {
@@ -84,20 +86,24 @@ export default function SubmitAssignmentScreen() {
         fileInputRef.current.value = '';
       }
     } catch (e) {
-      Alert.alert(t('submit.error'), t('submit.submitError'));
+      setErrorMessage(t('submit.submitError'));
       console.log(e);
     }
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#F3F4F6' }}>
-      <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-        <Ionicons name="arrow-back" size={20} color="#fff" />
-      </TouchableOpacity>
+      <BackButton onPress={() => router.push('/ProfileScreen')} />
 
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.card}>
           <Text style={styles.title}>{t('submit.title')}</Text>
+
+          {errorMessage !== "" && (
+            <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+              {errorMessage}
+            </Text>
+          )}
 
           <Dropdown
             style={styles.dropdown}

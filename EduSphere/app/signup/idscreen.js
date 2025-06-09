@@ -90,7 +90,7 @@ const SignupID = () => {
 
   return (
     <ScrollView contentContainerStyle={styleid.scroll}>
-      <BackButton to="/signup/signmail" />
+      <BackButton onPress={() => router.back()} />
 
       <View style={styleid.card}>
         <Text style={styleid.title}>

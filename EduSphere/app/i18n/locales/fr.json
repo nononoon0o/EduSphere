@@ -23,7 +23,8 @@
     "viewResults": "Voir les résultats",
     "submitAssignment": "Soumettre le devoir",
     "withdraw": "Supprimer le compte",
-    "assignmentScore": "Soumissions des élèves"
+    "assignmentScore": "Soumissions des élèves",
+    "loginRequired": "Cette fonctionnalité nécessite d'être connecté"
   },
   "SEARCH": "Recherche",
   "search": "Saisissez un mot-clé...",
@@ -477,8 +478,8 @@
   }
 },
 "login": {
-  "successTitle": "Connexion réussie",
-  "successMessage": "Redirection vers l'écran d'accueil.",
+  "errorWrongIDPassword": "L'identifiant ou le mot de passe est incorrect",
+  "errorDefault": "Échec de la connexion en raison d'une erreur inconnue",
   "userIdPlaceholder": "Identifiant",
   "passwordPlaceholder": "Mot de passe",
   "loginButton": "Connexion",
@@ -711,7 +712,9 @@
   "downloadError": "Une erreur est survenue lors du téléchargement.",
   "defaultFilename": "devoir.docx",
   "errorFetch": "Échec du chargement du devoir.",
-  "notFound": "Devoir introuvable."
+  "notFound": "Devoir introuvable.",
+  "saveScore": "Enregistrement de la note réussi",
+  "saveScoreFail": "Échec de l'enregistrement de la note"
 },
 
 "submit": {

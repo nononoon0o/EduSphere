@@ -60,7 +60,7 @@ const DetailForm = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
-      <BackButton to="/signup/password" />
+      <BackButton onPress={() => router.back()} />
       <View style={styles.card}>
         <Text style={styles.title}>{t('detailForm.title')}</Text>
 

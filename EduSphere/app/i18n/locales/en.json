@@ -23,7 +23,8 @@
     "viewResults": "View Results",
     "submitAssignment": "Submit Assignment",
     "withdraw": "Delete Account",
-    "assignmentScore": "Student Submissions"
+    "assignmentScore": "Student Submissions",
+    "loginRequired": "This feature requires you to be logged in"
   },
   "SEARCH": "Search",
   "search": "Enter a search term...",
@@ -478,8 +479,8 @@
   }
 },
 "login": {
-  "successTitle": "Login Successful",
-  "successMessage": "Redirecting to home screen.",
+  "errorWrongIDPassword": "The ID or password is incorrect",
+  "errorDefault": "Login failed due to an unknown error",
   "userIdPlaceholder": "User ID",
   "passwordPlaceholder": "Password",
   "loginButton": "Login",
@@ -711,7 +712,9 @@
   "downloadError": "An error occurred during download.",
   "defaultFilename": "assignment.docx",
   "errorFetch": "Failed to load the assignment.",
-  "notFound": "Assignment not found."
+  "notFound": "Assignment not found.",
+  "saveScore": "Score saved successfully",
+  "saveScoreFail": "Failed to save score"
 },
 
  "submit": {

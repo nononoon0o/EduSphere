@@ -13,7 +13,7 @@ const NextScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/signin/loginScreen');
-    }, 3000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 

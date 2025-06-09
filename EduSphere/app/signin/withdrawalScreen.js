@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function WithdrawalScreen() {
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -30,7 +31,7 @@ export default function WithdrawalScreen() {
         router.replace('/signin/loginScreen');
       }
     } catch (error) {
-      Alert.alert(t('withdrawal.error'), error.response?.data?.message || t('withdrawal.genericError'));
+      setErrorMessage(error.response?.data?.message || t('withdrawal.genericError'));
     }
   };
 
@@ -41,6 +42,12 @@ export default function WithdrawalScreen() {
       <View style={styles.card}>
         <Text style={styles.title}>{t('withdrawal.title')}</Text>
         <Text style={styles.infoText}>{t('withdrawal.description')}</Text>
+
+        {errorMessage !== "" && (
+          <Text style={{ color: "red", marginBottom: 10, textAlign: 'center', fontWeight: "bold" }}>
+            {errorMessage}
+          </Text>
+        )}
 
         <View style={styles.inputContainer}>
           <TextInput

@@ -39,6 +39,20 @@ const nextstyle = StyleSheet.create({
     marginBottom: 30,
     lineHeight: 26,
   },
+
+  button: {
+    backgroundColor: "#2563EB",
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 8,
+  },
+
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "700",
+    fontSize: 16,
+  },
 });
 
 export default nextstyle;
