@@ -64,7 +64,7 @@
     }
   },
   "chapter1_01": {
-    "subtitle": "Ⅰ. Physical and Chemical Changes",
+    "subtitle": " Physical and Chemical Changes",
     "title": "01. Concept Exploration",
     "sections": {
       "concept": "Concept Summary",
@@ -658,24 +658,26 @@
 },
 
   "dashboard": {
-    "createAssignment": "Create New Assignment",
-    "assignmentTitle": "Assignment Title",
-    "assignmentDescription": "Assignment Description",
-    "selectDate": "Select a due date",
-    "selectedFile": "Selected file",
-    "create": "Create",
-    "currentAssignments": "Current Assignments",
-    "delete": "Delete",
-    "setChapterDeadline": "Set Deadline for Chapter",
-    "selectChapter": "Select a chapter",
-    "saveDeadline": "Save Deadline",
-    "errorLoadingAssignments": "Failed to load assignments.",
-    "errorCreateAssignment": "Failed to create assignment.",
-    "errorDeleteAssignment": "Failed to delete assignment.",
-    "deadlineSaved": "Deadline saved successfully.",
-    "deadlineSaveError": "Failed to save deadline.",
-    "fileTypeAlert": "Only .docx and .hwp files are allowed."
-  },
+  "createAssignment": "Create a new assignment",
+  "assignmentTitle": "Assignment title",
+  "assignmentDescription": "Assignment description",
+  "selectDate": "Select due date",
+  "selectedFile": "Selected file",
+  "create": "Create",
+  "currentAssignments": "Current assignments",
+  "delete": "Delete",
+  "setChapterDeadline": "Set deadline for chapter",
+  "selectChapter": "Select a chapter",
+  "saveDeadline": "Save deadline",
+  "errorLoadingAssignments": "Failed to load assignments.",
+  "errorCreateAssignment": "Failed to create assignment.",
+  "errorDeleteAssignment": "Failed to delete assignment.",
+  "deadlineSaved": "Deadline saved successfully.",
+  "deadlineSaveError": "Failed to save deadline.",
+  "fileTypeAlert": "Only .docx and .hwp files are allowed.",
+  "weightSetting": "Adjust Score Weight"
+}
+,
   "result": {
     "titleWithName": "{{name}}'s Performance Overview",
     "title": "Performance Overview",
@@ -764,8 +766,29 @@
   "yes": "Yes",
   "no": "No",
   "quit": "Exit"
-}
-
-
-
+},
+"weight": {
+    "title": "Set Score Weighting",
+    "school": "School",
+    "class": "Class",
+    "classPlaceholder": "Class (e.g. 1-2)",
+    "quiz": "Quiz (%)",
+    "attendance": "Attendance (%)",
+    "assignment": "Assignments (%)",
+    "save": "Save",
+    "saving": "Saving...",
+    "error": {
+      "input": "Input Error",
+      "invalidNumber": "All values must be numbers greater than or equal to 0.",
+      "sumNot100": "The sum of the weights must be exactly 100."
+    },
+    "success": {
+      "title": "Saved Successfully",
+      "message": "The score weights have been saved!"
+    },
+    "fail": {
+      "title": "Save Failed",
+      "message": "Failed to save the score weights."
+    }
+  }
 }
