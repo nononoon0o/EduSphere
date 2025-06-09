@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, Dimensions, Platform, TouchableOpacity, Alert,  ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Dimensions,
+  Platform,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -11,18 +18,27 @@ import BackButton from '../../../../../components/BackButton';
 import { useTranslation } from 'react-i18next';
 import PreviousButton from '../../../../../components/PreviousButton';
 
+
 export default function VideoLearningScreen() {
   const { t } = useTranslation();
-  const videoId = 'mUapW54ODMc';
+  const videoId = 'W82aT47cnwM';
+
+  const fetchDeadlineForChapter = async (chapter) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
+      return res.data.deadline?.deadline || null;
+    } catch (e) {
+      console.error('Failed to fetch deadline:', e);
+      return null;
+    }
+  };
 
   const handleCompleteLearning = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
       const studentId = await AsyncStorage.getItem('mongoId');
-      const chapter = 'Chapter1_02';
-
-      const res = await axios.get(`http://localhost:5000/api/deadlines/${chapter}`);
-      const deadline = res.data.deadline?.deadline || null;
+      const chapter = 'Chapter1_01';
+      const deadline = await fetchDeadlineForChapter(chapter);
 
       const result = await recordAttendanceOnComplete({
         studentId,
@@ -32,7 +48,10 @@ export default function VideoLearningScreen() {
       });
 
       if (result.success) {
-        Alert.alert(t('videoLearning.complete'), t('videoLearning.completeMessage', { status: result.status }));
+        Alert.alert(
+          t('videoLearning.complete'),
+          t('videoLearning.completeMessage', { status: result.status })
+        );
         router.push('chapters/Chapter1');
       } else {
         Alert.alert(t('videoLearning.error'), t('videoLearning.attendanceFail'));
@@ -43,9 +62,8 @@ export default function VideoLearningScreen() {
   };
 
   return (
-     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={styles.container}>
-      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_02')} />
+      <BackButton onPress={() => router.replace('/chapters/Chapter1/Chapter1_01')} />
 
       <Text style={styles.text}>{t('videoLearning.title')}</Text>
 
@@ -69,6 +87,7 @@ export default function VideoLearningScreen() {
         </View>
       )}
 
+      {/* ✅ Evaluation Button */}
       <TouchableOpacity
         style={{
           backgroundColor: '#f57c00',
@@ -77,18 +96,19 @@ export default function VideoLearningScreen() {
           marginBottom: 16,
           borderRadius: 8,
           alignItems: 'center',
-          width: '90%'
+          width: '90%',
         }}
-        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/EvaluationScreen')}
+        onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/EvaluationScreen')}
       >
-        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{t('videoLearning.evaluate')}</Text>
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+          {t('videoLearning.evaluate')}
+        </Text>
       </TouchableOpacity>
 
       {/* ✅ Only Previous Button */}
       <View style={{ alignItems: 'flex-start', width: '90%', alignSelf: 'center' }}>
-        <PreviousButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_02/LearnScreen')} />
+        <PreviousButton onPress={() => router.push('/chapters/Chapter1/chp1/chp1_01/LearnScreen')} />
       </View>
     </View>
-    </ScrollView>
   );
 }
