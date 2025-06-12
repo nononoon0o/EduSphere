@@ -1,0 +1,13 @@
+{
+  "name": "edusphere-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd EduSphere && npm start -- --web",
+    "start:backend": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

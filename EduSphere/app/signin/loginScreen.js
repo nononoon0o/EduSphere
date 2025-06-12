@@ -65,7 +65,6 @@ const LoginScreen = () => {
 
   const handleAccount = () => router.push("/signup/signmail");
   const handleIdfind = () => router.push("/find/findmain");
-  const testHome = () => router.push("/HomeScreen");
 
   return (
     <View style={styles.container}>
@@ -127,10 +126,6 @@ const LoginScreen = () => {
         <Text style={styles.separator}> | </Text>
         <TouchableOpacity onPress={handleAccount}>
           <Text style={styles.optionText}>{t("login.signup")}</Text>
-        </TouchableOpacity>
-        <Text style={styles.separator}> | </Text>
-        <TouchableOpacity onPress={testHome}>
-          <Text style={styles.optionText}>{t("login.test")}</Text>
         </TouchableOpacity>
       </View>
     </View>
